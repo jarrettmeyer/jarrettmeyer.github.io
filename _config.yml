@@ -1,4 +1,9 @@
-name: Jarrett Meyer, Caffeine-Powered Life
+name: Jarrett Meyer
+title: Caffeine-Powered Life
+email: jarrettmeyer@gmail.com
+github_username: jarrettmeyer
+twitter_username: jarrettmeyer
+
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 

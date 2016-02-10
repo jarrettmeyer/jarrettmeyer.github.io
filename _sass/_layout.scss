@@ -178,7 +178,6 @@
 .post-list {
     margin-left: 0;
     list-style: none;
-
     > li {
         margin-bottom: $spacing-unit;
     }
@@ -186,12 +185,13 @@
 
 .post-meta {
     font-size: $small-font-size;
+    font-family: $fixed-width-font-family;
     color: $grey-color;
 }
 
 .post-link {
-    display: block;
-    font-size: 24px;
+    // display: block;
+    font-size: $base-font-size;
 }
 
 
