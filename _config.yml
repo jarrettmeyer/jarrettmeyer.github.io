@@ -19,3 +19,10 @@ github_username:  jarrettmeyer
 
 # Build settings
 markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+gems:
+  - jekyll-coffeescript
+  - jekyll-paginate
