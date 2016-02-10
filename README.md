@@ -1,3 +1,3 @@
 # JarrettMeyer.com
 
-This is my blog. Read me at [jarrettmeyer.com](https://jarrettmeyer.com).
+This is my blog. Read more at [jarrettmeyer.com](https://jarrettmeyer.com).

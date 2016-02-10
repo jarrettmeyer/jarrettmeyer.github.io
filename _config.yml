@@ -5,7 +5,7 @@ github_username: jarrettmeyer
 twitter_username: jarrettmeyer
 
 markdown: kramdown
-permalink: /blog/:year/:month/:day/:title
+permalink: /:year/:month/:day/:title
 
 kramdown:
   input: GFM
