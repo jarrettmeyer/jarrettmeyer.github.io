@@ -1,3 +1,9 @@
+---
+layout: page
+title: R&eacute;sum&eacute;
+permalink: /cv/
+---
+
 # I Am a Geek
 
 I love technology.
