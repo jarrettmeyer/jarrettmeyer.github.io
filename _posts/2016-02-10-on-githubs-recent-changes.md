@@ -3,13 +3,13 @@ layout: post
 title:  "On Github's Recent Changes"
 date:   2016-02-10
 ---
-[Github](https://github.com) has started a mild internet uproar by [replacing remote FTE's with on-site employees](http://www.businessinsider.com/github-the-full-inside-story-2016-2) and putting in a management structure where there originally was none. Like with so many decisions, I am torn about this.
+[Github](https://github.com) has started a mild internet uproar by [replacing remote FTE's with on-site employees](http://www.businessinsider.com/github-the-full-inside-story-2016-2) and putting in a management structure where there originally was none. Like with so many decisions, I am torn about this. I can easily see both sides of this argument.
 
 For one, Github has been the technical beauty at the ball for several years now. For the tech-saavy, working remotely with no management overhead is the dream job. These are people who typically reject the social strata. Of course, this is understandable because these nerds -- and I mean that affectionately, recognizing myself as one of them -- probably do not fit into the social strata.
 
 Further, the geeks are quite the cynical group. Managers are managers because they don't have the skill to be developers, right? Why on earth would I want to report to someone about what I do, especially when that manager knows less that I do? Not true, of course, but that's what the cynical developer class thinks.
 
-However, this vision is short-sighted. Github is $2 billion company that has grown from 300 to 500 employees in the last year. That means organization and communication. Good managers can help with this communication. They can quickly discern priority, clear obstacles, and analyze performance. For these managers to be successful, Github has decided that they need to be in the office. I can certainly understand this. There are things that are just easier with face-to-face communication. Again, the heads-down developer may not want to acknowledge this, but it is true. This is the human side of software development. There are conversations that can be completed in 10 minutes face-to-face that take hours (or days!) via email and chat.
+However, this vision is short-sighted. Github is a $2 billion company that has grown from 300 to 500 employees in the last year. That means organization and communication. Good managers can help with this communication. They can quickly discern priority, clear obstacles, and analyze performance. For these managers to be successful, Github has decided that they need to be in the office. I can certainly understand this. There are things that are just easier with face-to-face communication. Again, the heads-down developer may not want to acknowledge this, but it is true. This is the human side of software development. There are conversations that can be completed in 10 minutes face-to-face that take hours (or days!) via email and chat.
 
 Next, let's talk about meritocracy. Meritocracy is a privilege-based system. Privilege -- this word has gained so much connotation in the last couple of years.
 
