@@ -10,3 +10,6 @@ permalink: /:year/:month/:day/:title
 kramdown:
   input: GFM
   hard_wrap: false
+
+gems:
+  - jekyll-gist
