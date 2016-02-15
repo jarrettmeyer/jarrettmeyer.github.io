@@ -7,9 +7,12 @@ twitter_username: jarrettmeyer
 markdown: kramdown
 permalink: /:year/:month/:day/:title
 
+gems:
+  - jekyll-gist
+
+gist:
+  noscript: false
+
 kramdown:
   input: GFM
   hard_wrap: false
-
-gems:
-  - jekyll-gist
