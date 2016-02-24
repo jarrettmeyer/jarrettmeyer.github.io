@@ -9,6 +9,7 @@ We have all seen database tables that have these two columns tagged onto the end
 ```sql
 CREATE TABLE my_table (
   id          serial,
+  -- <snip: a lot of other columns>
   created_at  timestamp,
   updated_at  timestamp,
   PRIMARY KEY (id)
@@ -31,7 +32,9 @@ CREATE TABLE documents (
 )
 ```
 
-If you publish then unpublish a document, what should the `published_at` field be? Should it be set to `null`. Should we also include a `published` boolean value? What if it gets later republished? Does the date get reset to the new publish date or the old publish date. While there can certainly be business rules around this field, there is no keeping away from confusion. There is an unavoidable lack of clarity in the data model.
+If you publish then unpublish a document, what should the `published_at` field be? Should it be set to `null`. Should it still retain the original publish date? Should we also include a `published` boolean value? What if it gets later republished? Does the date get reset to the new publish date or the old publish date. While there can certainly be business rules around this field, there is no keeping away from confusion.
+
+There is an unavoidable lack of clarity in the data model. Even worse, I know from experience that this is the type of rule that is bound to change. "We want the date of first publication." A year later, "We want the date of last publication." A year later, "Hey, how many versions of this document have been published?"
 
 ### How to restore clarity
 
