@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "Data Access Still Matters"
-date: 2013-12-16 12:52:45 -0500
-comments: true
-categories: ["books", "code", "nhibernate", "sql"]
+layout:   post
+title:    "Data Access Still Matters"
+date:     2013-12-16
 ---
 
 This blog post was inspired by Bill Karwin's book [SQL Antipatterns:Avoiding the Pitfalls of Database Programming](http://pragprog.com/book/bksqla/sql-antipatterns). I read this over Thanksgiving weekend. If you are a developer, and you do database work, this is on the must-read list.
