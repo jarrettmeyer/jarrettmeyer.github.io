@@ -10,5 +10,5 @@ end
 
 task :serve do
   puts "Creating Jekyll server.."
-  `bundle exec jekyll serve`
+  `bundle exec jekyll server`
 end

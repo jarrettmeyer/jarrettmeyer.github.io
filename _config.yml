@@ -16,3 +16,9 @@ gist:
 kramdown:
   input: GFM
   hard_wrap: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Rakefile
+  - README.md
