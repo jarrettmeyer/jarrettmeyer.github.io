@@ -245,6 +245,14 @@
   display: block;
   margin: 0 auto;
 }
+.align-left {
+  float: left;
+  margin-bottom: 1em;
+  margin-right: 2em;
+}
 .align-right {
   float: right;
+}
+.clear-left {
+  clear: left;
 }
