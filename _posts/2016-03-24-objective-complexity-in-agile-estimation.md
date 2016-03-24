@@ -30,7 +30,7 @@ Complexity, quite simply, is answering the question, *"How many parts of the app
 
 Complexity is not time, although it may be correlated to time. A feature that touches more parts will require more time to write, more unit tests, more and more validation procedures.
 
-Complexity is not difficulty, although it may be correlated to difficulty.
+Complexity is not difficulty, although it may be correlated to difficulty. A feature that touches more parts might require more skill to get correct.
 
 So what's a simple problem? Mathematically speaking:
 
