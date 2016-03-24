@@ -28,7 +28,7 @@ When we use points, we are estimating a measure of **complexity**.
 
 Complexity, quite simply, is answering the question, *"How many parts of the application does this feature touch?"* And not just touch, but how do they touch? Does one function in one component call one function in another component? Or are the two components intricately bound?
 
-Complexity is not time, although it may be correlated to time. A feature that touches more parts will require more time to write, more unit tests, more and more validation procedures.
+Complexity is not time, although it may be correlated to time. A feature that touches more parts will require more time to write, more unit tests, and more validation procedures.
 
 Complexity is not difficulty, although it may be correlated to difficulty. A feature that touches more parts might require more skill to get correct.
 
