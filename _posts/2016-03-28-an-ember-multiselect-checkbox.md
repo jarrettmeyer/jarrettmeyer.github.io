@@ -60,7 +60,7 @@ var MultiSelectCheckbox = Ember.Object.extend({
   })
 });
 
-App.MultiSelectCheckboxComponent = Ember.Component.extend({
+App.MultiSelectCheckboxesComponent = Ember.Component.extend({
   labelProperty: 'label',
   valueProperty: 'value',
   // The list of available options.
@@ -101,6 +101,12 @@ Here is our (very simple) component template.
     </label>
   </p>
 {{"{{/each"}}}}
+```
+
+Finally, to make use of our component, write the following in your template.
+
+```html
+{{"{{multi-select-checkboxes options=adminOptions selected=model.permissions"}}}}
 ```
 
 That's really all it takes. A fully working example of this code is available at [JSBin](http://output.jsbin.com/zedoxib).
