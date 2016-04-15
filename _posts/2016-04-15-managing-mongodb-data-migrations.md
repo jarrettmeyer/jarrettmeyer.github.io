@@ -9,7 +9,7 @@ As a schemaless database, [MongoDB](https://www.mongodb.com/) is already quite f
 To run a Mongo script, simply call the script from the command line.
 
 ```
-$ mongo path-to-my-script.js
+$ mongo ./migrations/path-to-my-script.js
 ```
 
 ### Adding an index to a collection
@@ -52,7 +52,8 @@ db.people.find({ _id: 1 });
   _id: 1,
   firstName: 'Jane',
   lastName: 'Doe',
-  age: 25
+  email: 'jane.doe@example.com',
+  dob: '1991-06-15'
 }
 
 db.people.update({ _id: 1 }, { removed: false });
@@ -71,7 +72,8 @@ db.people.find({ _id: 1 });
   _id: 1,
   firstName: 'Jane',
   lastName: 'Doe',
-  age: 25
+  email: 'jane.doe@example.com',
+  dob: '1991-06-15'
 }
 
 db.people.update({ _id: 1 }, { $set: { removed: false } });
@@ -80,7 +82,8 @@ db.people.find({ _id: 1 });
   _id: 1,
   firstName: 'Jane',
   lastName: 'Doe',
-  age: 25,
+  email: 'jane.doe@example.com',
+  dob: '1991-06-15',
   removed: false
 }
 ```
@@ -121,6 +124,24 @@ people.forEach(function (person) {
     }
   });
 });
+```
+
+### Putting it all together
+
+When it's time for deployment, we usually create a deployment script. Anything that needs to be done as part of that deployment gets included in that script.
+
+Running migrations is simply a matter of adding these Mongo scripts to the deployment script.
+
+```sh
+git pull origin release/3.2
+./devops/build_release.sh
+
+mongo ./migrations/000001_create_index_unique_people_email.js
+mongo ./migrations/000003_update_people_removed_false.js
+mongo ./migrations/000004_update_people_employers.js
+
+./devops/update_solr_schema.sh
+./devops/start_server.sh
 ```
 
 I hope this helps with your Mongo future!
