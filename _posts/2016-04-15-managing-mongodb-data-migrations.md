@@ -136,9 +136,9 @@ Running migrations is simply a matter of adding these Mongo scripts to the deplo
 git pull origin release/3.2
 ./devops/build_release.sh
 
-mongo ./migrations/000001_create_index_unique_people_email.js
-mongo ./migrations/000003_update_people_removed_false.js
-mongo ./migrations/000004_update_people_employers.js
+mongo ./migrations/000102_create_index_unique_people_email.js
+mongo ./migrations/000103_update_people_removed_false.js
+mongo ./migrations/000104_update_people_employers.js
 
 ./devops/update_solr_schema.sh
 ./devops/start_server.sh
