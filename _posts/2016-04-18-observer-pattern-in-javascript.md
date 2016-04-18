@@ -44,7 +44,7 @@ Counter.prototype.notify = function (data) {
 };
 ```
 
-How do we make use of this observable `Counter`? *There's a [sample JSBin](http://jsbin.com/cojahiveqa/1/edit?js,output) for this.*
+How do we make use of this observable `Counter`?
 
 ```js
 // Create a new instance.
@@ -55,11 +55,15 @@ counter.addObserver(function () {
   $("#myOutput").html(counter.count);
 });
 
-// Do something in the application that would call notify.
+// Do something in the application that would call increment.
+// Increment, in turn, will call notify, which will call all
+// observers.
 $("#myButton").on("click", function () {
   counter.increment();
 });
 ```
+
+Check out the [sample JSBin](http://output.jsbin.com/yikotu) to see it all working together.
 
 Pretty simple, right? So let's make it less simple.
 
@@ -144,11 +148,13 @@ LoginController.prototype.onCurrentUserChanged = function () {
 };
 ```
 
-In [the demo project](http://output.jsbin.com/nogices), you'll notice that all of this works wonderfully without having to use any events or ever having to call `$apply` to force updates.
+In [the demo project](http://output.jsbin.com/nogices), you'll notice that all of this works wonderfully without having to use any events or ever having to call `$apply()` to force updates.
 
 ### What about promises?
 
-Another benefit of this solution is that it is "promise-proof". In Angular, there are times when things don't update when they should because you are waiting on promises to resolve. Suppose our `login` function is a service. *It probably will be, since we can most-likely expect and API call.*
+Another benefit of this solution is that it is "promise-proof". In Angular, there are times when things don't update when they should because you are waiting on promises to resolve. Suppose our `login()` function is a service. *It probably will be, since we can most-likely expect and API call.*
+
+If you rely on events to propagate information, you're probably also going to have to have to call `$apply()` to force updates. While there is probably a good use for `$apply()`, I have yet to find a situation where `$apply()` couldn't be removed by having more discipline in your software.
 
 ```js
 LoginController.prototype.login = function () {
