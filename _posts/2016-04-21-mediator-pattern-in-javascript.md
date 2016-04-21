@@ -15,23 +15,38 @@ This is similar to the previously posted [observer pattern](/2016/04/18/observer
 A mediator is a very simple object. It holds a collection of handlers. When something needs to be done, we send a request to the mediator. We will loop through all of the available handlers until we find something that can handle the request. The caller does not care at all about what code handles the request or how that request is handled.
 
 ```js
-function Mediator() {
-  this.handlers = [];
-}
-
-Mediator.prototype.addHandler = function (handler) {
-  this.handlers.push(handler);
-};
-
-Mediator.prototype.request = function (message) {
-  for (var i = 0; i < this.handlers.length; i++) {
-    var handler = this.handlers[i];
-    if (handler.canHandle(message)) {
-      return handler.handle(message);
-    }
+class Mediator {
+  constructor() {
+    this.handlers = [];
   }
-  return null;
-};
+
+  addHandler(handler) {
+    if (this.isValidHandler(handler)) {
+      this.handlers.push(handler);
+      return this;
+    }
+    let error = new Error('Attempt to register an invalid handler with the mediator.');
+    error.handler = handler;
+    throw error;
+  }
+
+  isValidHandler(handler) {
+    return (typeof handler.canHandle === 'function') &&
+      (typeof handler.handle === 'function');
+  }
+
+  request(message) {
+    for (let i = 0; i < this.handlers.length; i++) {
+      let handler = this.handlers[i];
+      if (handler.canHandle(message)) {
+        return handler.handle(message);
+      }
+    }
+    let error = new Error('Mediator was unable to satisfy request.');
+    error.request = message;
+    return error;
+  }
+}
 ```
 
 Each handler conforms to a very basic contract. Our request handlers need to have two functions: `canHandle()` and `handle()`. Both functions take a message object.
@@ -45,7 +60,7 @@ Let's look at a very simple handler.
 ```js
 const sayHelloHandler = {
   canHandle: function (message) {
-    return !!message.name;
+    return message.name;
   },
   handle: function (message) {
     return {
@@ -73,10 +88,12 @@ mediator.addHandler(yetAnotherHandler);
 Once the mediator is created and all of the handlers have been added, we simply make requests to the handler.
 
 ```js
-var request = { name: 'Alice' };
-var reply = mediator.request(request);
+let request = { name: 'Alice' };
+let reply = mediator.request(request);
 // => { name: 'Alice', say: 'Hello, Alice!' }
 ```
+
+This is the highest possible separation of concerns. The caller has no interest in *how* the request is fulfilled. All it cares about is that it gets fulfilled and the contract of the reply object.
 
 ### More handlers vs. more complex handlers
 
@@ -143,7 +160,7 @@ const niceDayHandler = {
 };
 ```
 
-Deciding which to use is up entirely to the developer. My preference is (almost always) to have more message handlers and to keep the `handle()` functions simple as possible. Your milage may vary.
+Deciding which to use is up entirely to the developer. My preference is (almost always) to have more message handlers and to keep the `handle()` functions simple as possible. The smaller the `handle()` function, the easier it is to test.
 
 ### Handlers and data operations
 
@@ -159,7 +176,7 @@ class ProductDataService {
 }
 ```
 
-... We instead create code that looks like this...
+We instead create code that looks like this...
 
 ```js
 class CreateProduct {
