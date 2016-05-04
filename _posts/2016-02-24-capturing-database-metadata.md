@@ -32,9 +32,11 @@ CREATE TABLE documents (
 )
 ```
 
-If you publish then unpublish a document, what should the `published_at` field be? Should it be set to `null`. Should it still retain the original publish date? Should we also include a `published` boolean value? What if it gets later republished? Does the date get reset to the new publish date or the old publish date. While there can certainly be business rules around this field, there is no keeping away from confusion.
+If you publish then unpublish a document, what should the `published_at` field be? Should it be set to `null`? Should it still retain the original publish date? Should we also include a `published` boolean value? What if it gets later republished? Does the date get reset to the new publish date or the old publish date. While there can certainly be business rules around this field, there is no keeping away from confusion.
 
 There is an unavoidable lack of clarity in the data model. Even worse, I know from experience that this is the type of rule that is bound to change. "We want the date of first publication." A year later, "We want the date of last publication." A year later, "Hey, how many versions of this document have been published?"
+
+We accept that statistics can be open to interpretation. Raw data, however, should not be so ambiguous.
 
 ### How to restore clarity
 
