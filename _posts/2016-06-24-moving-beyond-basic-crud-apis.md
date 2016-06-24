@@ -45,7 +45,7 @@ POST /api/actions
 {
   assignedTo: 7243,
   task: 4823613,
-  type: 'assign'
+  type: 'assign task'
 }
 ```
 
