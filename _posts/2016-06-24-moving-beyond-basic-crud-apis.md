@@ -74,6 +74,10 @@ This makes for an incredibly simple API layer. Every action is completely encaps
 
 ```js
 module.exports = {
+  canHandle: (type) => {
+    return type === 'assign task';
+  },
+
   handle: (request) => {
     let result = {
       data: null,
@@ -83,6 +87,16 @@ module.exports = {
       .then(user => {
         if (!user || !user.active) {
           throw new InvalidData('User is not valid.');
+        }
+        result.user = user;
+        return fetchTaskById(request.params.id);
+      })
+      .then(task => {
+        return verifyUserCanBeAssignedTask(result.user, task);
+      })
+      .then(ok => {
+        if (!ok) {
+          throw new InvalidData('User can be assigned this task.');
         }
         let diff = {
           assignedTo: request.data.assignedTo,
@@ -95,7 +109,7 @@ module.exports = {
         return sendAssignedTaskEmail(task);
       });
   }
-}
+};
 ```
 
 Now, if there is ever a change to what should happen when a task is assigned, this modification happens is one place, and this change is not mixed in with myriad other concerns lurking inside a single `PUT` function.
