@@ -34,7 +34,15 @@ PUT /api/tasks/4823613
 }
 ```
 
-If that's your `PUT` data, what happened? A status change? Assigned to a different user? Was the task assigned to a different queue? If this were a simple CRUD operation, we wouldn't care. We'd just send an `UPDATE` command to a database and go about our lives. But, because of the complexity of our application, that just doesn't work here.
+If that's your `PUT` data, what happened? A status change? Assigned to a different user? Was the task assigned to a different queue? If this were a simple CRUD operation, we wouldn't care. We'd just send an `UPDATE` command to a database and go about our lives.
+
+```sql
+UPDATE tasks
+SET assignedTo = $1, deleted = $2, description = $3, queue = $4, startedAt = $5, status = $6
+WHERE id = $7;
+```
+
+Not really a whole lot going on there worth considering. However, once we start adding business rules to the application, this is an insufficient solution.
 
 ### How would we fix this scenario?
 
