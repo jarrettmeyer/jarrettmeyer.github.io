@@ -16,7 +16,7 @@ DELETE  /api/tasks/:id
 
 For CRUD operations, there's nothing wrong with this type of architecture. However, once our application becomes sufficiently complicated, an edit is more than just an edit.
 
-Suppose our `task` object belongs to queues. Suppose it can be assigned and reassigned. Suppose there is a complex workflow. Suppose that the various actions that may be performed on a `task` can invalidate caches, trigger emails, or kick off automated report generation.
+Suppose our `task` object belongs to queues. Suppose it can be assigned and reassigned. Suppose there is a complex workflow, requiring that statuses are updated in a given order. Suppose you are doing soft deletes with a "trash bin", and the `DELETE` endpoint is what really destroys a record. Suppose that there are many types of actions that may be performed on a `task` have side effects beyond the basic data operations: invalidating caches, triggering emails, or kicking off automated report generation.
 
 If we place all of this potential logic in the `PUT` endpoint, figuring out what happened can become a nightmare.
 
@@ -70,50 +70,53 @@ app.post('/api/actions', (request, response, next) => {
 });
 ```
 
-This makes for an incredibly simple API layer. Every action is completely encapsulated into its own function. An action handler would look like the following.
+This makes for an incredibly simple API layer. Every action that can happen in your application is completely encapsulated into its own function (perhaps with helper functions). An action handler would (roughly) look like the following.
 
 ```js
 module.exports = {
-  canHandle: (type) => {
-    return type === 'assign task';
-  },
-
-  handle: (request) => {
-    let result = {
-      data: null,
-      status: 200
-    };
-    return fetchUserById(request.data.assignedTo)
-      .then(user => {
-        if (!user || !user.active) {
-          throw new InvalidData('User is not valid.');
-        }
-        result.user = user;
-        return fetchTaskById(request.params.id);
-      })
-      .then(task => {
-        return verifyUserCanBeAssignedTask(result.user, task);
-      })
-      .then(ok => {
-        if (!ok) {
-          throw new InvalidData('User can be assigned this task.');
-        }
-        let diff = {
-          assignedTo: request.data.assignedTo,
-          updatedBy: request.user.id,
-        };
-        return updateTask(request.params.id, diff);
-      })
-      .then(task => {
-        result.data = task;
-        return sendAssignedTaskEmail(task);
-      });
-  }
+  canHandle: canHandle,
+  handle: handle
 };
+
+function canHandle(type) {
+  return type === 'assign task';
+}
+
+function handle(request) {
+  let aggregate = {
+    request: request
+  };
+  return fetchUserById(aggregate)
+    .then(ensureUserIsActive)
+    .then(fetchTaskById)
+    .then(ensureUserCanBeAssignedTask)
+    .then(updateTask)
+    .then(sendEmailToAssignedUser)
+    .then(sendEmailToTaskCreator)
+    .then(returnResult);
+}
+
+function fetchUserById(aggregate) {
+  return User.findById(aggregate.request.data.assignedTo)
+    .then(function (user) {
+      aggregate.assignedTo = user;
+      return aggregate;
+    });
+}
+
+// All helper and private functions are written as promises with the following
+// pattern.
+//
+// function (aggregate) {
+//   return Promise.resolve(aggregate);
+// }
+//
+// fetchUserById is given as an example of this. All other helper functions are
+// left as an exercise for the reader.
 ```
 
 Now, if there is ever a change to what should happen when a task is assigned, this modification happens is one place, and this change is not mixed in with myriad other concerns lurking inside a single `PUT` function.
 
-All reasonably complex applications eventually move toward event-driven programming. Why? It's just plain cleaner. It keeps actions isolated. As complexity increases, keeping actions isolated becomes a much more significant priority.
+All reasonably complex applications eventually move toward event-driven programming. Why? It's just plain cleaner. It keeps actions isolated. As complexity increases, keeping actions isolated becomes a much more significant priority. As your application continues to grow, this opens the door to using queues and messaging to migrate your application into separate processes.
 
 Separation of concerns for the win!
