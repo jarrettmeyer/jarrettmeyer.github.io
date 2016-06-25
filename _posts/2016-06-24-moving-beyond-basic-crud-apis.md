@@ -44,6 +44,29 @@ WHERE id = $7;
 
 Not really a whole lot going on there worth considering. However, once we start adding business rules to the application, this is an insufficient solution.
 
+### Switching to Remote Procedure Calls
+
+One obvious solution is to use remote procedure calls (RPC). This would give us a slightly modified endpoint, like
+
+```
+PUT /api/tasks/:id/:action
+```
+
+I see absolutely nothing *wrong* with this approach, most API developers tend to prefer the simpler URIs of REST. As is difficult in software development, naming things is difficult, and lots of developers have lots of opinions on how endpoints should be named. Here are a few bad examples.
+
+```
+// Redundant resource identification.
+PUT /api/tasks/12345/assign_task
+
+// Why not just use the DELETE endpoint?
+PUT /api/tasks/12345/delete
+
+// Not a verb.
+PUT /api/tasks/12345/user
+```
+
+Also, this creates a lot of endpoints for your API. All significant business actions for all of your resources get their own endpoint.
+
 ### How would we fix this scenario?
 
 Don't `PUT` updates; instead `POST` actions.
@@ -86,7 +109,8 @@ function handle(request) {
   let aggregate = {
     request: request
   };
-  return fetchUserById(aggregate)
+  return validateRequest(aggregate)
+    .then(fetchUserById)
     .then(ensureUserIsActive)
     .then(fetchTaskById)
     .then(ensureUserCanBeAssignedTask)
