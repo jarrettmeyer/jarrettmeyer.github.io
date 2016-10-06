@@ -37,7 +37,7 @@ Let's build a chart, to see what these numbers would look like. Let's assume 100
 
 The total number of people without the disease is set by our disease prevalence, or 0.05%. We built our table with 1000 having the disease. Our total population, therefore, is \\( \dfrac{ 1000 }{ 0.0005 } = 2000000 \\). The total number of people who do not have the disease is \\( 2000000 - 1000 = 1999000 \\).
 
-We are told the specificity of the test is 98%. This means that \\( 1999999 \times 0.98 = 1959020 \\) subjects are true negatives and \\( 1999999 \times 0.02 = 39980 \\) are false negatives.
+We are told the specificity of the test is 98%. This means that \\( 1999000 \times 0.98 = 1959020 \\) subjects are true negatives and \\( 1999000 \times 0.02 = 39980 \\) are false negatives.
 
 | Test     | Subject has disease | Subject does not have disease |
 |----------|:-------------------:|:-----------------------------:|
