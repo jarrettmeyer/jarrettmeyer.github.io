@@ -35,7 +35,7 @@ Let's assume you have a disease with a very rare prevalence, with 1 in 2000 peop
 
 Let's build a chart, to see what these numbers would look like. Let's assume 1000 people have the disease. We know the test sensitivity is 99.9%. This means that \\( 1000 \times 0.999 = 999 \\) will be true positives. From this, we can show that \\( 1000 - 999 = 1 \\) will be a false negative.
 
-The total number of people without the disease is set by our disease prevalence, or 0.05%. We built our table with 1000 having the disease. Our total population, therefore, is \\( \dfrac{ 1000 }{ 0.0005 } = 2,000,000 \\). The total number of people who do not have the disease is \\( 2,000,000 - 1000 = 1,999,000 \\).
+The total number of people without the disease is set by our disease prevalence, or 0.05%. We built our table with 1000 having the disease. Our total population, therefore, is \\( \dfrac{ 1000 }{ 0.0005 } = 2000,000 \\). The total number of people who do not have the disease is \\( 2000000 - 1000 = 1999000 \\).
 
 We are told the specificity of the test is 98%. This means that \\( 1,999,999 \times 0.98 = 1,959,020 \\) subjects are true negatives and \\( 1,999,999 \times 0.02 = 39,980 \\) are false negatives.
 
@@ -45,7 +45,7 @@ We are told the specificity of the test is 98%. This means that \\( 1,999,999 \t
 | negative |     1               |  1,959,020                    |
 |          |  1000               |  1,999,000                    |
 
-Given this information, if you test positive for the disease, what is the probability that you actually have the disease? This is the positive predictive value of the test, or \\( \dfrac{ 999 }{ 999 + 39,980 } = 0.0244 \\).
+Given this information, if you test positive for the disease, what is the probability that you actually have the disease? This is the positive predictive value of the test, or \\( \dfrac{ 999 }{ 999 + 39980 } = 0.0244 \\).
 
 So, even with a very accurate test, when the actual disease prevalence is very, very low, a positive test is only 2.4% chance that you have a disease. Many diseases have a very low prevalence. For example, there are approximately 180,000 cases of prostate cancer each year in the U.S., a country with approximately 120,000,000 men. This is a disease prevalence of only 0.15%.
 
