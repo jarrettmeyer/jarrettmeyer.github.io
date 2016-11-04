@@ -64,6 +64,17 @@ schema_writer.write(avro_reader.meta.get('avro.schema'))
 schema_writer.close()
 ```
 
+Once our data is stored and we have a schema, we can create our Hive table.
+
+```sql
+CREATE EXTERNAL TABLE climate
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+STORED as INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+LOCATION '/user/climate/avro'
+TBLPROPERTIES ('avro.schema.url'='hdfs:///user/climate/climate.avsc');
+```
+
 ### Working with R
 
 The good news is that once your data is stored in Hive, you can use Hive's JDBC connector to query data as if it were any other database. Begin by loading the necessary libraries.
