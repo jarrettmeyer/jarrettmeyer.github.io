@@ -4,9 +4,13 @@ layout:  post
 date:    2016-11-03
 ---
 
+Hive is a data warehouse. R is a language for statistics and graphics. Getting these two programs to work together is a beautiful thing.
+
+*This post assumes that you already have HDFS, Hive, and Pig running.* If there is an interest in seeing a post on how to get these installed and running, please [let me know](mailto:jarrettmeyer@gmail.com).
+
 ### Picking a Data Set
 
-Before we can do anything, we need to have a data set. I chose the data from NOAA's Climate Research Network. Begin by downloading the data from [their FTP site](ftp://ftp.ncdc.noaa.gov/pub/data/uscrn/products/daily01/).
+Before we can do anything, we need to have a data set. I chose the data from NOAA's Climate Research Network. Begin by downloading the data from [their FTP site](ftp://ftp.ncdc.noaa.gov/pub/data/uscrn/products/daily01/). This data set is not too terribly huge - about 600k rows of climate data spread across about 2100 files.
 
 Once downloaded to your local machine, you can upload the data to HDFS with the following command.
 
@@ -18,7 +22,9 @@ $ hdfs dfs -put -f **/*.txt hdfs://localhost:9000/user/climate/raw
 
 Having the data in text files in HDFS is a good start, but it is certainly not sufficient for our needs. [Apache Avro](http://avro.apache.org) is a serialization format that can be read by many different tools, including Hive. Another advantage of Avro is that it stores its own schema in the file header, so files are completely portable.
 
-```
+Unfortunately, the \*.txt format is a fixed width format. This is not something we can work with out of the box. Fortunately, the [Piggybank project](https://cwiki.apache.org/confluence/display/PIG/PiggyBank) has a `FixedWidthLoader` class that is exactly what we need.
+
+```pig
 climate = LOAD '/user/climate/raw/**/*.txt' USING org.apache.pig.piggybank.storage.FixedWidthLoader(
   '1-5, 7-14, 16-21, 23-29, 31-37, 39-45, 47-53, 55-61, 63-69, 71-77, 79-86, 88,
    90-96, 98-104, 106-112, 114-120, 122-128, 130-136, 138-144, 146-152, 154-160,
@@ -67,7 +73,7 @@ library(rJava)
 library(RJDBC)
 ```
 
-Our first task is to update the Java class path. The JDBC driver needs to know where to find classes. This next block of code will do this for us.
+Our first task is to update the Java class path. The JDBC driver needs to know where to find classes. This next block of code will do this for us. The directories listed below will be different depending on your platform and installation.
 
 ```r
 options(java.parameters = '-Xmx8g')
@@ -104,3 +110,5 @@ ggplot(data = climate.sample, mapping = aes(rh_daily_avg, t_daily_avg)) +
 ```
 
 ![Temp vs. Humidity](/assets/images/temp_vs_humidity.png)
+
+Now, you're all set to analyze your data to your heart's content!
