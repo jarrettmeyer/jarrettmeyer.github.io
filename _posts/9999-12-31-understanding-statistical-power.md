@@ -1,7 +1,7 @@
 ---
 title:    Understanding Statistical Power
 layout:   post
-date:     2016-11-15
+date:     9999-12-31
 ---
 
 ### What Is It?
