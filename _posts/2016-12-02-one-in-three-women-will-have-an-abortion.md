@@ -24,12 +24,20 @@ In 1990, we saw the largest number of reported abortions, at nearly 1,430,000 pr
 
 ![Abortions per year, 1998 - 2050](/assets/images/abortions-per-year-1998-2050.png)
 
-We have also added a trend line and a confidence interval for future data. The confidence interval gets wider as we predict further into the future because of natural uncertainty. This model has \\(R^2 = 0.7737 \\).
+We have also added a trend line and a confidence interval for future data. The confidence interval gets wider as we predict further into the future because of natural uncertainty. This model has \\(R^2 = 0.7737 \\). The value of \\(R^2\\) -- the Pearson correlation coefficient -- is a measure of how well the data fits the given line. In our case, a 77% fit is not bad, and it is close enough to give us some idea what we should expect to see in the future.
 
-We can quickly perform a T test on this data set.
+We can quickly perform a T test on this data set, which will give us a 95% confidence interval for the mean.
 
 ```r
 abortion.t <- t.test(abortion.data2$count)
+##
+##        One Sample t-test
+##
+##  95 percent confidence interval:
+##     791573.4  849577.8
+##  sample estimates:
+##  mean of x
+##   820575.6
 ```
 
 This gives us a mean of 820,576, with a 95% confidence interval between 791,573 and 849,578. If we assume this average and these confidence intervals hold steady, we can predict the likelihood that a woman will have an abortion. Let's assume that the ages of a woman's fertility is from 14 to 45. That is a period of 31 years. In 2015, there were an estimated 67,862,793 women between the ages of 14 and 45. We can now take advantage of the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) to determine the probability that a woman will have an abortion during this time.
