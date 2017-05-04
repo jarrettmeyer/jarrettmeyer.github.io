@@ -5,7 +5,9 @@ date:    2017-05-04
 ---
 
 [PySpark](https://spark.apache.org/docs/2.1.1/api/python/index.html) allows us to
-run [Python](https://www.python.org/) scripts on Apache Spark.
+run [Python](https://www.python.org/) scripts on Apache Spark. For this project, we
+are going to use input attributes to predict fraudulent credit card transactions.
+It is estimated that there are around 100 billion transactions per year.
 
 ### Versions
 
@@ -117,6 +119,11 @@ print("Model accuracy: %.3f%%" % (acc * 100))
 ```
 
     Model accuracy: 99.945%
+
+While 99.945% certainly sounds like a good model, remember there are over 100 billion
+credit and debit card transactions per year. This means that this model is wrong
+55 million times per year. Correcting this balancing and weighting is beyond the
+scope of this blog post.
 
 ### Model evaluation
 
