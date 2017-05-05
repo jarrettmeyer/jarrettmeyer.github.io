@@ -83,8 +83,8 @@ print("Number of test set rows: %d" % test_data.count())
 
 ### Train the random forest
 
-A random forest is a machine learning classification algorithm. A random forest is
-a random collection of simple decision trees. We're also going to track the time
+A random forest is a machine learning classification algorithm. Random forests are
+generated collections of decision trees. We're also going to track the time
 it takes to train our model.
 
 ```py
