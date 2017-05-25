@@ -15,13 +15,13 @@ The Service Broker consists of these primary parts.
 
 The easiest way to see how all of this works together is to build a small message. Let's create the objects for our first service broker. This first example will be an incredibly simple, one-way, text message.
 
-Message types, contracts, and services typically have URI-style names of the format **//<organization>/<domain>/<name>**. In this project, our oranization is **sbdemo** (service broker demo), and our domain is **Hello**.
+Message types, contracts, and services typically have URI-style names of the format **//&lt;organization&gt;/&lt;domain&gt;/&lt;name&gt;**. In this project, our oranization is **sbdemo** (service broker demo), and our domain is **Hello**.
 
 Example message types would be named with the following format.
 
 * `//corp/Expenses/SubmitExpense` - An employee submits expenses to his or her manager.
 * `//corp/Expenses/AcceptExpense` - Expenses are accepted and sent to payroll for processing.
-* `//corp/Expenses/RejectExpense` - Expense is rejected and sent back to the employee.
+* `//corp/Expenses/RejectExpense` - Expenses are rejected and sent back to the employee. They may be modified and resubmitted.
 * `//corp/Expenses/AuthorizationRequired` - Expense amount exceeds manager's approval authority. Expense is routed to the next manager in the organization hierarchy.
 
 ```sql
@@ -47,7 +47,7 @@ CREATE SERVICE [//sbdemo/Hello/MessageService]
   ON QUEUE [dbo].[Hello_Message_Queue] ( [//sbdemo/Hello/MessageContract] )
 ```
 
-Next, we will create a stored procedure to send messages on this service. This is done with the [`SEND` command](http://docs.microsoft.com).
+Next, we will create a stored procedure to send messages on this service. This is done with the [`SEND`](https://docs.microsoft.com/en-us/sql/t-sql/statements/send-transact-sql) operation.
 
 ```sql
 CREATE PROCEDURE [dbo].[Send_Hello_Message]
@@ -87,7 +87,7 @@ We can query our queue and see our messages.
 | AEF3B54A-7E41-E7... | //sbdemo/Hello/Message | This is another message. |
 | B6F3B54A-7E41-E7... | //sbdemo/Hello/Message | Wow! Messages are fun!   |
 
-We can send and show our messages in queue. Each message has a GUID for conversation handle. If there are multiple messages as part of a single So our next task is being able to receive these messages. This is done with the [`RECEIVE` command](http://docs.microsoft.com). Next, we will create a stored procedure to receive messages.
+We can send and show our messages in queue. Each message has a GUID for conversation handle. If there are multiple messages as part of a single So our next task is being able to receive these messages. This is done with the [`RECEIVE`](https://docs.microsoft.com/en-us/sql/t-sql/statements/receive-transact-sql) operation. We will create a stored procedure to receive messages.
 
 ```sql
 CREATE PROCEDURE [dbo].[Receive_Hello_Message]
@@ -98,17 +98,17 @@ BEGIN
 
   DECLARE @conversation_handle UNIQUEIDENTIFIER,
           @message_body VARBINARY(MAX),
-          @message_type_name VARCHAR(256)
+          @message_type_name VARCHAR(256);
 
-  BEGIN TRANSACTION
+  BEGIN TRANSACTION;
     RECEIVE TOP (1)
         @conversation_handle = [conversation_handle],
         @message_body = [message_body],
         @message_type_name = [message_type_name]
-      FROM [dbo].[Hello_Message_Queue]
+      FROM [dbo].[Hello_Message_Queue];
 
-    SET @text = CONVERT(NVARCHAR(MAX), @message_body)    
-  COMMIT TRANSACTION
+    SET @text = CONVERT(NVARCHAR(MAX), @message_body);
+  COMMIT TRANSACTION;
 END
 ```
 
