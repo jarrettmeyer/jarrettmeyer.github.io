@@ -15,6 +15,15 @@ The Service Broker consists of these primary parts.
 
 The easiest way to see how all of this works together is to build a small message. Let's create the objects for our first service broker. This first example will be an incredibly simple, one-way, text message.
 
+Message types, contracts, and services typically have URI-style names of the format **//<organization>/<domain>/<name>**. In this project, our oranization is **sbdemo** (service broker demo), and our domain is **Hello**.
+
+Example message types would be named with the following format.
+
+* `//corp/Expenses/SubmitExpense` - An employee submits expenses to his or her manager.
+* `//corp/Expenses/AcceptExpense` - Expenses are accepted and sent to payroll for processing.
+* `//corp/Expenses/RejectExpense` - Expense is rejected and sent back to the employee.
+* `//corp/Expenses/AuthorizationRequired` - Expense amount exceeds manager's approval authority. Expense is routed to the next manager in the organization hierarchy.
+
 ```sql
 -- Create a message type. This message will just be text, so there will be no validation.
 CREATE MESSAGE TYPE [//sbdemo/Hello/Message]
