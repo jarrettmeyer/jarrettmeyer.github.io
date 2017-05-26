@@ -6,9 +6,9 @@ date:    2017-05-26
 
 This is a continuation of a series on [SQL Service Broker]().
 
-In [Part 1](/2017/05/25/sql-service-broker-part-1), we covered the basic mechanics of sending and receiving a message. In **Part 2**, we will cover writing and consuming messages with the .NET framework. This will build on the message types, contracts, queues, services, and stored procedures that we created in Part 1.
+In [Part 1](/2017/05/25/sql-service-broker-part-1), we covered the basic mechanics of sending and receiving a message. In **Part 2**, we will cover writing and consuming messages with the .NET framework. This will build on the message types, contracts, queues, services, and stored procedures that we created in Part 1. If you haven't read that, I recommend that you do so.
 
-This is a fairly simple task. Let's take a look at how to do this. First, we will start a background thread to listen for received messages. Second, we will allow a simple text entry for a user to send messages.
+Reading and writing with .NET is a fairly simple task. Let's take a look at how to do this. First, we will start a background thread to listen for received messages. Second, we will allow a simple text entry for a user to send messages.
 
 ```csharp
 using System;
@@ -21,15 +21,15 @@ using System.Windows.Forms;
 
 namespace ServiceBrokerDemo
 {
-  static Thread BackgroundThread = null;
-  const string ConnectionString = "Data Source=localhost;Initial Catalog=SBDemo;Integrated Security=True";
-  static bool Done = false;
-  const string ReceiveStoredProcedureName = "[dbo].[Receive_Hello_Message]";
-  const string SendStoredProcedureName = "[dbo].[Send_Hello_Message]";
-
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static Thread BackgroundThread = null;
+    public const string ConnectionString = "Data Source=localhost;Initial Catalog=SBDemo;Integrated Security=True";
+    public static bool Done = false;
+    public const string ReceiveStoredProcedureName = "[dbo].[Receive_Hello_Message]";
+    public const string SendStoredProcedureName = "[dbo].[Send_Hello_Message]";
+
+    public static void Main(string[] args)
     {
       var ts = new TheadStart(ReceiveMessages);
       BackgroundThread = new Thread(ts);
@@ -53,10 +53,12 @@ namespace ServiceBrokerDemo
 }
 ```
 
-As promised, this was fairly simple. We are missing two pieces of functionality. We still require the `ReceiveMessages` and `SendMessage` functions. We will start with `SendMessage`, since it will be the easier of the two.
+As promised, this was fairly simple. We start a background thread to receive the messages, and we have a simple console window to write messages. When the user types 'quit', the program stops.
+
+We are missing two pieces of functionality. We still require the `ReceiveMessages` and `SendMessage` functions. We will start with `SendMessage`, since it will be the easier of the two.
 
 ```csharp
-public void SendMessage(string text)
+public static void SendMessage(string text)
 {
   using (var conn = new SqlConnection(ConnectionString))
   {
@@ -84,11 +86,8 @@ The `SendMessage` function invokes the stored procedure that we have already wri
 Receiving the message is very much the same process, but we have a little bit of extra work to do.
 
 ```csharp
-public void ReceiveMessages()
+public static void ReceiveMessages()
 {
-  var lastErrorTime = DateTime.Now;
-  var lastErrorMessage = "";
-
   while (!Done)
   {
     using (var scope = new TransactionScope())
@@ -102,38 +101,15 @@ public void ReceiveMessages()
           command.Parameters.Add("text", SqlDbType.NVarChar, -1);
           command.Parameters["text"].Direction = ParameterDirection.Output;
 
-          try
+          conn.Open();
+          command.ExecuteNonQuery();
+          var text = command.Parameters["text"].Value as string;
+          conn.Close();
+          scope.Complete();
+
+          if (text != null)
           {
-            conn.Open();
-            command.ExecuteNonQuery();
-            var text = command.Parameters["text"].Value as string;
-            conn.Close();
-            if (text != null)
-            {
-              MessageBox.Show(text, "Message Received", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-          }
-          catch (ThreadAbortException)
-          {
-            BackgroundThread.Abort();
-          }
-          catch (Exception ex)
-          {
-            var elapsedSinceLastError = DateTime.Now - lastErrorTime;
-            if (ex.Message != lastErrorMessage || elapsedSinceLastError.Minutes > 1)
-            {
-              EventLog.WriteEntry("Application", ex.Message, EventLogEntryType.Error);
-              lastErrorTime = DateTime.Now;
-            }
-            else if (ex.Message == lastErrorMessage)
-            {
-              Thread.Sleep(TimeSpan.FromSeconds(10));
-            }
-            lastErrorMessage = ex.Message;
-          }
-          finally
-          {
-            scope.Complete();
+            MessageBox.Show(text, "Message Received", MessageBoxButtons.OK, MessageBoxIcon.Information);
           }
         }
       }
@@ -141,3 +117,7 @@ public void ReceiveMessages()
   }
 }
 ```
+
+There's a lot more going on in the receiver. Let's break it down. First, we open up a `TransactionScope`, `SqlConnection`, and `SqlCommand`. These are going to be our primary objects for receiving a message from a queue. Second, we remember that the `text` variable in our stored procedure is marked at `OUT`, so we need to designate that as such in our code. Third, close the connection and complete the scope. Finally, display a message box containing the message.
+
+And that's it! We can now write .NET programs (or any programs that can call stored procedures) to work with our queues.
