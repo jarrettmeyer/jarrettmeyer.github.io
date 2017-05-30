@@ -1,5 +1,5 @@
 ---
-title:   "SQL Service Broker: Part 2"
+title:   "SQL Service Broker Part 2: Working with .NET"
 layout:  post
 date:    2017-05-26
 ---

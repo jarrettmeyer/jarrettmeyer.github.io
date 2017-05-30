@@ -1,11 +1,11 @@
 ---
-title:   "SQL Service Broker: Part 3"
+title:   "SQL Service Broker Part 3: Activation"
 layout:  post
 date:    2017-05-30
 ---
 
-* [Part 1](/2017/05/25/sql-service-broker-part-1)
-* [Part 2](/2017/05/26/sql-service-broker-part-2)
+* [Part 1: Sending and Receiving Messages](/2017/05/25/sql-service-broker-part-1)
+* [Part 2: Working with .NET](/2017/05/26/sql-service-broker-part-2)
 
 ## Service Activation
 

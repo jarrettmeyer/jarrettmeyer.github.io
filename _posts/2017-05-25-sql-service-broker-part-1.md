@@ -1,5 +1,5 @@
 ---
-title:   "SQL Service Broker: Part 1"
+title:   "SQL Service Broker Part 1: Sending and Receiving Messages"
 layout:  post
 date:    2017-05-25
 ---
