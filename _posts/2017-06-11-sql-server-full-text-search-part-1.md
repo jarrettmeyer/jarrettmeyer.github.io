@@ -1,14 +1,14 @@
 ---
 title:    "SQL Server Full Text Search Part 1: Getting Started"
 layout:   post
-date:     2017-06-09
+date:     2017-06-11
 ---
 
 SQL Server ships with integrated full text search capabilities. Setting up full text search is quite easy. To start, you need to make sure you have the feature installed. Fortunately, this is an easy process, handled like all other SQL Server installation operations. When setting up your instance, be sure to check the option "Full-Text and Semantic Extractions".
 
 ![Full text search installation](/assets/images/sql-server-full-text-install-1.png)
 
-Next, let's create some objects.
+Next, let's create some objects. Our example will include two tables, including **authors** and **books**.
 
 ```sql
 CREATE DATABASE Search_Demo;
@@ -91,7 +91,9 @@ CREATE FULLTEXT INDEX ON Books (
 ) KEY INDEX PK_Books;
 ```
 
-This changes our search query quite a bit. We can use the `CONTAINS` operator to search for a term.
+We have not set up any scheduling, so the default schedule will update the full-text in the background on each change. There are options to change when the search indexes update, but those are beyond the scope of this introductory post.
+
+Now that we have access to full-text indexes, this changes our search query quite a bit. We can use the `CONTAINS` operator to search for a term.
 
 ```sql
 SELECT b.id, b.title, a.first_name, a.last_name
@@ -127,11 +129,11 @@ To create a basic synonym, use the `<expansion>` node. All values listed as `<su
 </XML>
 ```
 
-To make use of these updates, Microsoft has provided us with a system stored procedure `sys.sp_fulltext_load_thesaurus_file`. To use this, we need to know the language code (`LCID`) of the language in question. You can find a full list of languages supported by SQL Server by querying `sys.syslanguages`.
+To make use of these updates, Microsoft has provided us with a system stored procedure `sys.sp_fulltext_load_thesaurus_file`. To use this, we need to know the language code (`LCID`) of the language in question. You can find a full list of languages supported by SQL Server by querying the `sys.syslanguages` system view.
 
 ```sql
 DECLARE @lcid INT;
-SELECT TOP (1) @lcid=[LCID] FROM sys.syslanguages WHERE [alias]='English'
+SELECT TOP (1) @lcid=[lcid] FROM sys.syslanguages WHERE [alias]='English'
 EXEC sys.sp_fulltext_load_thesaurus_file @lcid;
 ```
 
@@ -149,7 +151,7 @@ SELECT b.id, b.title, a.first_name, a.last_name
     FREETEXT(b.description, 'king');
 ```
 
-Our query now returns the new result for "Then Monarch of Glen".
+Our query now returns the new result for "The Monarch of Glen".
 
 | id | title | first_name | last_name |
 | :- | :---- | :--------- | :-------- |
@@ -157,6 +159,8 @@ Our query now returns the new result for "Then Monarch of Glen".
 | 200 | The Monarch of Glen | Neil | Gaiman |
 | 300 | Anna Karenina | Leo | Tolstoy |
 
-The execution plan has not changed from before.
+The execution plan has not changed from before, and the search results now contains "The Monarch of Glen" as expected.
 
 ![Search execution plan](/assets/images/sql-server-full-text-execution-plan-freetext.png)
+
+Happy searching!
