@@ -8,14 +8,14 @@ Spend enough time with SQL Server Integration Services (SSIS) and you will proba
 
 Here, we'll show a very simple example. One of the first issues that I ran into with SSIS is creating timestamp-based directories for moving files around. Yes, this is possible out of the box, but it also seems to be quite clumsy.
 
-To do this the traditional way, create two variables in SSIS. We will call them `Timestamp` and `SanitizedTimestamp`. Build them as follows.
+To do this the traditional way, create two variables in SSIS. We will call them `Timestamp` and `SanitizedTimestamp`. Define them as follows.
 
 ```
 @[User::Timestamp] = (DT_WSTR, 30) (DT_DBTIMESTAMP) GETUTCDATE()
 @[User::SanitizedTimestamp] = REPLACE(REPLACE(REPLACE(REPLACE(LEFT(@[User::Timestamp], 23), ":", ""), ".", ""), "-", ""), " ", "")
 ```
 
-Can you see why I think this is so ugly? *Is supporting a regular expression replace really so difficult?*
+Can you see why I think this is so ugly? Do we really need four `REPLACE` functions? *Is supporting a regular expression replace really so difficult?*
 
 Instead, I would much rather just drop a task onto my workflow.
 
