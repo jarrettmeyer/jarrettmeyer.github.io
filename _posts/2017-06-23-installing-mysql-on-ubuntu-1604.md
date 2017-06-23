@@ -46,3 +46,14 @@ Bye
 ```
 
 You'll now be able to log on with MySQL Workbench to remotely manage your database.
+
+I also recommend that you install `mysqltuner`. It is a [great tool](https://github.com/major/MySQLTuner-perl) for displaying recommendations and security holes.
+
+```
+$ apt-get install libtext-template-perl
+$ wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl
+$ chmod +x mysqltuner.pl
+$ mv mysqltuner.pl /usr/local/bin/mysqltuner
+```
+
+Store all the things!
