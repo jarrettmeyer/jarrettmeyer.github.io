@@ -9,7 +9,7 @@ Need to validate an address on the cheap? Google services to the rescue. Their A
 ## Step 1: Include the Google Maps Library
 
 ```html
-<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCD0DXnm5Q8nqdAzYve83o_9XmFpQgs7KU"></script>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<PUT.YOUR.API.KEY.HERE>"></script>
 ```
 
 ## Step 2: Validate the Address
