@@ -152,4 +152,10 @@ The following is the completed data flow task.
 
 ![Data Flow Task](/assets/images/reading-nested-xml-data-in-ssis/step-3-data-flow-task.PNG)
 
+## Step 4: The Final Result
+
+Let's fire up SQL Management Studio and check out the results.
+
+![Data Flow Task](/assets/images/reading-nested-xml-data-in-ssis/step-4-sql-results.PNG)
+
 The source code is [available on Github](https://github.com/jarrettmeyer/nested-xml-ssis). Both the SSIS job and the SQL database project are available for you to review.
