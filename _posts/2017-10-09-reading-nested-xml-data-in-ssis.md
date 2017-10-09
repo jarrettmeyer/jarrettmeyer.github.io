@@ -54,19 +54,21 @@ create table [dbo].[Address] (
 
 *This is a personal preference, so you can skip this step if you'd like.*
 
-Start by creating a `Batch` table. This will store the timestamp for each time we run our SSIS job.
+Start by creating a `Batch` table. This will store the timestamp and filename for each time we run our SSIS job. Yes, this is overkill for a demo, but it is a good idea to teach good SSIS habits, too. We will also store the `BatchId` on each record.
 
 ```sql
+-- Create the new Batch table.
 create table [dbo].[Batch] (
   [BatchId] int not null identity(1, 1),
-  [StartTime] datetimeoffset not null,
-  [Filename] varchar(200) not null,
+  [StartTime] datetimeoffset null,
+  [Filename] varchar(200) null,
   constraint [PK_dbo.Batch] primary key clustered (BatchId)
 );
 
+-- Create a new stored procedure for creating a new batch entry.
 create procedure [dbo].[InsertBatch]
-  @startTime datetimeoffset,
-  @filename varchar(200)
+  @startTime datetimeoffset = null,
+  @filename varchar(200) = null
 as
 begin
   begin transaction;
@@ -81,13 +83,19 @@ begin
   
   commit transaction;
 end
+
+-- Add BatchId column to Person.
+alter table [dbo].[Person] add [BatchId] int not null;
+
+-- Add BatchId column to Address.
+alter table [dbo].[Address] ass [BatchId] int not null;
 ```
 
 Our first SSIS step is to create a new record in this table and save the ID. Add a new **Execute SQL** task to your workflow. I have already added an ADO.NET connection to my database. My SQL task will use this existing connection.
 
 ![Execute SQL (General)](/assets/images/reading-nested-xml-data-in-ssis/step-1-execute-sql-general.PNG)
 
-Next, set the input parameters for the stored procedure.
+Next, set the input parameters for the stored procedure - `StartTime` and `Filename`.
 
 ![Execute SQL (Parameter Mapping)](/assets/images/reading-nested-xml-data-in-ssis/step-1-execute-sql-parameter-mapping.PNG)
 
@@ -110,7 +118,7 @@ begin
 end;
 ```
 
-Call this procedure with an **Execute SQL** task. There are no parameters or results.
+Call this procedure with an **Execute SQL** task. This time, there are no parameters or results. 
 
 ![Execute SQL (General)](/assets/images/reading-nested-xml-data-in-ssis/step-2-execute-sql-general.PNG)
 
@@ -136,7 +144,7 @@ Next up, add the `BatchId` value to both the `Person` and `Address` sets. This i
 
 ![Add BatchId to Person](/assets/images/reading-nested-xml-data-in-ssis/step-3-add-columns-to-person.PNG)
 
-Finally, we are ready to store our data. Create two ADO.NET Destinations, one for `Person` and one for `Address`. This is what the mappings for `Person` should look like.
+Finally, we are ready to store our data. Create two ADO.NET Destinations, one for `Person` and one for `Address`. This is what the mappings for `Person` should look like. Map your in-memory variables to your database columns.
 
 ![Add BatchId to Person](/assets/images/reading-nested-xml-data-in-ssis/step-3-adonet-destination-person-mappings.PNG)
 
@@ -144,4 +152,4 @@ The following is the completed data flow task.
 
 ![Data Flow Task](/assets/images/reading-nested-xml-data-in-ssis/step-3-data-flow-task.PNG)
 
-The source code is [available on Github](https://github.com/jarrettmeyer/nested-xml-ssis).
+The source code is [available on Github](https://github.com/jarrettmeyer/nested-xml-ssis). Both the SSIS job and the SQL database project are available for you to review.
