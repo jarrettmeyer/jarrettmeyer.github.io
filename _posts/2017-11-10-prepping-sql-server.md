@@ -4,7 +4,9 @@ layout:   post
 date:     2017-11-10
 ---
 
-Imagine you are a consultant, and you want to come in and inspect a SQL server architecture. How would you do it? What would you look for? Here's a checklist of ideas.
+![Microsoft SQL Server Logo](/assets/images/microsoft_sql_server_logo.png){: .align-center } 
+
+Imagine you are a consultant, and you want to come in and inspect a SQL server architecture. How would you do it? What would you look for? What questions would you ask? Here's a checklist of ideas.
 
 > This is a "living document" for prepping an instance of SQL Server. If you have suggestions, please send them to jarrettmeyer at gmail dot com.
 
@@ -40,14 +42,16 @@ Imagine you are a consultant, and you want to come in and inspect a SQL server a
     ![Alert: TempDB Growing 3](/assets/images/alert-tempdb-growing-3.png)
 
 2.  For any sufficiently large databases, set a disk size alert. This is done similarly to setting a disk size alert for TempDB, shown above.
+3.  Ensure that all SQL Agent Jobs have notifications enabled for failure conditions. Ideally, all agent jobs will send a failure notification email to a shared proxy account (e.g. dba@mycompany.com). Agent jobs should never fail silently.
 
 ### Maintenance Plans
 
 1.  Ensure that you have a maintenance plan to run `CHECKDB` on all databases. `CHECKDB` [performs several functions](https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql) in your database.
 2.  Ensure that you have a maintenance plan to backup all databases. 
-3.  Create a maintenance plan to [clean up MSDB history](https://www.mssqltips.com/sqlservertip/1727/purging-msdb-backup-and-restore-history-from-sql-server/).
-4.  Create a maintenance plan to delete old backup files. All of those backups can start chewing up a lot of disk. This can either be part of the maintenance plan to clean up MSDB history (above), or it can be its own maintenance plan. Either way, you will want to keep the age of backups the same (e.g. 2 weeks).
-5.  Provided you have a dedicated maintenance window or sufficiently small indexes, create a maintenance plan to clean up indexes. Indexes with > 30% fragmentation and over 1,000 pages should be rebuilt. Indexes with > 5% fragmentation and over 1,000 pages should be reorganized. (We don't care about small indexes. Who cares if small indexes are fragmented?) This operation is a blocking operation. If you do not have a maintenance window, or if your database is large enough to make this an unacceptably slow process, this should not be a maintenance task.
+3.  Ensure that you have a maintenance plan to backup all transaction logs.
+4.  Create a maintenance plan to [clean up MSDB history](https://www.mssqltips.com/sqlservertip/1727/purging-msdb-backup-and-restore-history-from-sql-server/).
+5.  Create a maintenance plan to delete old backup files. All of those backups can start chewing up a lot of disk. This can either be part of the maintenance plan to clean up MSDB history (above), or it can be its own maintenance plan. Either way, you will want to keep the age of backups the same (e.g. 2 weeks).
+6.  Provided you have a dedicated maintenance window or sufficiently small indexes, create a maintenance plan to clean up indexes. Indexes with > 30% fragmentation and over 1,000 pages should be rebuilt. Indexes with > 5% fragmentation and over 1,000 pages should be reorganized. (We don't care about small indexes. Who cares if small indexes are fragmented?) This operation is a blocking operation. If you do not have a maintenance window, or if your database is large enough to make this an unacceptably slow process, this should not be a maintenance task.
 
 ### Interview Questions
 
