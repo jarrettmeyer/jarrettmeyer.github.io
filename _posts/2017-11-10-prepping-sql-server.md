@@ -55,4 +55,6 @@ These questions will require you to talk to DBAs or system administrators.
 
 1.  What is the policy for offsite backups?
 2.  What is the business expectation for a system restore time window? These should be broadly defined (e.g. less than one minute, less than one hour, less than four hours, less than one day). Different expectations will have different costs.
+3.  What policies exist to warm up buffers and caches? When changes to tables or indexes are published, are there processes or procedures that 
+4.  Is reference data stored in its own schema (e.g. `[ref].*`)? Because reference data (e.g. area codes, counties, countries, genders, U.S. states) should rarely change, policies for your reference schema can be different than your policies for other transactional data. *Note: This question is important for applications with small maintenance windows.*
 
