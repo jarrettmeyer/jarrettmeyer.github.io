@@ -38,7 +38,7 @@ date:     2017-11-10
 
 ### Maintenance Plans
 
-1.  Ensure that you have a maintenance plan to run `CHECKDB` on all databases.
-2.  Ensure that you have a maintenance plan to backup all databases.
-3.  Create a maintenance plan to clean up history.
+1.  Ensure that you have a maintenance plan to run `CHECKDB` on all databases. `CHECKDB` [performs several functions](https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql) in your database.
+2.  Ensure that you have a maintenance plan to backup all databases. 
+3.  Create a maintenance plan to [clean up MSDB history](https://www.mssqltips.com/sqlservertip/1727/purging-msdb-backup-and-restore-history-from-sql-server/).
 4.  Provided you have a dedicated maintenance window or sufficiently small indexes, create a maintenance plan to clean up indexes. Indexes with > 30% fragmentation and over 1,000 pages should be rebuilt. Indexes with > 5% fragmentation and over 1,000 pages should be reorganized. (We don't care about small indexes. Who cares if small indexes are fragmented?) This operation is a blocking operation. If you do not have a maintenance window, or if your database is large enough to make this an unacceptably slow process, this should not be a maintenance task.
