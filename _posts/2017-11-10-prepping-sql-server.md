@@ -29,6 +29,8 @@ you ask? Here's a checklist of ideas.
 
     `ALTER AUTHORIZATION ON DATABASE::<your database name> TO sa;`
 
+6.  Are there databases that are not using the latest compatibility mode for the installed version of SQL server? If so, are these reasons documented in a shared location so that all future programmers, DBAs (consultants, etc.) will know why these databases should not be upgraded to a later compatibility mode? 
+
 ### Installing Useful Procedures
 
 1.  Install Adam Machanic's `sp_WhoIsActive`. This is a super handy script that tells you who is connected to your server and what is running. It can be downloaded from [whoisactive.com/downloads](http://whoisactive.com/downloads/).
