@@ -6,23 +6,25 @@ date:     2017-11-10
 
 ![Microsoft SQL Server Logo](/assets/images/microsoft_sql_server_logo.png){: .align-center } 
 
-Imagine you are a consultant, and you want to come in and inspect a SQL server architecture. How would you do it? What would you look for? What questions would you ask? Here's a checklist of ideas.
+Imagine you are a consultant, and you want to come in and inspect a SQL server 
+architecture. How would you do it? What would you look for? What questions would 
+you ask? Here's a checklist of ideas.
 
 > This is a "living document" for prepping an instance of SQL Server. If you have suggestions, please send them to jarrettmeyer at gmail dot com.
 
 ### Configuration
 
 1.  Ensure that your databases are not on your C: drive. Databases can grow and take all of the space on C:. This is bad. This is especially true of TempDB.
-2.  Ensure that your data folders and backup folder are one different drives. We often see scenarios were the data is stored in `S:\SQL Server\Data` and backups are stored on `S:\SQL Server\Backups`. This is not ideal. If you lose your S: drive, you can lose both your data and your backups. Even in a RAID scenario, the RAID controller itself can fail, leading to inaccessible data.
+2.  Ensure that your data folders and backup folder are one different drives. We often see scenarios were the data is stored in `S:\SQL Server\Data` and backups are stored on `S:\SQL Server\Backups`. This is not ideal. If you lose your `S:` drive, you can lose both your data and your backups. Even in a RAID scenario, the RAID controller itself can fail, leading to inaccessible data.
 3.  (SQL Server 2016) Ensure that the **query store** option is enabled on all databases. This allows SQL server to retain information about query plans and performance. This is done with the following command.
 
     `ALTER DATABASE <database> SET QUERY_STORE = ON;`
     
-4.  Compare databases and system architecture between Production and non-production instances. 
+4.  Compare databases and system architecture between Production and non-production instances.  
     --  Check the system hardware. To get good comparisons between a test/staging environment and a production environment, hardware should be identical. If it is not identical, then metrics collected in test/staging may not be reliable.  
     --  Ensure that databases have similar amounts of data in Production and non-production environments. I have seen scenarios where Production data has millions or billions of rows, while a test environment only has a few thousand rows of data. Obviously, you cannot troubleshoot performance between the systems.  
     --  Ensure that databases have the same recovery mode in Production and non-production environments. If a database has `FULL RECOVERY` mode in production, but `SIMPLE RECOVERY` in test, you may find that test is faster than production.  
-    --  If you are using Developer Edition in test and Standard Edition in Production, you can run into threading and parallelism issues. Developer Edition has the same feature set as Enterprise Edition, so it will use every bit of compute and memory available. However, Standard Edition has caps on CPU, RAM, and degrees of parallelism! For example, the new `COLUMNSTORE INDEX` is [now available in all versions of SQL Server as of 2016 SP1](https://blogs.msdn.microsoft.com/sql_server_team/columnstore-index-standard-and-express-editions-with-sql-server-2016-sp1/). But, as usual, you get what you pay for. In Enterprise Edition, it will use every thread it can; Standard Edition will use up to 2 threads; Web & Express Editions will only use one thread. In a query execution plan, you can see the degrees of parallelism under "Properties".  
+    --  If you are using Developer Edition in test and Standard Edition in Production, you can run into threading and parallelism issues. Developer Edition has the same feature set as Enterprise Edition, so it will use every bit of compute and memory available. However, Standard Edition has caps on CPU, RAM, and degrees of parallelism! For example, the new `COLUMNSTORE INDEX` is [now available in all versions of SQL Server as of 2016 SP1](https://blogs.msdn.microsoft.com/sql_server_team/columnstore-index-standard-and-express-editions-with-sql-server-2016-sp1/). But, as usual, you get what you pay for. In Enterprise Edition, it will use every thread it can; Standard Edition will use up to 2 threads; Web & Express Editions will use just 1 thread. In a query execution plan, you can see the degrees of parallelism under "Properties".  
 5.  Ensure that your databases are not owned by user accounts. By default, a database is owned by the user who created the account. Databases should be owned by a non-user account. Either a single domain account should own all databases, or SA should own all databases.
 
     `ALTER AUTHORIZATION ON DATABASE::<your database name> TO sa;`
@@ -58,7 +60,12 @@ Imagine you are a consultant, and you want to come in and inspect a SQL server a
 These questions will require you to talk to DBAs or system administrators.
 
 1.  What is the policy for offsite backups?
-2.  What is the business expectation for a system restore time window? These should be broadly defined (e.g. less than one minute, less than one hour, less than four hours, less than one day). Different expectations will have different costs.
-3.  What policies exist to warm up buffers and caches? When changes to tables or indexes are published, are there processes or procedures that 
+2.  What is the business expectation for a system restore time window? These should be broadly defined (e.g. zero time, less than one minute, less than one hour, less than four hours, less than one day). Different expectations will have different costs. If your expectation is zero time and zero data loss, expect this to be the most expensive option, as there is nothing natively built into SQL Server to allow for zero downtime and zero data loss. If your expectation is under one minute, then SQL Server comes equipped with features such as [failover clusters](https://docs.microsoft.com/en-us/sql/sql-server/failover-clusters/install/create-a-new-sql-server-failover-cluster-setup), [replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/sql-server-replication), and [Always On](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server) (2016 and newer). At under one hour, a human should be able to answer a pager and restore backups and transaction logs, provided all drive provisioning is online and accessible. At under four hours, drives can be repartitioned. At under one day, a server can be rebuilt, RAID controllers can be next-day-aired, offsite backups can be downloaded, and a database can be provisioned from scratch.
+3.  What policies exist to warm up buffers and caches? When changes to tables or indexes are published, are there processes or procedures that will execute common queries, especially queries where having data readily available in cache makes a significant performance difference.
 4.  Is reference data stored in its own schema (e.g. `[ref].*`)? Because reference data (e.g. area codes, counties, countries, genders, U.S. states) should rarely change, policies for your reference schema can be different than your policies for other transactional data. *Note: This question is important for applications with small maintenance windows.*
 
+### Personal Notes
+
+*Just a few of my notes, and why we ask some of these questions.*
+
+1.  In my time working with applications, I have had RAID controllers fail twice. It doesn't matter how reliable your RAID 10 disks are if the controller itself fails. For some companies, that may mean having replicated SANs.
