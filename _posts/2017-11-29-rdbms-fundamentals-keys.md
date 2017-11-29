@@ -47,8 +47,14 @@ A **candidate key** is a super key with the minimal number of attributes. In the
 
 ### Surrogate Key
 
-A **surrogate key** is any time we use an artificial value to uniquely identify a row. Examples of surrogate keys include identities or [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier). A surrogate key has no business meaning. Ideally, surrogate key columns will be named `table_name_key` or `table_name_id`. I prefer `key`, because then it should be incredibly clear that a value has absolutely no business meaning whatsoever.
+A **surrogate key** is any time we use an artificial value to uniquely identify a row. Examples of surrogate keys include identities or [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier). A surrogate key has no business meaning. Ideally, surrogate key columns will be named `table_name_key` or `table_name_id`. I prefer `_key` variant, because then it should be incredibly clear that a value has absolutely no business meaning whatsoever. Sometimes IDs have a business purpose. Think of something along the lines of employee IDs, corporate asset IDs, or ID card numbers. These are values that have some type of real-world meaning outside of the confines of the database, even if they are randomly or sequentially assigned. If we migrate from an old system to a new system, the ID should travel to the new system.
 
 ### Alternate Key
 
-An alternate key is any super key that is not the primary key. It may be one or more columns. Using an alternate key in a SQL `WHERE` clause would be expected to return exactly one or zero rows. It would never return two or more rows.
+An alternate key is any super key that is not the primary key. Because it is a super key, it may be one or more columns. Using an alternate key in a SQL `WHERE` clause would be expected to return exactly one or zero rows. It would never return two or more rows.
+
+Suppose we have a table like our example, and we make the primary key B+C. In this table, C+D is also a super key. Any query with a clause `WHERE C=cx AND D=dx` will return exactly one or exactly zero rows.
+
+### Conclusion
+
+When it comes to keys, that's about it. Hopefully understanding what the different types of keys are will help you with your next table design.
