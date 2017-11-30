@@ -9,18 +9,18 @@ In table design, we will frequently talk about **normal forms**. The first of th
 | key | isbn | title | author | check_out_date | check_in_date |
 | :--: | :--: | :--: | :--: | :--: | :--: |
 | 1 | 0439708184, 1408883759, 1408883767 | Harry Potter and the Sorcerer's Stone | J.K. Rowling | 2017-11-02 15:33:20 | 2017-11-24 08:09:43 |
-| 2 | 1542047579, 0141441143 | Jane Eyre | Charlotte Bronte | null | null |
-| 3 | 0545289599 | Island of the Blue Dolphins | Scott O'Dell | 2017-07-15 10:13:52 | null |
+| 2 | 1542047579, 0141441143 | Jane Eyre | Charlotte Bronte | *null* | *null* |
+| 3 | 0545289599 | Island of the Blue Dolphins | Scott O'Dell | 2017-07-15 10:13:52 | *null* |
 | 4 | 0395978351 | Curious George Goes Camping | Margaret Rey, H.A. Rey | 2017-03-14 9:05:10 | 2017-04-01 10:12:33 |
 
 A table is said to be in **first normal form** (or **1NF**) when it has no sets as elements and has no repeated columns. The table above is *not* in 1NF because there are cells with multiple values. We could begin to fix our table by adding new columns to the original. We can see that ISBN has a maximum of three values and author has a maximum of two values.
 
 | key | isbn_1 | isbn_2 | isbn_3 | title | author_1 | author_2 | check_out_date | check_in_date |
 | :--: | :--: | :--: | :--: | :--: | :--: |
-| 1 | 0439708184 | 1408883759 | 1408883767 | Harry Potter and the Sorcerer's Stone | J.K. Rowling | null | 2017-11-02 15:33:20 | 2017-11-24 08:09:43 |
-| 2 | 1542047579 | 0141441143 | null |Jane Eyre | Charlotte Bronte | null | null | null |
-| 3 | 0545289599 | null | null | Island of the Blue Dolphins | Scott O'Dell | null | 2017-07-15 10:13:52 | null |
-| 4 | 0395978351 | null | null | Curious George Goes Camping | Margaret Rey | H.A. Rey | 2017-03-14 9:05:10 | 2017-04-01 10:12:33 |
+| 1 | 0439708184 | 1408883759 | 1408883767 | Harry Potter and the Sorcerer's Stone | J.K. Rowling | *null* | 2017-11-02 15:33:20 | 2017-11-24 08:09:43 |
+| 2 | 1542047579 | 0141441143 | *null* |Jane Eyre | Charlotte Bronte | *null* | *null* | *null* |
+| 3 | 0545289599 | *null* | *null* | Island of the Blue Dolphins | Scott O'Dell | *null* | 2017-07-15 10:13:52 | *null* |
+| 4 | 0395978351 | *null* | *null* | Curious George Goes Camping | Margaret Rey | H.A. Rey | 2017-03-14 9:05:10 | 2017-04-01 10:12:33 |
 
 Our second version of our books table satisfies the first condition of 1NF. However, we still do not satisfy the second condition of 1NF. We have repeated columns that hold the same piece of data. These columns need to be exported to another table. Let's create tables for ISBN and author.
 
@@ -29,8 +29,8 @@ The third version of our books table will look like the following.
 | key | title | check_out_date | check_in_date |
 | :--: | :--: | :--: | :--: | :--: | :--: |
 | 1 | Harry Potter and the Sorcerer's Stone | 2017-11-02 15:33:20 | 2017-11-24 08:09:43 |
-| 2 | Jane Eyre | null | null |
-| 3 | Island of the Blue Dolphins | 2017-07-15 10:13:52 | null |
+| 2 | Jane Eyre | *null* | *null* |
+| 3 | Island of the Blue Dolphins | 2017-07-15 10:13:52 | *null* |
 | 4 | Curious George Goes Camping | 2017-03-14 9:05:10 | 2017-04-01 10:12:33 |
 
 Our new ISBN table will look like this.
