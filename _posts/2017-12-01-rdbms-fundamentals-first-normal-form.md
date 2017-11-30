@@ -55,4 +55,6 @@ Finally, this is our new authors table.
 | 4 | Margaret Rey |
 | 4 | H.A. Rey |
 
-And that's it! That's how 1NF works!
+And that's it! That's how 1NF works! Think about the number of times that you've seen tables that have columns like `primary_telephone`, `alternate_telephone_1`, `alternate_telephone_2`. What about `home_address`, `work_address`? We see columns like this quite frequently. Now, let's get rid of them.
+
+Go forth and normalize those tables!
