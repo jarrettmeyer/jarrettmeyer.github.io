@@ -4,10 +4,10 @@ layout:   post
 date:     2017-11-10
 ---
 
-![Microsoft SQL Server Logo](/assets/images/microsoft_sql_server_logo.png){: .align-center } 
+![Microsoft SQL Server Logo](/assets/images/microsoft_sql_server_logo.png){: .align-center }
 
-Imagine you are a consultant, and you want to come in and inspect a SQL server 
-architecture. How would you do it? What would you look for? What questions would 
+Imagine you are a consultant, and you want to come in and inspect a SQL server
+architecture. How would you do it? What would you look for? What questions would
 you ask? Here's a checklist of ideas.
 
 > This is a "living document" for prepping an instance of SQL Server. If you have suggestions, please send them to jarrettmeyer at gmail dot com.
@@ -19,7 +19,7 @@ you ask? Here's a checklist of ideas.
 3.  (SQL Server 2016) Ensure that the **query store** option is enabled on all databases. This allows SQL server to retain information about query plans and performance. This is done with the following command.
 
     `ALTER DATABASE <database> SET QUERY_STORE = ON;`
-    
+
 4.  Compare databases and system architecture between Production and non-production instances.  
     --  Check the system hardware. To get good comparisons between a test/staging environment and a production environment, hardware should be identical. If it is not identical, then metrics collected in test/staging may not be reliable.  
     --  Ensure that databases have similar amounts of data in Production and non-production environments. I have seen scenarios where Production data has millions or billions of rows, while a test environment only has a few thousand rows of data. Obviously, you cannot troubleshoot performance between the systems.  
@@ -29,7 +29,7 @@ you ask? Here's a checklist of ideas.
 
     `ALTER AUTHORIZATION ON DATABASE::<your database name> TO sa;`
 
-6.  Are there databases that are not using the latest compatibility mode for the installed version of SQL server? If so, are these reasons documented in a shared location so that all future programmers, DBAs (consultants, etc.) will know why these databases should not be upgraded to a later compatibility mode? 
+6.  Are there databases that are not using the latest compatibility mode for the installed version of SQL server? If so, are these reasons documented in a shared location so that all future programmers, DBAs (consultants, etc.) will know why these databases should not be upgraded to a later compatibility mode?
 
 ### Installing Useful Procedures
 
@@ -51,7 +51,7 @@ you ask? Here's a checklist of ideas.
 ### Maintenance Plans
 
 1.  Ensure that you have a maintenance plan to run `CHECKDB` on all databases. `CHECKDB` [performs several functions](https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql) in your database.
-2.  Ensure that you have a maintenance plan to backup all databases. 
+2.  Ensure that you have a maintenance plan to backup all databases.
 3.  Ensure that you have a maintenance plan to backup all transaction logs.
 4.  Create a maintenance plan to [clean up MSDB history](https://www.mssqltips.com/sqlservertip/1727/purging-msdb-backup-and-restore-history-from-sql-server/).
 5.  Create a maintenance plan to delete old backup files. All of those backups can start chewing up a lot of disk. This can either be part of the maintenance plan to clean up MSDB history (above), or it can be its own maintenance plan. Either way, you will want to keep the age of backups the same (e.g. 2 weeks).
@@ -65,9 +65,20 @@ These questions will require you to talk to DBAs or system administrators.
 2.  What is the business expectation for a system restore time window? These should be broadly defined (e.g. zero time, less than one minute, less than one hour, less than four hours, less than one day). Different expectations will have different costs. If your expectation is zero time and zero data loss, expect this to be the most expensive option, as there is nothing natively built into SQL Server to allow for zero downtime and zero data loss. If your expectation is under one minute, then SQL Server comes equipped with features such as [failover clusters](https://docs.microsoft.com/en-us/sql/sql-server/failover-clusters/install/create-a-new-sql-server-failover-cluster-setup), [replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/sql-server-replication), and [Always On](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server) (2016 and newer). At under one hour, a human should be able to answer a pager and restore backups and transaction logs, provided all drive provisioning is online and accessible. At under four hours, drives can be repartitioned. At under one day, a server can be rebuilt, RAID controllers can be next-day-aired, offsite backups can be downloaded, and a database can be provisioned from scratch.
 3.  What policies exist to warm up buffers and caches? When changes to tables or indexes are published, are there processes or procedures that will execute common queries, especially queries where having data readily available in cache makes a significant performance difference.
 4.  Is reference data stored in its own schema (e.g. `[ref].*`)? Because reference data (e.g. area codes, counties, countries, genders, U.S. states) should rarely change, policies for your reference schema can be different than your policies for other transactional data. *Note: This question is important for applications with small maintenance windows.*
+5.  Are service-level objectives (SLOs) well defined and documented? What are they? (See below for an example SLO table.)
+6.  Where is the architectural inventory? This is a list of all machines (physical and virtual) and their primary roles. This should include databases, application servers, Active Directory servers, file servers, email servers, load balancers, etc. This inventory should include offsite/cloud infrastructure.
+
+| Operation | Objective | Measure | Description |
+| :--- | :--- | ---: | :--- |
+| **New customer signup** | Availability | 99.9% | 99.9% of all requests are served.
+|   | Latency (total page load) | 0.10 - 1.00 s | All API requests are returned within 1s from a hardline machine. |
+|   | Allowed errors per day | 5 | Total number of server errors returned to all clients per day. |
+|   | Peak new customer signups per minute | 100 | What is the expected peak usage? How many assets and API requests must be fulfilled to meet this requirement? |
+
 
 ### Personal Notes
 
 *Just a few of my notes, and why we ask some of these questions.*
 
 1.  In my time working with applications, I have had RAID controllers fail twice. It doesn't matter how reliable your RAID 10 disks are if the controller itself fails. For some companies, that may mean having replicated SANs.
+2.  Despite it being key part of a quality design, I have never seen a SLO table like the one shown above. Most business analysts I work with are barely able to keep up with business process requirements, let alone come up with applicable performance measures.
