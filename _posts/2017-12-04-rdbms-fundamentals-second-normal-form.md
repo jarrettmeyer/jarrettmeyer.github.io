@@ -20,7 +20,7 @@ The first requirement should make sense. But what about the second requirement? 
 
 Suppose we go back to our table of books.
 
-| key | title | check_out_date | check_in_date |
+| book_key | title | check_out_date | check_in_date |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | 1 | Harry Potter and the Sorcerer's Stone | 2017-11-02 15:33:20 | 2017-11-24 08:09:43 |
 | 2 | Jane Eyre | *null* | *null* |
@@ -39,9 +39,11 @@ We also have an ISBN table. We know that ISBNs are assigned by publisher. Let's 
 | 3 | 0545289599 | HMH Books |
 | 4 | 0395978351 | HMH Books |
 
-Looks good, right? We know that Publisher does not belong on the books table, because different publishers will have different ISBN values, even for the same book. However, we still have a problem: **the ISBN depends on the publisher**. Publishers are assigned ranges of ISBN numbers. This table does not satisfy 2NF. Instead, this table should be broken into two different tables. We need a publisher table, and the `publisher_key` needs to be part of key for this table.
+Looks good, right? We know that Publisher does not belong on the books table, because different publishers will have different ISBN values, even for the same book. However, we still have a problem: **the ISBN depends on the publisher**. Publishers are assigned ranges of ISBN numbers. Depending on the size of the publisher, publishers may be assigned anyway from ten to hundreds of thousands of ISBN values.
 
-| key | publisher |
+Knowing more about the domain, this table does not satisfy 2NF. Instead, this table should be broken into two different tables. We need a publisher table, and the `publisher_key` needs to be part of key for this table.
+
+| publisher_key | publisher_name |
 | :--: | :--: |
 | 1 | Scholastic |
 | 2 | Bloomsbury |
@@ -49,7 +51,7 @@ Looks good, right? We know that Publisher does not belong on the books table, be
 | 4 | Penguin Classics |
 | 5 | HMH Books |
 
-Our ISBN table should be redefined to look like the following.
+Our ISBN table should be redefined to now include the `publisher_key`.
 
 | book_key | publisher_key | isbn |
 | :--: | :--: | :--: |
@@ -61,4 +63,6 @@ Our ISBN table should be redefined to look like the following.
 | 3 | 5 | 0545289599 |
 | 4 | 5 | 0395978351 |
 
-So there you go. Take a look at your tables. If you find two columns, and one of those columns depends on the other, then you have a 2NF problem!
+*Additionally, let's add a unique key on ISBN.*
+
+So there you go. Take a look at your tables. If you find two columns, and one of those columns depends on the other &mdash; if one column changes then the other column would also be forced to change &mdash; then you have a **second normal form** violation!
