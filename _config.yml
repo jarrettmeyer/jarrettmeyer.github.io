@@ -7,7 +7,7 @@ twitter_username: jarrettmeyer
 markdown: kramdown
 permalink: /:year/:month/:day/:title
 
-gems:
+plugins:
   - jekyll-gist
 
 gist:

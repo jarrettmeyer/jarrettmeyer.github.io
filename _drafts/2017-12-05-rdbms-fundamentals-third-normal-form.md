@@ -1,10 +1,10 @@
 ---
 title:    "RDBMS Fundamentals: Third Normal Form"
 layout:   post
-post:     2017-12-04
+post:     2017-12-05
 ---
 
-We have previously covered [first normal form](/2017/12/01/rdbms-fundamentals-first-normal-form) and [second normal form](/2017/12/04/rdbms-fundamentals-second-normal-form). Third normal form, or 3NF, continues where we left 2NF.
+This is a continuation on a series of posts on [RDMBS Fundamentals](/projects#rdbms-fundamentals). We have previously covered [first normal form](/2017/12/01/rdbms-fundamentals-first-normal-form) and [second normal form](/2017/12/04/rdbms-fundamentals-second-normal-form). Third normal form, or 3NF, continues where we left 2NF.
 
 ### Requirements for 3NF
 
