@@ -13,6 +13,8 @@ To satisfy fourth normal form -- 4NF -- the following rules must be met.
 1. Satisfy all of the rules of [third normal form](/2017/12/06/rdbms-fundamentals-third-normal-form), and
 2. There are no multi-valued dependencies in your table.
 
+### The Problem Table
+
 As usual, let's go to an example. Here, we have a table of automobile loan applications.
 
 | application_key | application_date | applicant_name | down_payment | max_monthly_payment | vehicle |
@@ -34,6 +36,15 @@ WHERE   vehicle LIKE '%toyota%';
 
 This query can make it look like there is a non-trivial relationship between dates and when Toyotas are purchased.
 
+```sql
+SELECT  down_payment, max_monthly_payment
+FROM    applications;
+```
+
+Is there a relationship between the amount of down payment an applicant has and the maximum monthly payment an applicant can afford? This relates directly to the purchasing power of the applicant. The purchasing power of the applicant (usually) applies to the vehicle someone buys.
+
+### The Fix
+
 The solution, as is usually the case, is to split this data into different tables. The `applications` table would now look like this.
 
 | application_key | application_date | applicant_name |
@@ -47,7 +58,7 @@ The solution, as is usually the case, is to split this data into different table
 
 Financial information would be moved to its own table. This table now contains exactly one type of data.
 
-| financial_key | application_key | down_payment | max_monthly_payment |
+| puchasing_key | application_key | down_payment | max_monthly_payment |
 | :--: | :--: | :--: | :--: |
 | 1 | 1 | 4250.00 | 380.00 |
 | 2 | 2 | 1500.00 | 275.00 |
