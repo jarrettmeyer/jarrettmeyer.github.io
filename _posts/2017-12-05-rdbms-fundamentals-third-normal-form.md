@@ -26,7 +26,7 @@ If we have spent any time around data, we have probably seen this data structure
 
 1. Indianapolis is a city in Indiana. There is no Seattle, Indiana, and there is no Indianapolis, Washington.
 2. There are only so many valid ZIP codes in Indianapolis. The ZIP code and city are dependent on each other. In the grand scheme of addresses, there are relatively few valid city + state + ZIP code combinations.
-3. Not all 5 digit numbers are valid ZIP codes.
+3. Not all 5 digit numbers are valid ZIP codes. Ideally, we could create a table of all valid ZIP codes.
 4. Not all building have multiple units (suites, apartment numbers, floors, etc.).
 
 Let's start breaking down this table so it satisfies 3NF.
@@ -41,7 +41,7 @@ First, we need a table for states.
 
 Our states table should have unique indexes on both the `state_name` and `state_abbreviation` columns.
 
-Second, we need a table for cities.
+Second, we need a table for cities. Cities must belong to a single state.
 
 | city_key | city_name | state_key |
 | :--: | :--: | :--: |
@@ -68,7 +68,7 @@ We already have a city table. This is our ZIP code table. (There are 63 ZIP code
 
 Each `zip_code` value should be unique.
 
-This is our many-to-many table for cities and ZIP codes. The ZIP code for 46204 is only Indianapolis. The ZIP code for 46224 has both Indianapolis and Speedway addresses.
+This is our many-to-many table for cities and ZIP codes. A ZIP code can have multiple cities, and a city can have multiple ZIP codes. The ZIP code for 46204 is only Indianapolis. The ZIP code for 46224 has both Indianapolis and Speedway addresses.
 
 | city2zip_code_key | city_key | zip_code_key |
 | :--: | :--: | :--: |
