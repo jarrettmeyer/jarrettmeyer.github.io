@@ -4,7 +4,9 @@ layout: post
 date:   2017-12-07
 ---
 
-Another helpful, common task, added to this blog for posterity. The script below works in SQL Server. You may need to make a few modifications for another database platform. This version relies on `sys.all_objects`, creates a maximum of approximately 5.4M rows, and takes about 2 minutes to run on my development laptop. Since this is a reference table, all columns will be materialized (i.e. there are no computed columns). This table will be built once, and never have any future inserts. Populating the other columns is intended to make all reads just a little bit faster.
+Another helpful, common database task, added to this blog for posterity.
+
+The script below works in SQL Server. You may need to make a few modifications for another database platform. This version relies on `sys.all_objects`, creates a maximum of approximately 5.4M rows, and takes about 2 minutes to run on my development laptop. Since this is a reference table, all columns will be materialized (i.e. there are no computed columns). This table will be built once, and never have any future inserts. Populating the other columns is intended to make all reads just a little bit faster.
 
 {% gist jarrettmeyer/ff8badfb39942db270011b91f9b953b9 create_numbers.sql %}
 
