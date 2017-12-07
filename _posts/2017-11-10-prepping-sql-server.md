@@ -67,6 +67,9 @@ These questions will require you to talk to DBAs or system administrators.
 4.  Is reference data stored in its own schema (e.g. `[ref].*`)? Because reference data (e.g. area codes, counties, countries, genders, U.S. states) should rarely change, policies for your reference schema can be different than your policies for other transactional data. *Note: This question is important for applications with small maintenance windows.*
 5.  Are service-level objectives (SLOs) well defined and documented? What are they? (See below for an example SLO table.)
 6.  Where is the architectural inventory? This is a list of all machines (physical and virtual) and their primary roles. This should include databases, application servers, Active Directory servers, file servers, email servers, load balancers, etc. This inventory should include offsite/cloud infrastructure.
+7. How are bulk-process job logs stored, and how often are they reviewed?
+
+*Sample SLO table.*
 
 | Operation | Objective | Measure | Description |
 | :--- | :--- | ---: | :--- |
@@ -75,6 +78,12 @@ These questions will require you to talk to DBAs or system administrators.
 |   | Allowed errors per day | 5 | Total number of server errors returned to all clients per day. |
 |   | Peak new customer signups per minute | 100 | What is the expected peak usage? How many assets and API requests must be fulfilled to meet this requirement? |
 
+### Public-Facing Applications
+
+These will apply if you have public-facing applications.
+
+1.  How are page metrics collected? How often are metrics reviewed? How often is each page requested? What is the load time for each page?
+2.  How many database requests are required for each page or API request? How is this monitored?
 
 ### Personal Notes
 
