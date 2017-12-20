@@ -6,7 +6,7 @@ date:     2017-12-20
 
 This post gives instructions on installing and running SQL Server 2017 Developer Edition, completely free, with VirtualBox. This method should only be used on Developer workstations. This method **should not** be used for shared developer/test/QA installations. It absolutely should not be used for production installations. *Also, that would be a violation of the Developer Edition license terms.*
 
-### Step 1: Download and Install VirtualBox
+#### Step 1: Download and Install VirtualBox
 
 You can grab the latest copy of VirtualBox for your host operating system [here](https://www.virtualbox.org/). Download and install it.
 
