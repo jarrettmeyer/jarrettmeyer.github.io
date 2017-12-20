@@ -4,11 +4,11 @@ layout:   post
 date:     2017-12-20
 ---
 
-This post gives instructions on installing an running SQL Server 2017 Developer Edition, completely free, with VirtualBox. This method should only be used on Developer workstations. This method **should not** be used for shared developer/test/QA installations. It absolutely should not be used for production installations.
+This post gives instructions on installing and running SQL Server 2017 Developer Edition, completely free, with VirtualBox. This method should only be used on Developer workstations. This method **should not** be used for shared developer/test/QA installations. It absolutely should not be used for production installations. *Also, that would be a violation of the Developer Edition license terms.*
 
 ### Step 1: Download and Install VirtualBox
 
-You can grab the latest copy of VirtualBox for your host operating system [here](https://www.virtualbox.org/).
+You can grab the latest copy of VirtualBox for your host operating system [here](https://www.virtualbox.org/). Download and install it.
 
 #### Step 2: Download the ISO for Windows Hyper-V Server 2016
 
@@ -16,7 +16,7 @@ Yes, Hyper-V server is built for running other servers. However, you *can* insta
 
 Create a new VM. Give it as much RAM, CPU, and disk as you can afford given your machine configuration. Go through the installation and allow the machine to reboot.
 
-You'll need to create an Administrator password. I recommend `Administrat0r`, but do whatever you want and whatever you'll remember.
+You'll need to create an Administrator password. I recommend `Administrat0r`, but do whatever you want and whatever you'll remember. (I won't look.)
 
 #### Step 3: Install the VirtualBox Guest Additions
 
@@ -51,15 +51,15 @@ When you select features, I recommend that you install the following.
 * Analysis Services
 * Integration Services
 
-Many features will not successfully install on Windows Server Core. You will get a rule check violation if you attempt to install unsupported features.
+Some features will not successfully install on Windows Server Core. You will get a rule check violation if you attempt to install unsupported features. If you need some of these features, you will need to get a proper copy of Windows Server 2016.
 
-Use the default instance.
+I use the default SQL Server instance. There is no reason to use a named instance on a virtual machine that has only one purpose.
 
-I use mixed-mode authentication. The SA password is `mySApassword*123`. Again, put whatever you want here, as long as it's something you'll remember. I also add `BUILTIN\Administrators`.
+I use mixed-mode authentication. My SA password is `mySApassword*123`. Again, put whatever you want here, as long as it's something you'll remember. I also add the `BUILTIN\Administrators` group as SQL admins.
 
-If you include Analysis Services, be sure to add `BUILTIN\Administrators` as an admin there, as well.
+If you include Analysis Services, be sure to add the `BUILTIN\Administrators` group as admins there, as well.
 
-I leave all default folders and collation settings as-is.
+I leave all default folders and collation settings as-is. I enable Filestreams.
 
 Once the install completes, reboot the server.
 
