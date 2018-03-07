@@ -1,5 +1,5 @@
 ---
-title:    "What's in a Name"
+title:    "What's in a Name?"
 layout:   post
 date:     2018-03-07
 ---
