@@ -79,6 +79,7 @@ CREATE TABLE dbo.NameTypes (
   CONSTRAINT [PK_dbo.NameTypes] PRIMARY KEY CLUSTERED (NameTypeKey)
 );
 ```
+
 | NameTypeKey | Description    |
 | :---------- | :------------- |
 | 1           | First Name     |
