@@ -8,11 +8,15 @@ permalink: /about/
 
 *Me and my wife Angela, the morning after we were married.*
 
-![Fusion Alliance](/assets/images/fusion-alliance-logo.png){: style="margin-top:2em;" }
+### I Am a Storyteller
 
-I am a Data Solutions Consultant in Indianapolis, Indiana. I specialize in Business Intelligence and Data Architecture. I am currently and happily employed by [Fusion Alliance](http://www.fusionalliance.com). Fusion Alliance has been a leading technology consultant in Indianapolis, Cincinnati, and Columbus for over 20 years.
+Your data tells a story, and I am a storyteller.
 
-**Certifications**
+I have been an application developer, solutions architect, and business intelligence professional for 14 years. I have worked in the manufacturing, warehousing, accounting, finance, pharmaceutical, and healthcare industries. In all industries and applications, the data we collect tells us our history and informs future decision making. We learn about our products, our customers, our employees, and our processes. We adapt, we grow, we improve.
+
+Let's tell your story.
+
+### Certifications
 
 * MongoDB Certified Developer
 * Certified Scrum Master
