@@ -1,6 +1,6 @@
 ---
-layout:     post
 title:      "Michael Peake"
+layout:     post
 date:       2010-07-16
 ---
 

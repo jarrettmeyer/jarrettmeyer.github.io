@@ -1,7 +1,8 @@
 ---
-layout: page
-title: About
-permalink: /about/
+layout:             page
+title:              About
+permalink:          /about/
+exclude_from_nav:   false
 ---
 
 ![Jarrett and Angela](/assets/images/jarrett-and-angela.jpg)
