@@ -5,6 +5,8 @@ permalink:          /projects/d3/bouncing-ball
 exclude_from_nav:   true
 ---
 
+This is a simple animation example using [D3.js](https://d3js.org). It uses a `setInterval` loop to move a ball around a box.
+
 <svg id="tabletop"></svg>
 
 <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>

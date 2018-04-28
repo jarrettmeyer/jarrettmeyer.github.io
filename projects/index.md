@@ -5,6 +5,12 @@ permalink:    /projects
 exclude_from_nav: false
 ---
 
+## <a name="d3">D3 Demos</a>
+
+Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
+
+1. [Bouncing Ball](/projects/d3/bouncing-ball)
+
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
 Yes, there are rules for database design. Just like there are design patterns for application development and software engineering, there are design patterns for database design. These database patterns encourage table independence, scalability, and help databases be less fragile for future changes.
