@@ -26,7 +26,7 @@ var circle = svg.append("circle")
 ```
 
 <svg id="canvas2" width="400" height="200" style="background-color:lightgray;"></svg>
-<script type="text/javascript">
+<script>
 (function () {
     var svg = d3.select("#canvas2");
     var circle = svg.append("circle")
@@ -54,7 +54,7 @@ circle.on("click", function () {
 ```
 
 <svg id="canvas3" width="400" height="200" style="background-color:lightgray;"></svg>
-<script type="text/javascript">
+<script>
 (function () {
     var svg = d3.select("#canvas3");
     var circle = svg.append("circle")
@@ -91,7 +91,7 @@ circle.on("click", function () {
 ```
 
 <svg id="canvas4" width="400" height="200" style="background-color:lightgray;"></svg>
-<script type="text/javascript">
+<script>
 (function () {
     var svg = d3.select("#canvas4");
     var circle = svg.append("circle")
