@@ -5,7 +5,7 @@ permalink:          /projects/d3/population
 exclude_from_nav:   true
 ---
 
-Data is pulled from [population.io](http://population.io).
+Data is pulled from [population.io](http://population.io). Data is population for males and females, by age, for the United States.
 
 Year: <select name="year"></select>
 <svg id="canvas" width="800" height="600" style="background-color:lightgray;"></svg>
