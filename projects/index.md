@@ -12,6 +12,7 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 1. [Bouncing Ball](/projects/d3/bouncing-ball)
 2. [Transitions](/2018/05/03/simple-transitions-in-d3)
 3. [Paths](/2018/05/04/paths-in-d3)
+4. [Population Graphs](/projects/d3/population)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
