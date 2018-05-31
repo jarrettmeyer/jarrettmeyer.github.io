@@ -12,6 +12,8 @@ A [Sankey graph](https://en.wikipedia.org/wiki/Sankey_diagram) is a powerful dat
 <script src="https://unpkg.com/d3-sankey@0.7.1/build/d3-sankey.js"></script>
 <script src="/assets/js/sankey1.js"></script>
 
+In this above graph, we can see how data flows from one state to another, with wider bands indicating a larger quantity.
+
 As with most things, we start with a data set. In this case, we have a list of nodes and a list links. A node needs to, at least, have an `index` or `id`, or some property to uniquely identify the node. Links have three properties: a `source`, a `target`, and a `value`. The `source` and `target` are pointers to the appropriate nodes. The `value` is the number of items that traveled that path.
 
 ```js
@@ -39,7 +41,7 @@ const sankey = d3.sankey()
 let graph = sankey(data);
 ```
 
-Next, we can draw the nodes and the links. Links are paths, and nodes are rectangles.
+Next, we can draw the nodes and the links. Links are SVG paths, and nodes are SVG rectangles.
 
 ```js
 let links = svg.append("g")
