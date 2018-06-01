@@ -54,6 +54,36 @@
         };
     }
     
+    function moveNode(node, position) {
+        position.width = position.width || +(node.attr("width"));
+        position.height = position.height || +(node.attr("height"));
+        if (position.x < 0) {
+            position.x = 0;
+        }
+        if (position.y < 0) {
+            position.y = 0;
+        }
+        if (position.x + position.width > graphSize[0]) {
+            position.x = graphSize[0] - position.width;
+        }
+        if (position.y + position.height > graphSize[1]) {
+            position.y = graphSize[1] - position.height;
+        }
+        node.attr("x", position.x)
+            .attr("y", position.y);
+        let nodeData = node.data()[0];
+        nodeData.x0 = position.x
+        nodeData.x1 = position.x + position.width;
+        nodeData.y0 = position.y;
+        nodeData.y1 = position.y + position.height;
+        sankey.update(graph);
+        svgLinks.selectAll("linearGradient")
+                .attr("x1", d => d.source.x1)
+                .attr("x2", d => d.target.x0);
+        svgLinks.selectAll("path")
+                .attr("d", path);
+    }
+    
     function onDragDragging() {
         let currentMousePosition = getMousePosition(d3.event);
         let delta = {
@@ -67,14 +97,7 @@
             width: initialNodePosition.width,
             height: initialNodePosition.height
         };
-        setNodePosition(thisNode, newNodePosition);
-        setNodeData(thisNode, newNodePosition);
-        sankey.update(graph);
-        svgLinks.selectAll("linearGradient")
-                .attr("x1", d => d.source.x1)
-                .attr("x2", d => d.target.x0);
-        svgLinks.selectAll("path")
-                .attr("d", path);
+        moveNode(thisNode, newNodePosition);        
     }
     
     function onDragEnd() {
@@ -91,6 +114,13 @@
         initialMousePosition = getMousePosition(d3.event);
     }
     
+    function reduceUnique(previous, current) {
+        if (previous.indexOf(current) < 0) {
+            previous.push(current);
+        }
+        return previous;
+    }
+    
     function setInitialMousePosition(e) {
         initialMousePosition.x = e.x;
         initialMousePosition.y = e.y;
@@ -103,18 +133,10 @@
         initialNodePosition.width = pos.width;
         initialNodePosition.height = pos.height;
     }
-    
-    function setNodeData(node, position) {
-        let nodeData = node.data()[0];
-        nodeData.x0 = position.x
-        nodeData.x1 = position.x + position.width;
-        nodeData.y0 = position.y;
-        nodeData.y1 = position.y + position.height;
-    }
-    
-    function setNodePosition(node, position) {
-        node.attr("x", position.x)
-            .attr("y", position.y);
+        
+    function sumValues(previous, current) {
+        previous += current;
+        return previous;
     }
     
     const data = {
@@ -128,7 +150,9 @@
             { id: "B4" },
             { id: "C1" },
             { id: "C2" },
-            { id: "C3" }
+            { id: "C3" },
+            { id: "D1" },
+            { id: "D2" }
         ],
         links: [
             { source: "A1", target: "B1", value: 27 },
@@ -138,9 +162,12 @@
             { source: "A3", target: "B2", value: 12 },
             { source: "A3", target: "B4", value:  7 },
             { source: "B1", target: "C1", value: 13 },
-            { source: "B1", target: "C2", value: 14 },
+            { source: "B1", target: "C2", value: 10 },
             { source: "B4", target: "C2", value:  5 },
-            { source: "B4", target: "C3", value:  2 }
+            { source: "B4", target: "C3", value:  2 },
+            { source: "B1", target: "D1", value:  4 },
+            { source: "C3", target: "D1", value:  1 },
+            { source: "C3", target: "D2", value:  1 }
         ]
     }
 
@@ -213,6 +240,21 @@
                       .attr("opacity", nodeOpacity)
                       .attr("stroke", d => d.strokeColor)
                       .attr("stroke-width", 0);
+    
+    let nodeDepths = graph.nodes
+        .map(n => n.depth)
+        .reduce(reduceUnique, []);
+    
+    nodeDepths.forEach(d => {
+        let nodesAtThisDepth = graph.nodes.filter(n => n.depth === d);
+        let numberOfNodes = nodesAtThisDepth.length;
+        let totalHeight = nodesAtThisDepth
+                            .map(n => n.height)
+                            .reduce(sumValues, 0);
+        let whitespace = graphSize[1] - totalHeight;
+        let balancedWhitespace = whitespace / (numberOfNodes + 1.0);
+        console.log("depth", d, "total height", totalHeight, "whitespace", whitespace, "balanced whitespace", balancedWhitespace);
+    });
     
     // Add hover effect to nodes.
     svgNodes.append("title")

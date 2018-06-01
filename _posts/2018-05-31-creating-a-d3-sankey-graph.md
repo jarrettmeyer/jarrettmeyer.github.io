@@ -73,3 +73,8 @@ let nodes = svg.append("g")
 ```
 
 That's the basics of how a Sankey graph works in D3. Any other features, including moving the nodes or applying colors, is beyond the scope of this blog post. The full code for the graph in this document is [available here](/assets/js/sankey1.js).
+
+*Note: this blog entry applies to the following software versions.*
+
+1. D3.js @ 5.4.0
+2. D3 Sankey @ 0.7.1
