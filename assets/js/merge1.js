@@ -24,13 +24,8 @@
     }
 
     function getText(d) {
-        let t = "[";
-        for (let i = 0; i < d.length; i++) {
-            t += d[i].radius;
-            if (i < d.length - 1) {
-                t += ", ";
-            }
-        }
+        let t = "radii = [";
+        t += d.map(d => d.radius).join(", ");
         t += "]";
         return t;
     }
