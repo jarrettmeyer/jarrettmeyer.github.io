@@ -76,5 +76,7 @@ This works because the `data` function allows to enter into embedded attributes 
 
 The code for this page is available [on Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/text1.js).
 
+<!--
 <script src="https://unpkg.com/d3@5.4.0/dist/d3.min.js"></script>
 <script src="/assets/js/text1.js"></script>
+-->
