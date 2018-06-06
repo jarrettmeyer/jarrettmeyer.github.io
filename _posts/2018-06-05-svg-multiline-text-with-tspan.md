@@ -16,7 +16,7 @@ Suppose we have a block of text that looks like this.
 }]
 ```
 
-If we write this text, as-is, with D3, the newlines (`\n`) will be ignored. The easiest solution is to break the lines into independent [tspan](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/tspan) elements. 
+If we write this text, as-is, with D3, the newlines (`\n`) will be ignored. The easiest solution is to break the lines into independent [tspan](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/tspan) elements.
 
 We want to produce an output that looks like this.
 
@@ -36,7 +36,7 @@ By applying a `dy` attribute and resetting the `x` position, we effectively crea
 
 <svg id="canvas"></svg>
 
-Accomplishing this with [D3.js](https://d3js.org/) requires us to use the `data` function twice. The first `data` operation will loop through every block of text. The second `data` operation will loop through every line.
+Accomplishing this with [D3.js](https://d3js.org/) requires us to use the `data` function twice. The first `data` operation will loop through every block of text. The second `data` operation will loop through every line. If you need help with D3's `enter`, `exit`, and `merge` functions, check out [my previous post](/2018/06/02/d3js-merge).
 
 ```js
 // Create a new <text> element for every data element.
