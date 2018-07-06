@@ -14,6 +14,7 @@ We have two squares that are the same size. If they are the same size, then they
 \left( left \right) ^ {2} &= \left( right \right) ^ {2} \\\
 \left( a + b \right) ^ {2} &= c^{2} + 4 \times \left( \frac{1}{2} ab \right) \\\
 a^{2} + 2ab + b^{2} &= c^{2} + 2ab \\\
+a^{2} + b^{2} &= c^{2} \\\
 \end{align}
 
 That's it. Have fun playing!
