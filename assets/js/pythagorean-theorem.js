@@ -1,89 +1,128 @@
 console.log("Starting.");
-    
+
 let squareSide = 300;
 let margin = 10;
 let svgWidth = squareSide*2 + margin*3;
 let svgHeight = squareSide + margin*2;
 let initialPosition = 100;
-
-let leftPointPositions = [
-    [  0, initialPosition],
-    [squareSide - initialPosition,   0],
-    [squareSide, squareSide - initialPosition],
-    [initialPosition, squareSide]
+let pointRadius = 6;
+let pointColor = "rgb(50, 200, 50)";
+let lineGenerator = d3.line();
+let svg = d3.select("#canvas");
+let triangleColors = [
+    "rgb(220, 4, 25)",
+    "rgb(180, 4, 25)",
+    "rgb(140, 4, 25)",
+    "rgb(100, 4, 25)"
+];
+let squareColors = [
+    "rgb(50, 100, 200)",
+    "rgb(50, 100, 150)",
+    "rgb(50, 100, 100)"
 ];
 
-let pointRadius = 6;
-let pointColor = "#009";
-    
-let svg = d3.select("#canvas");
+// Set the width and height of the SVG canvas.
 svg.attr("width", svgWidth)
     .attr("height", svgHeight)
     .style("background-color", "#eee")
     .style("border", "1px solid #333");
-    
-let leftBox = svg.append("g")
+
+// Create groups for the left and right sides.
+let leftGroup = svg.append("g")
     .attr("transform", `translate(${margin},${margin})`);
-
-let leftSquare = leftBox.append("rect")
-    .attr("fill", "#fff")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", squareSide)
-    .attr("height", squareSide);
-    
-let rightBox = svg.append("g")
+let rightGroup = svg.append("g")
     .attr("transform", `translate(${squareSide + margin*2},${margin})`);
-    
-let rightSquare = rightBox.append("rect")
+
+// Create backgrounds for the left and right sides.
+let leftBackground = leftGroup.append("rect")
+    .classed("background", true)
+    .attr("fill", "#fff")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", squareSide)
+    .attr("height", squareSide);
+let rightBackground = rightGroup.append("rect")
+    .classed("background", true)
     .attr("fill", "#fff")
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", squareSide)
     .attr("height", squareSide);
 
+let squareData = getSquareData(squareSide, initialPosition);
+let triangleData = getTriangleData(squareSide, initialPosition);
 
-let cpath = leftBox.append("path")
-    .datum(leftPointPositions)
-    .attr("fill", "#42a1f4")
-    .attr("d", d3.line());
+// Draw the 3 squares.
+leftGroup.append("path")
+    .classed("square", true)
+    .classed("square-0", true)
+    .datum(squareData[0])
+    .attr("fill", squareColors[0])
+    .attr("d", lineGenerator);
+leftGroup.append("path")
+    .classed("square", true)
+    .classed("square-1", true)
+    .datum(squareData[1])
+    .attr("fill", squareColors[1])
+    .attr("d", lineGenerator);
+rightGroup.append("path")
+    .classed("square", true)
+    .classed("square-2", true)
+    .datum(squareData[2])
+    .attr("fill", squareColors[2])
+    .attr("d", lineGenerator);
+
+for (let i = 0; i < 4; i++) {
+    leftGroup.append("path")
+        .classed("triangle", true)
+        .classed(`triangle-0-${i}`, true)
+        .datum(triangleData[0][i])
+        .attr("fill", triangleColors[i])
+        .attr("d", lineGenerator);
+}
+
+for (let i = 0; i < 4; i++) {
+    rightGroup.append("path")
+        .classed("triangle", true)
+        .classed(`triangle-1-${i}`, true)
+        .datum(triangleData[1][i])
+        .attr("fill", triangleColors[i])
+        .attr("d", lineGenerator);
+}
 
 
-// Define the alpha point. This is the point that the user is allowed to 
+// Define the alpha point. This is the point that the user is allowed to
 // interact with. The alpha point can slide up and down the side of the box.
-let alphaPoint = leftBox.append("circle")
+let alphaPoint = leftGroup.append("circle")
     .classed("alpha", true)
-    .attr("fill", "#037015")
-    .attr("cx", leftPointPositions[0][0])
-    .attr("cy", leftPointPositions[0][1])
+    .attr("fill", pointColor)
+    .attr("cx", 0)
+    .attr("cy", initialPosition)
     .attr("r", pointRadius);
-    
-    
+
+
 let alphaDrag = d3.drag()
     .on("start", () => {
         alphaPoint.classed("dragging", true);
-        console.log("Drag start.");
     })
     .on("drag", () => {
         // Only the y position should update. The x position is ignored.
-        let y = bound(+d3.event.y, pointRadius, squareSide - pointRadius);
+        let y = bound(+d3.event.y, 2*pointRadius, squareSide - 2*pointRadius);
         alphaPoint.attr("cy", y);
-        updateLeftBox(y);        
+        let squareData = getSquareData(squareSide, y);
+        let triangleData = getTriangleData(squareSide, y);
+        updateSquarePositions(squareData);
+        updateTrianglePositions(triangleData);
     })
     .on("end", () => {
         if (!d3.event.active) {
-            console.log("Drag end.");
             alphaPoint.classed("dragging", false);
         }
     });
 
 // Apply the alphaDrag event to the alphaPoint.
 alphaPoint.call(alphaDrag);
-    
 
-
-
-    
 
 function bound(value, min, max) {
     if (value < min) {
@@ -94,40 +133,72 @@ function bound(value, min, max) {
     }
     return Math.floor(value);
 }
-    
-    
-function getText() {
-    let ab = Math.abs(+a.attr("cy") - +b.attr("cy"));
-    let ac = Math.abs(+a.attr("cx") - +c.attr("cx"));
-    let bc = Math.sqrt(Math.pow(+a.attr("cx"), 2));
-        
-    return `${ab} x ${ab} + ${ac} x ${ac} = ${bc} x ${bc}`;
+
+
+function getSquareData(l, y) {
+    let a = y;
+    let b = l - y;
+    return [
+        [
+            [0, 0],
+            [a, 0],
+            [a, a],
+            [0, a]
+        ],
+        [
+            [a, a],
+            [a+b, a],
+            [a+b, a+b],
+            [a, a+b]
+        ],
+        [
+            [0, a],
+            [b, 0],
+            [l, b],
+            [a, l]
+        ]
+    ];
 }
 
 
-function resetPositions() {
-    aPos = { x: null, y: null };
-    bPos = { x: null, y: null };
-    cPos = { x: null, y: null };
+function getTriangleData(l, y) {
+    let a = y;
+    let b = l - y;
+    return [
+        [
+            [[0, a], [a, a], [0, l]],
+            [[a, a], [0, l], [a, l]],
+            [[a, 0], [a, a], [l, 0]],
+            [[a, a], [l, 0], [l, a]]
+        ],
+        [
+            [[0, a], [0, 0], [b, 0]],
+            [[b, 0], [l, 0], [l, b]],
+            [[l, b], [l, l], [a, l]],
+            [[a, l], [0, l], [0, a]]
+        ]
+    ];
 }
 
 
-// function updateBetaPoints() {
-//     let yPos = +alphaPoint.attr("cy");
-//     betaPointPosition[0][0] = squareSide - yPos;
-//     betaPointPosition[1][1] = squareSide - yPos;
-//     betaPointPosition[2][0] = yPos;
-//     betaPoints.attr("cx", d => d[0])
-//         .attr("cy", d => d[1]);
-// }
+function updateSquarePositions(squareData) {
+    for (let i = 0; i < 3; i++) {
+        d3.select(`path.square-${i}`).datum(squareData[i]).attr("d", lineGenerator);
+    }
+}
 
 
-function updateLeftBox(yPos) {
-    leftPointPositions[0][1] = yPos;
-    leftPointPositions[1][0] = squareSide - yPos;
-    leftPointPositions[2][1] = squareSide - yPos;
-    leftPointPositions[3][0] = yPos;
-    cpath.attr("d", d3.line());
+function updateText() {
+
+}
+
+
+function updateTrianglePositions(triangleData) {
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 4; j++) {
+            d3.select(`path.triangle-${i}-${j}`).datum(triangleData[i][j]).attr("d", lineGenerator);
+        }
+    }
 }
 
 
