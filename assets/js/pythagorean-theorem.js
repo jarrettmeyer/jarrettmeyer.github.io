@@ -20,6 +20,10 @@ let squareColors = [
     "rgb(50, 100, 150)",
     "rgb(50, 100, 100)"
 ];
+let textSize = 12;
+let textColor = "#000";
+let textPadding = 2;
+let textOffsetX = -4;
 
 // Set the width and height of the SVG canvas.
 svg.attr("width", svgWidth)
@@ -52,7 +56,7 @@ let rightBackground = rightGroup.append("rect")
 let squareData = getSquareData(squareSide, initialPosition);
 let triangleData = getTriangleData(squareSide, initialPosition);
 
-// Draw the 3 squares.
+// Draw the 3 primary squares.
 leftGroup.append("path")
     .classed("square", true)
     .classed("square-0", true)
@@ -72,6 +76,7 @@ rightGroup.append("path")
     .attr("fill", squareColors[2])
     .attr("d", lineGenerator);
 
+// Draw the 4 triangles on the left side of the graphic.
 for (let i = 0; i < 4; i++) {
     leftGroup.append("path")
         .classed("triangle", true)
@@ -81,6 +86,7 @@ for (let i = 0; i < 4; i++) {
         .attr("d", lineGenerator);
 }
 
+// Draw the 4 triangles on the right side of the graphic.
 for (let i = 0; i < 4; i++) {
     rightGroup.append("path")
         .classed("triangle", true)
@@ -113,6 +119,7 @@ let alphaDrag = d3.drag()
         let triangleData = getTriangleData(squareSide, y);
         updateSquarePositions(squareData);
         updateTrianglePositions(triangleData);
+        updateText(squareData);
     })
     .on("end", () => {
         if (!d3.event.active) {
@@ -122,6 +129,32 @@ let alphaDrag = d3.drag()
 
 // Apply the alphaDrag event to the alphaPoint.
 alphaPoint.call(alphaDrag);
+
+
+// Add the text for the "a" and "b" values.
+let textA = leftGroup.append("text")
+    .classed("text-a", true)
+    .attr("fill", textColor)
+    .attr("font-size", textSize)
+    .text("a")
+    .attr("x", squareData[0][2][0]/2 + textOffsetX)
+    .attr("y", squareData[0][2][1] - textPadding);
+
+let textB = leftGroup.append("text")
+    .classed("text-b", true)
+    .attr("fill", textColor)
+    .attr("font-size", textSize)
+    .text("b")
+    .attr("x", squareData[1][0][0] + (squareData[1][2][0] - squareData[1][0][0])/2 + textOffsetX)
+    .attr("y", squareData[0][2][1] + textPadding + textSize);
+
+let textC = rightGroup.append("text")
+    .classed("text-c", true)
+    .attr("fill", textColor)
+    .attr("font-size", textSize)
+    .text("c")
+    .attr("x", (squareData[1][2][0] - squareData[1][0][0])/2 + textSize/2 + textOffsetX)
+    .attr("y", squareData[0][2][0]/2 + textSize/2);
 
 
 function bound(value, min, max) {
@@ -188,8 +221,13 @@ function updateSquarePositions(squareData) {
 }
 
 
-function updateText() {
-
+function updateText(squareData) {
+    textA.attr("x", squareData[0][2][0]/2 + textOffsetX)
+        .attr("y", squareData[0][2][1] - textPadding);
+    textB.attr("x", squareData[1][0][0] + (squareData[1][2][0] - squareData[1][0][0])/2 + textOffsetX)
+        .attr("y", squareData[0][2][1] + textPadding + textSize);
+    textC.attr("x", (squareData[1][2][0] - squareData[1][0][0])/2 + textSize/2 + textOffsetX)
+        .attr("y", squareData[0][2][0]/2 + textSize/2);
 }
 
 
