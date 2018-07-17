@@ -69,7 +69,7 @@ const sparkline = (container, data, options) => {
 
 };
 ```
-A copy of this code is [available in Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/sparkline.js).
+A copy of this code is [available in Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/sparkline.js). Now, go forth and visualize!
 
 <script src="/assets/js/jquery/3.3.1/jquery.min.js"></script>
 <script src="/assets/js/d3/5.5.0/d3.js"></script>
