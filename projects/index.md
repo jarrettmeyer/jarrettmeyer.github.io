@@ -18,6 +18,8 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 7. [Merge](/2018/06/02/d3js-merge)
 8. [SVG Multiline Text with tspan](/2018/06/05/svg-multiline-text-with-tspan)
 9. [Mouse Events](/2018/06/21/d3-capturing-mouse-events)
+10. [Pythagorean Theorem](/2018/07/06/pythagorean-theorem-d3)
+11. [Sparklines](/2018/07/17/sparklines-in-d3)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
