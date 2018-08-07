@@ -20,6 +20,7 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 9. [Mouse Events](/2018/06/21/d3-capturing-mouse-events)
 10. [Pythagorean Theorem](/2018/07/06/pythagorean-theorem-d3)
 11. [Sparklines](/2018/07/17/sparklines-in-d3)
+12. [Viridis Color Scheme](/2018/08/07/viridis-color-scheme)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
