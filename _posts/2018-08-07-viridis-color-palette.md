@@ -15,6 +15,8 @@ You can see their talk [on YouTube](https://www.youtube.com/watch?list=PLYx7XA2n
 
 The viridis color palette can be accessed in [D3](https://d3js.org) with the `d3.interpolateViridis()` function.
 
+A copy of this code can be found [in Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/viridis.js).
+
 <div id="palette-controls"></div>
 
 <div id="palette-gradient" style="height:2em;width:100%;margin-top:1em;"></div>
