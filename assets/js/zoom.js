@@ -29,23 +29,18 @@ $(document).ready(() => {
         .tickSize(width)
         .tickPadding(tickPadding - width);
     
-    let xGroup = svg.append("g")
-        .classed("axis", true)
-        .classed("axis-x", true)
-        .call(xAxis);
-    
-    let yGroup = svg.append("g")
-        .classed("axis", true)
-        .classed("axis-y", true)
-        .call(yAxis);
+    let xGroup = svg.select(".axis-x").call(xAxis);    
+    let yGroup = svg.select(".axis-y").call(yAxis);
 
     let zoom = d3.zoom()
         .scaleExtent([minZoom, maxZoom])
         .translateExtent([[0, 0], [width, height]])
         .on("zoom", () => {
-            view.attr("transform", d3.event.transform);
-            xGroup.call(xAxis.scale(d3.event.transform.rescaleX(xScale)));
-            yGroup.call(yAxis.scale(d3.event.transform.rescaleY(yScale)));
+            let t = d3.event.transform;
+            view.attr("transform", t);
+            xGroup.call(xAxis.scale(t.rescaleX(xScale)));
+            yGroup.call(yAxis.scale(t.rescaleY(yScale)));
+            d3.select("#reset-button").text("translate(" + Math.floor(t.x) + ", " + Math.floor(t.y) + ") scale(" + t.k.toFixed(2) + ")");
             applyStyling();
         });    
 
