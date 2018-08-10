@@ -21,6 +21,7 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 10. [Pythagorean Theorem](/2018/07/06/pythagorean-theorem-d3)
 11. [Sparklines](/2018/07/17/sparklines-in-d3)
 12. [Viridis Color Palette](/2018/08/07/viridis-color-palette)
+13. [Panning & Zooming](/2018/08/10/d3-zoom)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
