@@ -23,6 +23,7 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 12. [Viridis Color Palette](/2018/08/07/viridis-color-palette)
 13. [Panning & Zooming](/2018/08/10/d3-zoom)
 14. [Sparklines with Gradients](/2018/08/20/sparklines-with-gradients)
+15. [Highlighting Click Events](/2018/08/22/d3-highlight-click-event)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
