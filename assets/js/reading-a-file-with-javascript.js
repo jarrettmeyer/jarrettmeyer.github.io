@@ -16,7 +16,7 @@ $(".file-input").on("change", (e) => {
         // Clear out all previous data.
         $("#file-preview").html("");
 
-        let table = $("<table></table>");
+        let table = $("<table style=\"margin-bottom: 0;\"></table>");
         let tbody = $("<tbody></tbody>");
         
         if (header) {
