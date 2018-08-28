@@ -1,7 +1,7 @@
 ---
 title:  "Reading a File with JavaScript"
 layout: "post"
-date:   2018-08-27
+date:   2018-08-28
 ---
 
 In my project, we wanted to be able to parse a CSV file on the client. Fortunately, JavaScript has added `FileReader` features, and the [D3 library](https://d3js.org) brings with it a very good CSV parser.
