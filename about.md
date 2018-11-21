@@ -11,11 +11,11 @@ exclude_from_nav:   false
 
 ### I Am a Storyteller
 
-Your data tells a story, and I am a storyteller.
+Your data tells a story, and I am a storyteller. I produce data visualizations for [Eli Lilly and Company](https://www.lilly.com) as part of the Advanced Analytics and Data Sciences department. I have been an application developer, solutions architect, and business intelligence professional since 2004. I have been with Eli Lilly since 2018. I work with primarily with [D3](https://d3js.org), [R](https://www.r-project.org), and [Spotfire](https://www.tibco.com/products/tibco-spotfire).
 
-I have been an application developer, solutions architect, and business intelligence professional for 14 years. I have worked in the manufacturing, warehousing, accounting, finance, pharmaceutical, and healthcare industries. In all industries and applications, the data we collect tells us our history and informs future decision making. We learn about our products, our customers, our employees, and our processes. We adapt, we grow, we improve.
+I write most of my projects in [TypeScript](http://www.typescriptlang.org/), package them into a single bundle with [Webpack](https://webpack.js.org/), and deploy them with [RedHat Openshift](https://www.openshift.com/).
 
-Let's tell your story.
+![Lilly Logo](/assets/images/lilly.png)
 
 ### Certifications
 
