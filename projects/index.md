@@ -24,6 +24,7 @@ Let's learn how to do some fun visualizations with [D3.js](https://d3js.org/).
 13. [Panning & Zooming](/2018/08/10/d3-zoom)
 14. [Sparklines with Gradients](/2018/08/20/sparklines-with-gradients)
 15. [Highlighting Click Events](/2018/08/22/d3-highlight-click-event)
+16. [Continuous Popluation](/projects/d3/population-continuous/)
 
 ## <a name="rdbms-fundamentals">RDBMS Fundamentals</a>
 
