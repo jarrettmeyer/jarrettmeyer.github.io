@@ -2,6 +2,7 @@
 title:    "Paths in D3 - Part 2"
 layout:   post
 date:     2018-05-08
+tags: d3js
 ---
 
 <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>

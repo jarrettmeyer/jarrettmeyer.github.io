@@ -2,6 +2,7 @@
 title: "Sparklines in D3.js"
 layout: post
 date: 2018-07-17
+tags: d3js
 ---
 
 A [sparkline](https://en.wikipedia.org/wiki/Sparkline) is a very small chart that shows a value change over some controlling factor, usually time. Sparklines typically do not have axes or labels, and should be self-explanatory given the context of the sparkline.

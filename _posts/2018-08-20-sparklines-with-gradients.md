@@ -2,6 +2,7 @@
 title:  "D3: Sparklines with Gradients"
 layout: post
 date:   2018-08-20
+tags: d3js
 ---
 
 I have already put together a post on [Sparklines in D3](/2018/07/17/sparklines-in-d3). I was recently asked to put together a sparkline, but to apply the same [Viridis color palette](/2018/08/07/viridis-color-palette) that the rest of the graphic uses. The sparkline should look something like this.

@@ -2,6 +2,7 @@
 title:      "Viridis Color Palette"
 layout:     "post"
 date:       2018-08-07
+tags:       d3js
 ---
 
 The viridis color palette was developed in 2015 for `matplotlib` by Stefan van der Walt and Nathaniel Smith. It is designed to be

@@ -12,4 +12,13 @@ layout: default
     {{ content }}
   </div>
 
+    <div class="post-tags">
+        {% for tag in page.tags %}
+            {% capture tag_name %}{{ tag }}{% endcapture %}
+            <span class="post-tag">
+                <a href="/tag/{{ tag_name }}"><nobr>{{ tag_name }}</nobr></a>
+            </span>
+        {% endfor %}
+  </div>
+
 </article>

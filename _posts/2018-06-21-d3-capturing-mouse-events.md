@@ -2,6 +2,7 @@
 title:      "Capturing Mouse Events in D3.js"
 layout:     post
 date:       2018-06-21
+tags:       d3js
 ---
 
 [D3.js](https://d3js.org/) provides some pretty decent tooling for [working with the mouse](https://github.com/d3/d3-selection/blob/master/README.md#handling-events). This post will give an example of how those work.

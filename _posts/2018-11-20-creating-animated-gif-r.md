@@ -2,7 +2,7 @@
 title:  "Creating an Animated GIF with R"
 layout: "post"
 date:   2018-11-20
-tags:   [r]
+tags:   r
 ---
 
 One of my latest tasks was to create a smooth transition between data sets, instead of showing line graphs or having multiple graphs side-by-side. Fortunately, existing libraries in R make this quite easy to accomplish. Specifically, I will make extensive use of [ggplot]() and [tweenr]().

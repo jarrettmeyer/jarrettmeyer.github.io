@@ -2,6 +2,7 @@
 title:    "JavaScript Visualization in Spotfire"
 layout:   post
 date:     2018-06-12
+tags: d3js spotfire
 ---
 
 [Tibco Spotfire](https://spotfire.tibco.com/) (version 7.10) has a very powerful JavaScript visualization library. In fact, you can write your charts with any existing JavaScript library - [D3.js](https://d3js.org/), [Google Charts](https://developers.google.com/chart/), [Chart.js](http://www.chartjs.org/), etc. - and have all of the functionality of both Spotfire and your library of choice. There are a few tricks you'll need to learn to get everything to work, through.

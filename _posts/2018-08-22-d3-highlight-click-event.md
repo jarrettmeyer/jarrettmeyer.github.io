@@ -2,6 +2,7 @@
 title:  "D3: Highlight Click Event"
 layout: "post"
 date:   2018-08-22
+tags:   d3js
 ---
 
 Yesterday, I was asked to add a highlight click event to a point on a screen. For a quick demo of this effect, click the point below.
