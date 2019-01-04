@@ -2,6 +2,7 @@
 layout:   post
 title:    "An Ember Multi-select Checkbox"
 date:     2016-03-28
+tags: emberjs
 ---
 
 Last week, I needed to create a series of multi-select checkboxes for a project that I'm working on. The client side framework is [EmberJS](http://emberjs.com/). There were a few open-source options out there. Unfortunately, they use the existing [Ember-CLI](http://ember-cli.com/). Our project, being a bit older and out of date, cannot use Ember CLI.

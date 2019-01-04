@@ -1,7 +1,8 @@
 ---
-layout:   post
-title:    "It looks like he's compensating for something"
-date:     2016-03-03
+layout: post
+title: "It looks like he's compensating for something"
+date: 2016-03-03
+tags: docker nginx nodejs
 ---
 
 ![Compensating](/assets/images/compensating-for-something.jpg){: .align-center }

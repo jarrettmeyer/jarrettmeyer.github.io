@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Getting into Docker"
-date: 2015-04-22 08:00:00 -0400
+date: 2015-04-22
 comments: true
-categories: ["docker"]
+tags: docker
 ---
 
 ## What is this Docker thing, anyway?

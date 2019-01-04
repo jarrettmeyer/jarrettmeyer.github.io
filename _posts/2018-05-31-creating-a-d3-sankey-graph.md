@@ -2,6 +2,7 @@
 title:    "Creating a Sankey Graph with D3.js"
 layout:   post
 date:     2018-05-31
+tags: d3js
 ---
 
 A [Sankey graph](https://en.wikipedia.org/wiki/Sankey_diagram) is a powerful data visualization that show how elements flow from one state to another in both state and quantity.

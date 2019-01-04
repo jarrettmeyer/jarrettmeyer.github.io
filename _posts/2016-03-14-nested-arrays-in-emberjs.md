@@ -2,6 +2,7 @@
 layout:   post
 title:    "Nested Arrays in EmberJS"
 date:     2016-03-14
+tags: emberjs
 ---
 
 ![EmberJS](http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200){: .align-right } My latest project has me working on [EmberJS](http://emberjs.com/).

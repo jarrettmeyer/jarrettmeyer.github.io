@@ -2,6 +2,7 @@
 layout: post
 title:  "On Github's Recent Changes"
 date:   2016-02-10
+tags: git
 ---
 [Github](https://github.com) has started a mild internet uproar by [replacing remote FTE's with on-site employees](http://www.businessinsider.com/github-the-full-inside-story-2016-2) and putting in a management structure where there originally was none. Like with so many decisions, I am torn about this. I can easily see both sides of this argument.
 

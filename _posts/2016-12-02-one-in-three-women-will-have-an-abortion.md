@@ -2,6 +2,7 @@
 title:    One in Three Women Will Have an Abortion
 date:     2016-12-02
 layout:   post
+tags: statistics
 ---
 
 **Upfront disclaimer:**

@@ -2,6 +2,7 @@
 title:    "SVG Multiline Text with tspan"
 layout:   post
 date:     2018-06-05
+tags: d3js
 ---
 
 Like anything else with SVG, there is a lot you can do with [text](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text). In this blog post, I will show you how to handle line breaks.

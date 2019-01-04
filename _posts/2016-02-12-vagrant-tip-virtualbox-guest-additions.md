@@ -1,7 +1,8 @@
 ---
-layout:   post
-title:    "Vagrant Tip: Virtualbox Guest Additions"
-date:     2016-02-12
+layout: post
+title: "Vagrant Tip: Virtualbox Guest Additions"
+date: 2016-02-12
+tags: vagrant
 ---
 
 Tired of seeing this message when you run `vagrant up`?

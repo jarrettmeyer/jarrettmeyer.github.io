@@ -5,6 +5,10 @@ layout: default
 <div class="home">
 
     <h1 class="page-heading">{{ page.title }}</h1>
+
+    <div class="post-content">
+        {{ page.description | markdownify }}
+    </div>
       
     <ul class="post-list">
         {% for post in site.tags[page.tag] %}

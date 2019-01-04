@@ -1,7 +1,8 @@
 ---
-title:    "Go in Pieces"
-layout:   post
-date:     2018-04-08
+title: "Go in Pieces"
+layout: post
+date: 2018-04-08
+tags: quotes
 ---
 
 ## Benediction

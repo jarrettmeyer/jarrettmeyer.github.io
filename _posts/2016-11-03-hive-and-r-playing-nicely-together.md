@@ -2,6 +2,7 @@
 title:   "Hive and R Playing Nicely Together"
 layout:  post
 date:    2016-11-03
+tags: hive r
 ---
 
 Hive is a data warehouse. R is a language for statistics and graphics. Getting these two programs to work together is a beautiful thing.

@@ -2,6 +2,7 @@
 title:    "Simple Transitions in D3"
 layout:   post
 date:     2018-05-03
+tags: d3js
 ---
 
 <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>

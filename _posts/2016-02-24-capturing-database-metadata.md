@@ -1,7 +1,7 @@
 ---
-layout:   post
-title:    "Capturing Database Metadata"
-date:     2016-02-24
+layout: post
+title: "Capturing Database Metadata"
+date: 2016-02-24
 ---
 
 We have all seen database tables that have these two columns tagged onto the end of them.

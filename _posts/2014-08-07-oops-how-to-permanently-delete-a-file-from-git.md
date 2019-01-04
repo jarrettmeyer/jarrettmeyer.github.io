@@ -3,7 +3,7 @@ layout: post
 title: "Oops! How To Permanently Delete a File from Git"
 date: 2014-08-07 08:00:00 -0400
 comments: true
-categories: ["git"]
+tags: git
 ---
 
 > I accidentally added an uninitialized (appended) SQL Server backup file, a `*.bak`, to source control and pushed it. Now, no one can fetch a clean copy of the source because of out-of-memory errors. How do I fix this?
