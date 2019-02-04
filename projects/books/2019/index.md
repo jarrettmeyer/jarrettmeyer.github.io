@@ -1,8 +1,8 @@
 ---
-title:  2019 Reading list
-layout: page
-permalink: /books/2019
-exclude_from_nav: true
+title:              2019 Reading List
+layout:             page
+permalink:          /books/2019
+exclude_from_nav:   true
 ---
 
 The books I've read in 2019, in order of completion.
