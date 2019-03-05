@@ -14,3 +14,5 @@ The books I've read in 2019, in order of completion.
 * [Shameless: A Sexual Reformation](https://smile.amazon.com/dp/B07CWG1719/) by Nadia Bolz-Weber
 * [Sing, Unburied, Sing](https://smile.amazon.com/dp/B01M9I7CRC/) by Jesmyn Ward
 * [Timeless: A Drizzt Novel](https://smile.amazon.com/dp/B0756F453K/) by R. A. Salvatore
+* [The Misunderstood Jew: The Church and the Scandal of the Jewish Jesus](https://smile.amazon.com/Misunderstood-Jew-Church-Scandal-Jewish/dp/0061137782/) by Amy Jill Levine
+* [No God but God: The Origins, Evolution, and Future of Islam](https://smile.amazon.com/god-but-God-Updated-Evolution/dp/0812982444/) by Reza Aslan
