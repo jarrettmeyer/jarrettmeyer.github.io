@@ -2,7 +2,7 @@
 title:  "Creating an animated chart in D3"
 layout: "post"
 date:   2018-11-21
-tags:   d3js
+tags:   d3js javascript
 ---
 
 Yesterday, [I wrote about creating an animated GIF with R](/2018/11/20/creating-animated-gif-r). Today, I am following up with the same thing, this time written with [D3](https://d3js.org).
