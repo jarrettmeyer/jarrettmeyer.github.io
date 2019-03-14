@@ -32,6 +32,6 @@ You can get a single value from the query with the `get()` function.
 let token = search.get("token");
 ```
 
-That's it!
+The complete code for this page is [available in Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/urlquery.js). Happy coding!
 
 <script src="/assets/js/urlquery.js"></script>
