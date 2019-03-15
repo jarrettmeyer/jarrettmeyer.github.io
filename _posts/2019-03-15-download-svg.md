@@ -10,6 +10,17 @@ So! You've created your super awesome SVG, and now you'd like to download that f
 <svg id="canvas"></svg>
 <button id="download" type="button">Download SVG</button>
 
+Here's the SVG details from the graphic shown above.
+
+```html
+<svg id="canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400">
+    <rect x="2" y="2" width="596" height="396" stroke="black" stroke-width="4" fill="none"></rect>
+    <rect x="10" y="20" width="300" height="250" fill="darkred"></rect>
+    <circle cx="350" cy="250" r="120" fill="darkblue"></circle>
+    <text x="350" y="100" fill="green" font-size="24" font-family="'Lucida Sans Unicode', 'Lucida Grande', Helvetica, Arial, sans-serif" font-style="italic">Hello, World!</text>
+</svg>
+```
+
 First, let's make sure that we have fully defined our SVG by adding the appropriate namespace element. This isn't something that I typically do all the time, but it is necessary for this to work correctly.
 
 ```ts
