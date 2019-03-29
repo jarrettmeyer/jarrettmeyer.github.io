@@ -18,3 +18,5 @@ The books I've read in 2019, in order of completion.
 * [No God but God: The Origins, Evolution, and Future of Islam](https://smile.amazon.com/god-but-God-Updated-Evolution/dp/0812982444/) by Reza Aslan
 * [I'm Still Here: Black Dignity in a World Made for Whiteness](https://smile.amazon.com/dp/1524760854/) by Austin Channing Brown
 * [Inspired: Slaying Giants, Walking on Water, and Loving the Bible Again](https://smile.amazon.com/dp/0718022319/) by Rachel Held Evans
+* [We Should All Be Feminists](https://smile.amazon.com/dp/110191176X/) by Chimamanda Ngozi Adichie
+* [Washington Black: A Novel](https://smile.amazon.com/dp/0525521429/) by Esi Edugyan
