@@ -20,3 +20,4 @@ The books I've read in 2019, in order of completion.
 * [Inspired: Slaying Giants, Walking on Water, and Loving the Bible Again](https://smile.amazon.com/dp/0718022319/) by Rachel Held Evans
 * [We Should All Be Feminists](https://smile.amazon.com/dp/110191176X/) by Chimamanda Ngozi Adichie
 * [Washington Black: A Novel](https://smile.amazon.com/dp/0525521429/) by Esi Edugyan
+* [The Sacred Enneagram: Finding Your Unique Path to Spiritual Growth](https://smile.amazon.com/dp/0310348277/) by Christopher L. Heuertz
