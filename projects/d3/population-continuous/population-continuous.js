@@ -1,7 +1,7 @@
 (function () {
 
     // Variables.
-    const BASE_URL = "http://api.population.io/1.0/";
+    const BASE_URL = "//api.population.io/1.0/";
     const MIN_YEAR = 1950;
     const MAX_YEAR = (new Date()).getFullYear();
     const TRANSITION_DURATION = 500;
@@ -9,7 +9,7 @@
     const MAX_POPULATION = 5 * 1e6;
     const MAX_AGE = 100;
     const STROKE_WIDTH = 3.0;
-    
+
     let year = MIN_YEAR;
     let padding = {
         top: 20,
@@ -18,9 +18,9 @@
         right: 20
     };
     let malePath = femalePath = null;
-    let maleArea = femaleArea = null;    
+    let maleArea = femaleArea = null;
     let fetchOptions = {};
-    
+
     let populationData = {};
 
     // Select the D3 SVG element, and compute the width & height.
@@ -32,7 +32,7 @@
     // top-left, so we define the height scale backwards.
     let xScale = d3.scaleLinear().range([0, width]).domain([0, MAX_AGE]);
     let xAxis = d3.axisBottom(xScale);
-    let yScale = d3.scaleLinear().range([height, 0]).domain([0, MAX_POPULATION]);    
+    let yScale = d3.scaleLinear().range([height, 0]).domain([0, MAX_POPULATION]);
     let yAxis = d3.axisLeft(yScale).tickFormat(d3.format(".2s"));
 
     // Apply an offset grouping.
@@ -61,10 +61,10 @@
         .attr("font-size", 14)
         .text("Year: null");
 
-    
+
 
     /**
-     * 
+     *
      */
     function draw(data) {
         let areaData = fixUpData(data);
@@ -77,7 +77,7 @@
             .datum(areaData)
             .attr("d", femaleLine);
         maleArea = paddingGroup.append("path")
-            .attr("class", "male-area")    
+            .attr("class", "male-area")
             .attr("transform", "translate(1, -1)")
             .attr("fill", "lightblue")
             .datum(areaData)
@@ -109,7 +109,7 @@
      */
     function fetchData(year) {
         // If we already have the data, there is no need to fetch the data a second
-        // time.        
+        // time.
         if (populationData[year]) {
             transition(populationData[year]);
         }
