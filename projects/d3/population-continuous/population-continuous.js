@@ -1,7 +1,7 @@
 (function () {
 
     // Variables.
-    const BASE_URL = "//api.population.io/1.0/";
+    const BASE_URL = "http://api.population.io/1.0/";
     const MIN_YEAR = 1950;
     const MAX_YEAR = (new Date()).getFullYear();
     const TRANSITION_DURATION = 500;

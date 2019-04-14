@@ -1,7 +1,7 @@
 (function () {
 
     // Variables.
-    var baseUri = "//api.population.io/1.0/";
+    var baseUri = "http://api.population.io/1.0/";
     var minYear = 1950;
     var currentYear = (new Date()).getFullYear();
     var year = currentYear;
