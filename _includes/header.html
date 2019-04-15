@@ -14,13 +14,11 @@
             </a>
 
             <div class="trigger">
-                {% for page in site.pages %}
-                    {% if page.url != "/" and 
-                          page.title and 
-                          page.exclude_from_nav != true %}
-                        <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-                    {% endif %}
-                {% endfor %}
+                <a class="page-link" href="https://github.com/jarrettmeyer"><i class="fab fa-github"></i></a>
+                <a class="page-link" href="https://twitter.com/chayimmeyer"><i class="fab fa-twitter"></i></a>
+                <a class="page-link" href="mailto:jarrettmeyer@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a class="page-link" href="{{ '/about' | prepend: site.baseurl }}">About</a>
+                <a class="page-link" href="{{ '/projects' | prepend: site.baseurl }}">Projects</a>
             </div>
         </nav>
 
