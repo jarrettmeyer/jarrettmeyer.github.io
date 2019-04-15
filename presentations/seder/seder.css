@@ -1,1 +1,12 @@
+.reveal p {
+    font-size: 0.8em;
+    text-align: left;
+}
 
+.columns {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
