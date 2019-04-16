@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Tags & Topics
+permalink: /tag/
 ---
 
 Some of the topics you'll find on this blog.

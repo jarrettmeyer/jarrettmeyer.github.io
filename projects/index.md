@@ -1,7 +1,7 @@
 ---
 title:        Projects
 layout:       page
-permalink:    /projects
+permalink:    /projects/
 exclude_from_nav: false
 ---
 
