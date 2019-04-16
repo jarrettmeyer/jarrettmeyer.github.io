@@ -1,5 +1,6 @@
 Reveal.initialize({
-    controles: true,
+    controls: true,
+    fragmentInURL: true,
     hash: true,
     history: true,
     progress: true,

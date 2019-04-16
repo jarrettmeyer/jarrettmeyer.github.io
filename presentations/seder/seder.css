@@ -10,3 +10,14 @@
 .column {
     flex: 1;
 }
+
+.well {
+    background-color: darkslategray;
+    border-radius: 12px;
+    color: lightskyblue;
+    padding: 16px;
+}
+
+.well h1, .well h2 {
+    color: beige;
+}
