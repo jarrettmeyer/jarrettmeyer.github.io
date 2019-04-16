@@ -10,10 +10,10 @@ Here's another fun trick I learned this week: sending HTTP requests with SQL Ser
 
 Once OLE automation is enabled, you will be able to create OLE classes from within your scripts and stored procedures.
 
-This example uses [requestb.in](https://requestb.in/16xdq1p1) for the HTTP target.
+This example uses [RequestBin.com](https://en43ylz3txlaz.x.pipedream.net) for the HTTP target.
 
 {% gist jarrettmeyer/5990daf0db3b1f4fd759df6ed4099685 Send_HTTP_Request.sql %}
 
-You can inspect the request using the [inspect page at requestb.in](https://requestb.in/16xdq1p1?inspect).
+You can inspect the request at [https://pipedream.com/r/en43ylz3txlaz](https://pipedream.com/r/en43ylz3txlaz).
 
 Happy coding!
