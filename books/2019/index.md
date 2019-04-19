@@ -1,7 +1,7 @@
 ---
 title:              2019 Reading List
 layout:             page
-permalink:          /books/2019
+permalink:          /books/2019/
 exclude_from_nav:   true
 ---
 
@@ -22,3 +22,4 @@ The books I've read in 2019, in order of completion.
 13. [Washington Black: A Novel](https://smile.amazon.com/dp/0525521429/) by Esi Edugyan
 14. [The Sacred Enneagram: Finding Your Unique Path to Spiritual Growth](https://smile.amazon.com/dp/0310348277/) by Christopher L. Heuertz
 15. [The Great Unknown: Seven Journeys to the Frontiers of Science](https://smile.amazon.com/dp/B01IOHQ8P6/) by Marcus Du Sautoy
+16. [Crown of Blood: The Deadly Inheritance of Lady Jane Grey](https://smile.amazon.com/dp/B01E9EHVCC/) by Nicola Tallis
