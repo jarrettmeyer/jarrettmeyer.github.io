@@ -17,7 +17,7 @@ Name this value `StartDateParameter`. Set this value to 01-Jan-1900.
 
 ### Create a Parameter for the End Date
 
-Name this value `EndDateParameter`. Set this value to 31-Dec-2999.
+Name this value `EndDateParameter`. Set this value to 31-Dec-2999. Of course, you can change the end date if this value does not suit your application needs. 
 
 ```m
 #date(2999, 12, 31) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
