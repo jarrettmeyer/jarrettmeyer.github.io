@@ -7,7 +7,7 @@ exclude_from_nav:   false
 
 ![Jarrett and Angela](/assets/images/jarrett_and_angela.jpg)
 ![Jackson and Nora](/assets/images/jackson_and_nora.jpeg)
-![Jarrett Climbing](/assets/images/jarrett_climbing.jpg)
+![Jarrett Climbing](/assets/images/jarrett_climbing.jpeg)
 ![Jarrett and Angela](/assets/images/jarrett_and_angela_2.jpeg)
 
 
