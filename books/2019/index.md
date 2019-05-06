@@ -23,3 +23,5 @@ The books I've read in 2019, in order of completion.
 14. [The Sacred Enneagram: Finding Your Unique Path to Spiritual Growth](https://smile.amazon.com/dp/0310348277/) by Christopher L. Heuertz
 15. [The Great Unknown: Seven Journeys to the Frontiers of Science](https://smile.amazon.com/dp/B01IOHQ8P6/) by Marcus Du Sautoy
 16. [Crown of Blood: The Deadly Inheritance of Lady Jane Grey](https://smile.amazon.com/dp/B01E9EHVCC/) by Nicola Tallis
+17. [Hope and Other Superpowers: A Life-Affirming, Love-Defending, Butt-Kicking, World-Saving Manifesto](https://www.amazon.com/dp/B07CMKY3YD/) by John Pavlovitz
+18. [A Brief History of Mathematics](https://www.amazon.com/dp/1408469650) by Marcus Du Sautoy
