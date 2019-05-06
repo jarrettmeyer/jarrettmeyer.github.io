@@ -11,7 +11,11 @@ exclude_from_nav:   false
 
 ### I Am a Storyteller
 
-Your data tells a story, and I am a storyteller. I produce data visualizations for [Eli Lilly and Company](https://www.lilly.com) as part of the Advanced Analytics and Data Sciences department. I have been an application developer, solutions architect, and business intelligence professional since 2004. I have been with Eli Lilly since 2018. I work with primarily with [D3](https://d3js.org), [Power BI](https://powerbi.microsoft.com/), [Power Query](https://docs.microsoft.com/en-us/power-query/), [R](https://www.r-project.org), and [Spotfire](https://www.tibco.com/products/tibco-spotfire).
+Your data tells a story, and I am a storyteller.
+I produce data visualizations for [Eli Lilly and Company](https://www.lilly.com) as part of the Advanced Analytics and Data Sciences department.
+I have been an application developer, solutions architect, and business intelligence professional since 2004.
+I have been with Eli Lilly since 2018.
+I work with primarily with [D3](https://d3js.org), [Power BI](https://powerbi.microsoft.com/), [Power Query](https://docs.microsoft.com/en-us/power-query/), [R](https://www.r-project.org), and [Spotfire](https://www.tibco.com/products/tibco-spotfire).
 
 I write most of my projects in [TypeScript](http://www.typescriptlang.org/), package them into a single bundle with [Webpack](https://webpack.js.org/), and deploy them with [RedHat Openshift](https://www.openshift.com/).
 
