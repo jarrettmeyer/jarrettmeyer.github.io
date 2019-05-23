@@ -25,3 +25,5 @@ The books I've read in 2019, in order of completion.
 16. [Crown of Blood: The Deadly Inheritance of Lady Jane Grey](https://smile.amazon.com/dp/B01E9EHVCC/) by Nicola Tallis
 17. [Hope and Other Superpowers: A Life-Affirming, Love-Defending, Butt-Kicking, World-Saving Manifesto](https://www.amazon.com/dp/B07CMKY3YD/) by John Pavlovitz
 18. [A Brief History of Mathematics](https://www.amazon.com/dp/1408469650) by Marcus Du Sautoy
+19. [The Once and Future Liberal: After Identity Politics](https://smile.amazon.com/dp/B06WLQ9W27) by Mark Lilla
+20. [Believe Me: A Memoir of Love, Death, and Jazz Chickens](https://smile.amazon.com/dp/B00SI0B9NG) by Eddie Izzard
