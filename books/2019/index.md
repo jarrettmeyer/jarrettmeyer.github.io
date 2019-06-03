@@ -27,3 +27,4 @@ The books I've read in 2019, in order of completion.
 18. [A Brief History of Mathematics](https://www.amazon.com/dp/1408469650) by Marcus Du Sautoy
 19. [The Once and Future Liberal: After Identity Politics](https://smile.amazon.com/dp/B06WLQ9W27) by Mark Lilla
 20. [Believe Me: A Memoir of Love, Death, and Jazz Chickens](https://smile.amazon.com/dp/B00SI0B9NG) by Eddie Izzard
+21. [Notes from a Young Black Chef: A Memoir](https://smile.amazon.com/dp/B07DT1KYYY) by Kwame Onwuachi
