@@ -14,10 +14,10 @@ scroller = scrollama();
 let numNodes = 200;
 let numTicks = 100;
 let duration = 1000;
-let chargeStrength = -3.5;
+let chargeStrength = -4;
 let gravityStrength = 0.1;
 let data = [];
-let nodeRadius = 5;
+let nodeRadius = 6;
 let nodeBuffer = 1;
 let opacity = 0.6;
 let simulation = d3.forceSimulation()
@@ -37,11 +37,14 @@ let view = svg.append("g")
     .classed("view", true)
     .attr("transform", `translate(${margin.left},${margin.top})`);
 let nodes = view.selectAll("circle.node");
+let titles = null;
 
 let xScale = null;
-let yScale = null;
 let xAxis = null;
+let xLabel = null;
+let yScale = null;
 let yAxis = null;
+let yLabel = null;
 
 function drawNodes() {
     console.log(`Drawing nodes at random location (${viewWidth}, ${viewHeight}).`);
@@ -62,16 +65,25 @@ function drawNodes() {
 async function getData() {
     let dataset = await d3.csv("/presentations/weight-vs-a1c/dataset.csv");
     let _data = dataset.map(d => {
-        return {
+        let datum = {
             a1c: +d.a1c,
+            delta_a1c: -1 * +d.delta_a1c,
+            delta_weight: -1 * +d.weight_loss,
             id: d.id,
             index: d.index,
+            isDiabetic: +d.a1c > 0.07,
             sex: d.sex,
             weight: +d.weight,
             x: randBetween(0, viewWidth),
             y: randBetween(0, viewHeight),
         };
+
+        datum.isHealthyPostTrial = (datum.a1c + datum.delta_a1c) < 0.07;
+
+        return datum;
     });
+
+
     return _data;
 }
 
@@ -80,6 +92,11 @@ async function initialize() {
     data = await getData();
     drawNodes();
     window.scrollTo(0, 0);
+
+    // Update text elements.
+    d3.select("#data-subject-count").text(data.length);
+    d3.select("#data-female-count").text(data.filter(d => d.sex === "F").length);
+    d3.select("#data-male-count").text(data.filter(d => d.sex === "M").length);
 
     // Setup and start the scroller.
     let setupArgs = {
@@ -97,7 +114,6 @@ function onSimulationTick() {
 
 function onStepEnter(response) {
     console.log(`On step enter: ${response.index} (${response.direction}).`);
-
 
     xScale = d3.scaleLinear()
         .domain(d3.extent(data, d => d.weight))
@@ -117,20 +133,22 @@ function onStepEnter(response) {
             .force("pos-y", d3.forceY(viewHeight / 2).strength(gravityStrength))
             .alpha(1.0)
             .restart();
-        nodes.transition()
-            .duration(duration)
-            .attr("fill", "darkgray");
+
+        titles = nodes.append("title")
+            .text(d => [
+                `Subject: ${d.id}`
+            ].join("\n"));
         break;
     case 1:
         console.log(`(1) Showing sex of subjects.`)
         nodes.transition()
             .duration(duration)
             .attr("fill", d => d.sex === "F" ? "darkred" : "darkblue");
-        if (xAxis !== null) {
-            xAxis.transition()
-                .duration(duration)
-                .attr("transform", `translate(${margin.left},${svgHeight})`);
-        }
+
+        titles.text(d => [
+            `Subject: ${d.id}`,
+            `Sex: ${d.sex}`
+        ].join("\n"));
         break;
     case 2:
         console.log(`(2) Drawing nodes by weight.`);
@@ -138,7 +156,9 @@ function onStepEnter(response) {
             data[i].fx = xScale(data[i].weight);
         }
 
+        // If the simulation is still going, stop it.
         simulation.stop();
+
         nodes.transition()
             .duration(duration)
             .attr("cx", d => d.fx);
@@ -146,50 +166,73 @@ function onStepEnter(response) {
         if (!xAxis) {
             xAxis = svg.append("g")
                 .classed("axis x-axis", true)
-                .attr("transform", `translate(${margin.left},${svgHeight})`);
+                .attr("transform", `translate(${margin.left},${svgHeight})`)
+                .call(d3.axisBottom(xScale).ticks(10, ".1f"));
         }
-        xAxis.call(d3.axisBottom(xScale).ticks(10, ".1f"));
-        xAxis.append("text")
-            .text("Weight (lbs)")
-            .attr("text-anchor", "middle")
-            .attr("fill", "currentColor")
-            .attr("x", viewWidth * 0.5)
-            .attr("y", margin.bottom * 0.8);
+        if (!xLabel) {
+            xLabel = xAxis.append("text")
+                .text("Weight (lbs)")
+                .attr("text-anchor", "middle")
+                .attr("fill", "currentColor")
+                .attr("x", viewWidth * 0.5)
+                .attr("y", margin.bottom * 0.8);
+        }
+
         xAxis.transition()
             .duration(duration)
             .attr("transform", `translate(${margin.left},${margin.top + viewHeight})`);
+
+        titles.text(d => [
+            `Subject: ${d.id}`,
+            `Sex: ${d.sex}`,
+            `Weight: ${d.weight}`
+        ].join("\n"));
+
         break;
     case 3:
         console.log("(3) Adding A1C to graphic.");
         for (let i = 0; i < data.length; i++) {
             data[i].fy = yScale(data[i].a1c);
         }
-        simulation.stop();
 
         nodes.transition()
             .duration(duration)
             .attr("cy", d => d.fy);
 
-        if (yAxis === null) {
+        if (!yAxis) {
             yAxis = svg.append("g")
                 .classed("axis y-axis", true)
-                .attr("transform", `translate(0,${margin.top})`);
+                .attr("transform", `translate(0,${margin.top})`)
+                .call(d3.axisLeft(yScale).ticks(10, ".1%"));
         }
-        yAxis.call(d3.axisLeft(yScale).ticks(10, ".1%"));
-        yAxis.append("text")
-            .text("HbA1C (%)")
-            .attr("text-anchor", "middle")
-            .attr("fill", "currentColor")
-            .attr("transform", "rotate(-90)")
-            .attr("x", -0.5 * viewHeight)
-            .attr("y", -0.75 * margin.left);
+        if (!yLabel) {
+            yLabel = yAxis.append("text")
+                .text("HbA1C (%)")
+                .attr("text-anchor", "middle")
+                .attr("fill", "currentColor")
+                .attr("transform", "rotate(-90)")
+                .attr("x", -0.5 * viewHeight)
+                .attr("y", -0.75 * margin.left);
+        }
         yAxis.transition()
             .duration(duration)
             .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        titles.text(d => [
+            `Subject: ${d.id}`,
+            `Sex: ${d.sex}`,
+            `Weight: ${d.weight}`,
+            `A1C: ${d.a1c}`
+        ].join("\n"));
+
         break;
     case 4:
         console.log("(4) Adjusting the y-axis for subjects having A1C > 0.7%.");
-        yScale = yScale.domain([0.069, d3.max(data, d => d.a1c)])
+
+        // Create a new y scale for this data set.
+        yScale = yScale
+            .domain([0.06999, d3.max(data, d => d.a1c)])
+            .range([viewHeight, 0])
             .nice();
 
         yAxis.transition()
@@ -197,8 +240,48 @@ function onStepEnter(response) {
             .call(d3.axisLeft(yScale).ticks(10, ".1%"));
 
         nodes.transition()
-            .attr("cy", d => yScale(d.a1c))
+            .duration(duration)
+            .attr("cy", d => d.isDiabetic ? yScale(d.a1c) : yScale(0.0))
             .attr("opacity", d => d.a1c < 0.07 ? 0 : opacity);
+
+        break;
+    case 5:
+        console.log("(5) Adjusting x-axis and y-axis to show deltas.");
+        xScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.delta_weight))
+            .range([0, viewWidth])
+            .nice();
+        yScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.delta_a1c))
+            .range([viewHeight, 0])
+            .nice()
+
+        xAxis.transition()
+            .duration(duration)
+            .call(d3.axisBottom(xScale).ticks(10, ".1f"));
+
+        xLabel.text("Change in Weight (lbs)");
+
+        yAxis.transition()
+            .duration(duration)
+            .call(d3.axisLeft(yScale).ticks(10, ".1%"));
+
+        yLabel.text("Change in HbA1C (%)");
+
+        nodes.transition()
+            .duration(duration)
+            .attr("cx", d => xScale(d.delta_weight))
+            .attr("cy", d => yScale(d.delta_a1c))
+            .attr("stroke", d => d.isHealthyPostTrial ? "darkgreen" : "none")
+            .attr("stroke-width", d => d.isHealthyPostTrial ? nodeRadius/2 : 0)
+            .attr("stroke-opacity", d => d.isHealthyPostTrial ? 1 : 0);
+
+        titles.text(d => [
+            `Subject: ${d.id}`,
+            `Sex: ${d.sex}`,
+            `Weight: ${d.weight} (${d.delta_weight})`,
+            `A1C: ${d.a1c} (${d.delta_a1c})`
+        ].join("\n"));
 
         break;
     }

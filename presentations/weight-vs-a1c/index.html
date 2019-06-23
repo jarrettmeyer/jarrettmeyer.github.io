@@ -10,13 +10,16 @@
             <section id="heading">
                 <h1>
                     Weight vs. Hemoglobin A1C
-                    <span class="subtitle">An Adventure in Scrollytelling</span>
+                    <span class="subtitle">An Adventure in <em>Scrollytelling</em></span>
                 </h1>
+                <p>
+                    <em>Note: All data for this presentation was randomly generated. Nothing is real. Nothing can be trusted.</em>
+                </p>
             </section>
             <section id="introduction">
                 <p>
                     <em>Scrollytelling</em> is a neologism of <em>scroll</em> and <em>storytelling</em>. 
-                    The concept is to tell a story with data as a user scrolls through a web site. 
+                    It is the marriage of writing, data, and time, brought to life by the web user. 
                     Our picture starts simple, and we add more and more elements as the user reads through the data. 
                     Additionally, we make a heavy use of transitions, so changes are not jarring to the user.
                 </p>
@@ -43,42 +46,46 @@
                     <div class="step" data-step="0">
                         <h3>Introducing the Subjects</h3>
                         <p>
-                            Mauris dictum, sapien eget rhoncus ultricies, odio velit imperdiet lectus, et 
-                            condimentum nulla diam et nisi. Fusce sem nibh, tempor et faucibus nec, efficitur 
-                            sit amet velit. Nam at nunc ut eros dapibus mattis eu in nunc.
+                            Here are <span id="data-subject-count"></span> randomly generated subjects. 
+                            Each subject is a single gray dot in this visualization.
                         </p>
                     </div>
                     <div class="step" data-step="1">
                         <h3>By Sex</h3>
                         <p>
-                            Quisque in ullamcorper arcu, porta condimentum enim. Aliquam ut eros molestie, accumsan 
-                            ante nec, placerat libero. Nam interdum ullamcorper pretium. Duis ac magna tempor, fermentum 
-                            sem non, varius orci.
+                            Let's separate the data points by sex.
+                            The <span style="color: darkred;">dark red</span> points represent females (n = <span id="data-female-count"></span>), 
+                            and the <span style="color: darkblue;">dark blue</span> points represent males (n = <span id="data-male-count"></span>).
                         </p>
                     </div>
                     <div class="step" data-step="2">
                         <h3>By Weight</h3>
                         <p>
-                            Suspendisse a mollis augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices 
-                            posuere cubilia Curae; Vestibulum odio leo, condimentum in justo eget, vulputate pulvinar lacus.
+                            Let's show how this data is distributed by weight.
+                            The x-axis becomes the weight (in pounds).
+                            Points move to their appropriate location along the x-axis.
                         </p>
                     </div>
                     <div class="step" data-step="3">
                         <h3>By A1C</h3>
                         <p>
-                            Phasellus eu orci sit amet mi lobortis fermentum dictum at nibh. Vivamus molestie 
-                            pellentesque lorem, id molestie mauris elementum vitae. Aenean tristique erat sit 
-                            amet eros sagittis ornare.
+                            Hemoglobin A1C is drawn along the y-axis.
+                            Points are now drawn with both an x and y coordinate.
                         </p>
                     </div>
                     <div class="step" data-step="4">
                         <h3>Subjects with Diabetes</h3>
                         <p>
-                            Curabitur orci arcu, volutpat ac orci eget, molestie interdum tortor. Aliquam fermentum odio 
-                            id quam accumsan, a ultrices eros convallis. Vestibulum lacus enim, maximus ac dui sit amet, 
-                            varius ornare elit. Fusce ut justo et eros aliquet imperdiet. Duis mattis interdum varius. 
-                            In venenatis magna quis magna egestas auctor. Interdum et malesuada fames ac ante ipsum primis 
-                            in faucibus. Quisque non auctor sapien, non semper elit.
+                            A subject is considered diabetic if Hemoglobin A1C is greater than 7.0%.
+                            Let's drop all points with HbA1C &lt; 7%.
+                        </p>
+                    </div>
+                    <div class="step" data-step="5">
+                        <h3>Weight Loss vs. Change in A1C</h3>
+                        <p>
+                            For subjects who are diabetic, losing weight may help reduce A1C. 
+                            This shows the results of subjects who succeeded at following an exercise regimen over six (6) months.
+                            A <span style="color: green;">green circle</span> around a point indicates a patient who transitioned to a healthy A1C (i.e. &lt; 7%).
                         </p>
                     </div>
                 </article>
