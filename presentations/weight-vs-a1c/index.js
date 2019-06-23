@@ -36,7 +36,7 @@ let svg = figure.select("svg");
 let view = svg.append("g")
     .classed("view", true)
     .attr("transform", `translate(${margin.left},${margin.top})`);
-let nodes = view.selectAll("circle.node");
+let nodes = null;
 let titles = null;
 
 let xScale = null;
@@ -58,7 +58,8 @@ function drawNodes() {
         .attr("cy", d => d.y)
         .attr("r", nodeRadius)
         .attr("fill", "darkgray")
-        .attr("opacity", opacity);
+        .attr("opacity", opacity)
+        .attr("stroke", "none");
     return nodes;
 }
 
@@ -105,6 +106,12 @@ async function initialize() {
         debug: debug,
     };
     scroller.setup(setupArgs).onStepEnter(onStepEnter);
+
+    d3.select("#restart-button")
+        .on("click", () => {
+            restart();
+            window.scrollTo(0, 0);
+        });
 }
 
 function onSimulationTick() {
@@ -123,6 +130,11 @@ function onStepEnter(response) {
         .domain(d3.extent(data, d => d.a1c))
         .range([viewHeight, 0])
         .nice();
+
+    // Don't do anything if the user is scrolling up.
+    if (response.direction !== "down") {
+        return;
+    }
 
     switch (response.index) {
     case 0:
@@ -290,6 +302,22 @@ function onStepEnter(response) {
 function randBetween(min, max) {
     let range = max - min;
     return min + range * Math.random();
+}
+
+function restart() {
+    svg.selectAll("circle.node").remove();
+    svg.selectAll("g.axis").remove();
+
+    nodes = null;
+    titles = null;
+    xScale = null;
+    xAxis = null;
+    xLabel = null;
+    yScale = null;
+    yAxis = null;
+    yLabel = null;
+
+    drawNodes();
 }
 
 function setDimensions() {
