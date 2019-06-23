@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weight vs. A1C</title>
+        <link rel="stylesheet" href="/assets/bootstrap/4.3.1/bootstrap.min.css">
+        <link rel="stylesheet" href="/presentations/weight-vs-a1c/index.css">
+    </head>
+    <body>
+        <div class="container">
+            <section id="heading">
+                <h1>
+                    Weight vs. Hemoglobin A1C
+                    <span class="subtitle">An Adventure in Scrollytelling</span>
+                </h1>
+            </section>
+            <section id="introduction">
+                <p>
+                    <em>Scrollytelling</em> is a neologism of <em>scroll</em> and <em>storytelling</em>. The 
+                    concept is to tell a story with data as a user scrolls through a web site. Our picture 
+                    starts simple, and we add more and more elements as the user reads through the data. We 
+                    make a heavy use of transitions, so changes are not jarring to the user.
+                </p>
+            </section>
+            <section id="scrollable">
+                <article>
+                    <div class="step" data-step="0">
+                        <h3>Introducing the Subjects</h3>
+                        <p>
+                            Let's start by generating 200 sample subjects. This data has been randomly generated
+                            using an Excel spreadsheet.
+                        </p>
+                    </div>
+                    <div class="step" data-step="1">
+                        <h3>By Sex</h3>
+                        <p>
+                            Let's apply colors so we can distinguish between <span style="color: darkred;">female</span> 
+                            and <span style="color: darkblue;">male</span> subjects.
+                        </p>
+                    </div>
+                    <div class="step" data-step="2">
+                        <h3>By Weight</h3>
+                        <p>
+                            Next, we apply an x-axis to show our data points by weight (in pounds). Note how the points
+                            keep their y-position while moving to their appropriate x coordinate in the visualization.
+                        </p>
+                    </div>
+                    <div class="step" data-step="3">
+                        <h3>By A1C</h3>
+                        <p>
+                            We add hemoglobin A1C, HbA1C (%), to the graph to show the relationship between body weight
+                            and A1C.
+                        </p>
+                    </div>
+                    <div class="step" data-step="4">
+                        <h3>Subjects with Diabetes</h3>
+                        <p>
+                            An A1C over 7% indicates that a subject may be a diabetic. Let's filter our graph to only show
+                            these data points. Note how the y-axis changes and the points below 7% fall off the bottom of 
+                            the graph.
+                        </p>
+                    </div>
+                </article>
+                <figure>
+                    <svg></svg>
+                </figure>
+            </section>
+            <section id="references">
+                <h2>References</h2>
+                <ul>
+                    <li><a href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform</a></li>
+                    <li><a href="https://github.com/russellgoldenberg/scrollama">https://github.com/russellgoldenberg/scrollama</a></li>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/28417575">https://www.ncbi.nlm.nih.gov/pubmed/28417575</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <script src="/assets/js/d3/5.9.2/d3.min.js"></script>
+        <script src="/assets/js/scrollama/2.0.0/scrollama.min.js"></script>
+        <script src="/presentations/weight-vs-a1c/index.js"></script>
+    </body>
+</html>
