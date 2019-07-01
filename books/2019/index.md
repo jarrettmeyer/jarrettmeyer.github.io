@@ -29,3 +29,5 @@ The books I've read in 2019, in order of completion.
 20. [Believe Me: A Memoir of Love, Death, and Jazz Chickens](https://smile.amazon.com/dp/B00SI0B9NG) by Eddie Izzard
 21. [Notes from a Young Black Chef: A Memoir](https://smile.amazon.com/dp/B07DT1KYYY) by Kwame Onwuachi
 22. [The Happiness Hypothesis: Finding Modern Truth in Ancient Wisdom](https://smile.amazon.com/dp/B003E749TE) by Jonathan Haidt
+23. [A Bigger Table: Building Messy, Authentic, and Hopeful Spiritual Community](https://www.amazon.com/dp/0664262678/) by John Pavlovitz
+24. [Friday the Rabbi Slept Late: The Rabbi Small Mysteries Book 1](https://www.amazon.com/dp/B00ZJZH6XK/) by Harry Kemelman
