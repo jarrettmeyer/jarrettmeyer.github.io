@@ -45,9 +45,51 @@ let xLabel = null;
 let yScale = null;
 let yAxis = null;
 let yLabel = null;
+let forceCenterBy = null;
+
+function applyForceSimulation(location) {
+    if (location === forceCenterBy) {
+        // Do nothing.
+        console.log(`[applyForceSimulation] location === forceCenterBy: ${location}`);
+    }
+    else if (location === "center" && forceCenterBy !== "center") {
+        let center = {
+            x: viewWidth / 2,
+            y: viewHeight  / 2,
+        }
+        simulation.stop()
+            .nodes(data)
+            .force("pos-x", d3.forceX(center.x).strength(gravityStrength))
+            .force("pos-y", d3.forceY(center.y).strength(gravityStrength))
+            .alpha(1.0)
+            .restart();
+        forceCenterBy = "center";
+    }
+    else if (location === "bySex" && forceCenterBy !== "bySex") {
+        let posF = {
+            x: viewWidth / 3,
+            y: viewHeight / 3,
+        };
+        let posM = {
+            x: viewWidth * 2 / 3,
+            y: viewHeight * 2 / 3,
+        }
+        simulation.stop()
+            .nodes(data)
+            .force("pos-x", d3.forceX(d => d.sex === "F" ? posF.x : posM.x).strength(gravityStrength))
+            .force("pos-y", d3.forceY(d => d.sex === "F" ? posF.y : posM.y).strength(gravityStrength))
+            .alpha(1.0)
+            .restart();
+        forceCenterBy = "bySex";
+    }
+    else {
+        console.log(`[applyForceSimulation] location: ${location}, forceCenterBy: ${forceCenterBy}`);
+    }
+}
+
 
 function drawNodes() {
-    console.log(`Drawing nodes at random location (${viewWidth}, ${viewHeight}).`);
+    console.log(`[drawNodes] Drawing nodes at random location (${viewWidth}, ${viewHeight}).`);
     nodes = view.selectAll("circle")
         .data(data)
         .join("circle")
@@ -62,6 +104,7 @@ function drawNodes() {
         .attr("stroke", "none");
     return nodes;
 }
+
 
 async function getData() {
     let dataset = await d3.csv("/presentations/weight-vs-a1c/dataset.csv");
@@ -84,9 +127,9 @@ async function getData() {
         return datum;
     });
 
-
     return _data;
 }
+
 
 async function initialize() {
     setDimensions();
@@ -131,25 +174,23 @@ function onStepEnter(response) {
         .range([viewHeight, 0])
         .nice();
 
-    // Don't do anything if the user is scrolling up.
-    if (response.direction !== "down") {
-        return;
-    }
-
     switch (response.index) {
     case 0:
         console.log(`(0) Drawing nodes, centered at ${viewWidth/2}, ${viewHeight/2}`);
-        simulation.stop()
-            .nodes(data)
-            .force("pos-x", d3.forceX(viewWidth / 2).strength(gravityStrength))
-            .force("pos-y", d3.forceY(viewHeight / 2).strength(gravityStrength))
-            .alpha(1.0)
-            .restart();
 
-        titles = nodes.append("title")
+        // Remove existing titles from the nodes.
+        nodes.transition()
+            .duration(duration)
+            .attr("fill", "darkgray");
+
+        applyForceSimulation("center");
+
+        if (!titles) {
+            titles = nodes.append("title")
             .text(d => [
                 `Subject: ${d.id}`
             ].join("\n"));
+        }
         break;
     case 1:
         console.log(`(1) Showing sex of subjects.`)
@@ -157,19 +198,26 @@ function onStepEnter(response) {
             .duration(duration)
             .attr("fill", d => d.sex === "F" ? "darkred" : "darkblue");
 
+        applyForceSimulation("center");
+
         titles.text(d => [
             `Subject: ${d.id}`,
             `Sex: ${d.sex}`
         ].join("\n"));
         break;
     case 2:
-        console.log(`(2) Drawing nodes by weight.`);
+        console.log(`(2) Grouping nodes by sex.`);
+        applyForceSimulation("bySex");
+        break;
+    case 3:
+        console.log(`(3) Drawing nodes by weight.`);
         for (let i = 0; i < data.length; i++) {
             data[i].fx = xScale(data[i].weight);
         }
 
         // If the simulation is still going, stop it.
         simulation.stop();
+        forceCenterBy = null;
 
         nodes.transition()
             .duration(duration)
@@ -201,8 +249,8 @@ function onStepEnter(response) {
         ].join("\n"));
 
         break;
-    case 3:
-        console.log("(3) Adding A1C to graphic.");
+    case 4:
+        console.log("(4) Adding A1C to graphic.");
         for (let i = 0; i < data.length; i++) {
             data[i].fy = yScale(data[i].a1c);
         }
@@ -238,8 +286,8 @@ function onStepEnter(response) {
         ].join("\n"));
 
         break;
-    case 4:
-        console.log("(4) Adjusting the y-axis for subjects having A1C > 0.7%.");
+    case 5:
+        console.log("(5) Adjusting the y-axis for subjects having A1C > 0.7%.");
 
         // Create a new y scale for this data set.
         yScale = yScale
@@ -257,8 +305,8 @@ function onStepEnter(response) {
             .attr("opacity", d => d.a1c < 0.07 ? 0 : opacity);
 
         break;
-    case 5:
-        console.log("(5) Adjusting x-axis and y-axis to show deltas.");
+    case 6:
+        console.log("(6) Adjusting x-axis and y-axis to show deltas.");
         xScale = d3.scaleLinear()
             .domain(d3.extent(data, d => d.delta_weight))
             .range([0, viewWidth])
