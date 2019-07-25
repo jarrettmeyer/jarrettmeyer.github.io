@@ -2,7 +2,7 @@
 title:  "Publishing to shinyapps.io with Github and Travis CI"
 layout: post
 date:   2019-04-25
-tags:   r
+tags:   git r
 ---
 
 I had a fun experience these past few days figuring out how to publish to [shinyapps.io](https://www.shinyapps.io/) directly from a [Github](https://github.com) push. In this post, I leverage [Travis CI](https://travis-ci.org/) to handle the automated build and deployment process.
