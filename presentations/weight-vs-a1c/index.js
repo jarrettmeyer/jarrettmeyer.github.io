@@ -152,8 +152,8 @@ async function initialize() {
 
     d3.select("#restart-button")
         .on("click", () => {
-            restart();
             window.scrollTo(0, 0);
+            restart();
         });
 }
 
@@ -353,19 +353,7 @@ function randBetween(min, max) {
 }
 
 function restart() {
-    svg.selectAll("circle.node").remove();
-    svg.selectAll("g.axis").remove();
-
-    nodes = null;
-    titles = null;
-    xScale = null;
-    xAxis = null;
-    xLabel = null;
-    yScale = null;
-    yAxis = null;
-    yLabel = null;
-
-    drawNodes();
+    window.location.reload();
 }
 
 function setDimensions() {
