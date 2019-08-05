@@ -32,3 +32,6 @@ The books I've read in 2019, in order of completion.
 23. [A Bigger Table: Building Messy, Authentic, and Hopeful Spiritual Community](https://www.amazon.com/dp/0664262678/) by John Pavlovitz
 24. [Friday the Rabbi Slept Late: The Rabbi Small Mysteries Book 1](https://www.amazon.com/dp/B00ZJZH6XK/) by Harry Kemelman
 25. [Too Fat, Too Slutty, Too Loud: The Rise and Reign of the Unruly Woman](https://smile.amazon.com/Too-Fat-Slutty-Loud-Unruly-ebook/dp/B01N6AIDBX/) by Anne Helen Petersen
+26. [Sticks and Stones: Defeating the Culture of Bullying and Rediscovering the Power of Character and Empathy](https://smile.amazon.com/dp/B008WOULGE/) by Emily Bazelon
+27. [Night](https://smile.amazon.com/dp/B0071VUXXA/) by Elie Wiesel
+28. [101 Essays That Will Change The Way You Think](https://smile.amazon.com/dp/B01MYMUGQL/) by Brianna Wiest
