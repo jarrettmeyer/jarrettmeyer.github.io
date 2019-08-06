@@ -35,3 +35,4 @@ The books I've read in 2019, in order of completion.
 26. [Sticks and Stones: Defeating the Culture of Bullying and Rediscovering the Power of Character and Empathy](https://smile.amazon.com/dp/B008WOULGE/) by Emily Bazelon
 27. [Night](https://smile.amazon.com/dp/B0071VUXXA/) by Elie Wiesel
 28. [101 Essays That Will Change The Way You Think](https://smile.amazon.com/dp/B01MYMUGQL/) by Brianna Wiest
+29. [Turtles All the Way Down](https://smile.amazon.com/dp/B072SSMC4H/) by John Green
