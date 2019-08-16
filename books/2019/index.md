@@ -36,3 +36,6 @@ The books I've read in 2019, in order of completion.
 27. [Night](https://smile.amazon.com/dp/B0071VUXXA/) by Elie Wiesel
 28. [101 Essays That Will Change The Way You Think](https://smile.amazon.com/dp/B01MYMUGQL/) by Brianna Wiest
 29. [Turtles All the Way Down](https://smile.amazon.com/dp/B072SSMC4H/) by John Green
+30. [Labyrinths: Emma Jung, Her Marriage to Carl, and the Early Years of Psychoanalysis](https://smile.amazon.com/dp/B01BSIZXWW/) by Catrine Clay
+31. [Bad Science: Quacks, Hacks, and Big Pharma Flacks](https://smile.amazon.com/dp/B003VTZTU8/) by Ben Goldacre
+32. [How to Stay Human in a F*cked-Up World: Mindfulness Practices for Real Life](https://smile.amazon.com/dp/B07CL41CR6/) by Tim Desmond
