@@ -46,7 +46,7 @@ function toCircle(cx, cy, r, n) {
 }
 ```
 
-Next, we need to define our rectangle. 
+Next, we need to define our rectangle. It is much more straightforward than the circle.
 
 ```js
 function toRectangle(left, top, width, height, n) {
@@ -82,11 +82,11 @@ function toRectangle(left, top, width, height, n) {
 }
 ```
 
-Finally, we need a function to turn an array of coordinates into a path.
+Finally, we need a function to turn an array of coordinates into a path. Again, this is very trivial.
 
 ```js
 function toPath(coordinates) {
-    return "M" + coordinates.join("L") + "Z";
+    return "M" + coordinates.map(c => `${c[0]},${c[1]}`).join("L") + "Z";
 }
 ```
 
