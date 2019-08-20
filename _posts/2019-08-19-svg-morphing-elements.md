@@ -90,7 +90,7 @@ function toPath(coordinates) {
 }
 ```
 
-The remainder of this demonstration is really basic D3 drawing and transitions. You can find the complete code for this demo [in Github](https://gitub.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/morphing-001.js).
+The remainder of this demonstration is really basic D3 drawing and transitions. You can find the complete code for this demo [in Github](https://github.com/jarrettmeyer/jarrettmeyer.github.io/blob/master/assets/js/morphing-001.js).
 
 <script src="https://unpkg.com/d3@5.9.7/dist/d3.min.js"></script>
 <script src="/assets/js/morphing-001.js"></script>
