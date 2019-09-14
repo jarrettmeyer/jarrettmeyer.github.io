@@ -39,3 +39,8 @@ The books I've read in 2019, in order of completion.
 30. [Labyrinths: Emma Jung, Her Marriage to Carl, and the Early Years of Psychoanalysis](https://smile.amazon.com/dp/B01BSIZXWW/) by Catrine Clay
 31. [Bad Science: Quacks, Hacks, and Big Pharma Flacks](https://smile.amazon.com/dp/B003VTZTU8/) by Ben Goldacre
 32. [How to Stay Human in a F*cked-Up World: Mindfulness Practices for Real Life](https://smile.amazon.com/dp/B07CL41CR6/) by Tim Desmond
+33. [The Basque History of the World: The Story of a Nation](https://smile.amazon.com/dp/0140298517) by Mark Kurlansky
+34. [Bad Pharma: How Drug Companies Mislead Doctors and Harm Patients](https://smile.amazon.com/dp/B00BAZP9WI) by Ben Goldacre
+35. [The New Jim Crow: Mass Incarceration in the Age of Colorblindness](https://smile.amazon.com/dp/B0067NCQVU) by Michelle Alexander
+36. [Charged: The New Movement to Transform American Prosecution and End Mass Incarceration](https://smile.amazon.com/dp/B07NSRZR1V) by Emily Bazelon
+37. [Salt: A World History](https://smile.amazon.com/dp/B00BPDN33W) by Mark Kurlansky
