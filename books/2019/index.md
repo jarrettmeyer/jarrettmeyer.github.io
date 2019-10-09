@@ -44,3 +44,9 @@ The books I've read in 2019, in order of completion.
 35. [The New Jim Crow: Mass Incarceration in the Age of Colorblindness](https://smile.amazon.com/dp/B0067NCQVU) by Michelle Alexander
 36. [Charged: The New Movement to Transform American Prosecution and End Mass Incarceration](https://smile.amazon.com/dp/B07NSRZR1V) by Emily Bazelon
 37. [Salt: A World History](https://smile.amazon.com/dp/B00BPDN33W) by Mark Kurlansky
+38. [Every Tool's a Hammer: Life Is What You Make It](https://smile.amazon.com/dp/B07MNJX8B5) by Adam Savage
+39. [Faith Unraveled: How a Girl Who Knew All the Answers Learned to Ask Questions](https://smile.amazon.com/dp/B00FVI955W/) by Rachel Held Evans
+40. [Wild Things: The Joy of Reading Children's Literature as an Adult](https://smile.amazon.com/dp/B01MPZDNSS/) by Bruce Handy
+41. [Master of Ceremonies: A Memoir](https://smile.amazon.com/dp/B0122U5A9Q/) by Joel Grey
+42. [Behind Closed Doors: A Novel](https://smile.amazon.com/dp/B01CXO4VRI/) by B.A. Paris
+43. [How to be an Antiracist](https://smile.amazon.com/dp/B07D2364N5/) by Ibram X. Kendi
