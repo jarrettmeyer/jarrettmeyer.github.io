@@ -107,6 +107,8 @@ The following quotes are provided alphabetically by author.
 
 > You shall have no other gods before me.
 
+> Moshe said, “Oh, let me behold Your Presence!” And God answered, “I will make all My goodness pass before you, and I will proclaim before you the name Hashem, and the grace that I grant and the compassion that I show. But, you cannot see My face, for man may not see Me and live.” And the Lord said, “See, there is a place near Me. Station yourself on the rock and, as My Presence passes by, I will put you in a cleft of the rock and shield you with My hand until I have passed by. Then I will take My hand away and you will see My back; but My face must not be seen.”
+
 
 ### Menachem Mendel Schneerson
 
