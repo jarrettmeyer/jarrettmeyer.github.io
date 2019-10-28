@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Shlomo;
+    font-style: normal;
+    font-display: swap;
+    src: '/assets/fonts/Shlomo/Shlomo.ttf';
+}
+
+.reveal .hebrew {
+    font-family: 'Frank Ruhl Libre', Shlomo, serif;
+}
