@@ -23,7 +23,6 @@
 .reveal blockquote .attribution,
 .reveal blockquote p.attribution:last-child {
     font-size: 80%;
-    margin-top: 0.5em;
     text-align: right;
 }
 
