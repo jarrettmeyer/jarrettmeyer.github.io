@@ -5,6 +5,30 @@
     src: '/assets/fonts/Shlomo/Shlomo.ttf';
 }
 
+.reveal blockquote {
+    width: 90%;
+}
+
+.reveal blockquote p,
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+    display: block;
+    margin: 0;
+    padding: 0 1em;
+    text-align: left;
+}
+
+.reveal blockquote .attribution,
+.reveal blockquote p.attribution:last-child {
+    font-size: 80%;
+    text-align: right;
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: none;
+}
+
 .reveal .hebrew {
     font-family: 'Frank Ruhl Libre', Shlomo, serif;
 }

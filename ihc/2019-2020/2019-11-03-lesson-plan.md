@@ -18,8 +18,7 @@ permalink: /ihc/2019-2020/2019-11-03-lesson-plan
 ### Materials
 
 * Projector, screen
-* Paper, pencils
-* Phones
+* Paper, pencilss
 * [Presentation on Tikun Olam](/presentations/tikun-olam/)
 
 ### Project 1 - What needs to be done?
