@@ -10,6 +10,7 @@ permalink: /ihc/2019-2020
 * [Tell Me All Your Thoughts on God](/ihc/2019-2020/tell-me-all-your-thoughts-on-god)
 * [27-Oct-2019, Lesson Plan](/ihc/2019-2020/2019-10-27-lesson-plan)
 * [03-Nov-2019, Lesson Plan](/ihc/2019-2020/2019-11-03-lesson-plan)
+* [03-Nov-2019, PSA On Camera Script](/ihc/2019-2020/2019-11-03-psa-on-camera)
 * 10-Nov-2019, Lesson Plan
 * 17-Nov-2019, Lesson Plan
 * 24-Nov-2019, Lesson Plan 
