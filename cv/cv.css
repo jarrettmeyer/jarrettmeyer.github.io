@@ -1,0 +1,177 @@
+body,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f0f0;
+    color: #101010;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 6rem;
+}
+
+a {
+    color: #3578ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #3578ff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Crete Round", "Times New Roman", Times, serif;
+    margin-top: 1em;
+    margin-bottom: 0.6em;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+}
+
+h6 {
+    font-size: 1.1rem;
+}
+
+li {
+    display: list-item;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+section {
+    margin-top: 48px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+}
+
+.align-baseline {
+    align-items: baseline;
+}
+
+.card {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
+    padding: 32px;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.6em;
+
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.section-subtitle {
+    margin-top: 36px;
+}
+
+.section-title {
+    border-bottom: 1px solid #909090;
+    margin-top: 48px;
+}
+
+.work-dates {
+    margin-left: 2rem;
+    font-size: 80%;
+    color: #909090;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
