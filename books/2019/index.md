@@ -1,8 +1,8 @@
 ---
-title:              2019 Reading List
-layout:             page
-permalink:          /books/2019/
-exclude_from_nav:   true
+title: 2019 Reading List
+layout: page
+permalink: /books/2019/
+exclude_from_nav: true
 ---
 
 The books I've read in 2019, in order of completion.
@@ -38,7 +38,7 @@ The books I've read in 2019, in order of completion.
 29. [Turtles All the Way Down](https://smile.amazon.com/dp/B072SSMC4H/) by John Green
 30. [Labyrinths: Emma Jung, Her Marriage to Carl, and the Early Years of Psychoanalysis](https://smile.amazon.com/dp/B01BSIZXWW/) by Catrine Clay
 31. [Bad Science: Quacks, Hacks, and Big Pharma Flacks](https://smile.amazon.com/dp/B003VTZTU8/) by Ben Goldacre
-32. [How to Stay Human in a F*cked-Up World: Mindfulness Practices for Real Life](https://smile.amazon.com/dp/B07CL41CR6/) by Tim Desmond
+32. [How to Stay Human in a F\*cked-Up World: Mindfulness Practices for Real Life](https://smile.amazon.com/dp/B07CL41CR6/) by Tim Desmond
 33. [The Basque History of the World: The Story of a Nation](https://smile.amazon.com/dp/0140298517) by Mark Kurlansky
 34. [Bad Pharma: How Drug Companies Mislead Doctors and Harm Patients](https://smile.amazon.com/dp/B00BAZP9WI) by Ben Goldacre
 35. [The New Jim Crow: Mass Incarceration in the Age of Colorblindness](https://smile.amazon.com/dp/B0067NCQVU) by Michelle Alexander
@@ -50,3 +50,7 @@ The books I've read in 2019, in order of completion.
 41. [Master of Ceremonies: A Memoir](https://smile.amazon.com/dp/B0122U5A9Q/) by Joel Grey
 42. [Behind Closed Doors: A Novel](https://smile.amazon.com/dp/B01CXO4VRI/) by B.A. Paris
 43. [How to be an Antiracist](https://smile.amazon.com/dp/B07D2364N5/) by Ibram X. Kendi
+44. [David and Goliath: Underdogs, Misfits, and the Art of Battling Giants](https://smile.amazon.com/dp/0316204374/) by Malcolm Gladwell
+45. [Calm the F\*ck Down: How to Control What You Can and Accept What You Can't So You Can Stop Freaking Out and Get On With Your Life (A No F\*cks Given Guide)](https://smile.amazon.com/dp/031652915X/) by Sarah Knight
+46. [Untrue: Why Nearly Everything We Believe About Women, Lust, and Infidelity Is Wrong and How the New Science Can Set Us Free](https://smile.amazon.com/dp/B078W5MFJM/) by Wednesday Martin
+47. [Wanderers](https://smile.amazon.com/dp/B07JD1CH2H/) by Chuck Wendig
