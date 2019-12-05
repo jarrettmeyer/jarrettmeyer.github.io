@@ -1,5 +1,5 @@
 ---
-title: Lesson Plan, 17 Nov 2019
+title: Lesson Plan, 8 Dec 2019
 layout: page
 permalink: /ihc/2019-2020/2019-12-08-lesson-plan
 ---
@@ -15,7 +15,7 @@ permalink: /ihc/2019-2020/2019-12-08-lesson-plan
         -   What public services will be available? These should include education, healthcare, police, fire, public safety, transportation, etc.
         -   How will taxes be collected? Will taxes be imposed on individuals or corporations?
         -   How will laws be enforced? Will laws include fines, prison, or community service? What are the advantages and disadvantages or each of these?
-        -   How will disputes between citizens be resolved? Answers can range from arbitration to a duel to the death.
+        -   How will disputes between citizens be resolved? Answers can range from arbitration to a duel to the death. (Since they are 7th graders, expect the latter.)
 
 ### Announcements
 
