@@ -49,8 +49,9 @@ The books I've read in 2019, in order of completion.
 40. [Wild Things: The Joy of Reading Children's Literature as an Adult](https://smile.amazon.com/dp/B01MPZDNSS/) by Bruce Handy
 41. [Master of Ceremonies: A Memoir](https://smile.amazon.com/dp/B0122U5A9Q/) by Joel Grey
 42. [Behind Closed Doors: A Novel](https://smile.amazon.com/dp/B01CXO4VRI/) by B.A. Paris
-43. [How to be an Antiracist](https://smile.amazon.com/dp/B07D2364N5/) by Ibram X. Kendi
-44. [David and Goliath: Underdogs, Misfits, and the Art of Battling Giants](https://smile.amazon.com/dp/0316204374/) by Malcolm Gladwell
-45. [Calm the F\*ck Down: How to Control What You Can and Accept What You Can't So You Can Stop Freaking Out and Get On With Your Life (A No F\*cks Given Guide)](https://smile.amazon.com/dp/031652915X/) by Sarah Knight
-46. [Untrue: Why Nearly Everything We Believe About Women, Lust, and Infidelity Is Wrong and How the New Science Can Set Us Free](https://smile.amazon.com/dp/B078W5MFJM/) by Wednesday Martin
-47. [Wanderers](https://smile.amazon.com/dp/B07JD1CH2H/) by Chuck Wendig
+43. [Pleased to Meet Me: Genes, Germs, and the Curious Forces That Make Us Who We Are](https://smile.amazon.com/dp/B07KDX1QY7/) by Bill Sullivan
+44. [How to be an Antiracist](https://smile.amazon.com/dp/B07D2364N5/) by Ibram X. Kendi
+45. [David and Goliath: Underdogs, Misfits, and the Art of Battling Giants](https://smile.amazon.com/dp/0316204374/) by Malcolm Gladwell
+46. [Calm the F\*ck Down: How to Control What You Can and Accept What You Can't So You Can Stop Freaking Out and Get On With Your Life (A No F\*cks Given Guide)](https://smile.amazon.com/dp/031652915X/) by Sarah Knight
+47. [Untrue: Why Nearly Everything We Believe About Women, Lust, and Infidelity Is Wrong and How the New Science Can Set Us Free](https://smile.amazon.com/dp/B078W5MFJM/) by Wednesday Martin
+48. [Wanderers](https://smile.amazon.com/dp/B07JD1CH2H/) by Chuck Wendig
