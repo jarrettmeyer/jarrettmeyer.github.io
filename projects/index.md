@@ -1,9 +1,15 @@
 ---
-title:        Projects
-layout:       page
-permalink:    /projects/
+title: Projects
+layout: page
+permalink: /projects/
 exclude_from_nav: false
 ---
+
+## <a name="svg">SVG Demos</a>
+
+Working with SVG documents.
+
+1. [Drop Shadows](/projects/svg/drop-shadow) with SVG filters.
 
 ## <a name="d3">D3 Demos</a>
 
