@@ -30,7 +30,9 @@ permalink: /ihc/2019-2020/2020-01-12-lesson-plan
     -   What other prayers do we have that give thanks?
 -   Guided meditation time (10:00)
 -   Gratitude journaling
--   Write your own prayer
+-   Write and share your own prayer expressing thanks
+-   Send a text message to someone expressing thanks. This can be a thank you for anything to anyone who is in your phone. If you don't have a phone, you need to write out a thank you that you wouldn't be totally embarrased to give to someone.
+-   Your assignment this week is to say "thank you" at least once per day for something. It can be for making dinner, driving you to practice, paying the electric bill, helping you with homework, or literally anything.
 
 ### Block Structure
 
