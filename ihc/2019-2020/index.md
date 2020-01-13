@@ -21,7 +21,7 @@ permalink: /ihc/2019-2020
 -   29-Dec-2019 &mdash; No classes
 -   05-Jan-2020 &mdash; No classes
 -   [12-Jan-2020, Lesson Plan](/ihc/2019-2020/2020-01-12-lesson-plan)
--   19-Jan-2020 &mdash; No classes
+-   [19-Jan-2020, Lesson Plan](/ihc/2019-2020/2020-01-19-lesson-plan)
 -   26-Jan-2020, Lesson Plan
 -   02-Feb-2020, Lesson Plan
 -   09-Feb-2020, Lesson Plan
