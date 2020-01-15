@@ -67,7 +67,7 @@ li {
     display: list-item;
     text-align: left;
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 li:last-child {
@@ -152,6 +152,11 @@ ul {
     margin-left: 2rem;
     font-size: 80%;
     color: #606060;
+}
+
+.list-style-none {
+    list-style: none;
+    padding-inline-start: 0;
 }
 
 @media (min-width: 576px) {
