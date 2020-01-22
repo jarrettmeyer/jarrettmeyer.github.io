@@ -1,7 +1,8 @@
 ---
-title:   Modeling with RPart and NA Predictions
-layout:  post
-date:    2016-10-19
+title: Modeling with RPart and NA Predictions
+layout: post
+date: 2016-10-19
+thumbnail: /assets/images/r-logo.svg
 ---
 
 I ran into a problem this past week of making predictions with trees when you have `NA` values as part of your prediction.
@@ -35,9 +36,9 @@ print(model_rpart$finalModel)
 ## node), split, n, loss, yval, (yprob)
 ##       * denotes terminal node
 ##
-## 1) root 300 159 0 (0.4700000 0.3300000 0.2000000)  
+## 1) root 300 159 0 (0.4700000 0.3300000 0.2000000)
 ##   2) var1< 0.01965866 141   0 0 (1.0000000 0.0000000 0.0000000) *
-##   3) var1>=0.01965866 159  60 1 (0.0000000 0.6226415 0.3773585)  
+##   3) var1>=0.01965866 159  60 1 (0.0000000 0.6226415 0.3773585)
 ##     6) var2< 8.364213 99   0 1 (0.0000000 1.0000000 0.0000000) *
 ##     7) var2>=8.364213 60   0 2 (0.0000000 0.0000000 1.0000000) *
 ```
@@ -120,9 +121,9 @@ print(model_rpart_2$finalModel)
 ## node), split, n, loss, yval, (yprob)
 ##       * denotes terminal node
 ##
-## 1) root 300 159 0 (0.4700000 0.3300000 0.2000000)  
+## 1) root 300 159 0 (0.4700000 0.3300000 0.2000000)
 ##   2) var1< 0.01965866 141   0 0 (1.0000000 0.0000000 0.0000000) *
-##   3) var1>=0.01965866 159  60 1 (0.0000000 0.6226415 0.3773585)  
+##   3) var1>=0.01965866 159  60 1 (0.0000000 0.6226415 0.3773585)
 ##     6) var2< 8.364213 99   0 1 (0.0000000 1.0000000 0.0000000) *
 ##     7) var2>=8.364213 60   0 2 (0.0000000 0.0000000 1.0000000) *
 ```

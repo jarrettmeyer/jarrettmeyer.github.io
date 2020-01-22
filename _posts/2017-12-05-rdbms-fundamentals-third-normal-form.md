@@ -1,7 +1,9 @@
 ---
-title:    "RDBMS Fundamentals: Third Normal Form"
-layout:   post
-post:     2017-12-05
+title: "RDBMS Fundamentals: Third Normal Form"
+layout: post
+post: 2017-12-05
+description:
+thumbnail: /assets/images/database.svg
 ---
 
 This is a continuation on a series of posts on [RDMBS Fundamentals](/projects#rdbms-fundamentals). We have previously covered [first normal form](/2017/12/01/rdbms-fundamentals-first-normal-form) and [second normal form](/2017/12/04/rdbms-fundamentals-second-normal-form). Third normal form, or 3NF, continues where we left 2NF.
@@ -10,17 +12,17 @@ This is a continuation on a series of posts on [RDMBS Fundamentals](/projects#rd
 
 A table satisfies third normal form if:
 
-* the table satisfies the requirements for second normal form, and
-* it contains only columns that are non-transitively dependent on the primary key.
+-   the table satisfies the requirements for second normal form, and
+-   it contains only columns that are non-transitively dependent on the primary key.
 
 What does this mean? Well, it means we are starting to get deep into the semantic meaning of your data.
 
 Let's start with an address table. Let's create entries for the Marion County Clerk's Office and a local yoga studio.
 
-| address_key | line_1 | line_2 | city | state | zip_code |
-| :--: | :--: | :--: | :--: | :--: | :--: |
-| 1234 | 200 E WASHINTON ST | STE W122 | INDIANAPOLIS | IN | 46204 |
-| 5678 | 1032 N MAIN ST | *null*  | SPEEDWAY | IN | 46224 |
+| address_key |       line_1       |  line_2  |     city     | state | zip_code |
+| :---------: | :----------------: | :------: | :----------: | :---: | :------: |
+|    1234     | 200 E WASHINTON ST | STE W122 | INDIANAPOLIS |  IN   |  46204   |
+|    5678     |   1032 N MAIN ST   |  _null_  |   SPEEDWAY   |  IN   |  46224   |
 
 If we have spent any time around data, we have probably seen this data structure way too many times. However, did you know that this does not satisfy 3NF? There are **tons** of interdependent data values in this one line.
 
@@ -36,24 +38,24 @@ Let's start breaking down this table so it satisfies 3NF.
 First, we need a table for states.
 
 | state_key | state_name | state_abbreviation |
-| :--: | :--: | :--: |
-| 1 | INDIANA | IN |
+| :-------: | :--------: | :----------------: |
+|     1     |  INDIANA   |         IN         |
 
 Our states table should have unique indexes on both the `state_name` and `state_abbreviation` columns.
 
 Second, we need a table for cities. Cities must belong to a single state.
 
-| city_key | city_name | state_key |
-| :--: | :--: | :--: |
-| 1 | INDIANAPOLIS | 1 |
-| 2 | SPEEDWAY | 1 |
+| city_key |  city_name   | state_key |
+| :------: | :----------: | :-------: |
+|    1     | INDIANAPOLIS |     1     |
+|    2     |   SPEEDWAY   |     1     |
 
 Here's our updated address table. The combination of `city_name` and `state_key` should be unique.
 
-| address_key | line_1 | line_2 | city_key | zip_code |
-| :--: | :--: | :--: | :--: | :--: | :--: |
-| 1234 | 200 E WASHINTON ST | STE W122 | 1 | 46204 |
-| 5678 | 1032 N MAIN ST | *null* | 2 | 46224 |
+| address_key |       line_1       |  line_2  | city_key | zip_code |
+| :---------: | :----------------: | :------: | :------: | :------: |
+|    1234     | 200 E WASHINTON ST | STE W122 |    1     |  46204   |
+|    5678     |   1032 N MAIN ST   |  _null_  |    2     |  46224   |
 
 #### Revision 2: ZIP Code and City are related
 
@@ -62,28 +64,28 @@ There are only so many valid combinations of city and ZIP code. A ZIP code can r
 We already have a city table. This is our ZIP code table. (There are 63 ZIP codes in Indianapolis, IN. This table has been greatly reduced in size.)
 
 | zip_code_key | zip_code |
-| :--: | :--: |
-| 1 | 46204 |
-| 2 | 46224 |
+| :----------: | :------: |
+|      1       |  46204   |
+|      2       |  46224   |
 
 Each `zip_code` value should be unique.
 
 This is our many-to-many table for cities and ZIP codes. A ZIP code can have multiple cities, and a city can have multiple ZIP codes. The ZIP code for 46204 is only Indianapolis. The ZIP code for 46224 has both Indianapolis and Speedway addresses.
 
 | city2zip_code_key | city_key | zip_code_key |
-| :--: | :--: | :--: |
-| 1 | 1 | 1 |
-| 2 | 1 | 2 |
-| 3 | 2 | 2 |
+| :---------------: | :------: | :----------: |
+|         1         |    1     |      1       |
+|         2         |    1     |      2       |
+|         3         |    2     |      2       |
 
 Every combination of `city_key` and `zip_code_key` should be unique.
 
 Our address table now looks like the following.
 
-| address_key | line_1 | line_2 | city2zip_code_key |
-| :--: | :--: | :--: | :--: |
-| 1234 | 200 E WASHINGTON ST | STE W122 | 1 |
-| 5678 | 1032 N MAIN ST | *null* | 3 |
+| address_key |       line_1        |  line_2  | city2zip_code_key |
+| :---------: | :-----------------: | :------: | :---------------: |
+|    1234     | 200 E WASHINGTON ST | STE W122 |         1         |
+|    5678     |   1032 N MAIN ST    |  _null_  |         3         |
 
 We're getting closer!
 
@@ -93,19 +95,19 @@ We're almost there. We still have one dependency: the unit number and the street
 
 Let's call our this new thing the street address, since that's what it really represents.
 
-| street_address_key | line_1 | city2zip_code_key |
-| :--: | :--: | :--: |
-| 1 | 200 E WASHINGTON ST | 1 |
-| 2 | 1032 N MAIN ST | 3 |
+| street_address_key |       line_1        | city2zip_code_key |
+| :----------------: | :-----------------: | :---------------: |
+|         1          | 200 E WASHINGTON ST |         1         |
+|         2          |   1032 N MAIN ST    |         3         |
 
 As expected, every combination of `line_1` and `city2zip_code_key` should be unique.
 
-And here's our completed address table. We will make `line_2` non-nullable. Typically, a *null* value means an unknown value. In this case, it is a known empty value. Let's make our data reflect that.
+And here's our completed address table. We will make `line_2` non-nullable. Typically, a _null_ value means an unknown value. In this case, it is a known empty value. Let's make our data reflect that.
 
-| address_key | street_address_key | line_2 |
-| :--: | :--: | :--: |
-| 1234 | 1 | STE W122 |
-| 5678 | 2 |  |
+| address_key | street_address_key |  line_2  |
+| :---------: | :----------------: | :------: |
+|    1234     |         1          | STE W122 |
+|    5678     |         2          |          |
 
 Finally, every combination of `street_address_key` and `line_2` should be unique.
 
@@ -132,7 +134,7 @@ INNER JOIN [dbo].[state] ON [dbo].[city].[state_key] = [dbo].[state].[state_key]
 INNER JOIN [dbo].[zip_code] ON [dbo].[city2zip_code].[zip_code_key] = [dbo].[zip_code].[zip_code_key]
 ```
 
-Remember, tools exist for a reason. The code-level manifestation of an address (line 1, line 2, city, state, ZIP) is not the same as an address in your RDBMS. As you can see, in this type of design, there are no *null* values in any tables and there is no duplication of values.
+Remember, tools exist for a reason. The code-level manifestation of an address (line 1, line 2, city, state, ZIP) is not the same as an address in your RDBMS. As you can see, in this type of design, there are no _null_ values in any tables and there is no duplication of values.
 
 #### Other considerations
 

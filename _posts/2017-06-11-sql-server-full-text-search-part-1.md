@@ -1,7 +1,9 @@
 ---
-title:    "SQL Server Full Text Search Part 1: Getting Started"
-layout:   post
-date:     2017-06-11
+title: "SQL Server Full Text Search Part 1: Getting Started"
+layout: post
+date: 2017-06-11
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 SQL Server ships with integrated full text search capabilities. Setting up full text search is quite easy. To start, you need to make sure you have the feature installed. Fortunately, this is an easy process, handled like all other SQL Server installation operations. When setting up your instance, be sure to check the option "Full-Text and Semantic Extractions".
@@ -60,10 +62,10 @@ SELECT b.id, b.title, a.first_name, a.last_name
 
 This returns the following (expected) results.
 
-| id | title | first_name | last_name |
-| :- | :---- | :--------- | :-------- |
-| 100 | It | Stephen | King |
-| 300 | Anna Karenina | Leo | Tolstoy |
+| id  | title         | first_name | last_name |
+| :-- | :------------ | :--------- | :-------- |
+| 100 | It            | Stephen    | King      |
+| 300 | Anna Karenina | Leo        | Tolstoy   |
 
 The execution plan for this query is as follows.
 
@@ -153,11 +155,11 @@ SELECT b.id, b.title, a.first_name, a.last_name
 
 Our query now returns the new result for "The Monarch of Glen".
 
-| id | title | first_name | last_name |
-| :- | :---- | :--------- | :-------- |
-| 100 | It | Stephen | King |
-| 200 | The Monarch of Glen | Neil | Gaiman |
-| 300 | Anna Karenina | Leo | Tolstoy |
+| id  | title               | first_name | last_name |
+| :-- | :------------------ | :--------- | :-------- |
+| 100 | It                  | Stephen    | King      |
+| 200 | The Monarch of Glen | Neil       | Gaiman    |
+| 300 | Anna Karenina       | Leo        | Tolstoy   |
 
 The execution plan has not changed from before, and the search results now contains "The Monarch of Glen" as expected.
 

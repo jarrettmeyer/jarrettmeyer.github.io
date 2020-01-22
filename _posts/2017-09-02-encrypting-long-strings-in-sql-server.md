@@ -1,7 +1,9 @@
 ---
-title:  "Encrypting Long Strings in SQL Server"
+title: "Encrypting Long Strings in SQL Server"
 layout: post
-date:   2017-09-02
+date: 2017-09-02
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 Today, I ran into my first instance of encrypting a long - `varchar(max)` - string in SQL Server. This is a known problem, as encryption is limited to a single page (i.e. 8192 bytes).
@@ -69,13 +71,13 @@ end
 select * from @temp;
 ```
 
-| Line | PlainText    | EncryptedText                               |
-| :--- | :----------- | :------------------------------------------ |
+| Line | PlainText    | EncryptedText                                                    |
+| :--- | :----------- | :--------------------------------------------------------------- |
 | 1    | Here's to... | 0x00C64BA573D52E4A87A8E80FA9BDAC0101000000CF8A13E77D3D7B4BE11... |
 | 2    | oles. The... | 0x00C64BA573D52E4A87A8E80FA9BDAC010100000004F43C3D2F0B8696248... |
 | 3    | he status... | 0x00C64BA573D52E4A87A8E80FA9BDAC0101000000B41D84CE43D6BA8276C... |
 | 4    | you can't... | 0x00C64BA573D52E4A87A8E80FA9BDAC0101000000EE273A249FAE3008CFB... |
-| 5    |  some may... | 0x00C64BA573D52E4A87A8E80FA9BDAC0101000000CCF8A7DCA139902C95B... |
+| 5    | some may...  | 0x00C64BA573D52E4A87A8E80FA9BDAC0101000000CCF8A7DCA139902C95B... |
 | 6    | k they ca... | 0x00C64BA573D52E4A87A8E80FA9BDAC01010000007B1EDDD06BEA7EC27B7... |
 
 From here, we have a few options. We can create a table to store the encrypted segments, or we store the segments as XML or JSON. For this example, I will use XML.
@@ -165,16 +167,16 @@ as
 begin
   set nocount on;
   begin transaction;
-  
+
   open symmetric key MySymmetricKey decryption by certificate MyCertificate;
-  
+
   insert into Demo (ContentEncryptedXML, ContentChecksum, InsertedDate)
   values (
     dbo.EncryptStringToXML(@content, 'MySymmetricKey'),
     checksum(@content),
     sysdatetimeoffset()
   );
-  
+
   commit transaction;
 end
 ```

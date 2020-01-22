@@ -1,12 +1,14 @@
 ---
-layout:   post
-title:    "The Mediator Pattern in JavaScript"
-date:     2016-04-21
+layout: post
+title: "The Mediator Pattern in JavaScript"
+date: 2016-04-21
+description:
+thumbnail: /assets/images/javascript-logo.svg
 ---
 
-The [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern) is a way to separate the concerns of *what code asks for something* vs. *what code does the thing*.
+The [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern) is a way to separate the concerns of _what code asks for something_ vs. _what code does the thing_.
 
-*Note: I have created [a working demo](http://output.jsbin.com/jejuhoh) of all the handlers and messages shown in this article.*
+_Note: I have created [a working demo](http://output.jsbin.com/jejuhoh) of all the handlers and messages shown in this article._
 
 This is similar to the previously posted [observer pattern](/2016/04/18/observer-pattern-in-javascript), that it creates a separation of concerns. While observers work on the back end of a data change or modification, the mediator's responsibility is to create changes.
 
@@ -16,36 +18,35 @@ A mediator is a very simple object. It holds a collection of handlers. When some
 
 ```js
 class Mediator {
-  constructor() {
-    this.handlers = [];
-  }
-
-  addHandler(handler) {
-    if (this.isValidHandler(handler)) {
-      this.handlers.push(handler);
-      return this;
+    constructor() {
+        this.handlers = [];
     }
-    let error = new Error('Attempt to register an invalid handler with the mediator.');
-    error.handler = handler;
-    throw error;
-  }
 
-  isValidHandler(handler) {
-    return (typeof handler.canHandle === 'function') &&
-      (typeof handler.handle === 'function');
-  }
-
-  request(message) {
-    for (let i = 0; i < this.handlers.length; i++) {
-      let handler = this.handlers[i];
-      if (handler.canHandle(message)) {
-        return handler.handle(message);
-      }
+    addHandler(handler) {
+        if (this.isValidHandler(handler)) {
+            this.handlers.push(handler);
+            return this;
+        }
+        let error = new Error("Attempt to register an invalid handler with the mediator.");
+        error.handler = handler;
+        throw error;
     }
-    let error = new Error('Mediator was unable to satisfy request.');
-    error.request = message;
-    return error;
-  }
+
+    isValidHandler(handler) {
+        return typeof handler.canHandle === "function" && typeof handler.handle === "function";
+    }
+
+    request(message) {
+        for (let i = 0; i < this.handlers.length; i++) {
+            let handler = this.handlers[i];
+            if (handler.canHandle(message)) {
+                return handler.handle(message);
+            }
+        }
+        let error = new Error("Mediator was unable to satisfy request.");
+        error.request = message;
+        return error;
+    }
 }
 ```
 
@@ -59,15 +60,15 @@ Let's look at a very simple handler.
 
 ```js
 const sayHelloHandler = {
-  canHandle: function (message) {
-    return message.name;
-  },
-  handle: function (message) {
-    return {
-      name: message.name,
-      say: 'Hello, ' + message.name + '!'
-    };
-  }
+    canHandle: function(message) {
+        return message.name;
+    },
+    handle: function(message) {
+        return {
+            name: message.name,
+            say: "Hello, " + message.name + "!"
+        };
+    }
 };
 ```
 
@@ -88,12 +89,12 @@ mediator.addHandler(yetAnotherHandler);
 Once the mediator is created and all of the handlers have been added, we simply make requests to the handler.
 
 ```js
-let request = { name: 'Alice' };
+let request = { name: "Alice" };
 let reply = mediator.request(request);
 // => { name: 'Alice', say: 'Hello, Alice!' }
 ```
 
-This is the highest possible separation of concerns. The caller has no interest in *how* the request is fulfilled. All it cares about is that it gets fulfilled and the contract of the reply object.
+This is the highest possible separation of concerns. The caller has no interest in _how_ the request is fulfilled. All it cares about is that it gets fulfilled and the contract of the reply object.
 
 ### More handlers vs. more complex handlers
 
@@ -101,62 +102,60 @@ Our `canHandle()` can certainly add more complexity. At this point, it becomes a
 
 ```js
 const tempHandler = {
-  canHandle: function (message) {
-    return !!message.temp || message.temp === 0;
-  },
-  handle: function (message) {
-    var reply = { temp: message.temp };
-    if (message.temp < 60) {
-      reply.message = 'It is too cold!';
+    canHandle: function(message) {
+        return !!message.temp || message.temp === 0;
+    },
+    handle: function(message) {
+        var reply = { temp: message.temp };
+        if (message.temp < 60) {
+            reply.message = "It is too cold!";
+        } else if (message.temp > 90) {
+            reply.message = "It is too hot!";
+        } else {
+            reply.message = "It should be a pleasant day today!";
+        }
+        return reply;
     }
-    else if (message.temp > 90) {
-      reply.message = 'It is too hot!';
-    }
-    else {
-      reply.message = 'It should be a pleasant day today!';
-    }
-    return reply;
-  }
-}
+};
 ```
 
 Or you can have a very simple `handle()` function with conditions in the `canHandle()` function. This, in turn, means we need multiple handlers.
 
 ```js
 const tooColdHandler = {
-  canHandle: function (message) {
-    return message.temp < 60;
-  },
-  handle: function (message) {
-    return {
-      temp: message.temp,
-      message: 'It is too cold!'
-    };
-  }
+    canHandle: function(message) {
+        return message.temp < 60;
+    },
+    handle: function(message) {
+        return {
+            temp: message.temp,
+            message: "It is too cold!"
+        };
+    }
 };
 
 const tooHotHandler = {
-  canHandle: function (message) {
-    return 90 <= message.temp;
-  },
-  handle: function (message) {
-    return {
-      temp: message.temp,
-      message: 'It is too hot!'
-    };
-  }
-}
+    canHandle: function(message) {
+        return 90 <= message.temp;
+    },
+    handle: function(message) {
+        return {
+            temp: message.temp,
+            message: "It is too hot!"
+        };
+    }
+};
 
 const niceDayHandler = {
-  canHandle: function (message) {
-    return 60 <= message.temp && message.temp < 90;
-  },
-  handle: function (message) {
-    return {
-      temp: message.temp,
-      message: 'It should be a pleasant day today!'
-    };
-  }
+    canHandle: function(message) {
+        return 60 <= message.temp && message.temp < 90;
+    },
+    handle: function(message) {
+        return {
+            temp: message.temp,
+            message: "It should be a pleasant day today!"
+        };
+    }
 };
 ```
 
@@ -257,26 +256,26 @@ Can handlers return promises? Yes. The only thing required by the mediator patte
 
 ```js
 const promiseHandler = {
-  canHandle: function (message) {
-    return message.type === 'promise';
-  },
-  handle: function (message) {
-    return new Promise(function (resolve) {
-      var delay = message.delay || 1000;
-      setTimeout(function () {
-        return resolve({
-          delay: delay,
-          timestamp: Date.now()
+    canHandle: function(message) {
+        return message.type === "promise";
+    },
+    handle: function(message) {
+        return new Promise(function(resolve) {
+            var delay = message.delay || 1000;
+            setTimeout(function() {
+                return resolve({
+                    delay: delay,
+                    timestamp: Date.now()
+                });
+            }, delay);
         });
-      }, delay);
-    });
-  }
+    }
 };
 
 var reply = mediator.request({ type: promise, delay: 5000 });
-reply.then(function (result) {
-  alert(JSON.stringify(result));
-  // => { "delay": 3000, "timestamp": 1460985726449 }
+reply.then(function(result) {
+    alert(JSON.stringify(result));
+    // => { "delay": 3000, "timestamp": 1460985726449 }
 });
 ```
 
@@ -286,24 +285,24 @@ You will notice two important issues when working with the mediator pattern. Fir
 
 ```js
 const tooColdHandler = {
-  canHandle: function (message) {
-    return message.temp < 60;
-  },
-  // snip
+    canHandle: function(message) {
+        return message.temp < 60;
+    }
+    // snip
 };
 
 const niceDayHandle = {
-  canHandle: function (message) {
-    return message.temp < 90;
-  },
-  // snip
+    canHandle: function(message) {
+        return message.temp < 90;
+    }
+    // snip
 };
 
 const tooHotHandler = {
-  canHandle: function (message) {
-    return message.temp;
-  },
-  // snip
+    canHandle: function(message) {
+        return message.temp;
+    }
+    // snip
 };
 ```
 

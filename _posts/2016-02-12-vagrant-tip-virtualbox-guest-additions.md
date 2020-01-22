@@ -3,6 +3,8 @@ layout: post
 title: "Vagrant Tip: Virtualbox Guest Additions"
 date: 2016-02-12
 tags: vagrant
+description:
+thumbnail: /assets/images/virtualbox-logo.png
 ---
 
 Tired of seeing this message when you run `vagrant up`?
@@ -43,4 +45,4 @@ Much better!
 
 ## Links
 
-* [https://github.com/dotless-de/vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
+-   [https://github.com/dotless-de/vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)

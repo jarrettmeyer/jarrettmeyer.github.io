@@ -1,7 +1,8 @@
 ---
-layout:   post
-title:    "Data Access Still Matters"
-date:     2013-12-16
+layout: post
+title: "Data Access Still Matters"
+date: 2013-12-16
+thumbnail: /assets/images/database.svg
 ---
 
 This blog post was inspired by Bill Karwin's book [SQL Antipatterns:Avoiding the Pitfalls of Database Programming](http://pragprog.com/book/bksqla/sql-antipatterns). I read this over Thanksgiving weekend. If you are a developer, and you do database work, this is on the must-read list.
@@ -28,7 +29,7 @@ CREATE TABLE employees (
 
 I agree that not **every** table requires a primary key named `id`. There are lots of situations where not using `id` or not having autoincrementing values is helpful. However, understand that with technologies like NHibernate with fluent mapping or Rails' ActiveRecord, it is terribly damn convenient for the developer.
 
-*NHibernate with explicit mapping won't much matter, since you must define the exact purpose of each and every column. It's only when you're using some of the implicit mapping magic that this comes into play.*
+_NHibernate with explicit mapping won't much matter, since you must define the exact purpose of each and every column. It's only when you're using some of the implicit mapping magic that this comes into play._
 
 Also, if you're using PostgreSQL, there is some syntactic sugar you can use when joining tables.
 
@@ -70,6 +71,6 @@ He says that this table has two unique identifiers, since both `user_id` and `us
 
 ![NHibernate error when changing the primary key](/assets/images/nhibernate-change-primary-key.png)
 
-*OK, I wasn't surprised. I knew this would happen. But only because I've been burned by it before.*
+_OK, I wasn't surprised. I knew this would happen. But only because I've been burned by it before._
 
 NHibernate won't let you change the primary key of a loaded record. As it turns out, neither will Entity Framework or ActiveRecord. So I would offer up just one little addendum to the second snafu. It is fine to use a real-valued column if that value isn't going to change, depending on what kind of data access technology you are using in your application. Are usernames allowed to change? Are tag slugs going to be modified? Are you sure employees never get the social security numbers wrong? If so, I wouldn't recommend using those as primary keys &mdash; with or without cascading.

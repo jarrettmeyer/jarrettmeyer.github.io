@@ -1,16 +1,18 @@
 ---
-title:      "Viridis Color Palette"
-layout:     "post"
-date:       2018-08-07
-tags:       d3js
+title: "Viridis Color Palette"
+layout: "post"
+date: 2018-08-07
+tags: d3js
+description: Learn about the viridis color palette in Matlab and D3
+thumbnail: /assets/images/viridis.svg
 ---
 
 The viridis color palette was developed in 2015 for `matplotlib` by Stefan van der Walt and Nathaniel Smith. It is designed to be
 
-* **Colorful**
-* **Perceptually uniform**
-* **Robust to colorblindness**
-* **Pretty**
+-   **Colorful**
+-   **Perceptually uniform**
+-   **Robust to colorblindness**
+-   **Pretty**
 
 You can see their talk [on YouTube](https://www.youtube.com/watch?list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu&v=xAoljeRJ3lU) (19 min) to learn more about how they developed the color palette.
 

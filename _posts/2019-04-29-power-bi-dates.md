@@ -1,8 +1,10 @@
 ---
-title:  "Power BI: Dates Table"
+title: "Power BI: Dates Table"
 layout: post
-date:   2019-04-26
-tags:   powerbi
+date: 2019-04-26
+tags: powerbi
+description: Creating a dates table in Power BI for an analytics database
+thumbnail: /assets/images/powerbi-graph.svg
 ---
 
 Creating a dates table is a universal problem when working with data analysis tools. Here's a quick solution to this eternal problem.
@@ -17,7 +19,7 @@ Name this value `StartDateParameter`. Set this value to 01-Jan-1900.
 
 ### Create a Parameter for the End Date
 
-Name this value `EndDateParameter`. Set this value to 31-Dec-2999. Of course, you can change the end date if this value does not suit your application needs. 
+Name this value `EndDateParameter`. Set this value to 31-Dec-2999. Of course, you can change the end date if this value does not suit your application needs.
 
 ```m
 #date(2999, 12, 31) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]

@@ -1,7 +1,9 @@
 ---
-title:   "SQL Server: Padding with Spaces"
-layout:  post
-date:    2017-07-07
+title: "SQL Server: Padding with Spaces"
+layout: post
+date: 2017-07-07
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 I've been working on a flat-file transfer operation. It's the kind of thing where last name starts at character 13 and is 20 characters long. Fortunately, this is a very easy function to write.

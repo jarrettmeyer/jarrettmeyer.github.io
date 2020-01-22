@@ -1,7 +1,9 @@
 ---
-title:  "Sensitivity and Specificity"
+title: "Sensitivity and Specificity"
 layout: post
-date:   2016-10-06
+date: 2016-10-06
+description:
+thumbnail: /assets/images/r-logo.svg
 ---
 
 ```
@@ -21,13 +23,13 @@ The **negative predictive value** of a test is the probability that a subject is
 
 The **accuracy** of a test is the probability that a test correctly codes for positive and negative subjects.
 
-| Term                      | Equation |
-|:-------------------------:|:--------:|
-| sensitivity               | \\( \dfrac{ TP }{ TP + FN } \\)                |
-| specificity               | \\( \dfrac{ TN }{ FP + TN } \\)                |
-| positive predictive value | \\( \dfrac{ TP }{ TP + FP } \\)                |
-| negative predictive value | \\( \dfrac{ TN }{ TN + FN } \\)                |
-| accuracy                  | \\( \dfrac{ TP + TN }{ TP + FP + TN + FN } \\) |
+|           Term            |                    Equation                    |
+| :-----------------------: | :--------------------------------------------: |
+|        sensitivity        |        \\( \dfrac{ TP }{ TP + FN } \\)         |
+|        specificity        |        \\( \dfrac{ TN }{ FP + TN } \\)         |
+| positive predictive value |        \\( \dfrac{ TP }{ TP + FP } \\)         |
+| negative predictive value |        \\( \dfrac{ TN }{ TN + FN } \\)         |
+|         accuracy          | \\( \dfrac{ TP + TN }{ TP + FP + TN + FN } \\) |
 
 ### Example
 
@@ -40,10 +42,10 @@ The total number of people without the disease is set by our disease prevalence,
 We are told the specificity of the test is 98%. This means that \\( 1999000 \times 0.98 = 1959020 \\) subjects are true negatives and \\( 1999000 \times 0.02 = 39980 \\) are false negatives.
 
 | Test     | Subject has disease | Subject does not have disease |
-|----------|:-------------------:|:-----------------------------:|
-| positive |   999               |     39,980                    |
-| negative |     1               |  1,959,020                    |
-|          |  1000               |  1,999,000                    |
+| -------- | :-----------------: | :---------------------------: |
+| positive |         999         |            39,980             |
+| negative |          1          |           1,959,020           |
+|          |        1000         |           1,999,000           |
 
 Given this information, if you test positive for the disease, what is the probability that you actually have the disease? This is the positive predictive value of the test, or \\( \dfrac{ 999 }{ 999 + 39980 } = 0.0244 \\).
 
@@ -52,9 +54,9 @@ So, even with a very accurate test, when the actual disease prevalence is very, 
 However, if we do the exact same chart for a more common disease, like influenza, our outcomes change dramatically. Approximately 20% of the U.S. population will contract the flu in a given year. Again, let's build a chart based on 1000 cases of the disease.
 
 | Test     | Subject has disease | Subject does not have disease |
-|----------|:-------------------:|:-----------------------------:|
-| positive |   999               |    80                         |
-| negative |     1               |  3920                         |
-|          |  1000               |  4000                         |
+| -------- | :-----------------: | :---------------------------: |
+| positive |         999         |              80               |
+| negative |          1          |             3920              |
+|          |        1000         |             4000              |
 
 Now, the positive predictive value of this test is \\( \dfrac{ 999 }{ 999 + 80 } = 0.926 \\), or 92.6%. If there were an influenza test this accurate, if the test claims you have the flu, then you probably have the flu.

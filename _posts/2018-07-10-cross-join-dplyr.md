@@ -1,8 +1,10 @@
 ---
-title:      "Cross Joins with dplyr"
-layout:     post
-date:       2018-07-10
-tags:       r
+title: "Cross Joins with dplyr"
+layout: post
+date: 2018-07-10
+tags: r
+description: Jumping into the tidyverse
+thumbnail: /assets/images/r-logo.svg
 ---
 
 It's pretty easy to do a cross join with [dplyr](https://dplyr.tidyverse.org/), but it may not be immediately obvious. The only trick is to create a "fake" data column, and use the `full_join` function on this "fake" column.
@@ -16,18 +18,18 @@ tbl_2 <- tibble(val_2 = 101:125)
 A cross join for this data should look like the following data set.
 
 | val_1 | val_2 |
-|:-----:|:-----:|
-| 1     | 101   |
-| 1     | 102   |
-| 1     | 103   |
-| ...   | ...   |
-| 2     | 101   |
-| 2     | 102   |
-| 3     | 103   |
-| ...   | ...   |
-| 50    | 123   |
-| 50    | 124   |
-| 50    | 125   |
+| :---: | :---: |
+|   1   |  101  |
+|   1   |  102  |
+|   1   |  103  |
+|  ...  |  ...  |
+|   2   |  101  |
+|   2   |  102  |
+|   3   |  103  |
+|  ...  |  ...  |
+|  50   |  123  |
+|  50   |  124  |
+|  50   |  125  |
 
 Create a `fake` column, and assign a value. I chose `1`, but it can be any constant value. Create a `full_join`, then remove the `fake` column with the `select(-fake)` function.
 

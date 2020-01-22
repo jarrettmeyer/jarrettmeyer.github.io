@@ -2,6 +2,7 @@
 layout: post
 title: "Capturing Database Metadata"
 date: 2016-02-24
+thumbnail: /assets/images/database.svg
 ---
 
 We have all seen database tables that have these two columns tagged onto the end of them.
@@ -67,14 +68,14 @@ We have successfully separated the metadata from the row. Our activity log can n
 SELECT * FROM activity_logs WHERE ref_type = 'document' AND ref_id = 12345;
 ```
 
-| id   | ref_id | ref_type | description | user_id | timestamp           |
+|   id | ref_id | ref_type | description | user_id | timestamp           |
 | ---: | -----: | :------- | :---------- | ------: | :------------------ |
-| 389  | 12345  | document | created     | 31      | 2016-02-11 08:22:05 |
-| 422  | 12345  | document | updated     | 31      | 2016-02-13 07:47:49 |
-| 1065 | 12345  | document | published   | 58      | 2016-02-16 23:27:50 |
-| 2381 | 12345  | document | unpublished | 58      | 2016-02-19 22:53:51 |
-| 2433 | 12345  | document | updated     | 58      | 2016-02-20 18:46:45 |
-| 2618 | 12345  | document | published   | 58      | 2016-02-23 09:00:56 |
+|  389 |  12345 | document | created     |      31 | 2016-02-11 08:22:05 |
+|  422 |  12345 | document | updated     |      31 | 2016-02-13 07:47:49 |
+| 1065 |  12345 | document | published   |      58 | 2016-02-16 23:27:50 |
+| 2381 |  12345 | document | unpublished |      58 | 2016-02-19 22:53:51 |
+| 2433 |  12345 | document | updated     |      58 | 2016-02-20 18:46:45 |
+| 2618 |  12345 | document | published   |      58 | 2016-02-23 09:00:56 |
 
 With this model, we have a completely clear understanding of the past history. Even better: **we have absolutely no confusion** introduced into the data structure. There is no more asking, "What does this field mean?" The knowledge transfer from the data to the data interpreter or next programmer is absolute.
 
@@ -84,9 +85,9 @@ The document record will store a boolean value for `published`/`deleted`. This i
 
 From the data science point of view, tracking each event in the system can inform how users make their way through the software. How many times is a document published, unpublished, and published again? How many updates are documents having? Do different clients update documents at different rates? Do some clients publish once and then never touch their documents again? Are certain types of documents more prone to multiple updates?
 
-This also opens the door to activity **streams**. An activity log event is something that happens in the application: a user is added, a document is published, a user searches for some term, etc. The activity log tells us *what happened* in the system.
+This also opens the door to activity **streams**. An activity log event is something that happens in the application: a user is added, a document is published, a user searches for some term, etc. The activity log tells us _what happened_ in the system.
 
-The **stream** tells us *who cares* about the event. Suppose a new document with the keyword `"lightning"` is published. Look up users who have searches for the term `"lightning"` and add this publish event to their user stream. Even better, incorporate a synonyms table, so we also include users who have searched for `"thunder"` and `"storms"`. When a user follows a link from their stream, include that in the activity log as well. This provides a feedback loop to the publisher. "You published a document on "lightning". In the last 7 days, 283 users have researched your document."
+The **stream** tells us _who cares_ about the event. Suppose a new document with the keyword `"lightning"` is published. Look up users who have searches for the term `"lightning"` and add this publish event to their user stream. Even better, incorporate a synonyms table, so we also include users who have searched for `"thunder"` and `"storms"`. When a user follows a link from their stream, include that in the activity log as well. This provides a feedback loop to the publisher. "You published a document on "lightning". In the last 7 days, 283 users have researched your document."
 
 Why is the feedback loop so important? **Because it is the answers that add value.** Good software developers and data scientists recognize that they are better at adding value than mediocre developers and data scientists. All of this software is a tool that should lead to answers. Answers depend on data, and data depends on questions. The software we write encodes these questions and saves the results as data.
 

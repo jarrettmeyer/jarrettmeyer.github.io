@@ -1,21 +1,24 @@
 ---
-title:      "Capturing Mouse Events in D3.js"
-layout:     post
-date:       2018-06-21
-tags:       d3js
+title: "Capturing Mouse Events in D3.js"
+layout: post
+date: 2018-06-21
+tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 [D3.js](https://d3js.org/) provides some pretty decent tooling for [working with the mouse](https://github.com/d3/d3-selection/blob/master/README.md#handling-events). This post will give an example of how those work.
 
-- `mouseenter`: Fires when the mouse enters the canvas.
-- `mouseleave`: Fires when the mouse leaves the canvas.
-- `mousemove`: Fires on any mouse movement over the canvas.
-- `mouseout`: Fires when the mouse leaves the canvas or any of its children.
-- `mouseover`: Fires when the mouse enters the canvas or any of its children.
+-   `mouseenter`: Fires when the mouse enters the canvas.
+-   `mouseleave`: Fires when the mouse leaves the canvas.
+-   `mousemove`: Fires on any mouse movement over the canvas.
+-   `mouseout`: Fires when the mouse leaves the canvas or any of its children.
+-   `mouseover`: Fires when the mouse enters the canvas or any of its children.
 
 In the example below, the green `<rect>` is a child of the parent `<svg>`.
 
-<svg id="canvas"></svg> 
+<svg id="canvas"></svg>
+
 <script src="/assets/js/d3/5.5.0/d3.js"></script>
 <script src="/assets/js/mouse-hit.js"></script>
 

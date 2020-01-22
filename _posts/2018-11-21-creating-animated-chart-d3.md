@@ -1,8 +1,10 @@
 ---
-title:  "Creating an animated chart in D3"
+title: "Creating an animated chart in D3"
 layout: "post"
-date:   2018-11-21
-tags:   d3js javascript
+date: 2018-11-21
+tags: d3js javascript
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 Yesterday, [I wrote about creating an animated GIF with R](/2018/11/20/creating-animated-gif-r). Today, I am following up with the same thing, this time written with [D3](https://d3js.org).
@@ -45,7 +47,8 @@ As you may have guessed, the drawing happens in the `draw` function. We will use
 function draw(data) {
     let gData = canvas.select("g.data");
     if (gData.empty()) {
-        gData = canvas.append("g")
+        gData = canvas
+            .append("g")
             .attr("class", "data")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
     }
@@ -60,7 +63,7 @@ function draw(data) {
         .attr("y", d => yScale(d.source))
         .attr("height", yScale.bandwidth())
         .attr("width", d => xScale(d.cost));
-    
+
     // Update existing values.
     bars.merge(bars)
         .transition()
@@ -76,7 +79,7 @@ The only thing left to do is to loop through the data. The `setInterval` functio
 
 ```js
 setInterval(() => {
-    yearIndex = (yearIndex === years.length - 1) ? 0 : yearIndex + 1;
+    yearIndex = yearIndex === years.length - 1 ? 0 : yearIndex + 1;
     yearData = data.filter(d => d.year === years[yearIndex]);
     draw(yearData);
 }, 3000);

@@ -1,7 +1,9 @@
 ---
-layout:   post
-title:    "Getting Started with MathJax"
-date:     2014-08-06
+layout: post
+title: "Getting Started with MathJax"
+date: 2014-08-06
+description: Adding MathJax to your Markdown documents
+thumbnail: /assets/images/quadratic-equation.svg
 ---
 
 I've spent the past few days getting myself reacquainted with TeX and familiarizing myself with [MathJax](http://www.mathjax.org/). As it turns out, it is quite easy to get MathJax working in Octopress.

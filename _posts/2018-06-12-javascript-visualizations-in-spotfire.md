@@ -1,8 +1,10 @@
 ---
-title:    "JavaScript Visualization in Spotfire"
-layout:   post
-date:     2018-06-12
+title: "JavaScript Visualization in Spotfire"
+layout: post
+date: 2018-06-12
 tags: d3js spotfire
+description:
+thumbnail: /assets/images/javascript-logo.svg
 ---
 
 [Tibco Spotfire](https://spotfire.tibco.com/) (version 7.10) has a very powerful JavaScript visualization library. In fact, you can write your charts with any existing JavaScript library - [D3.js](https://d3js.org/), [Google Charts](https://developers.google.com/chart/), [Chart.js](http://www.chartjs.org/), etc. - and have all of the functionality of both Spotfire and your library of choice. There are a few tricks you'll need to learn to get everything to work, through.
@@ -20,7 +22,7 @@ const $container = $("#js_chart");
 When Spotfire is ready, it sends the `SpotfireLoaded` event to the window.
 
 ```js
-$(window).on("SpotfireLoaded", (e) => {
+$(window).on("SpotfireLoaded", e => {
     console.log(e);
     // Put your loading code here.
 });
@@ -33,7 +35,7 @@ Here, we will set up our visualization, fetch data, and anything else we need to
 `Spotfire.read` is used to read data from the Spotfire server.
 
 ```js
-Spotfire.read("data", {}, (dataString) => {
+Spotfire.read("data", {}, dataString => {
     let dataObject = JSON.parse(dataString);
     // Put your data manipulation code.
 });

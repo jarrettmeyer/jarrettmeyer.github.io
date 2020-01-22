@@ -1,8 +1,10 @@
 ---
-title:    "Simple Transitions in D3"
-layout:   post
-date:     2018-05-03
+title: "Simple Transitions in D3"
+layout: post
+date: 2018-05-03
 tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>
@@ -19,7 +21,8 @@ Next, let's add a circle to this canvas. That's done with the `circle` tag.
 
 ```js
 var svg = d3.select("#canvas");
-var circle = svg.append("circle")
+var circle = svg
+    .append("circle")
     .attr("cx", 50)
     .attr("cy", 100)
     .attr("r", 25)
@@ -27,6 +30,7 @@ var circle = svg.append("circle")
 ```
 
 <svg id="canvas2" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas2");
@@ -42,19 +46,19 @@ To make a transition happen, we just change the attribute we want to change. Let
 
 ```js
 var diff = 300;
-circle.on("click", function () {
+circle.on("click", function() {
     // Capture the current center of the circle. By default, all attributes are
     // returned as strings, so the leading + will ensure that our value gets
     // converted into a number.
     var cx = +circle.attr("cx");
     cx += diff;
-    circle.transition()
-        .attr("cx", cx);
+    circle.transition().attr("cx", cx);
     diff = -1 * diff;
 });
 ```
 
 <svg id="canvas3" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas3");
@@ -74,24 +78,25 @@ circle.on("click", function () {
 })();
 </script>
 
-*To demonstrate the transition, click on the circle above.*
+_To demonstrate the transition, click on the circle above._
 
 From here, we can modify our [transition properties](https://github.com/d3/d3-transition). For our example, let's make the transition take 3 seconds and use [linear easing](https://github.com/d3/d3-ease).
 
 ```js
-circle.on("click", function () {
-    var tr = d3.transition()
+circle.on("click", function() {
+    var tr = d3
+        .transition()
         .duration(3000)
         .ease(d3.easeLinear);
     var cx = +circle.attr("cx");
     cx += diff;
-    circle.transition(tr)
-        .attr("cx", cx);
+    circle.transition(tr).attr("cx", cx);
     diff = -1 * diff;
 });
 ```
 
 <svg id="canvas4" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas4");

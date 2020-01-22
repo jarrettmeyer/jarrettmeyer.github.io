@@ -1,7 +1,9 @@
 ---
-layout:   post
-title:    "Managing MongoDB Data Migrations"
-date:     2016-04-15
+layout: post
+title: "Managing MongoDB Data Migrations"
+date: 2016-04-15
+description:
+thumbnail: /assets/images/mongodb-logo.png
 ---
 
 As a schemaless database, [MongoDB](https://www.mongodb.com/) is already quite forgiving when it comes to handling data. Frequently, changes can be made to a data model in code only, without having to rely on more complex data migrations. Still, there are times when you do want to be more explicit.
@@ -18,14 +20,17 @@ MongoDB supports indexing! In the example below, we are creating a unique index 
 
 ```js
 var conn = new Mongo();
-var db = conn.getDB('mydb');
+var db = conn.getDB("mydb");
 var cursor = db.people.find();
-db.people.createIndex({
-  email: 1
-}, {
-  unique: true
-});
-print('Done creating index.');
+db.people.createIndex(
+    {
+        email: 1
+    },
+    {
+        unique: true
+    }
+);
+print("Done creating index.");
 ```
 
 ### Adding a new property with a default value
@@ -34,14 +39,17 @@ We are adding support for soft deletes. In many languages `false` and `null` hav
 
 ```js
 var conn = new Mongo();
-var db = conn.getDB('mydb');
-db.people.update({
-  removed: null
-}, {
-  $set: {
-    removed: false
-  }
-});
+var db = conn.getDB("mydb");
+db.people.update(
+    {
+        removed: null
+    },
+    {
+        $set: {
+            removed: false
+        }
+    }
+);
 ```
 
 We are using Mongo's `$set` operator for the second argument. The `$set` operator will only modify the properties specified in the object. Without the `$set` operator, Mongo will assign the entire document equal to the parameter. You do not want to make this mistake...
@@ -96,33 +104,36 @@ Suppose our person object has an `employer` property. After some time, we wish t
 
 ```js
 var people = db.people.find();
-people.forEach(function (person) {
-  var id = person._id;
+people.forEach(function(person) {
+    var id = person._id;
 
-  // If the person already has employers, leave it alone.
-  var employers = person.employers;
+    // If the person already has employers, leave it alone.
+    var employers = person.employers;
 
-  // If the person has an employer object, turn it into an array.
-  if (!employers && person.employer) {
-    employers = [].concat(person.employer);
-  }
-
-  // If employers is still not set, create a default stub.
-  if (!employers) {
-    employers = [{ name: null, location: null, startDate: null, endDate: null }]
-  }
-
-  // Update the person record.
-  db.people.update({
-    _id: id
-  }, {
-    $set: {
-      employers: employers
-    },
-    $unset: {
-      employer: true
+    // If the person has an employer object, turn it into an array.
+    if (!employers && person.employer) {
+        employers = [].concat(person.employer);
     }
-  });
+
+    // If employers is still not set, create a default stub.
+    if (!employers) {
+        employers = [{ name: null, location: null, startDate: null, endDate: null }];
+    }
+
+    // Update the person record.
+    db.people.update(
+        {
+            _id: id
+        },
+        {
+            $set: {
+                employers: employers
+            },
+            $unset: {
+                employer: true
+            }
+        }
+    );
 });
 ```
 

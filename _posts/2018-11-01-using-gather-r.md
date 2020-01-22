@@ -1,8 +1,10 @@
 ---
-title:      "R: Using Gather to Stack Columns"
-date:       2018-11-01
-layout:     "post"
-tags:       r
+title: "R: Using Gather to Stack Columns"
+date: 2018-11-01
+layout: "post"
+tags: r
+description: Making data manipulation just a little bit easier
+thumbnail: /assets/images/r-logo.svg
 ---
 
 The [R](https://www.r-project.org/) package [tidyverse](https://www.tidyverse.org/) uses [gather](https://tidyr.tidyverse.org/reference/gather.html) and [spread](https://tidyr.tidyverse.org/reference/spread.html) to pivot and depivot data. To know which function does what, you can remember that that `spread` makes the data frame wider and `gather` makes the data frame taller.
@@ -29,7 +31,7 @@ df = tibble(
 The R code above results in the following data frame.
 
 | SEQ | OPT   | SUB | VALUE_1  | VALUE_2  | VALUE_3  |
-|-----|-------|-----|----------|----------|----------|
+| --- | ----- | --- | -------- | -------- | -------- |
 | 1   | ONE   | S04 | 3.779079 | 7.852097 | 5.285600 |
 | 2   | THREE | S02 | 3.385607 | 7.609196 | 5.829093 |
 | 3   | TWO   | S03 | 3.281014 | 6.762821 | 5.827449 |
@@ -48,7 +50,7 @@ gather(df)
 ```
 
 | key | value |
-|-----|-------|
+| --- | ----- |
 | SEQ | 1     |
 | SEQ | 2     |
 | SEQ | 3     |
@@ -71,7 +73,7 @@ select(SEQ, OPT, SUB, COL, VALUE)
 Now, we will only gather the columns we want.
 
 | SEQ | OPT   | SUB | COL | VALUE    |
-|-----|-------|-----|-----|----------|
+| --- | ----- | --- | --- | -------- |
 | 1   | ONE   | S04 | 1   | 3.779079 |
 | 2   | THREE | S02 | 1   | 3.385607 |
 | 3   | TWO   | S03 | 1   | 3.281014 |
@@ -86,4 +88,3 @@ Now, we will only gather the columns we want.
 | 2   | THREE | S02 | 2   | 7.609196 |
 
 That's what we want! I hope this helps with your next data cleaning project.
- 

@@ -1,7 +1,9 @@
 ---
-title:    "SQL Server Default Parameter Values"
-date:     2017-10-30
-layout:   post
+title: "SQL Server Default Parameter Values"
+date: 2017-10-30
+layout: post
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 SQL Server stored procedure parameters can have default values. But did you know that both input and output parameters can have these defaults? Consider the following procedure:
@@ -15,15 +17,15 @@ create procedure [dbo].[InsertPerson]
 as
 begin
   begin transaction;
-  
+
   insert into dbo.Person (
     FirstName, MiddleName, LastName, SSN
-  ) values 
+  ) values
     @firstName, @middleName, @lastName, @ssn
   );
-  
+
   select * from dbo.Person where PersonKey = scope_identity();
-  
+
   commit transaction;
 end
 ```
@@ -40,17 +42,17 @@ create procedure [dbo].[InsertPerson]
 as
 begin
   begin transaction;
-  
+
   insert into dbo.Person (
     FirstName, MiddleName, LastName, SSN
-  ) values 
+  ) values
     @firstName, @middleName, @lastName, @ssn
   );
-  
+
   set @personKey = scope_identity();
-  
+
   select * from dbo.Person where PersonKey = @personKey;
-  
+
   commit transaction;
 end
 ```

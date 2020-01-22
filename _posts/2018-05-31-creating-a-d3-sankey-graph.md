@@ -1,8 +1,10 @@
 ---
-title:    "Creating a Sankey Graph with D3.js"
-layout:   post
-date:     2018-05-31
+title: "Creating a Sankey Graph with D3.js"
+layout: post
+date: 2018-05-31
 tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 A [Sankey graph](https://en.wikipedia.org/wiki/Sankey_diagram) is a powerful data visualization that show how elements flow from one state to another in both state and quantity.
@@ -33,49 +35,52 @@ let data = {
 Next, we create a `sankey` instance. This creates a function that can be used to generate our Sankey data.
 
 ```js
-const sankey = d3.sankey()
-                 .size([width, height])
-                 .nodeId(d => d.id)
-                 .nodeWidth(20)
-                 .nodePadding(10)
-                 .nodeAlign(d3.sankeyCenter);
+const sankey = d3
+    .sankey()
+    .size([width, height])
+    .nodeId(d => d.id)
+    .nodeWidth(20)
+    .nodePadding(10)
+    .nodeAlign(d3.sankeyCenter);
 let graph = sankey(data);
 ```
 
 Next, we can draw the nodes and the links. Links are SVG paths, and nodes are SVG rectangles.
 
 ```js
-let links = svg.append("g")
-               .classed("links", true)
-               .selectAll("path")
-               .data(graph.links)
-               .enter()
-               .append("path")
-               .classed("link", true)
-               .attr("d", d3.sankeyLinkHorizontal())
-               .attr("fill", "none")
-               .attr("stroke", "#606060")
-               .attr("stroke-width", d => d.width)
-               .attr("stoke-opacity", 0.5);
+let links = svg
+    .append("g")
+    .classed("links", true)
+    .selectAll("path")
+    .data(graph.links)
+    .enter()
+    .append("path")
+    .classed("link", true)
+    .attr("d", d3.sankeyLinkHorizontal())
+    .attr("fill", "none")
+    .attr("stroke", "#606060")
+    .attr("stroke-width", d => d.width)
+    .attr("stoke-opacity", 0.5);
 
-let nodes = svg.append("g")
-               .classed("nodes", true)
-               .selectAll("rect")
-               .data(graph.nodes)
-               .enter()
-               .append("rect")
-               .classed("node", true)
-               .attr("x", d => d.x0)
-               .attr("y", d => d.y0)
-               .attr("width", d => d.x1 - d.x0)
-               .attr("height", d => d.y1 - d.y0)
-               .attr("fill", "blue")
-               .attr("opacity", 0.8);
+let nodes = svg
+    .append("g")
+    .classed("nodes", true)
+    .selectAll("rect")
+    .data(graph.nodes)
+    .enter()
+    .append("rect")
+    .classed("node", true)
+    .attr("x", d => d.x0)
+    .attr("y", d => d.y0)
+    .attr("width", d => d.x1 - d.x0)
+    .attr("height", d => d.y1 - d.y0)
+    .attr("fill", "blue")
+    .attr("opacity", 0.8);
 ```
 
 That's the basics of how a Sankey graph works in D3. Any other features, including moving the nodes or applying colors, is beyond the scope of this blog post. The full code for the graph in this document is [available here](/assets/js/sankey1.js).
 
-*Note: this blog entry applies to the following software versions.*
+_Note: this blog entry applies to the following software versions._
 
 1. D3.js @ 5.4.0
 2. D3 Sankey @ 0.7.1

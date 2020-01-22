@@ -1,8 +1,10 @@
 ---
-title:      "Getting URL Query Values"
-date:       2019-03-14
-layout:     post
-tags:       javascript
+title: "Getting URL Query Values"
+date: 2019-03-14
+layout: post
+tags: javascript
+description: Working with URLSearchParams
+thumbnail: /assets/images/javascript-logo.svg
 ---
 
 This was a fun little task. I needed to get URL query values. This is a pretty common requirement, so I thought I would document it's use here. The easiest way to do this is by creating an instance of [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams).

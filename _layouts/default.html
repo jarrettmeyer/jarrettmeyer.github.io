@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   {% include head.html %}
 
-  <body>
+  <body class="site-body">
+    <aside class="sidebar">
+      <header class="header">
+        <a href="/" class="header-banner">
+          <img src="/assets/images/coffee-emoji.png" alt="coffee emoji" class="header-banner-logo" />
+          <h1 class="header-banner-text">Jarrett Meyer</h1>
+        </a>
+        <div>&mdash; &mdash; &mdash; &mdash; &mdash;</div>
+      </header>
 
-    {% include header.html %}
+      <footer class="footer">
+        <div class="contact-info">
+          <a href="mailto:jarrettmeyer@gmail.com"><i class="fas fa-at"></i></a>
+          <a href="https://github.com/jarrettmeyer/"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/jarrettmeyer/"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </footer>
+    </aside>
 
-    <div class="page-content">
-      <div class="wrapper">
+    <main class="main">
+      <div class="content">
         {{ content }}
       </div>
-    </div>
-
-    {% include footer.html %}    
-
+    </main>
   </body>
-
 </html>

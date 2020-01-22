@@ -1,9 +1,11 @@
 ---
 layout: post
-title:  Prayer by Rabbi Jack Riemer
-date:   2019-01-28
+title: Prayer by Rabbi Jack Riemer
+date: 2019-01-28
 permalink: prayer-by-rabbi-jack-riemer
-tags:   quotes
+tags: quotes
+description: A prayer from Rabbi Jack Riemer
+thumbnail: /assets/images/quotes.svg
 ---
 
 I found this prayer while reading to Harold S. Kushner's [When Bad Things Happen to Good People](https://smile.amazon.com/When-Things-Happen-Good-People/dp/1400034728/) and thought it was lovely. I hope you like it, too.
@@ -37,11 +39,11 @@ I found this prayer while reading to Harold S. Kushner's [When Bad Things Happen
 > For strength, determination, and willpower,  
 > To do, instead of just to pray,  
 > To become, instead of merely to wish.
-> 
+>
 > For Your sake and for ours, speedily and soon,  
 > That our land and world may be safe,  
 > And that our lives may be blessed.
-> 
+>
 > May the words that we pray,  
 > and the deeds that we do  
 > be acceptable before You, O Lord,  

@@ -3,9 +3,11 @@ layout: post
 title: "Static Force Layout with D3.js"
 date: 2019-01-04
 tags: d3js javascript
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
-I have been doing a lot of work with force-directed graphs (FDGs) and [D3.js](https://d3js.org) for the past few months. In my latest assignment, I was asked to *not* animate the graph. The visual rendering takes a while for the graph to settle, and all of the nodes flying around for the first few seconds doesn't add anything to the visualization conversation.
+I have been doing a lot of work with force-directed graphs (FDGs) and [D3.js](https://d3js.org) for the past few months. In my latest assignment, I was asked to _not_ animate the graph. The visual rendering takes a while for the graph to settle, and all of the nodes flying around for the first few seconds doesn't add anything to the visualization conversation.
 
 Click the radio buttons below to see the difference in render times. The animated version should be around 5,000 - 6,000 ms; the static version should be 50 ms or less. You can also generate new data with the given button.
 
@@ -28,7 +30,8 @@ let height = +canvas.attr("height");
 
 function draw() {
     // Draw links.
-    canvas.selectAll("line")
+    canvas
+        .selectAll("line")
         .data(data.links)
         .enter()
         .append("line")
@@ -41,7 +44,8 @@ function draw() {
         .attr("y2", d => d.target.y);
 
     // Draw nodes.
-    canvas.selectAll("circle")
+    canvas
+        .selectAll("circle")
         .data(data.nodes)
         .enter()
         .append("circle")
@@ -62,7 +66,7 @@ function generateNewData() {
             index: i,
             color: d3.interpolateRainbow(i / NUMBER_OF_NODES),
             size: Math.floor(randBetween(MIN_NODE_SIZE, MAX_NODE_SIZE))
-        }
+        };
         data.nodes.push(node);
     }
 
@@ -75,7 +79,7 @@ function generateNewData() {
                     source: data.nodes[i],
                     target: data.nodes[j],
                     weight: Math.floor(randBetween(1, minSize))
-                }
+                };
                 data.links.push(link);
             }
         }
@@ -86,7 +90,7 @@ function generateNewData() {
 
 /**
  * Is the graph animated?
- * 
+ *
  * Defines if the graph is animated based on which radio button is checked.
  */
 function isAnimated() {
@@ -115,16 +119,22 @@ function simulate() {
     let startTime = +Date.now();
 
     // Create a new force simulation and assign forces.
-    let simulation = d3.forceSimulation(data.nodes)
+    let simulation = d3
+        .forceSimulation(data.nodes)
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collide", d3.forceCollide(d => d.size))
-        .force("link", d3.forceLink(data.links).strength(d => Math.sqrt(d.weight)))
+        .force(
+            "collide",
+            d3.forceCollide(d => d.size)
+        )
+        .force(
+            "link",
+            d3.forceLink(data.links).strength(d => Math.sqrt(d.weight))
+        )
         .force("manyBody", d3.forceManyBody());
 
     if (isAnimated()) {
         simulateAnimated(simulation, startTime);
-    }
-    else {
+    } else {
         simulateStatic(simulation, startTime);
     }
 }
@@ -133,14 +143,16 @@ function simulateAnimated(simulation, startTime) {
     draw();
     simulation.on("tick", () => {
         // Update links.
-        canvas.selectAll("line")
+        canvas
+            .selectAll("line")
             .attr("x1", d => d.source.x)
             .attr("x2", d => d.target.x)
             .attr("y1", d => d.source.y)
             .attr("y2", d => d.target.y);
 
         // Update nodes.
-        canvas.selectAll("circle")
+        canvas
+            .selectAll("circle")
             .attr("cx", d => d.x)
             .attr("cy", d => d.y);
     });

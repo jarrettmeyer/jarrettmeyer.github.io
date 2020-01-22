@@ -1,7 +1,9 @@
 ---
-title:    "SQL Server: Sending HTTP Requests"
-layout:   post
-date:     2017-07-08
+title: "SQL Server: Sending HTTP Requests"
+layout: post
+date: 2017-07-08
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 Here's another fun trick I learned this week: sending HTTP requests with SQL Server. It turns out, we have access to a whole host of OLE automation classes from within SQL Server. The first thing we need to do is enable OLE automation. This is done with the `sp_configure` command.

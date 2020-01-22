@@ -1,7 +1,9 @@
 ---
-title:    "Creating Random Strings in SQL Server"
-date:     2017-11-14
-layout:   post
+title: "Creating Random Strings in SQL Server"
+date: 2017-11-14
+layout: post
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 ### The Challenge
@@ -33,10 +35,10 @@ GO
 The next part is to create a function to pick a random character from a given list of characters. Picking a random character will use the function we created above.
 
 ```sql
-CREATE FUNCTION [dbo].[fn_PickRandomChar] 
+CREATE FUNCTION [dbo].[fn_PickRandomChar]
 (
   @chars VARCHAR(MAX),
-  @rand  FLOAT	
+  @rand  FLOAT
 )
 RETURNS CHAR(1)
 AS
@@ -47,7 +49,7 @@ BEGIN
     SET @result = NULL;
   ELSE IF LEN(@chars) = 0
     SET @result = NULL
-  ELSE 
+  ELSE
   BEGIN
     SET @resultIndex = [dbo].[fn_RandIntBetween](1, LEN(@chars), @rand);
     SET @result = SUBSTRING(@chars, @resultIndex, 1);
@@ -88,7 +90,7 @@ BEGIN
 
   -- Set our random string to an empty string.
   SET @randomString = '';
-	
+
   -- If our string is not yet the appropriate length, add another character to the string.
   WHILE LEN(@randomString) < @stringLength
   BEGIN
@@ -106,9 +108,9 @@ DECLARE @maxLength INT = 20;
 DECLARE @chars VARCHAR(26) = 'abcdefghijklmnopqrstuvwxyz';
 DECLARE @text VARCHAR(50) = NULL;
 
-EXEC [dbo].[CreateRandomString] @minLength = @minLength, 
-                                @maxLength = @maxLength, 
-                                @chars = @chars, 
+EXEC [dbo].[CreateRandomString] @minLength = @minLength,
+                                @maxLength = @maxLength,
+                                @chars = @chars,
                                 @randomString = @text OUTPUT;
 SELECT @randomString AS [Random String];
 

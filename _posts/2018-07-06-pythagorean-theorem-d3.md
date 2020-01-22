@@ -1,8 +1,10 @@
 ---
-title:      "A Visual Proof of the Pythagorean Theorem in D3"
-layout:     post
-date:       2018-07-06
-tags:       d3js
+title: "A Visual Proof of the Pythagorean Theorem in D3"
+layout: post
+date: 2018-07-06
+tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 Slide the green dot up and down the left hand side of the canvas.

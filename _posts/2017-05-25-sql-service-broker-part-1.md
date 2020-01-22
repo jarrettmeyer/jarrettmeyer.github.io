@@ -1,7 +1,9 @@
 ---
-title:   "SQL Service Broker Part 1: Sending and Receiving Messages"
-layout:  post
-date:    2017-05-25
+title: "SQL Service Broker Part 1: Sending and Receiving Messages"
+layout: post
+date: 2017-05-25
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 This is the first in a series of posts on working with [SQL Service Broker](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-service-broker) for application messaging. In this post, we will cover the basics of setting up message, contracts, and queues. It is expected that you already know what queues are and why you would want to use them in your application.
@@ -19,10 +21,10 @@ Message types, contracts, and services typically have URI-style names of the for
 
 Example message types would be named with the following format.
 
-* `//corp/Expenses/SubmitExpense` - An employee submits expenses to his or her manager.
-* `//corp/Expenses/AcceptExpense` - Expenses are accepted and sent to payroll for processing.
-* `//corp/Expenses/RejectExpense` - Expenses are rejected and sent back to the employee. They may be modified and resubmitted.
-* `//corp/Expenses/AuthorizationRequired` - Expense amount exceeds manager's approval authority. Expense is routed to the next manager in the organization hierarchy.
+-   `//corp/Expenses/SubmitExpense` - An employee submits expenses to his or her manager.
+-   `//corp/Expenses/AcceptExpense` - Expenses are accepted and sent to payroll for processing.
+-   `//corp/Expenses/RejectExpense` - Expenses are rejected and sent back to the employee. They may be modified and resubmitted.
+-   `//corp/Expenses/AuthorizationRequired` - Expense amount exceeds manager's approval authority. Expense is routed to the next manager in the organization hierarchy.
 
 ```sql
 -- Create a message type. This message will just be text, so there will be no validation.
@@ -82,7 +84,7 @@ EXEC [dbo].[SendMessage] @text = "Hello, World!"
 We can query our queue and see our messages.
 
 | conversation_handle | message_type_name      | message_body             |
-| :------------------ | :----------------------| :----------------------- |
+| :------------------ | :--------------------- | :----------------------- |
 | 13D86229-5441-E7... | //sbdemo/Hello/Message | Hello, World!            |
 | AEF3B54A-7E41-E7... | //sbdemo/Hello/Message | This is another message. |
 | B6F3B54A-7E41-E7... | //sbdemo/Hello/Message | Wow! Messages are fun!   |

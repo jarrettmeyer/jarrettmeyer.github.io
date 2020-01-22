@@ -1,7 +1,9 @@
 ---
-title:  "Creating a Table of Dates"
+title: "Creating a Table of Dates"
 layout: post
-date:   2017-12-11
+date: 2017-12-11
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 Last week, I posted an article on [creating a table of numbers](/2017/12/07/creating-a-table-of-numbers). Today, I am continuing by creating a table of dates. Like before, this is a table that we expect to build and write to once, and then read from many thousands of times.

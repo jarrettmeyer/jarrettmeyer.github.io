@@ -1,8 +1,10 @@
 ---
-title:  "Generators in TypeScript"
-date:   2019-08-05
+title: "Generators in TypeScript"
+date: 2019-08-05
 layout: post
-tags:   typescript
+tags: typescript
+description:
+thumbnail: /assets/images/typescript-logo.svg
 ---
 
 I was working on a problem last week that required a doubly-linked list in TypeScript. I also got to work with [generators](https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html) for the first time.
@@ -104,7 +106,7 @@ class MyGenerator {
             }
         }
     }
-    
+
     /**
      * Generator function, returning NodeDef instances as long as
      * there is still a next NodeDef in the linked list.
@@ -115,7 +117,7 @@ class MyGenerator {
             yield nextNode;
             nextNode = nextNode.nextNode;
         }
-    }   
+    }
 
     toString(): string {
         return `Subject ${this.key}: ${this.path.join(", ")}`;

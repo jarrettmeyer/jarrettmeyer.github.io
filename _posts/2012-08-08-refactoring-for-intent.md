@@ -1,14 +1,16 @@
 ---
-layout: 		post
-title: 			"Refactoring for Intent"
-date: 			2012-08-08
+layout: post
+title: "Refactoring for Intent"
+date: 2012-08-08
+description: Getting your idea across with better variable names
+thumbnail:
 ---
 
 Here's an interesting refactor that I did yesterday. It got a couple of "Ooohs" and "Aaahs" at work, so I thought it would be worth sharing.
 
 ### The Setup
 
-We have a method with two different entry points.  Depending on which values are set, there are two different ways to get the same answer.
+We have a method with two different entry points. Depending on which values are set, there are two different ways to get the same answer.
 
 ```csharp
 public string FirstValue { get; set; }
@@ -33,7 +35,7 @@ public void DoSomething()
 There's nothing revolutionary here. The first version wasn't at all difficult, since we're just checking for null values. All we're doing in the first refactor is changing the names for readability.
 
 ```csharp
-public void DoSomething()    
+public void DoSomething()
 {
     if (HasFirstAndSecondValue)
         PerformLiveCalculation();
@@ -59,7 +61,7 @@ private bool HasThirdValue
 This is where I mixed it up a bit. I changed the code from "code-language" to "business-language". For some reason, this seemed completely different to what other developers in the room were expecting.
 
 ```csharp
-public void DoSomething()    
+public void DoSomething()
 {
     if (IsRequestingLiveCalculation)
         PerformLiveCalculation();
@@ -79,6 +81,5 @@ private bool IsRequestingHistoricalCalculation
     get { return ThirdValue != null; }
 }
 ```
-
 
 Remember what [Uncle Bob](http://www.objectmentor.com/omTeam/martin_r.html) taught us: **clarity** is your number one goal as a developer. Working, unclean code might as well be useless.

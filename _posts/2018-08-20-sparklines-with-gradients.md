@@ -1,8 +1,10 @@
 ---
-title:  "D3: Sparklines with Gradients"
+title: "D3: Sparklines with Gradients"
 layout: post
-date:   2018-08-20
+date: 2018-08-20
 tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 I have already put together a post on [Sparklines in D3](/2018/07/17/sparklines-in-d3). I was recently asked to put together a sparkline, but to apply the same [Viridis color palette](/2018/08/07/viridis-color-palette) that the rest of the graphic uses. The sparkline should look something like this.
@@ -15,7 +17,8 @@ Fortunately, this is quite easy to pull off with [D3](https://d3js.org). First, 
 let gradientId = null;
 if (options.gradient) {
     gradientId = "linear-gradient-" + Math.floor(Math.random() * 1e9);
-    let gradient = svg.append("defs")
+    let gradient = svg
+        .append("defs")
         .append("linearGradient")
         .attr("id", gradientId)
         .attr("x1", "0%")
@@ -23,7 +26,8 @@ if (options.gradient) {
         .attr("y1", "100%")
         .attr("y2", "0%");
     let stops = [0, 0.25, 0.5, 0.75, 1.0];
-    gradient.selectAll("stop")
+    gradient
+        .selectAll("stop")
         .data(stops)
         .enter()
         .append("stop")
@@ -55,11 +59,7 @@ To apply this gradient to our sparkline, we reference the `id` for the path's st
 This produces the following SVG HTML element.
 
 ```html
-<path class="sparkline sparkline-path" 
-      d="..." 
-      fill="none"
-      stroke="url(#linear-gradient-581969908)"
-      stroke-width="1"></path>
+<path class="sparkline sparkline-path" d="..." fill="none" stroke="url(#linear-gradient-581969908)" stroke-width="1"></path>
 ```
 
 If no gradient is given, then the sparkline will fallback to using the given stroke value.

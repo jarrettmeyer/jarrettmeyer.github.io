@@ -1,0 +1,357 @@
+// ---------------------------------------------------------
+// SCSS variables.
+// ---------------------------------------------------------
+$font-default-size: 16px;
+$font-default-line-height: 1.6;
+
+$font-page-heading-size: 24px;
+
+$color-default-background: #f0f0f0;
+$color-default-font: #202020;
+$color-default-link: darken(#3992da, 13%);
+$color-default-button: #b3d5e6;
+
+$sidebar-width: 240px;
+$sidebar-background-color: #f8f8f8;
+
+$container-padding: 24px;
+
+$header-logo-height: 5rem;
+$header-heading-height: 1.2rem;
+$header-heading-color: $color-default-font;
+
+$main-vertical-margin: 48px;
+$main-border-radius: 16px;
+$main-background-color: $color-default-background;
+$main-max-width: 840px;
+
+$footer-vertical-margin: 48px;
+$footer-height: auto;
+$footer-border-radius: 16px;
+$footer-background-color: $color-default-background;
+
+$media-breakpoint: 720px;
+
+// ---------------------------------------------------------
+// SCSS mixins.
+// ---------------------------------------------------------
+@mixin main-container {
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $container-padding;
+}
+
+@mixin monospace {
+    font-family: "Fira Code", monospace;
+    font-weight: normal;
+}
+
+@mixin sans-serif {
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: normal;
+}
+
+@mixin serif {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+}
+
+// ---------------------------------------------------------
+// Element styles.
+// ---------------------------------------------------------
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: $color-default-link;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+article {
+    display: block;
+}
+
+.site-body {
+    @include sans-serif();
+
+    background: $color-default-background;
+
+    font-weight: normal;
+    font-size: $font-default-size;
+    line-height: $font-default-line-height;
+
+    width: 100vw;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: $sidebar-width 1fr;
+    grid-template-areas: "sidebar main";
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: $sidebar-background-color;
+    width: $sidebar-width;
+    height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .header-banner-logo {
+        display: block;
+        height: $header-logo-height;
+    }
+
+    .header-banner-text {
+        @include serif();
+        display: block;
+        font-size: $header-heading-height;
+        font-weight: normal;
+        color: $header-heading-color;
+    }
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: row;
+
+    a {
+        color: $color-default-font;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
+}
+
+.footer {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    grid-area: main;
+    display: block;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 100vh;
+    overflow-y: scroll;
+
+    background: $main-background-color;
+}
+
+.post-list {
+    display: block;
+    list-style: none;
+}
+
+.post-list-item {
+    transition: all 300ms ease-in-out;
+    border-radius: 0.75rem;
+    background: $sidebar-background-color;
+
+    margin-top: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    max-width: $main-max-width;
+
+    display: flex;
+    flex-direction: row;
+
+    transform: translate(0, 0);
+    box-shadow: 0 1px 1px 0px rgba(32, 32, 32, 0.2);
+
+    &:hover {
+        transform: translate(0, -2px);
+        box-shadow: 0 15px 45px -10px rgba(32, 32, 32, 0.2);
+    }
+}
+
+.post-thumbnail-link {
+    width: 260px;
+    height: 200px;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+}
+
+.post-meta {
+    margin: 0.5rem 1rem 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start;
+}
+
+.post-title {
+    @include serif();
+    font-size: 1.4rem;
+    color: $color-default-font;
+    margin-bottom: 0.25rem;
+}
+
+.post-description {
+    color: lighten($color-default-font, 20%);
+    flex-grow: 1;
+    flex-basis: 1px;
+}
+
+.post-date {
+    color: lighten($color-default-font, 20%);
+    font-size: 75%;
+}
+
+.post {
+    margin: 1rem;
+    max-width: $main-max-width;
+
+    blockquote {
+        @include serif();
+        border-left: 6px solid lighten($color-default-font, 40%);
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        color: lighten($color-default-font, 20%);
+        margin-bottom: 1rem;
+    }
+
+    button {
+        @include sans-serif();
+        padding: 12px;
+        border-radius: 3px;
+        font-size: 16px;
+        color: $color-default-font;
+        background: $color-default-button;
+        border: 1px solid darken($color-default-button, 30%);
+        cursor: pointer;
+
+        transition: all 250ms ease-in-out;
+
+        &:hover {
+            background: darken($color-default-button, 8%);
+            border-color: darken($color-default-button, 34%);
+        }
+    }
+
+    h2 {
+        @include serif();
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        @include serif();
+        font-size: 1.3rem;
+        margin-top: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        @include serif();
+        font-size: 1.1rem;
+        margin-top: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    p,
+    pre,
+    ul {
+        margin-bottom: 1rem;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    pre {
+        padding: 0.5rem 0.75rem;
+    }
+
+    code {
+        font-size: 0.9rem;
+    }
+
+    ul {
+        margin-left: 2rem;
+        list-style: disc;
+    }
+
+    .highlighter-rouge {
+        .highlight {
+            background: #eef;
+        }
+    }
+
+    .post-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        line-height: 1;
+        padding-bottom: 4px;
+        border-bottom: 1px solid lighten($color-default-font, 30%);
+
+        .post-title {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
+
+        .post-data {
+            margin-bottom: 0;
+        }
+    }
+
+    .post-content {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: $media-breakpoint) {
+    .site-body {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        grid-template:
+            "sidebar"
+            "main";
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        height: auto;
+    }
+}

@@ -1,19 +1,21 @@
 ---
-layout:     default
-title:      Caffeine-Powered Life
+layout: default
+title: Jarrett Meyer
 ---
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: " %d %b %Y" }}</span> &raquo;
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-
-</div>
+<ul class="post-list">
+  {% for post in site.posts %}
+  <li class="post-list-item">
+    {% if post.thumbnail and post.thumbnail != "" %}
+    <a href="{{ post.url | prepend: site.baseurl }}" class="post-thumbnail-link" style="background: url({{ post.thumbnail }})"></a>
+    {% endif %}
+    <div class="post-meta">
+      <a href="{{ post.url }}">
+        <div class="post-title">{{ post.title }}</div>
+      </a>
+      <div class="post-description">{{ post.description }}</div>
+      <div class="post-date">{{ post.date | date: "%d %b %Y" }}</div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>

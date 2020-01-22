@@ -1,7 +1,9 @@
 ---
-title:    "RDBMS Fundamentals: Keys"
-layout:   post
-post:     2017-11-29
+title: "RDBMS Fundamentals: Keys"
+layout: post
+post: 2017-11-29
+description:
+thumbnail: /assets/images/database.svg
 ---
 
 This is the first in a series of RDMBS fundamentals posts. Let's talk about keys. There are lots of keys in database design. Let's take a look at some of them.
@@ -14,28 +16,28 @@ If we have any experience at all, we should understand the concept of a **primar
 
 A natural key is a value that exists in the real world that is already unique. There are several existing natural keys in the world.
 
-* Physical addresses are unique. There is only one 233 S Wacker Dr, Chicago, IL 60606. (That's the Willis/Sears Tower.) If there were more than one address, we would not be able to deliver mail.
-* Bank account number. Within a bank, an account number cannot be duplicated. Outside of a single bank, the combination of routing number and account number is guaranteed to be unique.
-* Vehicle identification number. VINs are required to uniquely identify a year, make, and model of car. Many times, the trim level is also encoded into the VIN, but this varies by manufacturer.
+-   Physical addresses are unique. There is only one 233 S Wacker Dr, Chicago, IL 60606. (That's the Willis/Sears Tower.) If there were more than one address, we would not be able to deliver mail.
+-   Bank account number. Within a bank, an account number cannot be duplicated. Outside of a single bank, the combination of routing number and account number is guaranteed to be unique.
+-   Vehicle identification number. VINs are required to uniquely identify a year, make, and model of car. Many times, the trim level is also encoded into the VIN, but this varies by manufacturer.
 
 ### Super Key
 
 A super key is a set of columns that uniquely identifies a row. Let's look at the following table. Any super key could potentially become a primary key.
 
-| A  | B  | C  | D  |
-| -- | -- | -- | -- |
-| a1 | b1 | c1 | d1 |
-| a1 | b2 | c2 | d1 |
-| a1 | b1 | c2 | d2 |
-| a2 | b2 | c3 | d3 |
-| a2 | b2 | c4 | d3 |
+| A   | B   | C   | D   |
+| --- | --- | --- | --- |
+| a1  | b1  | c1  | d1  |
+| a1  | b2  | c2  | d1  |
+| a1  | b1  | c2  | d2  |
+| a2  | b2  | c3  | d3  |
+| a2  | b2  | c4  | d3  |
 
 Every row is unique, so columns A+B+C+D is a super key. However, there are also other ways to uniquely identify a row. All of the available super keys are available below.
 
-* **4 column super keys:** A+B+C+D
-* **3 column super keys:** A+B+C, A+C+D, B+C+D
-* **2 column super keys:** B+C, C+D
-* **1 column super keys:** *none*
+-   **4 column super keys:** A+B+C+D
+-   **3 column super keys:** A+B+C, A+C+D, B+C+D
+-   **2 column super keys:** B+C, C+D
+-   **1 column super keys:** _none_
 
 It is important to know that just because a super key exists, that does not mean it should be a key. For example, you may have a table where `first_name` + `last_name` is unique. However, this would never be considered a key, since we know from the real world that a name has no guarantee of being unique.
 

@@ -1,8 +1,10 @@
 ---
-title:    "Paths in D3 - Part 2"
-layout:   post
-date:     2018-05-08
+title: "Paths in D3 - Part 2"
+layout: post
+date: 2018-05-08
 tags: d3js
+description:
+thumbnail: /assets/images/d3js-logo.svg
 ---
 
 <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>
@@ -14,6 +16,7 @@ Again, let's start with our basic SVG canvas object.
 ```html
 <svg id="canvas" width="400" height="200" style="background-color:lightgray;"></svg>
 ```
+
 <svg id="canvas" width="400" height="200" style="background-color:lightgray;"></svg>
 
 Let's grab our SVG object, and let's capture the width and height values.
@@ -27,7 +30,8 @@ var height = +svg.attr("height");
 Next, we're going to manually add a path by mapping out its coordinates. We will set the `fill` to `none`, so that we only get a line.
 
 ```js
-var path = svg.append("path")
+var path = svg
+    .append("path")
     .attr("fill", "none")
     .attr("stroke", "mediumblue")
     .attr("strokewidth", 4)
@@ -35,6 +39,7 @@ var path = svg.append("path")
 ```
 
 <svg id="canvas1" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas1");
@@ -51,6 +56,7 @@ var path = svg.append("path")
 If we don't explicitly add the `fill: none` attribute, this is what D3 will draw. You'll notice that D3 connects the first and last points and colors in the gaps with the default pen.
 
 <svg id="canvas2" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas2");
@@ -66,7 +72,8 @@ If we don't explicitly add the `fill: none` attribute, this is what D3 will draw
 Often, when producing a graphic, we want to color the area below the line, but not the area above the line. We can do this by adding two more data points. One point would be the bottom-left corner, and the other would be the bottom-right corner.
 
 ```js
-var path = svg.append("path")
+var path = svg
+    .append("path")
     .attr("fill", "lightblue")
     .attr("stroke", "mediumblue")
     .attr("stroke-width", 4)
@@ -74,6 +81,7 @@ var path = svg.append("path")
 ```
 
 <svg id="canvas3" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas3");
@@ -92,13 +100,15 @@ This looks pretty good, and our fill area is light blue as expected, but you'll 
 The solution to this is to have two separate path objects. The first object will be the area; the second will be the line.
 
 ```js
-var area = svg.append("path")
+var area = svg
+    .append("path")
     .attr("fill", "lightblue")
-    .attr("stroke", "none")    
+    .attr("stroke", "none")
     .attr("d", "M0,100L100,50L200,175L300,75L400,150L400,200L0,200");
 ```
 
 <svg id="canvas4" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas4");
@@ -123,7 +133,13 @@ There, that's much better looking. One more thing: we probably won't ever direct
 var lineGenerator = d3.line();
 
 // Create the line data as [x, y] pairs.
-var lineData = [[0, 100], [100, 50], [200, 175], [300, 75], [400, 150]];
+var lineData = [
+    [0, 100],
+    [100, 50],
+    [200, 175],
+    [300, 75],
+    [400, 150]
+];
 
 // Create a copy of the line data and add two data points.
 var areaData = lineData.slice();
@@ -131,14 +147,16 @@ areaData.push([400, 200]);
 areaData.push([0, 200]);
 
 // Draw the area using the datum() function and the lineGenerator.
-var area = svg.append("path")
+var area = svg
+    .append("path")
     .attr("fill", "lightblue")
-    .attr("stroke", "none")    
+    .attr("stroke", "none")
     .datum(areaData)
     .attr("d", lineGenerator);
 
 // Draw the line using the datum() function and the lineGenerator.
-var line = svg.append("path")
+var line = svg
+    .append("path")
     .attr("fill", "none")
     .attr("stroke", "mediumblue")
     .attr("stroke-width", 4)
@@ -147,6 +165,7 @@ var line = svg.append("path")
 ```
 
 <svg id="canvas5" width="400" height="200" style="background-color:lightgray;"></svg>
+
 <script>
 (function () {
     var svg = d3.select("#canvas5");

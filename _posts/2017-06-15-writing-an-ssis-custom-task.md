@@ -1,10 +1,12 @@
 ---
-title:    "Writing an SSIS Custom Task"
-layout:   post
-date:     2017-06-15
+title: "Writing an SSIS Custom Task"
+layout: post
+date: 2017-06-15
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
-Spend enough time with SQL Server Integration Services (SSIS) and you will probably find yourself needing to write a reusable custom task. The existing [Script Task](https://docs.microsoft.com/en-us/sql/integration-services/control-flow/script-task) allows you to write C#, but script tasks are not repeatable from one project or integration to the next. *Copy/paste is not a design pattern.*
+Spend enough time with SQL Server Integration Services (SSIS) and you will probably find yourself needing to write a reusable custom task. The existing [Script Task](https://docs.microsoft.com/en-us/sql/integration-services/control-flow/script-task) allows you to write C#, but script tasks are not repeatable from one project or integration to the next. _Copy/paste is not a design pattern._
 
 Here, we'll show a very simple example. One of the first issues that I ran into with SSIS is creating timestamp-based directories for moving files around. Yes, this is possible out of the box, but it also seems to be quite clumsy.
 
@@ -15,7 +17,7 @@ To do this the traditional way, create two variables in SSIS. We will call them 
 @[User::SanitizedTimestamp] = REPLACE(REPLACE(REPLACE(REPLACE(LEFT(@[User::Timestamp], 23), ":", ""), ".", ""), "-", ""), " ", "")
 ```
 
-Can you see why I think this is so ugly? Do we really need four `REPLACE` functions? *Is supporting a regular expression replace really so difficult?*
+Can you see why I think this is so ugly? Do we really need four `REPLACE` functions? _Is supporting a regular expression replace really so difficult?_
 
 Instead, I would much rather just drop a task onto my workflow.
 

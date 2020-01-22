@@ -1,14 +1,16 @@
 ---
-title:    "Statistics Done Wrong: Understanding Distributions"
-layout:   post
-date:     2016-11-14
+title: "Statistics Done Wrong: Understanding Distributions"
+layout: post
+date: 2016-11-14
+description:
+thumbnail: /assets/images/r-logo.svg
 ---
 
 I recently started reading [Statistics Done Wrong: The Woefully Complete Guide](https://smile.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/) by Alex Reinhart. Right from the get-go, the book is a fascinating look at methodology and statistical illiteracy. Thousands of academic papers are published every year by authors who, while they may be experts in their specific fields, have very little statistical training.
 
-In his first chapter, Reinhart demonstrates this problem when discussing *p*-values. Let's assume you have a true/false test, and a student has 9 correct answers out of 12. Does the student actually know the material, or did the student just guess? The *p*-value can guide us in answering this question.
+In his first chapter, Reinhart demonstrates this problem when discussing _p_-values. Let's assume you have a true/false test, and a student has 9 correct answers out of 12. Does the student actually know the material, or did the student just guess? The _p_-value can guide us in answering this question.
 
-Before continuing, let's define a *p*-value. A *p*-value is the probability of finding the observed result, given that the null hypothesis, \\(H_0 \\), is true. In context of our question, this should make sense. If we have a 12 question true/false test and have students guess at responses, then we expect the average student to score a 50%, or 6 out of 12. However, because of the nature of randomness, if we collect enough data, we would expect some students to get 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, or 12 questions correct as well.
+Before continuing, let's define a _p_-value. A _p_-value is the probability of finding the observed result, given that the null hypothesis, \\(H_0 \\), is true. In context of our question, this should make sense. If we have a 12 question true/false test and have students guess at responses, then we expect the average student to score a 50%, or 6 out of 12. However, because of the nature of randomness, if we collect enough data, we would expect some students to get 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, or 12 questions correct as well.
 
 This ought to be our first interesting conclusion. Statistics tell us a great deal about populations, but they tell us very little about individuals. That said, predictive modeling is a subfield of statistics, where you do try to make conclusive statements about individuals. That, however, is beyond the scope of this post.
 
@@ -30,10 +32,10 @@ In R, we can get this value much more easily with the `dbinom` function.
 
 If we gave this test to 100 students, we would expect about 5 of them to score 9 out of 12.
 
-To compute this *p*-value, to determine if this score is really different from chance, we need simply compute the upper tail cumulative density of the binomial distribution.
+To compute this _p_-value, to determine if this score is really different from chance, we need simply compute the upper tail cumulative density of the binomial distribution.
 
 \begin{align}
-P(X \ge k) &= \sum_{i=k}^{12} \binom{12}{i}\left(0.5\right)^{i}\left(0.5\right)^{12-i}
+P(X \ge k) &= \sum\_{i=k}^{12} \binom{12}{i}\left(0.5\right)^{i}\left(0.5\right)^{12-i}
 \end{align}
 
 Computing this high tail distribution is done with the `pbinom` function. It is a little more complicated to express, as it is an infinite series beta function, but the idea is the same. We add up all of the values to the right of the blue line.
@@ -43,7 +45,7 @@ Computing this high tail distribution is done with the `pbinom` function. It is 
 ## [1] 0.07299805
 ```
 
-This is our *p*-value. Graphically, this is the cumulative values of the dots to the right of the blue line in the following image.
+This is our _p_-value. Graphically, this is the cumulative values of the dots to the right of the blue line in the following image.
 
 ![PDF Plot](/assets/images/pdf_plot_01.png)
 

@@ -1,8 +1,10 @@
 ---
-title:    "SVG Multiline Text with tspan"
-layout:   post
-date:     2018-06-05
+title: "SVG Multiline Text with tspan"
+layout: post
+date: 2018-06-05
 tags: d3js
+description:
+thumbnail: /assets/images/svg-logo.svg
 ---
 
 Like anything else with SVG, there is a lot you can do with [text](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text). In this blog post, I will show you how to handle line breaks.
@@ -10,11 +12,13 @@ Like anything else with SVG, there is a lot you can do with [text](https://devel
 Suppose we have a block of text that looks like this.
 
 ```json
-[{
-    "title": "Sunset Park",
-    "author": "Patrick Phillips",
-    "text": "The Chinese truck driver\nthrows the rope\nlike a lasso, with a practiced flick"
-}]
+[
+    {
+        "title": "Sunset Park",
+        "author": "Patrick Phillips",
+        "text": "The Chinese truck driver\nthrows the rope\nlike a lasso, with a practiced flick"
+    }
+]
 ```
 
 If we write this text, as-is, with D3, the newlines (`\n`) will be ignored. The easiest solution is to break the lines into independent [tspan](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/tspan) elements.
@@ -41,7 +45,8 @@ Accomplishing this with [D3.js](https://d3js.org/) requires us to use the `data`
 
 ```js
 // Create a new <text> element for every data element.
-let text = canvas.selectAll("text")
+let text = canvas
+    .selectAll("text")
     .data(data)
     .enter()
     .append("text")

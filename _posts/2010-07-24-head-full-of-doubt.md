@@ -3,6 +3,7 @@ layout: post
 title: "Head Full of Doubt/Road Full of Promise"
 date: 2010-07-24
 tags: quotes
+thumbnail: /assets/images/i-and-love-and-you.svg
 ---
 
 **The Avett Brothers**

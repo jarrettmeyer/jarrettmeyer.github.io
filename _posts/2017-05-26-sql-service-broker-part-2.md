@@ -1,7 +1,9 @@
 ---
-title:   "SQL Service Broker Part 2: Working with .NET"
-layout:  post
-date:    2017-05-26
+title: "SQL Service Broker Part 2: Working with .NET"
+layout: post
+date: 2017-05-26
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 This is a continuation of a series on [SQL Service Broker]().
@@ -80,7 +82,7 @@ public static void SendMessage(string text)
 The `SendMessage` function invokes the stored procedure that we have already written in our database. If we query the queue, we can see the message waiting for delivery.
 
 | conversation_handle | message_type_name      | message_body                  |
-| :------------------ | :----------------------| :---------------------------- |
+| :------------------ | :--------------------- | :---------------------------- |
 | 144E01D5-9441-E7... | //sbdemo/Hello/Message | This is my message from .NET! |
 
 Receiving the message is very much the same process, but we have a little bit of extra work to do.

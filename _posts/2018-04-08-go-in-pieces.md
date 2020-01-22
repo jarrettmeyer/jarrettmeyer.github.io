@@ -3,6 +3,8 @@ title: "Go in Pieces"
 layout: post
 date: 2018-04-08
 tags: quotes
+description: A benediction by Padraig O Tuama
+thumbnail: /assets/images/quotes.svg
 ---
 
 ## Benediction
@@ -23,4 +25,4 @@ tags: quotes
 > So, the task is ended go in pieces
 > to see and feel your world.
 
-By Padraig O Tuama, from *The God Delusion*, 2007.
+By Padraig O Tuama, from _The God Delusion_, 2007.

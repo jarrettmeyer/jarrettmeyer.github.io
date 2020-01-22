@@ -1,7 +1,9 @@
 ---
-layout:     post
-title:      "Anemic Domain Models: Blame Complexity"
-date:       2013-12-03
+layout: post
+title: "Anemic Domain Models: Blame Complexity"
+date: 2013-12-03
+description:
+thumbnail: /assets/images/model-airplane.png
 ---
 
 This is a reply to Steve Wilkes' post on [I See Anemic Domain Models](http://geekswithblogs.net/mrsteve/archive/2013/11/30/anemicdomainmodel-anti-pattern-definition-description-problems-tips.aspx). I was going to write this as a reply, but then it got way too long.
@@ -36,7 +38,7 @@ The above it truly some beautiful code. I wish everything I worked on looked lik
 
 To use the above method, we will probably do something like this.
 
-``` csharp
+```csharp
 using (var session = sessionFactory.OpenSession())
 {
   using (var txn = session.BeginTransaction())
@@ -54,7 +56,7 @@ Wow! That was so easy!
 
 When an object is simple and well-defined, this is great. So let's make it a bit more complicated. What if instead of a simple `IsCompleted` flag, we now have user-defined statuses? Not only do we want to trak the current status of a task, we want to maintain a status history.
 
-``` sql
+```sql
 create table task_statuses (
   task_status_id int not null identity(1, 1),
   description varchar(256) not null,
@@ -68,7 +70,7 @@ create table task_statuses (
 
 We should also check that we're not setting a status twice. There's nothing completely awful if this happens, so there's no need for an exception, probably a race condition in the UI or something like that. However, we do want to know about it.
 
-``` csharp
+```csharp
 public class Task
 {
   public virtual TaskStatus CurrentStatus { get; set; }
@@ -100,7 +102,7 @@ public class Task
 
 While we're adding complexity, let's introduce a task workflow. You're only allowed to pass from certain statuses to other statuses given conditions stored in a database table. The simple version of this table would look something like the following.
 
-``` sql
+```sql
 create table status_workflows (
   status_workflow_id int not null identity(1, 1),
   from_status_id int not null,
@@ -111,7 +113,7 @@ create table status_workflows (
 
 Our method signature would need to change to include these workflows. The
 
-``` csharp
+```csharp
 public virtual void SetStatus(Status newStatus, IEnumerable<StatusWorkflow> statusWorkflows)
 {
   bool isAllowedWorkflow = statusWorkflows
@@ -129,7 +131,7 @@ public virtual void SetStatus(Status newStatus, IEnumerable<StatusWorkflow> stat
 
 This method is public, so we should probably take care of some null checks. FxCop is going to warn about that.
 
-``` csharp
+```csharp
 public virtual void SetStatus(Status newStatus, IEnumerable<StatusWorkflow> statusWorkflows)
 {
   if (newStatus == null) throw new ArgumentNullException("newStatus");
@@ -141,7 +143,7 @@ public virtual void SetStatus(Status newStatus, IEnumerable<StatusWorkflow> stat
 
 What if we also need to trigger emails? We know better than to create a new `SmtpClient` instance in our class because that's not going to be unit-testable. That means that we need to create a wrapper class for `SmtpClient` and pass in the adapter via method injection.
 
-``` csharp
+```csharp
 public virtual void SetStatus(
     Status newStatus,
     IEnumerable<StatusWorkflow> statusWorkfows,
@@ -164,7 +166,7 @@ public virtual void SetStatus(
 
 Oh, we also have burndown chart regeneration. It turns out, I need to know a lot more info from the database to regenerate that burndown chart. Now I'm passing around my database session.
 
-``` csharp
+```csharp
 public virtual void SetStatus(
     Status newStatus,
     IEnumerable<StatusWorkflow> statusWorkfows,
@@ -182,7 +184,7 @@ As you see, as our application complexity grows, our method continues to add mor
 
 Screw it. This is getting way too complicated for a domain model. Let's just go with what we learned from Eric Evans in [Domain Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/) instead. We'll just use the double dispatch pattern.
 
-``` csharp
+```csharp
 public virtual void SetStatus(Status newStatus, IStatusSetter statusSetter)
 {
   statusSetter.SetNewStatus(this, newStatus);
@@ -193,7 +195,7 @@ Wow! We have finally cleaned up that code! It looks a lot better now. And I didn
 
 But now what's the point of the `SetStatus()` method? All the work is now being done by our `IStatusSetter` logical service. Let's look at the next two pieces of code that do the exact same thing.
 
-``` csharp
+```csharp
 // Version 1:
 IStatusSetter statusSetter = ServiceLocator.Instance.GetService<IStatusSetter>();
 ISession session = ServiceLocator.Instance.GetService<ISession>();

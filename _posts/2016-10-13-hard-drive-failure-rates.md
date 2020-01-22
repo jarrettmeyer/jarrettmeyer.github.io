@@ -1,8 +1,9 @@
 ---
-title:  Hard Drive Failure Rates
+title: Hard Drive Failure Rates
 layout: post
-date:   2016-10-13
+date: 2016-10-13
 tags: r statistics
+thumbnail: /assets/images/r-logo.svg
 ---
 
 Someone on [Reddit asked about storing 200TB of data](https://www.reddit.com/r/datascience/comments/574niq/where_can_i_cheaply_get_around_200_tb_of_storage/) as cheaply as possible. One response suggested to store the data locally and then selling the drives when the project was completed. I brought up disaster recovery. Was my question justified?
@@ -26,7 +27,7 @@ log\left(1 - AFR\right) &= \dfrac{ -8760 }{ MTBF } \\\
 MTBF &= \dfrac{ -8760 }{ log\left(1 - AFR\right) }
 \end{align}
 
-Substituting 0.0481 for AFR, we get a MTBF of approximately 178k hours. This is quite a bit worse than the standard of 300,000 hours. *Aside: This seems really high to me. I've been building my own computers since the 90s. I've had maybe 3 or 4 drive failures out of dozens of drives in my life. Having not collected my own data, let's go with it.*
+Substituting 0.0481 for AFR, we get a MTBF of approximately 178k hours. This is quite a bit worse than the standard of 300,000 hours. _Aside: This seems really high to me. I've been building my own computers since the 90s. I've had maybe 3 or 4 drive failures out of dozens of drives in my life. Having not collected my own data, let's go with it._
 
 The author states that he needs the drives for 3 months, and we assume that this is a continuous operation. That is 2160 hours. Let's also assume that the author purchases 40 5TB hard drives.
 
@@ -34,9 +35,9 @@ Because we don't know anything else about the distribution of hard drive failure
 
 Assumptions:
 
-* Hard drive MTBF is approximately 178k hours.
-* We are using 40 5TB drives.
-* We assume drive failure follows a binomial distribution.
+-   Hard drive MTBF is approximately 178k hours.
+-   We are using 40 5TB drives.
+-   We assume drive failure follows a binomial distribution.
 
 The probability that a single drive experiences 0 hours of failure in 2160 hours of operation is given by the following equation.
 

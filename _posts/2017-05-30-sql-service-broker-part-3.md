@@ -1,11 +1,13 @@
 ---
-title:   "SQL Service Broker Part 3: Activation"
-layout:  post
-date:    2017-05-30
+title: "SQL Service Broker Part 3: Activation"
+layout: post
+date: 2017-05-30
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
-* [Part 1: Sending and Receiving Messages](/2017/05/25/sql-service-broker-part-1)
-* [Part 2: Working with .NET](/2017/05/26/sql-service-broker-part-2)
+-   [Part 1: Sending and Receiving Messages](/2017/05/25/sql-service-broker-part-1)
+-   [Part 2: Working with .NET](/2017/05/26/sql-service-broker-part-2)
 
 ## Service Activation
 
@@ -18,7 +20,7 @@ while (!Done)
 }
 ```
 
-While this certainly works, we know this isn't the best way to write an application. We can improve this with [Service Broker Activation](https://technet.microsoft.com/en-us/library/ms171617(v=sql.105).aspx). Instead of a loop constantly pinging, our queue can kick off operations when new messages are received.
+While this certainly works, we know this isn't the best way to write an application. We can improve this with [Service Broker Activation](<https://technet.microsoft.com/en-us/library/ms171617(v=sql.105).aspx>). Instead of a loop constantly pinging, our queue can kick off operations when new messages are received.
 
 ```sql
 -- (1) Create a table to store our messages.
@@ -67,7 +69,7 @@ ALTER QUEUE [dbo].[Hello_Message_Queue]
   )
 ```
 
-Let's review what we've done. We (1) created a table to archive our messages. *Yes, this is silly, but it gets the point across of what we're trying to accomplish.* We (2) created a stored procedure to do something with the queue message. Finally, we (3) updated our queue to use activation. When messages are received, the `[OnHelloMessageReceived]` stored procedure is going to be invoked.
+Let's review what we've done. We (1) created a table to archive our messages. _Yes, this is silly, but it gets the point across of what we're trying to accomplish._ We (2) created a stored procedure to do something with the queue message. Finally, we (3) updated our queue to use activation. When messages are received, the `[OnHelloMessageReceived]` stored procedure is going to be invoked.
 
 Now that we have this feature available, we have lots of options as developers.
 

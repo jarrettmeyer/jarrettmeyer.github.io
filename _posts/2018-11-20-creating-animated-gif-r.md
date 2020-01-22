@@ -1,16 +1,18 @@
 ---
-title:  "Creating an Animated GIF with R"
+title: "Creating an Animated GIF with R"
 layout: "post"
-date:   2018-11-20
-tags:   r
+date: 2018-11-20
+tags: r
+description: Using animation, ggplot2, and tweenr to create gifs
+thumbnail: /assets/images/r-logo.svg
 ---
 
 One of my latest tasks was to create a smooth transition between data sets, instead of showing line graphs or having multiple graphs side-by-side. Fortunately, existing libraries in R make this quite easy to accomplish. Specifically, I will make extensive use of [ggplot]() and [tweenr]().
 
-Here's the data we will be working with. All numbers are in millions US$.
+Here's the data we will be working with. All numbers are in millions US\$.
 
 | Year | Source                  | Cost   |
-|------|-------------------------|--------|
+| ---- | ----------------------- | ------ |
 | 2007 | Inpatient Care          | 65830  |
 | 2007 | Outpatient Care         | 22742  |
 | 2007 | Medication and Supplies | 27684  |
@@ -46,7 +48,7 @@ data = read_csv(input_file,
                                  Cost = col_number()))
 
 # Explicitly set the ordering of the factors for cost source.
-source_levels = c("Inpatient Care", 
+source_levels = c("Inpatient Care",
                   "Outpatient Care",
                   "Medication and Supplies",
                   "Reduced Productivity",
@@ -97,26 +99,26 @@ saveGIF({
     for (frame in frames) {
         # Get the data specific to this frame.
         frame_data = tween_data %>% filter(.frame == frame)
-        
+
         # Compute the title of the graph.
         year = frame_data$Year[[1]]
         sum_cost = data %>% filter(Year == year) %>% group_by(Year) %>% summarise(Sum = sum(Cost))
         sum_cost_fmt = format(sum_cost$Sum[[1]], big.mark = ",")
         title = paste("Cost of Diabetes", year, "Total US$", sum_cost_fmt, "million")
         cat(title, "\n")
-        
+
         p = ggplot(frame_data, aes(Source, Cost, fill = Source)) +
-            geom_bar(stat = "identity") + 
+            geom_bar(stat = "identity") +
             scale_y_continuous(breaks = y_breaks,
                                expand = c(0, 0),
                                labels = y_labels,
                                limits = c(0, max_cost_limit)) +
             scale_fill_brewer(palette = color_palette, guide = FALSE) +
             scale_x_discrete(limits = x_limits) +
-            ggtitle(title) + 
-            xlab("") + 
+            ggtitle(title) +
+            xlab("") +
             ylab("Cost (millions US$)") +
-            coord_flip() + 
+            coord_flip() +
             theme_light() +
             theme(plot.margin = unit(c(0.2, 1, 0.2, 0.2), "cm"))
         print(p)
@@ -134,6 +136,6 @@ Hopefully, you can see that transitioning graphs gives us a different way to loo
 
 ### References
 
-* [Economic Costs of Diabetes in the U.S. in 2007](http://care.diabetesjournals.org/content/31/3/596.long)
-* [Economic Costs of Diabetes in the U.S. in 2012](http://care.diabetesjournals.org/content/36/4/1033)
-* [Economic Costs of Diabetes in the U.S. in 2017](http://care.diabetesjournals.org/content/early/2018/03/20/dci18-0007)
+-   [Economic Costs of Diabetes in the U.S. in 2007](http://care.diabetesjournals.org/content/31/3/596.long)
+-   [Economic Costs of Diabetes in the U.S. in 2012](http://care.diabetesjournals.org/content/36/4/1033)
+-   [Economic Costs of Diabetes in the U.S. in 2017](http://care.diabetesjournals.org/content/early/2018/03/20/dci18-0007)

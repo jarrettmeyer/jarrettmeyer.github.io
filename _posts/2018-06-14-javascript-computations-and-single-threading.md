@@ -1,7 +1,9 @@
 ---
-title:      "JavaScript, Computations, and Single Threading"
-layout:     post
-date:       2018-06-14
+title: "JavaScript, Computations, and Single Threading"
+layout: post
+date: 2018-06-14
+description:
+thumbnail: /assets/images/javascript-logo.svg
 ---
 
 Most of the time, JavaScript and the browser DOM act exactly as you would expect. There are no surprises. Sometimes, though, when you are surprised, it is painful.
@@ -16,7 +18,7 @@ Here, we have a button.
 
 <p id="duration1">-----</p>
 
-What *should* happen when we click this button? 
+What _should_ happen when we click this button?
 
 1. Show the block.
 2. Do some computational work.
@@ -25,19 +27,19 @@ What *should* happen when we click this button?
 Try it and see what happens. Here's the code for this button.
 
 ```js
-$("#clicker1").on("click", function () {
+$("#clicker1").on("click", function() {
     $("#block1").css("opacity", 1);
     let maxDuration = 2000;
     let startTime = Date.now();
     let endTime = Date.now();
     let array = [];
-    while ((!endTime) || (endTime - startTime < maxDuration)) {
+    while (!endTime || endTime - startTime < maxDuration) {
         let x = Math.random() * 100;
         let s = x.toFixed(3);
         array.push(s);
         endTime = Date.now();
     }
-    let duration = "Done in " + ((endTime - startTime) / 1000).toFixed(3) + " seconds";       
+    let duration = "Done in " + ((endTime - startTime) / 1000).toFixed(3) + " seconds";
     $("#duration1").text(duration);
     $("#block1").css("opacity", 0);
 });
@@ -55,20 +57,20 @@ Let's try again, this time using the `setTimeout` function to give the call stac
 What did we do differently?
 
 ```js
-$("#clicker2").on("click", function () {
+$("#clicker2").on("click", function() {
     $("#block2").css("opacity", 1);
-    setTimeout(function () {
+    setTimeout(function() {
         let maxDuration = 2000;
         let startTime = Date.now();
         let endTime = null;
         let array = [];
-        while ((!endTime) || (endTime - startTime < maxDuration)) {
+        while (!endTime || endTime - startTime < maxDuration) {
             let x = Math.random() * 100;
             let s = x.toFixed(3);
             array.push(s);
             endTime = Date.now();
         }
-        let duration = "Done in " + ((endTime - startTime) / 1000).toFixed(3) + " seconds";       
+        let duration = "Done in " + ((endTime - startTime) / 1000).toFixed(3) + " seconds";
         $("#duration2").text(duration);
         $("#block2").css("opacity", 0);
     }, 0);

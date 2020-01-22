@@ -1,8 +1,10 @@
 ---
-layout:     post
-title:      "Understanding SVG Stroke and Fill"
-date:       2019-04-17
-tag:        d3js
+layout: post
+title: "Understanding SVG Stroke and Fill"
+date: 2019-04-17
+tag: d3js
+description:
+thumbnail: /assets/images/svg-logo.svg
 ---
 
 This is quick little demo to show you how stroke and fill work with SVG objects. Let's start by drawing two identical squares.

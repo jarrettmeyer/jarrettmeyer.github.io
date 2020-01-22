@@ -1,7 +1,9 @@
 ---
-layout:   post
-title:    "The Observer Pattern in JavaScript"
-date:     2016-04-18
+layout: post
+title: "The Observer Pattern in JavaScript"
+date: 2016-04-18
+description:
+thumbnail: /assets/images/javascript-logo.svg
 ---
 
 The [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) is a simple way to allow communication between elements without having to rely on events, callbacks, or polling. The best thing about the observer pattern is that the thing being observed does not have to worry about what is observing it or how many observers it has.
@@ -10,11 +12,11 @@ Let's start with a simple `Counter` example. It will hold the current count and 
 
 ```js
 function Counter() {
-  this.count = 0;
+    this.count = 0;
 }
 
-Counter.prototype.increment = function (amount) {
-  this.count += amount || 1;
+Counter.prototype.increment = function(amount) {
+    this.count += amount || 1;
 };
 ```
 
@@ -24,23 +26,23 @@ This is where observers come in. Let's turn our `Counter` into an observable obj
 
 ```js
 function Counter() {
-  this.count = 0;
-  this.observers = [];
+    this.count = 0;
+    this.observers = [];
 }
 
-Counter.prototype.increment = function (amount) {
-  this.count += amount || 1;
-  this.notify({ count: this.count });
+Counter.prototype.increment = function(amount) {
+    this.count += amount || 1;
+    this.notify({ count: this.count });
 };
 
-Counter.prototype.addObserver = function (observer) {
-  this.observers.push(observer);
+Counter.prototype.addObserver = function(observer) {
+    this.observers.push(observer);
 };
 
-Counter.prototype.notify = function (data) {
-  this.observers.forEach(function (observer) {
-    observer.call(null, data);  
-  });
+Counter.prototype.notify = function(data) {
+    this.observers.forEach(function(observer) {
+        observer.call(null, data);
+    });
 };
 ```
 
@@ -51,15 +53,15 @@ How do we make use of this observable `Counter`?
 var counter = new Counter();
 
 // Add an observer to the instance.
-counter.addObserver(function () {
-  $("#myOutput").html(counter.count);
+counter.addObserver(function() {
+    $("#myOutput").html(counter.count);
 });
 
 // Do something in the application that would call increment.
 // Increment, in turn, will call notify, which will call all
 // observers.
-$("#myButton").on("click", function () {
-  counter.increment();
+$("#myButton").on("click", function() {
+    counter.increment();
 });
 ```
 
@@ -75,31 +77,31 @@ Let's start with a `CurrentUser`. Lots of completely separate parts of the appli
 
 ```js
 function CurrentUser() {
-  this.username = null;
-  this.isAuthenticated = false;
-  this.observers = [];
+    this.username = null;
+    this.isAuthenticated = false;
+    this.observers = [];
 }
 
-CurrentUser.prototype.login = function (data) {
-  this.username = data.username;
-  this.isAuthenticated = true;
-  this.notify(this);
+CurrentUser.prototype.login = function(data) {
+    this.username = data.username;
+    this.isAuthenticated = true;
+    this.notify(this);
 };
 
-CurrentUser.prototype.logout = function () {
-  this.username = null;
-  this.isAuthenticated = false;
-  this.notify(this);
+CurrentUser.prototype.logout = function() {
+    this.username = null;
+    this.isAuthenticated = false;
+    this.notify(this);
 };
 
-CurrentUser.prototype.notify = function (data) {
-  this.observers.forEach(function (observer) {
-    observer.call(null, data);
-  });
+CurrentUser.prototype.notify = function(data) {
+    this.observers.forEach(function(observer) {
+        observer.call(null, data);
+    });
 };
 
-CurrentUser.prototype.addObserver = function (observer) {
-  this.observers.push(observer);
+CurrentUser.prototype.addObserver = function(observer) {
+    this.observers.push(observer);
 };
 ```
 
@@ -107,19 +109,19 @@ Let's start with something simple, like navigation. We will create a navigation 
 
 ```js
 function NavigationController(currentUser) {
-  this.currentUser = currentUser;
-  this.username = null;
-  this.isAuthenticated = false;
-  this.currentUser.addObserver(this.onCurrentUserChanged.bind(this));
+    this.currentUser = currentUser;
+    this.username = null;
+    this.isAuthenticated = false;
+    this.currentUser.addObserver(this.onCurrentUserChanged.bind(this));
 }
 
-NavigationController.prototype.logout = function () {
-  this.currentUser.logout();
+NavigationController.prototype.logout = function() {
+    this.currentUser.logout();
 };
 
-NavigationController.prototype.onCurrentUserChanged = function () {
-  this.username = this.currentUser.username;
-  this.isAuthenticated = this.currentUser.isAuthenticated;
+NavigationController.prototype.onCurrentUserChanged = function() {
+    this.username = this.currentUser.username;
+    this.isAuthenticated = this.currentUser.isAuthenticated;
 };
 ```
 
@@ -129,22 +131,22 @@ Let's add a way for users to login. Our `LoginController` will control a simple 
 
 ```js
 function LoginController(currentUser) {
-  this.currentUser = currentUser;
-  this.showForm = true;
-  this.username = "";
-  this.currentUser.addObserver(this.onCurrentUserChanged.bind(this));
+    this.currentUser = currentUser;
+    this.showForm = true;
+    this.username = "";
+    this.currentUser.addObserver(this.onCurrentUserChanged.bind(this));
 }
 
-LoginController.prototype.login = function () {
-  var username = this.username;
-  if (username) {
-    this.username = "";
-    this.currentUser.login({ username: username });
-  }
+LoginController.prototype.login = function() {
+    var username = this.username;
+    if (username) {
+        this.username = "";
+        this.currentUser.login({ username: username });
+    }
 };
 
-LoginController.prototype.onCurrentUserChanged = function () {
-  this.showForm = !this.currentUser.isAuthenticated;
+LoginController.prototype.onCurrentUserChanged = function() {
+    this.showForm = !this.currentUser.isAuthenticated;
 };
 ```
 
@@ -152,21 +154,21 @@ In [the demo project](http://output.jsbin.com/nogices), you'll notice that all o
 
 ### What about promises?
 
-Another benefit of this solution is that it is "promise-proof". In Angular, there are times when things don't update when they should because you are waiting on promises to resolve. Suppose our `login()` function is a service. *It probably will be, since we can most-likely expect and API call.*
+Another benefit of this solution is that it is "promise-proof". In Angular, there are times when things don't update when they should because you are waiting on promises to resolve. Suppose our `login()` function is a service. _It probably will be, since we can most-likely expect and API call._
 
 If you rely on events to propagate information, you're probably also going to have to have to call `$apply()` to force updates. While there is probably a good use for `$apply()`, I have yet to find a situation where `$apply()` couldn't be removed by having more discipline in your software.
 
 ```js
-LoginController.prototype.login = function () {
-  var _this = this;
-  var username = this.username;
-  if (username) {
-    _this.username = "";
-    return this.$q(function (resolve) {
-      _this.currentUser.login({ username: username });
-      return resolve(_this.currentUser);
-    });
-  }
+LoginController.prototype.login = function() {
+    var _this = this;
+    var username = this.username;
+    if (username) {
+        _this.username = "";
+        return this.$q(function(resolve) {
+            _this.currentUser.login({ username: username });
+            return resolve(_this.currentUser);
+        });
+    }
 };
 ```
 

@@ -1,7 +1,9 @@
 ---
-title:    "Base 64 Encoding and Decoding with Windows PowerShell"
-date:     2017-07-14
-layout:   post
+title: "Base 64 Encoding and Decoding with Windows PowerShell"
+date: 2017-07-14
+layout: post
+description:
+thumbnail: /assets/images/powershell-logo.png
 ---
 
 Windows PowerShell gives you full access to the .NET framework. This allows us to do anything that .NET can do. This allows us to use the encoding tools built into .NET to base64 encode a string.

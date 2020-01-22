@@ -1,8 +1,10 @@
 ---
-title:  SVG Morphing Elements
+title: SVG Morphing Elements
 layout: post
-date:   2019-08-19
-tags:   d3js javascript
+date: 2019-08-19
+tags: d3js javascript
+description: Use SVG paths to transform between shapes
+thumbnail: /assets/images/svg-logo.svg
 ---
 
 On a recent project, I was asked to transform a traditional graph to something with a little more visual appeal. I would like to share how I accomplished that, and what the solution looks like.
@@ -34,13 +36,10 @@ First, let's show what the circle looks like. The one trick that we have here is
 ```js
 function toCircle(cx, cy, r, n) {
     let circle = [];
-    let i0 = -3/8 * n;
-    let i1 = 5/8 * n;
+    let i0 = (-3 / 8) * n;
+    let i1 = (5 / 8) * n;
     for (let i = i0; i < i1; i++) {
-        circle.push([
-            cx + r * Math.cos(i/n * 2 * Math.PI),
-            cy + r * Math.sin(i/n * 2 * Math.PI)
-        ]);
+        circle.push([cx + r * Math.cos((i / n) * 2 * Math.PI), cy + r * Math.sin((i / n) * 2 * Math.PI)]);
     }
     return circle;
 }
@@ -52,25 +51,22 @@ Next, we need to define our rectangle. It is much more straightforward than the 
 function toRectangle(left, top, width, height, n) {
     let rect = [];
     let n4 = n / 4;
-    let dx = dy = 0;
+    let dx = (dy = 0);
     let x = left;
     let y = top;
     for (let s = 0; s < 4; s++) {
         if (s === 0) {
             dx = width / n4;
             dy = 0;
-        }
-        else if (s === 1) {
+        } else if (s === 1) {
             dx = 0;
             dy = height / n4;
-        }
-        else if (s === 2) {
+        } else if (s === 2) {
             dx = -width / n4;
             dy = 0;
-        }
-        else {
+        } else {
             dx = 0;
-            dy = -1 * height / n4;
+            dy = (-1 * height) / n4;
         }
         for (let i = 0; i < n4; i++) {
             rect.push([x, y]);

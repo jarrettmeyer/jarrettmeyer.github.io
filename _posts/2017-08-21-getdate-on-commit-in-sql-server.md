@@ -1,18 +1,20 @@
 ---
-title:    "GETDATE() on Commit in SQL Server"
-layout:   post
-date:     2017-08-21
+title: "GETDATE() on Commit in SQL Server"
+layout: post
+date: 2017-08-21
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 Here's a fun little problem that a coworker and I ran into last week. We're creating
-a database that isn't quite a data vault, but will have some *data-vault-like* properties.
+a database that isn't quite a data vault, but will have some _data-vault-like_ properties.
 Most of the data is coming from third-party services. Data that comes from third-parties
 may not be edited; it is what is. We also wanted to be able to track data that gets
 loaded somewhat together.
 
 Most of our data tables have an `InsertedDate` column. We want everything that gets
-loaded together to have the same value in this column. Our question was this: **If 
-you wrap all of your operations in a transaction, will this set the timestamp at 
+loaded together to have the same value in this column. Our question was this: **If
+you wrap all of your operations in a transaction, will this set the timestamp at
 commit?**
 
 Here's our simple test.

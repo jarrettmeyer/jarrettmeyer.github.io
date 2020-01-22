@@ -1,8 +1,10 @@
 ---
-title:  "Publishing to shinyapps.io with Github and Travis CI"
+title: "Publishing to shinyapps.io with Github and Travis CI"
 layout: post
-date:   2019-04-25
-tags:   git r
+date: 2019-04-25
+tags: git r
+description: Trying to make Github, Travis CI, and Shiny all play nicely together
+thumbnail: /assets/images/travis-ci-logo.svg
 ---
 
 I had a fun experience these past few days figuring out how to publish to [shinyapps.io](https://www.shinyapps.io/) directly from a [Github](https://github.com) push. In this post, I leverage [Travis CI](https://travis-ci.org/) to handle the automated build and deployment process.
@@ -40,48 +42,48 @@ We want Travis to cache its packages. This will make later builds much faster.
 
 ```yml
 cache:
-  packages: true
+    packages: true
 ```
 
 We need to install a few extra packages from `apt`. If you have necessary `apt` packages, put those here.
 
 ```yml
 apt_packages:
-  - libgdal-dev
-  - libudunits2-dev
+    - libgdal-dev
+    - libudunits2-dev
 ```
 
 After `apt` is done installing, it will pull your code from Github. I don't want the `git` command to use the `depth` flag.
 
 ```yml
 git:
-  depth: false
+    depth: false
 ```
 
 What R packages need to be installed?
 
 ```yml
 r_packages:
-  - gapminder
-  - ggthemes
-  - maps
-  - RColorBrewer
-  - rgeos
-  - rnaturalearth
-  - rnaturalearthdata
-  - rsconnect
-  - shiny
-  - shinyAce
-  - survminer
-  - survival
-  - tidyverse
+    - gapminder
+    - ggthemes
+    - maps
+    - RColorBrewer
+    - rgeos
+    - rnaturalearth
+    - rnaturalearthdata
+    - rsconnect
+    - shiny
+    - shinyAce
+    - survminer
+    - survival
+    - tidyverse
 ```
 
 What script do you want to run? I will include the content of this `deploy.R` in the next section.
 
 ```yml
 script:
-  - R -f deploy.R
+    - R -f deploy.R
 ```
 
 ### Writing Your Deployment Script
@@ -124,7 +126,7 @@ Now, go forth and deploy all the things! If you have questions, please let me kn
 
 ### Resources
 
-* [Github: jarrettmeyer/ggplotly_demos](https://github.com/jarrettmeyer/ggplotly_demos)
-* [Travis CI: jarrettmeyer/ggplotly_demos](https://travis-ci.org/jarrettmeyer/ggplotly_demos)
-* [Travis CI R Community](https://travis-ci.community/c/languages/r)
-* [Travis CI R Language](https://docs.travis-ci.com/user/languages/r/)
+-   [Github: jarrettmeyer/ggplotly_demos](https://github.com/jarrettmeyer/ggplotly_demos)
+-   [Travis CI: jarrettmeyer/ggplotly_demos](https://travis-ci.org/jarrettmeyer/ggplotly_demos)
+-   [Travis CI R Community](https://travis-ci.community/c/languages/r)
+-   [Travis CI R Language](https://docs.travis-ci.com/user/languages/r/)

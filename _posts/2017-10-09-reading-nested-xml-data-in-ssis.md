@@ -1,7 +1,9 @@
 ---
-title:  "Reading Nested XML Data in SSIS"
+title: "Reading Nested XML Data in SSIS"
 layout: post
-date:   2017-10-09
+date: 2017-10-09
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 SSIS is really good at reading in XML data, breaking it apart, and building out your rows. Let's look at an example of how this all works together. First, here is our XML document.
@@ -52,7 +54,7 @@ create table [dbo].[Address] (
 
 ## Step 1: Creating a new batch
 
-*This is a personal preference, so you can skip this step if you'd like.*
+_This is a personal preference, so you can skip this step if you'd like._
 
 Start by creating a `Batch` table. This will store the timestamp and filename for each time we run our SSIS job. Yes, this is overkill for a demo, but it is a good idea to teach good SSIS habits, too. We will also store the `BatchId` on each record.
 
@@ -72,15 +74,15 @@ create procedure [dbo].[InsertBatch]
 as
 begin
   begin transaction;
-  
+
   insert into dbo.Batch (
     StartTime, Filename
   ) values (
     @startTime, @filename
   );
-  
+
   select top (1) BatchId, StartTime, Filename from dbo.Batch where BatchId = scope_identity();
-  
+
   commit transaction;
 end
 
@@ -118,7 +120,7 @@ begin
 end;
 ```
 
-Call this procedure with an **Execute SQL** task. This time, there are no parameters or results. 
+Call this procedure with an **Execute SQL** task. This time, there are no parameters or results.
 
 ![Execute SQL (General)](/assets/images/reading-nested-xml-data-in-ssis/step-2-execute-sql-general.PNG)
 

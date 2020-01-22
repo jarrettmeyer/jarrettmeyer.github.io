@@ -1,14 +1,16 @@
 ---
-title:   "SQL Service Broker Part 4: Request/Reply"
-layout:  post
-date:    2017-06-05
+title: "SQL Service Broker Part 4: Request/Reply"
+layout: post
+date: 2017-06-05
+description:
+thumbnail: /assets/images/sql-server-logo.png
 ---
 
 ## Previous Posts
 
-* [Part 1: Sending and Receiving Messages](/2017/05/25/sql-service-broker-part-1)
-* [Part 2: Working with .NET](/2017/05/26/sql-service-broker-part-2)
-* [Part 3: Activation](/2017/05/30/sql-service-broker-part-3)
+-   [Part 1: Sending and Receiving Messages](/2017/05/25/sql-service-broker-part-1)
+-   [Part 2: Working with .NET](/2017/05/26/sql-service-broker-part-2)
+-   [Part 3: Activation](/2017/05/30/sql-service-broker-part-3)
 
 So far we have covered sending and receiving messages, integrating messaging with .NET, and activation. In this post, we will show how to write Request/Reply operations.
 

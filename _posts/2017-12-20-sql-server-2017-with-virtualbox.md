@@ -1,10 +1,12 @@
 ---
-title:    "Running SQL Server 2017 with VirtualBox"
-layout:   post
-date:     2017-12-20
+title: "Running SQL Server 2017 with VirtualBox"
+layout: post
+date: 2017-12-20
+description:
+thumbnail: /assets/images/virtualbox-logo.png
 ---
 
-This post gives instructions on installing and running SQL Server 2017 Developer Edition, completely free, with VirtualBox. This method should only be used on Developer workstations. This method **should not** be used for shared developer/test/QA installations. It absolutely should not be used for production installations. *Also, that would be a violation of the Developer Edition license terms.*
+This post gives instructions on installing and running SQL Server 2017 Developer Edition, completely free, with VirtualBox. This method should only be used on Developer workstations. This method **should not** be used for shared developer/test/QA installations. It absolutely should not be used for production installations. _Also, that would be a violation of the Developer Edition license terms._
 
 #### Step 1: Download and Install VirtualBox
 
@@ -12,7 +14,7 @@ You can grab the latest copy of VirtualBox for your host operating system [here]
 
 #### Step 2: Download the ISO for Windows Hyper-V Server 2016
 
-Yes, Hyper-V server is built for running other servers. However, you *can* install SQL Server quite easily onto Hyper-V server, and that's perfect for developer scenarios.
+Yes, Hyper-V server is built for running other servers. However, you _can_ install SQL Server quite easily onto Hyper-V server, and that's perfect for developer scenarios.
 
 Create a new VM. Give it as much RAM, CPU, and disk as you can afford given your machine configuration. Go through the installation and allow the machine to reboot.
 
@@ -46,10 +48,10 @@ Mount the `SQLServer2017-x64-ENU-Dev.iso` file. Run the following command. This 
 
 When you select features, I recommend that you install the following.
 
-* Database Engine
-* Full-Text and Semantic Extractions for Search
-* Analysis Services
-* Integration Services
+-   Database Engine
+-   Full-Text and Semantic Extractions for Search
+-   Analysis Services
+-   Integration Services
 
 Some features will not successfully install on Windows Server Core. You will get a rule check violation if you attempt to install unsupported features. If you need some of these features, you will need to get a proper copy of Windows Server 2016.
 
