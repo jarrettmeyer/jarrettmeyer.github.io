@@ -1,7 +1,9 @@
 ---
-title:    Installing MySQL on Ubuntu 16.04
-layout:   post
-date:     2017-06-23
+title: Installing MySQL on Ubuntu 16.04
+layout: post
+date: 2017-06-23
+description:
+thumbnail: /assets/images/mysql-logo.png
 ---
 
 As of this writing, `apt-get install mysql-server` will install version **5.7.18**. Unfortunately, this process cannot be automated, since you will be prompted for the root user password during the installation process.

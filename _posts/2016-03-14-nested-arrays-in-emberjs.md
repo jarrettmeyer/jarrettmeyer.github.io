@@ -1,13 +1,15 @@
 ---
-layout:   post
-title:    "Nested Arrays in EmberJS"
-date:     2016-03-14
+layout: post
+title: "Nested Arrays in EmberJS"
+date: 2016-03-14
 tags: emberjs
+description:
+thumbnail: /assets/images/ember-logo.png
 ---
 
 ![EmberJS](http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200){: .align-right } My latest project has me working on [EmberJS](http://emberjs.com/).
 
-*Because at this point, what's one more JavaScript client framework?* In all seriousness, though, this has the benefit that I get to see lots of different technologies. It also has the downside that I do not get to work with a single technology long enough to get really good at it.
+_Because at this point, what's one more JavaScript client framework?_ In all seriousness, though, this has the benefit that I get to see lots of different technologies. It also has the downside that I do not get to work with a single technology long enough to get really good at it.
 
 Our current problem is something along this line. We have a nested array of strings to hold the street address. We kicked around a few different solutions, but ended up with the most dynamic possible answer. It was also the trickiest solution, but that tends to be expected.
 
@@ -15,12 +17,12 @@ Here's a quick-and-dirty version of the model.
 
 ```js
 App.ShippingAddress = DS.Model.extend({
-  name: DS.attr('string'),
-  address: DS.attr({
-    defaultValue: function () {
-      return [];
-    }
-  })
+    name: DS.attr("string"),
+    address: DS.attr({
+        defaultValue: function() {
+            return [];
+        }
+    })
 });
 ```
 
@@ -30,19 +32,19 @@ This problem here is that an array of strings is not bindable in Ember. Ember wo
 
 ```js
 App.ShippingAddress = DS.Model.extend({
-  name: DS.attr('string'),
-  address: DS.attr({
-    defaultValue: function () {
-      return [];
-    }
-  }),
+    name: DS.attr("string"),
+    address: DS.attr({
+        defaultValue: function() {
+            return [];
+        }
+    }),
 
-  editableAddress: Ember.computed('address', function () {
-    var address = this.get('address');
-    return address.map(function (line) {
-      return { value: line };
-    });
-  })
+    editableAddress: Ember.computed("address", function() {
+        var address = this.get("address");
+        return address.map(function(line) {
+            return { value: line };
+        });
+    })
 });
 ```
 
@@ -79,14 +81,14 @@ The only step remaining is to set the new value of `address` based on what is cu
 
 ```js
 function updateShippingAddress() {
-  var editableAddress = this.get('model.editableAddress');
-  var address = [];
-  editableAddress.forEach(function (line) {
-    if (line.value && line.value.trim().length) {
-      address.push(line.value.trim());
-    }
-  });
-  this.get('model').set('address', address);
+    var editableAddress = this.get("model.editableAddress");
+    var address = [];
+    editableAddress.forEach(function(line) {
+        if (line.value && line.value.trim().length) {
+            address.push(line.value.trim());
+        }
+    });
+    this.get("model").set("address", address);
 }
 ```
 

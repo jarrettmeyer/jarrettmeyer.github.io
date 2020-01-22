@@ -1,7 +1,9 @@
 ---
-title:    "Root Login with Vagrant"
-layout:   post
-date:     2016-11-28
+title: "Root Login with Vagrant"
+layout: post
+date: 2016-11-28
+description: Provisioning a root user in your Vagrant machine
+thumbnail: /assets/images/vagrant-logo.png
 ---
 
 When you create a [Vagrant](http://www.vagrantup.com) virtual machine, you do not get to enter your own `root` password. Yes, the `vagrant` user has `sudo` access, but sometimes you will find yourself wanting just a little bit more. Fortunately, this is easily handled with SSH keys.

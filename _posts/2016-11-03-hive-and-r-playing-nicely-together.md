@@ -1,13 +1,15 @@
 ---
-title:   "Hive and R Playing Nicely Together"
-layout:  post
-date:    2016-11-03
+title: "Hive and R Playing Nicely Together"
+layout: post
+date: 2016-11-03
 tags: hive r
+description:
+thumbnail: /assets/images/hive-logo.png
 ---
 
 Hive is a data warehouse. R is a language for statistics and graphics. Getting these two programs to work together is a beautiful thing.
 
-*This post assumes that you already have HDFS, Hive, and Pig running.* If there is an interest in seeing a post on how to get these installed and running, please [let me know](mailto:jarrettmeyer@gmail.com).
+_This post assumes that you already have HDFS, Hive, and Pig running._ If there is an interest in seeing a post on how to get these installed and running, please [let me know](mailto:jarrettmeyer@gmail.com).
 
 ### Picking a Data Set
 

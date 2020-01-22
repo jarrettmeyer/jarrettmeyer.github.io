@@ -3,7 +3,7 @@ layout: post
 title: "Refactoring for Intent"
 date: 2012-08-08
 description: Getting your idea across with better variable names
-thumbnail:
+thumbnail: /assets/images/hello-my-name-is.png
 ---
 
 Here's an interesting refactor that I did yesterday. It got a couple of "Ooohs" and "Aaahs" at work, so I thought it would be worth sharing.

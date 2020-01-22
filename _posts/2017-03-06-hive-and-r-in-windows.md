@@ -1,8 +1,10 @@
 ---
-title:   "Hive and R in Windows"
-layout:  post
-date:    2017-03-06
+title: "Hive and R in Windows"
+layout: post
+date: 2017-03-06
 tags: hive r
+description:
+thumbnail: /assets/images/hive-logo.png
 ---
 
 Last year I put together a post of working with [Hive and R](/2016/11/03/hive-and-r-playing-nicely-together). That example document was on MacOS. Fortunately, it is not difficult to get the same working on Windows. Let's work through an example.

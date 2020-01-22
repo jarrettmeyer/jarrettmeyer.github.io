@@ -2,7 +2,7 @@
 title: "My New Favorite SQL Error Message"
 layout: post
 date: 2017-08-02
-description:
+description: Why can't every error message in SQL Server be this well written?
 thumbnail: /assets/images/sql-server-logo.png
 ---
 

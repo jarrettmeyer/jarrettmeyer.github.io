@@ -1,7 +1,9 @@
 ---
-layout:   post
-title:    "Moving beyond basic CRUD APIs"
-date:     2016-06-24
+layout: post
+title: "Moving beyond basic CRUD APIs"
+date: 2016-06-24
+description:
+thumbnail: /assets/images/nodejs-logo.png
 ---
 
 In a complicated API, it can be quite difficult to parse business rules. Often, the `PUT` endpoint becomes overloaded with every possible thing that can happen to a domain object. Let's look at something simple like a task list. Our traditional REST API would look something like this.
@@ -52,7 +54,7 @@ One obvious solution is to use remote procedure calls (RPC). This would give us 
 PUT /api/tasks/:id/:action
 ```
 
-I see absolutely nothing *wrong* with this approach, most API developers tend to prefer the simpler URIs of REST. As is difficult in software development, naming things is difficult, and lots of developers have lots of opinions on how endpoints should be named. Here are a few bad examples.
+I see absolutely nothing _wrong_ with this approach, most API developers tend to prefer the simpler URIs of REST. As is difficult in software development, naming things is difficult, and lots of developers have lots of opinions on how endpoints should be named. Here are a few bad examples.
 
 ```
 // Redundant resource identification.
@@ -83,13 +85,14 @@ POST /api/actions
 With this type of architecture, determining what happened is a no-brainer.
 
 ```js
-app.post('/api/actions', (request, response, next) => {
-  var actionHandler = getActionFor(request.data.type);
-  return actionHandler.handle(request)
-    .then(result => {
-      return response.status(result.status || 200).json(result.data);
-    })
-    .catch(next);
+app.post("/api/actions", (request, response, next) => {
+    var actionHandler = getActionFor(request.data.type);
+    return actionHandler
+        .handle(request)
+        .then(result => {
+            return response.status(result.status || 200).json(result.data);
+        })
+        .catch(next);
 });
 ```
 
@@ -97,34 +100,33 @@ This makes for an incredibly simple API layer. Every action that can happen in y
 
 ```js
 module.exports = {
-  canHandle: canHandle,
-  handle: handle
+    canHandle: canHandle,
+    handle: handle
 };
 
 function canHandle(type) {
-  return type === 'assign task';
+    return type === "assign task";
 }
 
 function handle(request) {
-  let aggregate = {
-    request: request
-  };
-  return validateRequest(aggregate)
-    .then(fetchUserById)
-    .then(ensureUserIsActive)
-    .then(fetchTaskById)
-    .then(ensureUserCanBeAssignedTask)
-    .then(updateTask)
-    .then(sendEmailToAssignedUser)
-    .then(sendEmailToTaskCreator)
-    .then(returnResult);
+    let aggregate = {
+        request: request
+    };
+    return validateRequest(aggregate)
+        .then(fetchUserById)
+        .then(ensureUserIsActive)
+        .then(fetchTaskById)
+        .then(ensureUserCanBeAssignedTask)
+        .then(updateTask)
+        .then(sendEmailToAssignedUser)
+        .then(sendEmailToTaskCreator)
+        .then(returnResult);
 }
 
 function fetchUserById(aggregate) {
-  return User.findById(aggregate.request.data.assignedTo)
-    .then(function (user) {
-      aggregate.assignedTo = user;
-      return aggregate;
+    return User.findById(aggregate.request.data.assignedTo).then(function(user) {
+        aggregate.assignedTo = user;
+        return aggregate;
     });
 }
 

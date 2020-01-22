@@ -1,10 +1,12 @@
 ---
-layout:   post
-title:    "Objective Complexity in Agile Estimation"
-date:     2016-03-24
+layout: post
+title: "Objective Complexity in Agile Estimation"
+date: 2016-03-24
+description: How complicated is complicated?
+thumbnail: /assets/images/burndown-chart.png
 ---
 
-*"This team's velocity should be higher,"* says the manager.
+_"This team's velocity should be higher,"_ says the manager.
 
 Project management is a game. Us vs. them. Developers vs. managers. In agile projects, points estimation and velocity is a game. Developers want credit for the difficulty of the work they do. Managers accuse developers of gaming the system to get more points.
 
@@ -16,7 +18,7 @@ Let's look at a tool like [Jira](https://www.atlassian.com/software/jira). When 
 
 ![Jira story points](/assets/images/jira-story-points-prompt.png)
 
-Do you notice the hint wording used? Does the hint say *difficulty*? Who gets to decide difficulty? *Time*? Which developer is taking this task? These are subjective.
+Do you notice the hint wording used? Does the hint say _difficulty_? Who gets to decide difficulty? _Time_? Which developer is taking this task? These are subjective.
 
 ![knot](/assets/images/paracord-knot.jpg){: .align-right}
 
@@ -26,7 +28,7 @@ When we use points, we are estimating a measure of **complexity**.
 >
 > **complect**: (verb) to interweave, intertwine
 
-Complexity, quite simply, is answering the question, *"How many parts of the application does this feature touch?"* And not just touch, but how do they touch? Does one function in one component call one function in another component? Or are the two components intricately bound?
+Complexity, quite simply, is answering the question, _"How many parts of the application does this feature touch?"_ And not just touch, but how do they touch? Does one function in one component call one function in another component? Or are the two components intricately bound?
 
 Complexity is not time, although it may be correlated to time. A feature that touches more parts will require more time to write, more unit tests, and more validation procedures.
 
@@ -69,11 +71,11 @@ If I were a developer on this application, I would handle this feature request i
 2. Simple email/password user log on gets 5 points. Database, compare password, API endpoint, UI, JavaScript. It looks like I'm counting layers. For the most part, I am. I'm certainly not doing anything like counting classes or files touched.
 3. Facebook log on gets 2 points.
 
-Of course, these are *my* point values, and *my* point values should not be *your* point values. As you can see, the **complexity** of the task is objective. When I assign points, I start with complexity, but then apply modifiers for challenge.
+Of course, these are _my_ point values, and _my_ point values should not be _your_ point values. As you can see, the **complexity** of the task is objective. When I assign points, I start with complexity, but then apply modifiers for challenge.
 
 ## Low complexity, high difficulty
 
-A feature can touch just a single file, have very little interaction with other parts (*low complexity*), and still be incredibly challenging. I once worked on a project where we allowed users to write their own scripts, along with previewing output in the client. Developers dreaded changes to this feature. While it was just one part of the application, the feature was kept separated from other parts, and it was well tested, no one wanted to touch it.
+A feature can touch just a single file, have very little interaction with other parts (_low complexity_), and still be incredibly challenging. I once worked on a project where we allowed users to write their own scripts, along with previewing output in the client. Developers dreaded changes to this feature. While it was just one part of the application, the feature was kept separated from other parts, and it was well tested, no one wanted to touch it.
 
 This user-scripting feature was not complex, but almost any change was very difficult and time consuming.
 
@@ -111,4 +113,4 @@ The next time you work on an agile project and are using points, remember to sta
 
 ## References
 
-* Definitions from [www.dictionary.com](www.dictionary.com).
+-   Definitions from [www.dictionary.com](www.dictionary.com).

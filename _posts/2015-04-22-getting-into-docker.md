@@ -4,6 +4,8 @@ title: "Getting into Docker"
 date: 2015-04-22
 comments: true
 tags: docker
+description:
+thumbnail: /assets/images/docker-logo.png
 ---
 
 ## What is this Docker thing, anyway?
@@ -34,33 +36,31 @@ The application itself lives under `/my-app/src`. In this app, we only have an `
 
 Here is the `my-app/src/index.html` file.
 
-``` html
+```html
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Getting into Docker</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-</head>
-<body>
-    <h1>Hello World!</h1>
-    <p>The current time is <span id="timestamp"></span></p>
-</body>
-<script type="text/javascript" src="/scripts/main.js"></script>
+    <head>
+        <title>Getting into Docker</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <p>The current time is <span id="timestamp"></span></p>
+    </body>
+    <script type="text/javascript" src="/scripts/main.js"></script>
 </html>
 ```
 
 Here is our `my-app/src/scripts/main.js` file.
 
-``` javascript
-;(function () {
-
+```javascript
+(function() {
     function updateTimestamp() {
-        var timestamp = (new Date()).toLocaleString();
-        $('#timestamp').text(timestamp);
+        var timestamp = new Date().toLocaleString();
+        $("#timestamp").text(timestamp);
     }
 
     updateTimestamp();
-
 })();
 ```
 
@@ -84,7 +84,7 @@ COPY ./src /usr/share/nginx/html
 
 There is nothing too difficult here. We are starting with the `nginx:1.7.12` image. To that image, we are going to copy the contents from the `src` directory to the `/usr/share/nginx/html` folder.
 
-You might be tempted to move the `Dockerfile` to a build folder. *This will not work*. The `Dockerfile` must be in or above the the `src/` directory. This is because Docker sets us a context from the location of the `Dockerfile`, and it cannot access anything outside of that context.
+You might be tempted to move the `Dockerfile` to a build folder. _This will not work_. The `Dockerfile` must be in or above the the `src/` directory. This is because Docker sets us a context from the location of the `Dockerfile`, and it cannot access anything outside of that context.
 
 Our build script will take care of this build process for us.
 

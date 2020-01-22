@@ -1,7 +1,9 @@
 ---
-title:   "Fixing My Drivers for My HP Webcam"
-layout:  post
-date:    2017-04-06
+title: "Fixing My Drivers for My HP Webcam"
+layout: post
+date: 2017-04-06
+description:
+thumbnail: /assets/images/hp-logo.png
 ---
 
 I have a very nice HP Elitebook 8770W. Unfortunately, ever since I installed Windows 10, the webcam hasn't worked. The little light would come on, but the input was always black. This fixed it.

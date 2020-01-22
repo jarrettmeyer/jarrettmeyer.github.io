@@ -1,7 +1,8 @@
 ---
-title:    "What's in a Name?"
-layout:   post
-date:     2018-03-07
+title: "What's in a Name?"
+layout: post
+date: 2018-03-07
+thumbnail: /assets/images/hello-my-name-is.png
 ---
 
 Names are easy, right? Every single one of us has - at one time or another - built a table that looks like this, right?

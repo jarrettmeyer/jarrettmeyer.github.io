@@ -1,7 +1,9 @@
 ---
-layout:   post
-title:    "Down with the Bloody Repository!"
-date:     2016-02-25
+layout: post
+title: "Down with the Bloody Repository!"
+date: 2016-02-25
+description:
+thumbnail: /assets/images/database.svg
 ---
 
 I am currently working on a 2-year old NodeJS project that, I kid you not, uses the repository pattern. Not only that, it uses it quite badly. While I agree with the concept that all of the business logic should be in the application core, this is not what is meant by that statement.
@@ -19,22 +21,22 @@ Instead, though the languages may change, I continue to see work like the follow
 ```js
 // DocumentRepository.js
 module.exports = {
-  findAll: findAll,
-  findById: findById,
-  insert: insert,
-  remove: remove,
-  restore: restore,
-  publish: publish,
-  unpublish: unpublish,
-  update: update
+    findAll: findAll,
+    findById: findById,
+    insert: insert,
+    remove: remove,
+    restore: restore,
+    publish: publish,
+    unpublish: unpublish,
+    update: update
 };
 
 function findAll() {
-  // snip
+    // snip
 }
 
 function findById(id) {
-  // snip
+    // snip
 }
 
 // The rest has been trimmed.
@@ -52,22 +54,22 @@ If it really were a repository, it would need to look something more like this.
 
 ```js
 module.exports = {
-  add: function (document) {
-    // Add a new document to the collection. This does not send the document to
-    // the database until sync() is called.
-  },
-  remove: function (document) {
-    // Remove a document from the collection. This does not remove the  document
-    // from the database until sync() is called.
-    //
-    // Also handle edge cases, like removing a document that was added but never
-    // synced.
-  },
-  sync: function () {
-    // Synchronize the in-memory collection with the database. This includes all
-    // of the adds, removes, and tracked changes for all items in the collection.
-  }
-}
+    add: function(document) {
+        // Add a new document to the collection. This does not send the document to
+        // the database until sync() is called.
+    },
+    remove: function(document) {
+        // Remove a document from the collection. This does not remove the  document
+        // from the database until sync() is called.
+        //
+        // Also handle edge cases, like removing a document that was added but never
+        // synced.
+    },
+    sync: function() {
+        // Synchronize the in-memory collection with the database. This includes all
+        // of the adds, removes, and tracked changes for all items in the collection.
+    }
+};
 ```
 
 What about all of that other functionality? Fowler again tells about the noun-verb method of writing classes. A document should have a `publish()` function. What if that function is supposed to do other things, like [create activity log entries](/2016/02/24/capturing-database-metadata) or notify interested subscribers? Those should be handled as background processes. Side-effects should not be in the main line of code.
@@ -78,24 +80,23 @@ If there is anything that NodeJS has helped me to reinforce, it is **do one thin
 
 ```js
 // findAllDocuments.js
-module.exports = function () {
-  // snip
-}
+module.exports = function() {
+    // snip
+};
 
 // insertDocument.js
-module.exports = function (document) {
-  if (document._id || document.id) {
-    throw new Error('Inserted document should not have an ID property.');
-  }
-  document.insertedAt = new Date();
-  document.modifiedAt = new Date();
-  return validateDocument(document)
-    .then(saveDocument);
+module.exports = function(document) {
+    if (document._id || document.id) {
+        throw new Error("Inserted document should not have an ID property.");
+    }
+    document.insertedAt = new Date();
+    document.modifiedAt = new Date();
+    return validateDocument(document).then(saveDocument);
 };
 
 // validateDocument.js
-module.exports = function (document) {
-  // snip
+module.exports = function(document) {
+    // snip
 };
 ```
 
@@ -189,6 +190,6 @@ I can dream, right?
 
 ### References
 
-* Hieatt, Edward & Mee, Rob. Repository. Accessed February 24, 2016, from [http://martinfowler.com/eaaCatalog/repository.html](http://martinfowler.com/eaaCatalog/repository.html)
+-   Hieatt, Edward & Mee, Rob. Repository. Accessed February 24, 2016, from [http://martinfowler.com/eaaCatalog/repository.html](http://martinfowler.com/eaaCatalog/repository.html)
 
-* Façade Pattern. Accessed February 25, 2016, from [https://en.wikipedia.org/wiki/Facade_pattern](https://en.wikipedia.org/wiki/Facade_pattern)
+-   Façade Pattern. Accessed February 25, 2016, from [https://en.wikipedia.org/wiki/Facade_pattern](https://en.wikipedia.org/wiki/Facade_pattern)

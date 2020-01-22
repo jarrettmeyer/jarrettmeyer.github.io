@@ -3,6 +3,8 @@ layout: post
 title: "It looks like he's compensating for something"
 date: 2016-03-03
 tags: docker nginx nodejs
+description: Using the wrong tool to solve a problem because using the right tool is painful
+thumbnail: /assets/images/docker-logo.png
 ---
 
 ![Compensating](/assets/images/compensating-for-something.jpg){: .align-center }

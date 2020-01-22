@@ -1,7 +1,9 @@
 ---
-title:    "Validating Remote Server Certificates"
-layout:   post
-date:     2017-10-19
+title: "Validating Remote Server Certificates"
+layout: post
+date: 2017-10-19
+description:
+thumbnail: /assets/images/csharp-logo.png
 ---
 
 Recently, we ran into a problem at work that required us to validate remote server X.509 certificates. Fortunately, this is quite easy to do with .NET.

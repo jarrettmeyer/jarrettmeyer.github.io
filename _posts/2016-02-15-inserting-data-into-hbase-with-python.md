@@ -3,6 +3,8 @@ layout: post
 title: "Inserting Data into HBase with Python"
 date: 2016-02-15
 tags: hbase python
+description:
+thumbnail: /assets/images/python-logo.png
 ---
 
 For this little project, we are going to use the [Happybase](https://github.com/wbolster/happybase) Python package. Happybase uses HBase's Thrift API.

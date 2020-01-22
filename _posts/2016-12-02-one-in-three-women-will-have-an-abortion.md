@@ -1,8 +1,10 @@
 ---
-title:    One in Three Women Will Have an Abortion
-date:     2016-12-02
-layout:   post
+title: One in Three Women Will Have an Abortion
+date: 2016-12-02
+layout: post
 tags: statistics
+description:
+thumbnail: /assets/images/stats.png
 ---
 
 **Upfront disclaimer:**
@@ -11,9 +13,9 @@ tags: statistics
 
 Have you heard the claim that "one in three women will have an abortion" at some point in their fertile years? If you've watched any U.S. political news, it is a difficult number to miss. I certainly wondered about it. I've heard the claim before, and I know enough statistics to check the math myself.
 
-* [1 in 3](http://www.1in3campaign.org/)
-* [Politifact](http://www.politifact.com/virginia/statements/2016/may/23/naral-pro-choice-america/flawed-naral-virginia-claim-1-3-women-will-have-ab/)
-* [Washington Post](https://www.washingtonpost.com/news/fact-checker/wp/2015/09/30/the-stale-claim-that-one-in-three-women-will-have-an-abortion-by-age-45/?utm_term=.c93155b14547)
+-   [1 in 3](http://www.1in3campaign.org/)
+-   [Politifact](http://www.politifact.com/virginia/statements/2016/may/23/naral-pro-choice-america/flawed-naral-virginia-claim-1-3-women-will-have-ab/)
+-   [Washington Post](https://www.washingtonpost.com/news/fact-checker/wp/2015/09/30/the-stale-claim-that-one-in-three-women-will-have-an-abortion-by-age-45/?utm_term=.c93155b14547)
 
 This statistic came about from a study by the [Guttmacher Institute](https://www.guttmacher.org/), which found evidence for 300.9 out of 1,000 women, based on statistical sampling. Right from the start we can see a problem. Namely, one in three (or 33.3%) is not the same as 300.9 in 1,000 (or 30.1%). The value found by Guttmacher is lower than the one in three claim. Yes, numbers matter.
 
@@ -53,7 +55,7 @@ These values represent the probability that a woman **will not** have an abortio
 
 | Lower bound | Expected value | Upper bound |
 | :---------: | :------------: | :---------: |
-| 0.3049      | 0.3142         | 0.3233      |
+|   0.3049    |     0.3142     |   0.3233    |
 
 By these numbers, we can expect that there is 31.42% chance that a woman selected from random in the United States will have an abortion at some time during her life. Given the natural uncertainty present in the problem, we can expect, with 95% confidence that the number is between 30.49% and 32.33%.
 
@@ -69,4 +71,4 @@ A better model would correct for this problem, assume that the current trend con
 
 ## Conclusion
 
-Will one in three women have an abortion in their lifetime? By my math, no. I estimate between 30 and 32%, and I completely acknowledge that my number is high for the reasons stated above. But it is not going to be high by much -- maybe a few percentage points. Either way, the message is clear. Whether one in three, three in ten, or one in four, abortion procedures are incredibly common, but they are obviously not discussed like they are. We talk about them as if they are rare. Having an abortion is roughly the same as being diagnosed with heart disease, which is the leading cause of death in the United States. Abortions are four times more common than breast cancer, 17 times more likely than deaths from influenza, 20 times more likely than suicide, 27 times more likely than a fatal car crash, and 100 times more likely than being shot. You probably know multiple who fit into these categories, and abortion is more common than all of them. *(I personally know six people who have died in car crashes, three women who have had breast cancer, and two people who have committed suicide.)* Whatever discussion we continue to have, we need to acknowledge that we most likely know multiple women who have had the procedure.
+Will one in three women have an abortion in their lifetime? By my math, no. I estimate between 30 and 32%, and I completely acknowledge that my number is high for the reasons stated above. But it is not going to be high by much -- maybe a few percentage points. Either way, the message is clear. Whether one in three, three in ten, or one in four, abortion procedures are incredibly common, but they are obviously not discussed like they are. We talk about them as if they are rare. Having an abortion is roughly the same as being diagnosed with heart disease, which is the leading cause of death in the United States. Abortions are four times more common than breast cancer, 17 times more likely than deaths from influenza, 20 times more likely than suicide, 27 times more likely than a fatal car crash, and 100 times more likely than being shot. You probably know multiple who fit into these categories, and abortion is more common than all of them. _(I personally know six people who have died in car crashes, three women who have had breast cancer, and two people who have committed suicide.)_ Whatever discussion we continue to have, we need to acknowledge that we most likely know multiple women who have had the procedure.

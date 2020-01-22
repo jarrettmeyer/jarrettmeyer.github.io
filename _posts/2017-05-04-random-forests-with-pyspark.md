@@ -1,7 +1,9 @@
 ---
-title:   "Random Forests with PySpark"
-layout:  post
-date:    2017-05-04
+title: "Random Forests with PySpark"
+layout: post
+date: 2017-05-04
+description:
+thumbnail: /assets/images/pyspark-logo.png
 ---
 
 [PySpark](https://spark.apache.org/docs/2.1.1/api/python/index.html) allows us to
@@ -11,13 +13,13 @@ It is estimated that there are around 100 billion transactions per year.
 
 ### Versions
 
-| Application       | Version |
-|:-----------------:|:-------:|
-| Spark             | 2.1.0   |
-| Python            | 3.5.2   |
-| pip               | 9.0.1   |
-| Jupyter Notebook  | 4.3.0   |
-| py4j              | 0.10.4  |
+|   Application    | Version |
+| :--------------: | :-----: |
+|      Spark       |  2.1.0  |
+|      Python      |  3.5.2  |
+|       pip        |  9.0.1  |
+| Jupyter Notebook |  4.3.0  |
+|       py4j       | 0.10.4  |
 
 ### Set constants
 
