@@ -3,7 +3,7 @@ title: Quickly Computing OOB Error Estimates
 layout: post
 date: 2016-10-20
 description:
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 If you're using `caret` or `randomForest`, it can be helpful to compute the OOB error estimate. This value is given when you print the model output; however, as far as I can tell, the value is not available as a property. _If I'm wrong about this, please let me know._

@@ -2,7 +2,7 @@
 title: "Knitr Tip: Create More Variables"
 layout: post
 date: 2016-10-25
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 If you're writing [Knitr](http://yihui.name/knitr/) documents, then you need to create more variables. A lot more. I have been reviewing projects, and I am finding literally dozens of instances where an author changed his or her mind while working on whatever it was. You see something like this.

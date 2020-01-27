@@ -2,7 +2,7 @@
 title: Modeling with RPart and NA Predictions
 layout: post
 date: 2016-10-19
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 I ran into a problem this past week of making predictions with trees when you have `NA` values as part of your prediction.

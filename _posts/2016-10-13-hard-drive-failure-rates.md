@@ -3,7 +3,7 @@ title: Hard Drive Failure Rates
 layout: post
 date: 2016-10-13
 tags: r statistics
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 Someone on [Reddit asked about storing 200TB of data](https://www.reddit.com/r/datascience/comments/574niq/where_can_i_cheaply_get_around_200_tb_of_storage/) as cheaply as possible. One response suggested to store the data locally and then selling the drives when the project was completed. I brought up disaster recovery. Was my question justified?

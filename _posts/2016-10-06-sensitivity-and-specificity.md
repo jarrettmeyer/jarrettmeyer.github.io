@@ -3,7 +3,7 @@ title: "Sensitivity and Specificity"
 layout: post
 date: 2016-10-06
 description:
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 ```

@@ -4,7 +4,7 @@ date: 2018-11-01
 layout: "post"
 tags: r
 description: Making data manipulation just a little bit easier
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 The [R](https://www.r-project.org/) package [tidyverse](https://www.tidyverse.org/) uses [gather](https://tidyr.tidyverse.org/reference/gather.html) and [spread](https://tidyr.tidyverse.org/reference/spread.html) to pivot and depivot data. To know which function does what, you can remember that that `spread` makes the data frame wider and `gather` makes the data frame taller.

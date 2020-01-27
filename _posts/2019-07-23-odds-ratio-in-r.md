@@ -4,7 +4,7 @@ layout: post
 title: "Calculating Odds Ratio in R"
 tags: r statistics
 description: How to use epidemiology tools compute odds ratios between clinical study treatments
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 I have been working on several [volcano plots](https://observablehq.com/@jarrettmeyer/volcano-plot) lately. That means I've been pouring through many thousands of records of clinical trial data. Typically, when we give a patient a higher dose, we fix whatever indicator we are trying to remedy, and we also see a greater rate of adverse events (AEs). Volcano plots give us the ability to quickly discern just how much frequency of AE increases as dose increases.

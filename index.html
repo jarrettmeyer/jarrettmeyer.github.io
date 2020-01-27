@@ -7,7 +7,7 @@ title: Jarrett Meyer
   {% for post in site.posts %}
   <li class="post-list-item">
     {% if post.thumbnail and post.thumbnail != "" %}
-    <a href="{{ post.url | prepend: site.baseurl }}" class="post-thumbnail-link" style="background: url({{ post.thumbnail }})"></a>
+    <a href="{{ post.url | prepend: site.baseurl }}" class="post-thumbnail-link" style="background-image: url({{ post.thumbnail }})"></a>
     {% endif %}
     <div class="post-meta">
       <a href="{{ post.url }}">

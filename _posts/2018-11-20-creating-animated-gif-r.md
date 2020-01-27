@@ -4,7 +4,7 @@ layout: "post"
 date: 2018-11-20
 tags: r
 description: Using animation, ggplot2, and tweenr to create gifs
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 One of my latest tasks was to create a smooth transition between data sets, instead of showing line graphs or having multiple graphs side-by-side. Fortunately, existing libraries in R make this quite easy to accomplish. Specifically, I will make extensive use of [ggplot]() and [tweenr]().

@@ -4,7 +4,7 @@ layout: "post"
 date: 2018-11-08
 tags: postgresql r
 description:
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 Today, I needed to generate a fake data set, and I wanted to give R a shot for generating the set. The good news is that everything is pretty simple. You just need to know how to do everything in the correct order. The following code will do exactly this task.

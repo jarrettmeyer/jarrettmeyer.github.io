@@ -4,7 +4,7 @@ layout: post
 date: 2018-07-10
 tags: r
 description: Jumping into the tidyverse
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 It's pretty easy to do a cross join with [dplyr](https://dplyr.tidyverse.org/), but it may not be immediately obvious. The only trick is to create a "fake" data column, and use the `full_join` function on this "fake" column.

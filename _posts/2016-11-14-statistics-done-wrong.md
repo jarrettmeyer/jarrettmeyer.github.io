@@ -3,7 +3,7 @@ title: "Statistics Done Wrong: Understanding Distributions"
 layout: post
 date: 2016-11-14
 description:
-thumbnail: /assets/images/r-logo.svg
+thumbnail: /assets/images/r-logo.png
 ---
 
 I recently started reading [Statistics Done Wrong: The Woefully Complete Guide](https://smile.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/) by Alex Reinhart. Right from the get-go, the book is a fascinating look at methodology and statistical illiteracy. Thousands of academic papers are published every year by authors who, while they may be experts in their specific fields, have very little statistical training.

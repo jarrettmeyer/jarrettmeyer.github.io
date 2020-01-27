@@ -186,6 +186,8 @@ article {
 
     display: flex;
     flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
 
     transform: translate(0, 0);
     box-shadow: 0 1px 1px 0px rgba(32, 32, 32, 0.2);
@@ -201,11 +203,17 @@ article {
     height: 200px;
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    background-repeat: no-repeat;
 }
 
 .post-meta {
     margin: 0.5rem 1rem 0.5rem 0.5rem;
     display: flex;
+
     flex-direction: column;
     justify-content: stretch;
     align-items: flex-start;
@@ -214,13 +222,14 @@ article {
 .post-title {
     @include serif();
     font-size: 1.4rem;
-    color: $color-default-font;
+    // color: $color-default-font;
     margin-bottom: 0.25rem;
 }
 
 .post-description {
     color: lighten($color-default-font, 20%);
     flex-grow: 1;
+    flex-shrink: 1;
     flex-basis: 1px;
 }
 
