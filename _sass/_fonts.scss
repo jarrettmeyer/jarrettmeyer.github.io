@@ -1,0 +1,14 @@
+@mixin monospace {
+    font-family: "Fira Code", monospace;
+    font-weight: normal;
+}
+
+@mixin sans-serif {
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: normal;
+}
+
+@mixin serif {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+}

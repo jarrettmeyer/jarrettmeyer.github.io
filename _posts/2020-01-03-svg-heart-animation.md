@@ -4,7 +4,7 @@ layout: post
 date: 2020-01-03
 tags: svg
 description: Learning about the magical combination of SVG and CSS3 animations
-thumbnail: /assets/images/css3-logo.svg
+thumbnail: /assets/images/animated-heart-css3-keyframes.gif
 ---
 
 I have had a little bit of time off for holiday shut down. I'm starting to teach myself [CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations). This is a pretty cool feature, and I can't wait to see more of this feature.

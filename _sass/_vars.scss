@@ -1,0 +1,43 @@
+$base-font-size: 20px;
+$base-line-height: 1.6;
+$base-font-color: #202020;
+$base-background-color: #f8f8f8;
+$base-link-color: #206ead;
+
+$soft-font-color: lighten($base-font-color, 25%);
+
+$code-background-color: #17214c;
+$code-color: #f0f0f0;
+
+$button-background-color: #eeeeee;
+
+$sidebar-width: 240px;
+$sidebar-font-color: #fff;
+$sidebar-background: radial-gradient($base-link-color, darken($base-link-color, 20%));
+
+$container-padding: 24px;
+
+$header-logo-height: 5rem;
+$header-heading-height: 28px;
+$header-heading-color: #ffffff;
+
+$main-vertical-margin: 48px;
+$main-border-radius: 16px;
+$main-background-color: $base-background-color;
+$main-max-width: 840px;
+
+$post-list-item-background: #f2f2f3;
+$post-title-font-size: 32px;
+$post-date-font-size: 14px;
+
+$footer-vertical-margin: 48px;
+$footer-margin-left: 12px;
+$footer-margin-right: $footer-margin-left;
+$footer-margin-bottom: 20px;
+$footer-height: auto;
+$footer-border-radius: 16px;
+$footer-background-color: $base-background-color;
+$footer-font-size: 20px;
+$footer-color: #ffffff;
+
+$media-breakpoint: 720px;

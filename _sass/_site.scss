@@ -1,65 +1,16 @@
+@import "./vars";
+@import "./fonts";
+@import "./sidebar";
+
 // ---------------------------------------------------------
 // SCSS variables.
 // ---------------------------------------------------------
-$base-font-size: 20px;
-$base-line-height: 1.6;
-$base-font-color: #202020;
-$base-background-color: #f8f8f8;
-$base-link-color: #267dc5;
 
-$soft-font-color: lighten($base-font-color, 25%);
-
-$code-background-color: #17214c;
-$code-color: #f0f0f0;
-
-$button-background-color: #eeeeee;
-
-$sidebar-width: 240px;
-$sidebar-font-color: #fff;
-$sidebar-background: radial-gradient(#17214c, #000017);
-
-$container-padding: 24px;
-
-$header-logo-height: 5rem;
-$header-heading-height: 28px;
-$header-heading-color: #ffffff;
-
-$main-vertical-margin: 48px;
-$main-border-radius: 16px;
-$main-background-color: $base-background-color;
-$main-max-width: 840px;
-
-$post-list-item-background: #f2f2f3;
-$post-title-font-size: 32px;
-$post-date-font-size: 14px;
-
-$footer-vertical-margin: 48px;
-$footer-horizontal-margin: 12px;
-$footer-height: auto;
-$footer-border-radius: 16px;
-$footer-background-color: $base-background-color;
-$footer-font-size: 20px;
-$footer-color: #ffffff;
-
-$media-breakpoint: 720px;
 
 // ---------------------------------------------------------
 // SCSS mixins.
 // ---------------------------------------------------------
-@mixin monospace {
-    font-family: "Fira Code", monospace;
-    font-weight: normal;
-}
 
-@mixin sans-serif {
-    font-family: "Fira Sans Condensed", sans-serif;
-    font-weight: normal;
-}
-
-@mixin serif {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-weight: normal;
-}
 
 // ---------------------------------------------------------
 // Element styles.
@@ -96,69 +47,6 @@ article {
     grid-template-rows: 1fr;
     grid-template-columns: $sidebar-width 1fr;
     grid-template-areas: "sidebar main";
-}
-
-.sidebar {
-    grid-area: sidebar;
-    background: $sidebar-background;
-    color: $sidebar-font-color;
-    width: $sidebar-width;
-    height: 100vh;
-    overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.header-banner {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
-    .header-banner-logo {
-        display: block;
-        height: $header-logo-height;
-    }
-
-    .header-banner-text {
-        @include serif();
-        display: block;
-        font-size: $header-heading-height;
-        font-weight: normal;
-        color: $header-heading-color;
-    }
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: row;
-    font-size: $footer-font-size;
-
-    a {
-        color: $footer-color;
-        margin-left: $footer-horizontal-margin;
-        margin-right: $footer-horizontal-margin;
-    }
-}
-
-.footer {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .main {
@@ -316,6 +204,7 @@ article {
 
     pre {
         padding: 0.5rem 0.75rem;
+        line-height: 1.2;
     }
 
     code {
