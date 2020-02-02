@@ -1,0 +1,121 @@
+$post-margin-bottom: 24px;
+
+.post {
+    margin: 1rem;
+    max-width: $main-max-width;
+
+    blockquote {
+        @include serif();
+        border-left: 6px solid $soft-font-color;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        color: $soft-font-color;
+        margin-bottom: 1rem;
+    }
+
+    button {
+        @include sans-serif();
+        padding: 12px;
+        border-radius: 3px;
+        font-size: 16px;
+        color: $base-font-color;
+        background: $button-background-color;
+        border: 1px solid darken($button-background-color, 30%);
+        cursor: pointer;
+
+        transition: all 250ms ease-in-out;
+
+        &:hover {
+            background: darken($button-background-color, 8%);
+            border-color: darken($button-background-color, 34%);
+        }
+    }
+
+    div {
+        display: block;
+    }
+
+    h2 {
+        @include serif();
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        @include serif();
+        font-size: 1.3rem;
+        margin-top: 1.3rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px dotted lighten($base-font-color, 30%);
+    }
+
+    h4 {
+        @include serif();
+        font-size: 1.1rem;
+        color: lighten($base-font-color, 20%);
+        margin-top: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        margin-bottom: $post-margin-bottom;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    pre {
+        padding: 6px;
+        line-height: 1.2;
+    }
+
+    code {
+        background: $code-background-color;
+        color: $code-color;
+        padding: 4px;
+        font-size: 16px;
+    }
+
+    ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        list-style: disc;
+    }
+
+    .highlighter-rouge {
+        background: $code-background-color;
+        margin-bottom: $post-margin-bottom;
+        overflow-x: scroll;
+
+        .highlight {
+            background: $code-background-color;
+        }
+    }
+
+    .post-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        line-height: 1;
+        padding-bottom: 4px;
+        border-bottom: 1px solid lighten($base-font-color, 30%);
+
+        .post-title {
+            font-size: $post-title-font-size;
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
+
+        .post-data {
+            margin-bottom: 0;
+        }
+    }
+
+    .post-content {
+        margin-top: 2rem;
+    }
+}
