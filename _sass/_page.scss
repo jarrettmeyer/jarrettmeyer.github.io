@@ -1,0 +1,66 @@
+.page {
+    max-width: $main-max-width;
+    margin: 1rem;
+
+    h2, h3, h4 {
+        @include serif();
+    }
+
+    h3 {
+        color: lighten($base-font-color, 10%);
+        border-bottom: 1px solid lighten($base-font-color, 10%);
+        margin-top: 2rem;        
+    }
+
+    h4 {
+        color: lighten($base-font-color, 20%);
+        margin-top: 1rem;
+        margin-left: 2rem;
+    }
+
+    p {
+        margin-bottom: $post-margin-bottom;
+    }
+
+    table {
+        margin-bottom: $post-margin-bottom;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 4px;
+    }
+
+    thead {
+        tr {
+            border-bottom: 1px solid $table-border-color;
+        }
+
+        th {
+            text-align: left;
+        }
+    }
+
+    tbody {
+        tr {
+            background: $table-background-odd;
+            border-top: 1px solid $table-border-color;
+        }
+
+        tr:nth-child(even) {
+            background: $table-background-even;
+        }
+    }
+
+    ul {
+        margin-left: 2rem;
+    }
+
+    .page-header {
+        @include serif();
+        border-bottom: 1px solid darken($base-background-color, 25%);
+        margin-bottom: 1rem;
+    }
+}
