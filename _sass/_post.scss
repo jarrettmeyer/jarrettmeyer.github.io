@@ -1,4 +1,7 @@
 $post-margin-bottom: 24px;
+$table-border-color: darken($base-background-color, 20%);
+$table-background-odd: lighten($base-background-color, 10%);
+$table-background-even: darken($base-background-color, 10%);
 
 .post {
     margin: 1rem;
@@ -37,24 +40,24 @@ $post-margin-bottom: 24px;
 
     h2 {
         @include serif();
-        font-size: 1.5rem;
+        font-size: 2rem;
         margin-top: 1.5rem;
         margin-bottom: 1rem;
     }
 
     h3 {
         @include serif();
-        font-size: 1.3rem;
-        margin-top: 1.3rem;
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
         margin-bottom: 1rem;
         border-bottom: 1px dotted lighten($base-font-color, 30%);
     }
 
     h4 {
         @include serif();
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         color: lighten($base-font-color, 20%);
-        margin-top: 1.1rem;
+        margin-top: 1.3rem;
         margin-bottom: 1rem;
     }
 
@@ -80,9 +83,41 @@ $post-margin-bottom: 24px;
 
     ul {
         margin-left: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: $post-margin-bottom;
         list-style: disc;
     }
+
+    table {
+        margin-bottom: $post-margin-bottom;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 4px;
+    }
+
+    thead {
+        tr {
+            border-bottom: 1px solid $table-border-color;
+        }
+
+        th {
+            text-align: left;
+        }
+    }
+
+    tbody {
+        tr {
+            background: $table-background-odd;
+            border-top: 1px solid $table-border-color;
+        }
+
+        tr:nth-child(even) {
+            background: $table-background-even;
+        }
+    }    
 
     .highlighter-rouge {
         background: $code-background-color;
