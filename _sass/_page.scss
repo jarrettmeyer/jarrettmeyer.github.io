@@ -54,8 +54,13 @@
         }
     }
 
-    ul {
+    ol, ul {
         margin-left: 2rem;
+    }
+
+    li {
+        display: list-item;
+        text-align: left;
     }
 
     .page-header {
