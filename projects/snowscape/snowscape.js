@@ -67,15 +67,20 @@ function snowfall(snowflake) {
     const createdAt = +snowflake.dataset.createdAt;
     const duration = +snowflake.dataset.duration;
     const timer = +snowflake.dataset.timer;
-    const cx = +snowflake.getAttribute("cx");
-    const r = +snowflake.getAttribute("r");
+    let cx = +snowflake.getAttribute("cx");
+    let r = +snowflake.getAttribute("r");
     return (now) => {
         // Update the snowflake's properties
         const elapsed = now - createdAt;
         const cy = elapsed / duration * height;
+        cx = cx + rand(-0.1, 0.1);
+        r = r + rand(-0.1, 0.1);
+        if (r < 0.1) {
+            r = 0.1;
+        }
         snowflake.setAttribute("cy", cy);
-        snowflake.setAttribute("cx", cx + rand(-0.1, 0.1));
-        snowflake.setAttribute("r", r + rand(-0.1, 0.1));
+        snowflake.setAttribute("cx", cx);
+        snowflake.setAttribute("r", r);
         if (elapsed < duration) {
             // Still ticking...
             window.requestAnimationFrame(snowfall(snowflake));
