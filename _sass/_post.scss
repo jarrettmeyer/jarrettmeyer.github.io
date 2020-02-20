@@ -81,10 +81,18 @@ $table-background-even: darken($base-background-color, 10%);
         font-size: 16px;
     }
 
+    ol,
     ul {
         margin-left: 2rem;
         margin-bottom: $post-margin-bottom;
-        list-style: disc;
+    }
+
+    ol {
+        list-style-type: decimal;
+    }
+
+    ul {
+        list-style-type: disc;
     }
 
     table {
