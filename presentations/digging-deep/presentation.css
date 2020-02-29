@@ -1,3 +1,67 @@
 .reveal .slides img {
     border: none;
 }
+
+.reveal .slides h1 {
+    font-size: 2em;
+}
+
+.reveal .slides h2 {
+    font-size: 1.75em;
+}
+
+.reveal .slides h3 {
+    font-size: 1.5em;
+}
+
+.reveal .slides h1.title {
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+.reveal .slides h1.slide-title {
+    text-align: center;
+}
+
+.reveal .slides h2.subtitle {
+    font-size: 1.75em;
+    text-align: right;
+}
+
+.reveal .slides p {
+    text-align: left;
+}
+
+.reveal .slides .citation {
+    text-align: right;
+    font-size: 0.8em;
+}
+
+.reveal .slides ul {
+    text-align: left;
+}
+
+.reveal .slides blockquote {
+    font-style: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: unset;
+    margin-bottom: 1em;
+    width: 90%;
+}
+
+.reveal .slides .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.reveal .slides .col {
+    flex-basis: 1em;
+    flex-grow: 1;
+}
+
+.reveal .slides .center {
+    display: block;
+    text-align: center;
+}
