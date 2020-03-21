@@ -125,7 +125,11 @@ $table-background-even: darken($base-background-color, 10%);
         tr:nth-child(even) {
             background: $table-background-even;
         }
-    }    
+    }
+    
+    img {
+        max-width: 100%;
+    }
 
     .highlighter-rouge {
         background: $code-background-color;
