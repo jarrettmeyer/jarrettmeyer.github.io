@@ -3,6 +3,8 @@ title: Milk Bread
 layout: page
 ---
 
+This recipe originally appeared on [Bake from Scratch](https://www.bakefromscratch.com/milk-bread/).
+
 ### Make tangzhong
 
 - small sauce pan
