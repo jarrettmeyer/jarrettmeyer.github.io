@@ -5,8 +5,8 @@ title: My Recipes
 
 ### Breads
 
-- [Milk Bread](/recipes/milk-bread/)
+- [Milk Bread](/recipes/milk-bread)
 
 ### Desserts
 
-- [Almond Joy Cookies](/recipes/almond-joy-cookies/)
+- [Almond Joy Cookies](/recipes/almond-joy-cookies)
