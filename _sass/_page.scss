@@ -9,7 +9,8 @@
     h3 {
         color: lighten($base-font-color, 10%);
         border-bottom: 1px solid lighten($base-font-color, 10%);
-        margin-top: 2rem;        
+        margin-top: 2rem;   
+        margin-bottom: 1rem;     
     }
 
     h4 {
@@ -56,6 +57,7 @@
 
     ol, ul {
         margin-left: 2rem;
+        margin-bottom: $post-margin-bottom;
     }
 
     li {
