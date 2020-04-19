@@ -5,6 +5,7 @@ title: My Recipes
 
 ### Breads
 
+- [Biscuits](/recipes/biscuits)
 - [Milk Bread](/recipes/milk-bread)
 
 ### Desserts
