@@ -138,6 +138,26 @@ $table-background-even: darken($base-background-color, 10%);
 
         .highlight {
             background: $code-background-color;
+
+            .dl {
+                // color: #d14;
+                color: #c4113e;
+            }
+
+            .mi {
+                // color: #009999;
+                color: #036d6d;
+            }
+
+            .na {
+                // color: #008080;
+                color: #036b6b;
+            }
+
+            .s2 {
+                // color: #d14;
+                color: #c4113e;
+            }
         }
     }
 
