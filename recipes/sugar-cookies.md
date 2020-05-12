@@ -9,6 +9,7 @@ This recipe originally appeared on [FoodNetwork](https://www.foodnetwork.com/rec
 - 3/4 tsp baking powder
 - 1/4 tsp salt
 - 1 c unsalted butter (room temperature)
+- 1 c sugar
 - 1 egg
 - 1 tbsp milk
 
