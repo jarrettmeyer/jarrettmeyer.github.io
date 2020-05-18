@@ -3,6 +3,8 @@ layout: page
 title: Carrot Cake
 ---
 
+![carrot cake](/assets/images/carrot-cake.jpeg)
+
 This recipe originally appeared on [Sally's Baking Addiction](https://sallysbakingaddiction.com/my-favorite-carrot-cake-recipe/).
 
 -   2 c pecans, 1 c for the cake & 1 c for garnish
