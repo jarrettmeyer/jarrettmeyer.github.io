@@ -7,6 +7,8 @@ title: Carrot Cake
 
 This recipe originally appeared on [Sally's Baking Addiction](https://sallysbakingaddiction.com/my-favorite-carrot-cake-recipe/).
 
+### Ingredients
+
 -   2 c pecans, 1 c for the cake & 1 c for garnish
 -   1 1/2 c brown sugar
 -   1/2 c granulated sugar
@@ -23,6 +25,8 @@ This recipe originally appeared on [Sally's Baking Addiction](https://sallysbaki
 -   1/4 tsp ground nutmeg
 -   1/4 tsp ground cloves
 -   2 c grated carrots
+
+### Directions
 
 Preheat oven to 300 °F. Toast the pecans for 8 minutes.
 
