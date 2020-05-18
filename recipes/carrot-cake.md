@@ -34,3 +34,7 @@ In a large mixing bowl, mix dry ingredients. In another mixing bowl, mix wet ing
 -   Bundt cake: bake 60 - 75 minutes
 
 You will definitely want [cream cheese frosting](./cream-cheese-frosting) for this cake.
+
+### Notes
+
+- This makes enough batter for 2 6 inch round cakes plus 8 cupcakes. Perfect for sharing!
