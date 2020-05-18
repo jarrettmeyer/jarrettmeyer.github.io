@@ -14,5 +14,6 @@ title: My Recipes
 -   [Carrot Cake](/recipes/carrot-cake)
 -   [Cream Cheese Frosting](/recipes/cream-cheese-frosting)
 -   [Matzo Crack](/recipes/matzo-crack)
+-   [Red Velvet Cake](/recipes/red-velvet-cake)
 -   [Royal Icing](/recipes/royal-icing)
 -   [Sugar Cookies](/recipes/sugar-cookies)
