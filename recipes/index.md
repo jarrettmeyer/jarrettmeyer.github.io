@@ -8,6 +8,10 @@ title: My Recipes
 -   [Biscuits](/recipes/biscuits)
 -   [Milk Bread](/recipes/milk-bread)
 
+### Breakfast
+
+-   [Pancakes](/recipes/pancakes)
+
 ### Desserts
 
 -   [Almond Joy Cookies](/recipes/almond-joy-cookies)
