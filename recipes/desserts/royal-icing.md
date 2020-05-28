@@ -1,13 +1,18 @@
 ---
-layout: page
+layout: recipe
+category: desserts
 title: Royal Icing
 ---
 
 This recipe originally appeared on [Sally's Baking Addition](https://sallysbakingaddiction.com/royal-icing/).
 
-- 480 g confectioner's sugar
-- 3 tbsp meringue powder
-- 9-10 tbsp water (room temperature)
+## Ingredients
+
+-   480 g confectioner's sugar
+-   3 tbsp meringue powder
+-   9-10 tbsp water (room temperature)
+
+## Directions
 
 Mix ingredents with a handheld mixer. 
 

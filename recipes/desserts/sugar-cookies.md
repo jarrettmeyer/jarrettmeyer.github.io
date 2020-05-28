@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: recipe
+category: desserts
 title: Sugar Cookies
 ---
 
@@ -23,4 +24,4 @@ Roll out dough to 1/4 in thick. Use confectioner's sugar to keep dough from stic
 
 Bake for 8-9 minutes. If you baking two trays, it might be 10 minutes. Let cool on cookie sheet before trying to remove.
 
-Check out my recipe for [royal icing](/recipes/royal-icing).
+Check out my recipe for [royal icing](/recipes/desserts/royal-icing).

@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: recipe
+category: breads
 title: Biscuits
 ---
 
@@ -10,7 +11,6 @@ This recipe originally appeared on [Mom on Timeout](https://www.momontimeout.com
 -   3/4 c butter
 
 Dice butter into tiny pieces and put back in the refrigerator. You can use immediately, but colder is better.
-
 
 ### Mix the dough
 

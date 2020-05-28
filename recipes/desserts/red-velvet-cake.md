@@ -1,5 +1,6 @@
 ---
-layout: post
+layout: recipe
+category: desserts
 title: Red Velvet Cake
 ---
 

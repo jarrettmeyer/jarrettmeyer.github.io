@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: recipe
+category: desserts
 title: Chocolate Toffee Matzo Crack
 ---
 

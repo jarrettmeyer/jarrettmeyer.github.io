@@ -1,9 +1,12 @@
 ---
-layout: page
+layout: recipe
+category: desserts
 title: Almond Joy Cookies (Coconut Macaroons)
 ---
 
 This recipe originally appeared on [Mom on Timeout](https://www.momontimeout.com/almond-joy-cookies-just-4-ingredients/).
+
+## Ingredients
 
 - large mixing bowl
 - cookie sheets
@@ -14,6 +17,8 @@ This recipe originally appeared on [Mom on Timeout](https://www.momontimeout.com
 - 2 c mini chocolate chips
 - 2/3 c chopped almonds (or pecans)
 - 14 ox sweetened condensed milk (regular or fat-free)
+
+## Directions
 
 Preheat over to 325°F.
 

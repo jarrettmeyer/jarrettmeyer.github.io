@@ -1,23 +1,26 @@
 ---
-layout: page
+layout: recipe
+category: home
 title: My Recipes
 ---
 
 ### Breads
 
--   [Biscuits](/recipes/biscuits)
--   [Milk Bread](/recipes/milk-bread)
+-   [Biscuits](/recipes/breads/biscuits)
+-   [Milk Bread](/recipes/breads/milk-bread)
 
 ### Breakfast
 
--   [Pancakes](/recipes/pancakes)
+-   [Pancakes](/recipes/breakfast/pancakes)
 
 ### Desserts
 
--   [Almond Joy Cookies](/recipes/almond-joy-cookies)
--   [Carrot Cake](/recipes/carrot-cake)
--   [Cream Cheese Frosting](/recipes/cream-cheese-frosting)
--   [Matzo Crack](/recipes/matzo-crack)
--   [Red Velvet Cake](/recipes/red-velvet-cake)
--   [Royal Icing](/recipes/royal-icing)
--   [Sugar Cookies](/recipes/sugar-cookies)
+-   [Almond Joy Cookies](/recipes/desserts/almond-joy-cookies)
+-   [Carrot Cake](/recipes/desserts/carrot-cake)
+-   [Cream Cheese Frosting](/recipes/desserts/cream-cheese-frosting)
+-   [Lemon Cake](/recipes/desserts/lemon-cake)
+-   [Matzo Crack](/recipes/desserts/matzo-crack)
+-   [Raspberry Buttercream](/recipes/desserts/raspberry-buttercream)
+-   [Red Velvet Cake](/recipes/desserts/red-velvet-cake)
+-   [Royal Icing](/recipes/desserts/royal-icing)
+-   [Sugar Cookies](/recipes/desserts/sugar-cookies)

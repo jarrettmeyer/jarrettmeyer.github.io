@@ -1,17 +1,17 @@
 ---
+layout: recipe
+category: breads
 title: Milk Bread
-layout: page
 ---
 
 This recipe originally appeared on [Bake from Scratch](https://www.bakefromscratch.com/milk-bread/).
 
 ### Make tangzhong
 
-- small sauce pan
-- whisk
-
-- 3/4 c (180 g) whole milk
-- 1/4 c (32 g) bread flour
+-   small sauce pan
+-   whisk
+-   3/4 c (180 g) whole milk
+-   1/4 c (32 g) bread flour
 
 In small saucepan, whisk together milk and flour over low heat. Whisk constantly until thickens and reaches 149°F.
 
@@ -22,7 +22,6 @@ Let cool to room temperature before using.
 - stand mixer
 - whisk attachment
 - dough attachment
-
 - 320 g milk (100 - 110°F)
 - 130 g granulated sugar
 - 14 g yeast
