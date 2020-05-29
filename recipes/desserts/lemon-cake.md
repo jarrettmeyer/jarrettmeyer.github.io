@@ -4,6 +4,8 @@ category: desserts
 title: Lemon Cake
 ---
 
+<img src="../assets/lemon-cake.jpg" alt="lemon cake" style="max-width: 360px; float: left;">
+
 This recipe originally appeared on [Sally's Baking Addiction](https://sallysbakingaddiction.com/lemon-cake/).
 
 ### Ingredients
@@ -32,8 +34,6 @@ Pour batter evenly into cake pans. Bake for 24 minutes or until the cakes are ba
 
 ### Notes
 
--   These cakes are not thick - only about an inch.
-
--   This cake goes quite well with [raspberry buttercream](/recipes/desserts/raspberry-buttercream).
-
--   The original recipe called for 9-inch pans and a 21 - 26 minute bake time.
+-   These cakes are not thick - only about an inch
+-   This cake goes quite well with [raspberry buttercream](/recipes/desserts/raspberry-buttercream)
+-   The original recipe called for 9-inch pans and a 21 - 26 minute bake time

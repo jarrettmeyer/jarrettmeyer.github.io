@@ -4,7 +4,11 @@ category: desserts
 title: Raspberry Buttercream
 ---
 
+![lemon cake with raspberry buttercream](../assets/lemon-cake-with-raspberry-buttercream.jpg)
+
 This recipe originally appeared on [Preppy Kitchen](https://preppykitchen.com/raspberry-buttercream/).
+
+Pictured: [lemon cake](./lemon-cake) with raspberry buttercream.
 
 ### Ingredients
 
@@ -21,7 +25,7 @@ Strain mixture into a bowl. Cover and chill.
 
 Cream the room temperature butter for a few minutes.
 
-Beat in the confectioner’s sugar and add in a tablespoon at a time of the raspberry reduction until the desired color and consistency is reached. I usually end up using 1/4 cup.
+Beat in the confectioner’s sugar and add in a tablespoon at a time of the raspberry reduction until the desired color and consistency is reached.
 
 ### Notes
 

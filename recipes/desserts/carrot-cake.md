@@ -4,7 +4,7 @@ category: desserts
 title: Carrot Cake
 ---
 
-![carrot cake](/assets/images/carrot-cake.jpeg)
+![carrot cake](../assets/carrot-cake.jpeg)
 
 This recipe originally appeared on [Sally's Baking Addiction](https://sallysbakingaddiction.com/my-favorite-carrot-cake-recipe/).
 
