@@ -22,14 +22,18 @@ This recipe originally appeared on [Sally's Baking Addiction](https://sallysbaki
 
 ### Directions
 
-Preheat oven to 350 °F. Grease three 9-inch cake pans, line with parchment paper, then grease the parchment paper.
+Preheat oven to 350 °F. Grease three 8-inch cake pans, line with parchment paper, then grease the parchment paper.
 
 Whisk the flour, baking powder, baking soda, and salt together in a large bowl.
 
 Combine agreements using creaming method. Mix the butter and salt until light & fluffy. Add liquids. Add solids.
 
-Pour batter evenly into cake pans. Bake for 21-26 minutes or until the cakes are baked through. Test with a toothpick.
+Pour batter evenly into cake pans. Bake for 24 minutes or until the cakes are baked through. Test with a toothpick.
 
 ### Notes
 
+-   These cakes are not thick - only about an inch.
+
 -   This cake goes quite well with [raspberry buttercream](/recipes/desserts/raspberry-buttercream).
+
+-   The original recipe called for 9-inch pans and a 21 - 26 minute bake time.
