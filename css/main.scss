@@ -11,6 +11,9 @@ $header-font-size: 2rem;
 $header-padding: 1rem;
 $header-height: $header-font-size + 2 * $header-padding;
 
+$post-margin-bottom: 4rem;
+$post-element-margin: 2rem;
+
 $h2-font-size: 1.5rem;
 $h3-font-size: 1.3rem;
 $h4-font-size: 1.1rem;
@@ -21,6 +24,10 @@ $table-mid-border: 1px solid $table-border-color;
 $table-bottom-border: 2px solid $table-border-color;
 $table-cell-padding: 0.25rem;
 
+$code-border-color: #909090;
+$code-border-top: 1px solid $code-border-color;
+$code-border-bottom: 1px solid $code-border-color;
+
 @mixin flex-row-center() {
     display: flex;
     flex-direction: row;
@@ -29,7 +36,7 @@ $table-cell-padding: 0.25rem;
 }
 
 @mixin monospace() {
-    font-face: "PT Mono", monospace;
+    font-family: "PT Mono", monospace;
 }
 
 @mixin sans-serif() {
@@ -181,4 +188,35 @@ tbody {
 
 .post-list-item:hover {
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+}
+
+.post {
+    margin-bottom: $post-margin-bottom;
+
+    iframe, img, .highlighter-rouge {
+        margin-top: $post-element-margin;
+        margin-bottom: $post-element-margin;
+    }
+
+    iframe, img, svg {
+        width: 100%;
+    }
+
+    pre, code, .highlighter-rouge {
+        @include monospace();
+    }
+
+    pre {
+        border-top: $code-border-top;
+        border-bottom: $code-border-bottom;
+        padding: 0.25rem;
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .post-date {
+        text-align: right;
+        margin-bottom: 2rem;
+        color: #606060;
+    }
 }
