@@ -1,6 +1,7 @@
 ---
 title: 7th Grade Outline
 layout: page
+
 ---
 
 ## Student Expectations
