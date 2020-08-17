@@ -1,7 +1,7 @@
 ---
 title: 7th Grade Outline
 layout: page
-
+custom_css: /ihc/2020-2021/index.css
 ---
 
 ## Student Expectations
