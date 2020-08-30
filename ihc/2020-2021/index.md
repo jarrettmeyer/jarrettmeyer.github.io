@@ -27,7 +27,7 @@ custom_css: /ihc/2020-2021/index.css
 | Oct 25       | TBA. -- *Yetzer hara and yetzer hatov.*  |
 | Nov 1        | Roles of women in Judaism.  |
 | Nov 8        | Free will and predetermination.  |
-| Nov 15       | Field trip to Chabad Lubavitch of Indiana, or Zoom field trip with orthodox rabbi.  |
+| Nov 15       | TBA -- Virtual field trip to orthodox shul, or Zoom field trip with orthodox rabbi.  |
 | Nov 22       | TBA. -- *Gratitude, mindfulness, and spirituality.*  |
 | Nov 29       | **No religious school**. Thanksgiving weekend.  |
 | Dec 6        | Created in the image of G-d.  |
