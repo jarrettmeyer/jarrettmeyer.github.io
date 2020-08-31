@@ -25,6 +25,25 @@
     text-align: left;
 }
 
+.reveal .slides .question {
+    color: #505050;
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.reveal .slides .question::before {
+    display: block;
+    margin-right: 0.5em;    
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    content: "\f059";
+    color: #3856da;
+}
+
 .reveal .slides .quote::before {
     font-family: "Font Awesome 5 Pro";
     font-weight: 900;
