@@ -1,12 +1,13 @@
 {
-    "name": "ruby-dev",
+    "name": "jekyll-dev",
     "build": {
-        "dockerfile": "ruby-dev.dockerfile",
+        "dockerfile": "jekyll-dev.dockerfile",
         "context": ".."
     },
     "customizations": {
         "vscode": {
             "extensions": [
+                "EditorConfig.EditorConfig",
                 "ginfuru.ginfuru-vscode-jekyll-syntax"
             ]
         }
