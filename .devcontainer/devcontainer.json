@@ -7,7 +7,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                // "EditorConfig.EditorConfig"
+                "ginfuru.ginfuru-vscode-jekyll-syntax"
             ]
         }
     }
