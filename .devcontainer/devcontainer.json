@@ -1,0 +1,14 @@
+{
+    "name": "ruby-dev",
+    "build": {
+        "dockerfile": "ruby-dev.dockerfile",
+        "context": ".."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // "EditorConfig.EditorConfig"
+            ]
+        }
+    }
+}
