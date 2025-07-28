@@ -9,7 +9,14 @@ title: Jarrett Meyer
   </blockquote>
 </figure>
 
-<!-- ## Work Experience -->
+<!-- ## Certifications
+
+<img src="/assets/images/aws-certified-cloud-practitioner-foundational.png" alt="AWS Certified Cloud Practitioner Foundational" height="160" width="auto">
+<img src="/assets/images/aws-certified-solutions-architect-associate.png" alt="AWS Certified Solutions Architect Associate" height="160" width="auto">
+<img src="/assets/images/aws-certified-machine-learning-engineer-associate.png" alt="AWS Certified Machine Learning Engineer Associate" height="160" width="auto">
+<img src="/assets/images/microsoft-certified-azure-ai-fundamentals.png" alt="Microsoft Certified Azure AI Fundamentals" height="160" width="auto"> -->
+
+
 
 <!-- ### Analytics Architect, Eli Lilly and Company -->
 
