@@ -4,30 +4,34 @@ title: Jarrett Meyer
 ---
 
 <figure>
-  <blockquote class="blockquote text-secondary">
-    Senior architect and technology strategy leader with 20+ years of experience driving reformational data and software solutions. Proven track record in leading cross-functional teams to deliver value. Expertise in AWS cloud infrastructure, machine learning engineering, and building scalable data solutions.
-  </blockquote>
+  <blockquote class="blockquote text-secondary">Senior architect and technology strategy leader with 20+ years of experience driving reformational data and software solutions. Proven track record in leading cross-functional teams to deliver value. Expertise in AWS cloud infrastructure, machine learning engineering, and building scalable data solutions.</blockquote>
 </figure>
 
 ## Work Experience
 
-- **Software Architect**, April 2018 - present<br>
-  Eli Lilly and Company, Indianapolis, Indiana
+### Advisor, Software Architect, <small class="text-secondary">April 2018 - present</small>
 
-  - Cloud architecture and machine learning in AWS
-  - Data visualizations in D3.js and Power BI
+#### Eli Lilly and Company, Indianapolis, Indiana
 
-- **Software and Data Solutions Architect**<br>
-  Fusion Alliance, Indianapolis, Indiana
+  - Chapter Lead for Software Engineering team, advancing Lilly’s capabilities in cloud architecture, machine learning engineering, DevOps, UI/UX, and data visualization
+  - Lead architect for de novo molecular design software on high performance computing (HPC) cluster, accelerating pharmaceutical research capabilities
+  - Architect email monitoring pilot, implementing compliance monitoring solutions for enterprise risk management
+  - Introduced continuous delivery patterns, accelerating time to value for dozens of Advanced Intelligence projects across clinical, laboratory, medical affairs, and financial spaces
+  - Collaborate with global cross-functional leaders to identify data analytics needs and translate business requirements into technical reporting specifications
+  - Mentor technical teams on AWS best practices, software development best practices, and enterprise integration strategies
+  - Received 1 Top 100 Innovator award, 3 Innovation awards, and 2 Techy awards
 
-- **Software Developer**<br>
-  Daniels Associates, Inc., Indianapolis, Indiana
+### Software and Data Solutions Architect, <small class="text-secondary">June 2012 - March 2018</small>
 
-- **Inventory Analyst**<br>
-  Weston Foods, Greenwood, Indiana
-  - Demand planning and forecasting
-  - Developed dashboards against inventory metrics
-  - Developed for statistical process control (SPC) software
+#### Fusion Alliance, Indianapolis, Indiana
+
+### Software Developer, <small class="text-secondary">May 2008 - June 2012</small>
+
+#### Daniels Associates, Inc., Indianapolis, Indiana
+
+### Inventory Analyst, <small class="text-secondary">February 2004 - May 2008</small>
+
+#### Weston Foods, Greenwood, Indiana
 
 ## Publications
 
