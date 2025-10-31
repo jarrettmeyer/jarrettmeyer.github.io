@@ -2,8 +2,21 @@ root = true
 
 [*]
 charset = utf-8
+end_of_line = lf
+indent_style = space
 insert_final_newline = true
 
+# Astro
+[*.astro]
+indent_size = 2
+tab_width = 2
+
+# JavaScript and TypeScript
+[*.{js,jsx,mjs,ts,tsx}]
+indent_size = 2
+tab_width = 2
+
+# YAML
 [*.yaml]
 indent_size = 2
-indent_style = 2
+tab_width = 2
