@@ -1,7 +1,0 @@
-{
-    "files.exclude": {
-        "_site": true,
-        ".jekyll-cache": true,
-        ".sass-cache": true
-    }
-}
