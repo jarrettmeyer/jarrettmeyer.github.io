@@ -4,9 +4,6 @@ import PagefindSearch from './PagefindSearch.astro';
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container">
-    <!-- Brand and Navigation Links (Left) -->
-    <a class="navbar-brand" href="/">Jarrett Meyer</a>
-
     <button
       class="navbar-toggler"
       type="button"
@@ -19,20 +16,23 @@ import PagefindSearch from './PagefindSearch.astro';
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar-collapsible-content" class="collapse navbar-collapse">
+    <div id="navbar-collapsible-content" class="collapse navbar-collapse justify-content-between">
+      <!-- Brand and Navigation Links (Left) -->
+      <a class="navbar-brand" href="/">Jarrett Meyer</a>
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="/articles">Articles</a>
-        </li>
+        </li> -->
       </ul>
 
       <!-- Search Bar (Center) -->
-      <div class="d-flex flex-grow-1 mx-3" role="search">
+      <!-- <div class="mx-3" role="search">
         <PagefindSearch />
-      </div>
+      </div> -->
 
       <!-- Icons (Right) -->
       <ul class="navbar-nav flex-row gap-2">
@@ -50,7 +50,7 @@ import PagefindSearch from './PagefindSearch.astro';
         <li class="nav-item">
           <button
             id="theme-toggle"
-            class="btn btn-link nav-link"
+            class="btn btn-link nav-link text-body"
             type="button"
             aria-label="Toggle theme"
           >
