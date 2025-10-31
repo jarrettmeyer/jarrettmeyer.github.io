@@ -9,6 +9,8 @@ When running locally, the default URL is [localhost:4321](http://localhost:4321)
 ## General Guidance
 
 - **package.json**: Read `./package.json` to see what NPM packages are available.
+- **Review changes**: Review changes on [localhost:4321](http://localhost:4321) before marking a task as complete.
+  - Ensure there are no errors on the page, no `<vite-error-overlay>` elements.
 
 ## Styling
 

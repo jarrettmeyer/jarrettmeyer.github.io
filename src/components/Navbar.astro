@@ -1,5 +1,80 @@
+---
+import PagefindSearch from './PagefindSearch.astro';
+---
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container">
+    <!-- Brand and Navigation Links (Left) -->
     <a class="navbar-brand" href="/">Jarrett Meyer</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-collapsible-content"
+      aria-controls="navbar-collapsible-content"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-collapsible-content" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/articles">Articles</a>
+        </li>
+      </ul>
+
+      <!-- Search Bar (Center) -->
+      <div class="d-flex flex-grow-1 mx-3" role="search">
+        <PagefindSearch />
+      </div>
+
+      <!-- Icons (Right) -->
+      <ul class="navbar-nav flex-row gap-2">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://github.com/jarrettmeyer"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <i class="bi bi-github fs-5"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <button
+            id="theme-toggle"
+            class="btn btn-link nav-link"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            <i id="theme-icon" class="bi bi-sun-fill fs-5"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
+
+<style>
+  #pagefind-search {
+    max-width: 400px;
+  }
+
+  #theme-toggle {
+    border: none;
+    padding: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #theme-toggle:hover {
+    color: var(--bs-primary);
+  }
+</style>
