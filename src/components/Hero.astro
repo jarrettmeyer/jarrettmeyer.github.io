@@ -5,13 +5,13 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1 class="fw-bold">
+      <h1 class="fw-bold mb-4">
         Hello! I'm <span class="highlight">Jarrett Meyer</span>
       </h1>
-      <p>
+      <p class="fs-3 fw-lighter">
         Senior Architect &amp; Technology Strategy Leader
       </p>
-      <p>
+      <p class="fs-4 fw-light">
         20+ years of experience driving transformational software and data
         solutions with expertise in AWS cloud infrastructure, machine learning
         engineering, and building scalable data solutions.
@@ -22,25 +22,13 @@
 
 <style>
   .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: var(--spacing-2xl) var(--spacing-md);
+    background: linear-gradient(0deg, var(--bs-body-bg) 10%, #140330 30%, #140330 70%, var(--bs-body-bg) 90%);
     min-height: 60vh;
     display: flex;
     align-items: center;
-    position: relative;
-    overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    pointer-events: none;
+  .hero .hero-content {
+    max-width: 50rem;
   }
 </style>

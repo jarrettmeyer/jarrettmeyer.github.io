@@ -5,7 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,103 +23,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Theme initialization (must run before body renders) -->
-    <script is:inline>
-      (function() {
-        const getStoredTheme = () => localStorage.getItem('theme');
-        // const setStoredTheme = (theme) => localStorage.setItem('theme', theme);
-
-        const getPreferredTheme = () => {
-          const storedTheme = getStoredTheme();
-          if (storedTheme) {
-            return storedTheme;
-          }
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
-
-        const setTheme = (theme) => {
-          if (theme === 'auto') {
-            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-bs-theme', preferredTheme);
-          } else {
-            document.documentElement.setAttribute('data-bs-theme', theme);
-          }
-        };
-
-        setTheme(getPreferredTheme());
-      })();
-    </script>
   </head>
   <body>
     <slot />
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" is:inline></script>
-
-    <!-- Theme toggle functionality -->
-    <script is:inline>
-      (function() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
-        if (!themeToggle || !themeIcon) return;
-
-        const getStoredTheme = () => localStorage.getItem('theme');
-        const setStoredTheme = (theme) => localStorage.setItem('theme', theme);
-
-        const updateIcon = (theme) => {
-          // Remove all icon classes
-          themeIcon.classList.remove('bi-sun-fill', 'bi-moon-stars-fill', 'bi-circle-half');
-
-          // Add the appropriate icon class
-          if (theme === 'light') {
-            themeIcon.classList.add('bi-sun-fill');
-          } else if (theme === 'dark') {
-            themeIcon.classList.add('bi-moon-stars-fill');
-          } else {
-            themeIcon.classList.add('bi-circle-half');
-          }
-        };
-
-        const setTheme = (theme) => {
-          if (theme === 'auto') {
-            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-bs-theme', preferredTheme);
-          } else {
-            document.documentElement.setAttribute('data-bs-theme', theme);
-          }
-          updateIcon(theme);
-          setStoredTheme(theme);
-        };
-
-        // Initialize icon based on current theme
-        const currentTheme = getStoredTheme() || 'light';
-        updateIcon(currentTheme);
-
-        // Toggle theme on button click (cycle through light -> dark -> auto)
-        themeToggle.addEventListener('click', () => {
-          const currentTheme = getStoredTheme() || 'light';
-          let newTheme;
-
-          if (currentTheme === 'light') {
-            newTheme = 'dark';
-          } else if (currentTheme === 'dark') {
-            newTheme = 'auto';
-          } else {
-            newTheme = 'light';
-          }
-
-          setTheme(newTheme);
-        });
-
-        // Listen for system theme changes when in auto mode
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          const currentTheme = getStoredTheme();
-          if (currentTheme === 'auto') {
-            setTheme('auto');
-          }
-        });
-      })();
-    </script>
   </body>
 </html>
