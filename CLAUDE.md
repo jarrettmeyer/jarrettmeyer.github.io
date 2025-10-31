@@ -6,4 +6,5 @@ The website is written in [Astro](https://docs.astro.build/en/getting-started/).
 
 ## References
 
+- [This repository (jarrettmeyer/jarrettmeyer.github.io)](https://github.com/jarrettmeyer/jarrettmeyer.github.io)
 - [Deploy your Astro Site to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
