@@ -1,0 +1,164 @@
+---
+// Certifications section
+const certifications = [
+  {
+    name: "AWS Certified Machine Learning Engineer – Associate",
+    provider: "Amazon Web Services",
+    icon: "🎓"
+  },
+  {
+    name: "AWS Certified Solutions Architect – Associate",
+    provider: "Amazon Web Services",
+    icon: "🏗️"
+  },
+  {
+    name: "AWS Certified Cloud Practitioner",
+    provider: "Amazon Web Services",
+    icon: "☁️"
+  },
+  {
+    name: "Certified MongoDB Developer",
+    provider: "MongoDB",
+    icon: "🍃"
+  },
+  {
+    name: "Certified Scrum Master",
+    provider: "Scrum Alliance",
+    icon: "🏃"
+  },
+  {
+    name: "Microsoft Certified Azure AI Fundamentals",
+    provider: "Microsoft",
+    icon: "🤖"
+  }
+];
+---
+
+<section id="certifications" class="certifications">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      {certifications.map((cert) => (
+        <div class="cert-card">
+          <div class="cert-icon">{cert.icon}</div>
+          <div class="cert-content">
+            <h3 class="cert-name">{cert.name}</h3>
+            <p class="cert-provider">{cert.provider}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certifications {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    background-color: var(--color-bg-alt);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    margin: var(--spacing-md) auto 0;
+    border-radius: 2px;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .cert-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+
+  .cert-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .cert-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .cert-content {
+    flex: 1;
+  }
+
+  .cert-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+  }
+
+  .cert-provider {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .certifications {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .certs-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .cert-card {
+      padding: var(--spacing-md);
+    }
+
+    .cert-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+    }
+
+    .cert-name {
+      font-size: 1rem;
+    }
+  }
+</style>

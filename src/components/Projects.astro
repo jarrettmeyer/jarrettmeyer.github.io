@@ -1,0 +1,248 @@
+---
+// Projects section showcasing GitHub repositories and work
+const projects = [
+  {
+    title: "BioNova Drug Discovery",
+    description: "Lead architect for pharmaceutical research platform enabling de novo molecular design on high-performance computing clusters, accelerating drug discovery capabilities at Eli Lilly.",
+    technologies: ["AWS", "HPC", "Machine Learning", "Molecular Design"],
+    type: "Professional"
+  },
+  {
+    title: "node-strategy-pattern",
+    description: "Demonstrates implementation of the strategy pattern in Node.js, showcasing clean software design principles and best practices.",
+    technologies: ["Node.js", "JavaScript", "Design Patterns"],
+    link: "https://github.com/jarrettmeyer/node-strategy-pattern",
+    type: "Open Source"
+  },
+  {
+    title: "simple-format-live-preview",
+    description: "JavaScript project simulating Ruby on Rails simple_format helper functionality for live preview rendering.",
+    technologies: ["JavaScript", "Ruby on Rails", "Web Development"],
+    link: "https://github.com/jarrettmeyer/simple-format-live-preview",
+    type: "Open Source"
+  },
+  {
+    title: "mvcflashmessages",
+    description: "C# library for handling flash messages in MVC applications, providing clean notification patterns.",
+    technologies: ["C#", "ASP.NET MVC", ".NET"],
+    link: "https://github.com/jarrettmeyer/mvcflashmessages",
+    type: "Open Source"
+  },
+  {
+    title: "Continuous Delivery Platform",
+    description: "Introduced continuous delivery patterns and infrastructure that accelerated time to value for dozens of Advanced Intelligence projects across multiple business domains.",
+    technologies: ["AWS", "DevOps", "CI/CD", "Infrastructure as Code"],
+    type: "Professional"
+  },
+  {
+    title: "Compliance Monitoring Solutions",
+    description: "Architected E&C email monitoring pilot and Veeva Approved Email Free Text compliance systems for enterprise risk management.",
+    technologies: ["AWS", "Compliance", "Enterprise Architecture", "Veeva"],
+    type: "Professional"
+  }
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">
+      A selection of professional and open-source work
+    </p>
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">{project.title}</h3>
+            <span class={`project-type ${project.type === 'Open Source' ? 'open-source' : 'professional'}`}>
+              {project.type}
+            </span>
+          </div>
+          <p class="project-description">{project.description}</p>
+          <div class="project-tech">
+            {project.technologies.map((tech) => (
+              <span class="tech-tag">{tech}</span>
+            ))}
+          </div>
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
+              View on GitHub →
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+    <div class="more-projects">
+      <a href="https://github.com/jarrettmeyer" target="_blank" rel="noopener noreferrer" class="btn-more">
+        View More on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    background-color: var(--color-bg);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+    position: relative;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .project-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid transparent;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    border-left-color: #667eea;
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0;
+    flex: 1;
+  }
+
+  .project-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .project-type.open-source {
+    background-color: #dcfce7;
+    color: #16a34a;
+  }
+
+  .project-type.professional {
+    background-color: #dbeafe;
+    color: #2563eb;
+  }
+
+  .project-description {
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    flex: 1;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .tech-tag {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-light);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  .project-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: auto;
+  }
+
+  .project-link:hover {
+    color: var(--color-primary-dark);
+  }
+
+  .more-projects {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+  }
+
+  .btn-more {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+
+  .btn-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .projects {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .project-card {
+      padding: var(--spacing-md);
+    }
+
+    .project-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

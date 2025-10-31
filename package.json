@@ -1,14 +1,20 @@
 {
-  "name": "",
+  "name": "jarrettmeyer-github-io",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "astro": "astro",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "astro dev",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.15.3"
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.15.3",
+    "pagefind": "^1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
   }
 }

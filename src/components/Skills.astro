@@ -1,0 +1,219 @@
+---
+// Skills section showcasing technical expertise
+const skillCategories = [
+  {
+    title: "Cloud & Infrastructure",
+    skills: [
+      "AWS (Lambda, EC2, S3, SageMaker, etc.)",
+      "Azure",
+      "Docker & Kubernetes",
+      "Terraform",
+      "CI/CD Pipelines",
+      "DevOps"
+    ]
+  },
+  {
+    title: "Machine Learning & AI",
+    skills: [
+      "Machine Learning Engineering",
+      "AWS SageMaker",
+      "TensorFlow & PyTorch",
+      "Model Deployment",
+      "MLOps",
+      "Drug Discovery Applications"
+    ]
+  },
+  {
+    title: "Programming Languages",
+    skills: [
+      "Python",
+      "JavaScript/TypeScript",
+      "R",
+      "C#",
+      "SQL",
+      "Ruby"
+    ]
+  },
+  {
+    title: "Data & Analytics",
+    skills: [
+      "Data Warehousing",
+      "ETL/ELT Pipelines",
+      "Business Intelligence",
+      "Data Visualization (D3.js)",
+      "MongoDB",
+      "Big Data Platforms"
+    ]
+  },
+  {
+    title: "Web Development",
+    skills: [
+      "Node.js",
+      "React",
+      "AngularJS",
+      "Ruby on Rails",
+      "REST APIs",
+      "UI/UX Design"
+    ]
+  },
+  {
+    title: "Architecture & Leadership",
+    skills: [
+      "Enterprise Architecture",
+      "System Design",
+      "Technology Strategy",
+      "Team Leadership",
+      "Agile/Scrum",
+      "Mentoring"
+    ]
+  }
+];
+---
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">Technical Expertise</h2>
+    <div class="skills-grid">
+      {skillCategories.map((category) => (
+        <div class="skill-category">
+          <h3 class="category-title">{category.title}</h3>
+          <ul class="skills-list">
+            {category.skills.map((skill) => (
+              <li class="skill-item">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    background-color: var(--color-bg);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    margin: var(--spacing-md) auto 0;
+    border-radius: 2px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .skill-category {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    border-top: 3px solid transparent;
+  }
+
+  .skill-category:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    border-top-color: #667eea;
+    transform: translateY(-4px);
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .category-title::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    border-radius: 2px;
+  }
+
+  .skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    background-color: var(--color-bg-alt);
+    border-radius: 4px;
+    color: var(--color-text-light);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-item:hover {
+    background-color: #e0e7ff;
+    color: var(--color-text);
+    padding-left: calc(var(--spacing-sm) + 6px);
+  }
+
+  .skill-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .skill-item:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .skills {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .skill-category {
+      padding: var(--spacing-md);
+    }
+  }
+</style>
