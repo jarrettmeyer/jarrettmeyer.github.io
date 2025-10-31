@@ -11,6 +11,9 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.15.3",
+    "astro-expressive-code": "^0.41.3",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "pagefind": "^1.4.0"
   },
   "devDependencies": {
