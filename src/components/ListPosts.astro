@@ -7,40 +7,76 @@ import { getCollection } from "astro:content";
 
 const { count } = Astro.props;
 
-const posts = (await getCollection("posts")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).filter((post, index) => {
-  if (import.meta.env.PROD && post.data.draft) {
-    return false;
-  }
+const posts = (await getCollection("posts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post, index) => {
+    if (import.meta.env.PROD && post.data.draft) {
+      return false;
+    }
 
-  if (count && count > 0) {
-    return index < count;
-  }
-  return true;
-});
+    if (count && count > 0) {
+      return index < count;
+    }
+    return true;
+  });
+
+const imageHeight = 80;
 
 function toFriendlyDate(date: Date) {
-  return date.toISOString().split("T")[0];
+  const monthNum: number = date.getUTCMonth();
+  const dateNum: number = date.getUTCDate();
+  const yearNum: number = date.getUTCFullYear();
+
+  const months: Record<number, string> = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sep",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec",
+  };
+  const month = months[monthNum];
+
+  return `${dateNum} ${month} ${yearNum}`;
 }
 ---
 
 <section class="row">
-
-  {posts.map(post => (
-    <div class="col-12 col-lg-6 col-xl-4">
-      <div class="card mb-4">
-        {post.data.thumbnail && (
-          <div class="card-header">
-            <img src={post.data.thumbnail.src} alt={post.data.thumbnail.alt} class="card-img-top">
+  {
+    posts.map((post) => (
+      <div class="col-12 col-lg-6">
+        <div class="card mb-4">
+          {post.data.thumbnail && (
+            <div class="card-header">
+              <img
+                src={post.data.thumbnail.src}
+                alt={post.data.thumbnail.alt}
+                class="card-img-top"
+                style={{
+                  "max-height": `${imageHeight}px`,
+                  height: `${imageHeight}px`,
+                  "object-fit": "contain",
+                }}
+              />
+            </div>
+          )}
+          <div class="card-body">
+            <h5 class="card-title mb-3">
+              <a href={post.id}>{post.data.title}</a>
+            </h5>
+            <h6 class="card-subtitle text-secondary mb-4">
+              {toFriendlyDate(post.data.date)}
+            </h6>
+            <p class="card-text">{post.data.description}</p>
           </div>
-        )}
-        <div class="card-body">
-          <h5 class="card-title"><a href={post.id}>{post.data.title}</a></h5>
-          <h6 class="card-subtitle text-secondary">{toFriendlyDate(post.data.date)}</h6>
-          <p class="card-text">{post.data.description}</p>
         </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </section>
