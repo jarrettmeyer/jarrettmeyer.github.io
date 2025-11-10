@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<PageLayout>
+  <h1 class="my-4">{post.data.title}</h1>
+  <p class="fs-4 fw-lighter">{post.data.description}</p>
+  <Content />
+</PageLayout>

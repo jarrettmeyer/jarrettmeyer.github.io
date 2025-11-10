@@ -1,0 +1,42 @@
+---
+interface Props {
+  count?: number;
+}
+
+import { getCollection } from "astro:content";
+
+const { count } = Astro.props;
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+).filter((_post, index) => {
+  if (count && count > 0) {
+    return index < count;
+  }
+  return true;
+});
+
+function toFriendlyDate(date: Date) {
+  return date.toISOString().split("T")[0];
+}
+---
+
+<section class="row">
+
+  {posts.map(post => (
+    <div class="col-12 col-lg-6 col-xl-4">
+      <div class="card mb-4">
+        {post.data.thumbnail && (
+          <div class="card-header">
+            <img src={post.data.thumbnail.src} alt={post.data.thumbnail.alt} class="card-img-top">
+          </div>
+        )}
+        <div class="card-body">
+          <h5 class="card-title"><a href={post.id}>{post.data.title}</a></h5>
+          <h6 class="card-subtitle text-secondary">{toFriendlyDate(post.data.date)}</h6>
+          <p class="card-text">{post.data.description}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
