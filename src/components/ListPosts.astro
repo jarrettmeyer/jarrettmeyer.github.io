@@ -9,7 +9,11 @@ const { count } = Astro.props;
 
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).filter((_post, index) => {
+).filter((post, index) => {
+  if (import.meta.env.PROD && post.data.draft) {
+    return false;
+  }
+
   if (count && count > 0) {
     return index < count;
   }
