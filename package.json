@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.4.0",
-    "astro": "^5.15.3",
+    "astro": "^5.15.6",
     "astro-expressive-code": "^0.41.3",
     "pagefind": "^1.4.0"
   },
