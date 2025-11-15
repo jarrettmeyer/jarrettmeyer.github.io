@@ -1,8 +1,12 @@
 ---
 import Hero from "../components/Hero.astro";
+import ListPosts from "../components/ListPosts.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Home">
   <Hero />
+  <h2 class="my-5">Latest Posts</h2>
+
+  <ListPosts count={10} />
 </PageLayout>
