@@ -5,11 +5,31 @@ interface Props {
 }
 
 const { runtime, beats } = Astro.props;
+
+let bgColorClass: string = "";
+let textColorClass: string = "";
+
+if (!beats) {
+  bgColorClass = "bg-body-secondary";
+  textColorClass = "text-body-secondary";
+} else if (runtime === 0 || beats > 80) {
+  bgColorClass = "bg-success-subtle";
+  textColorClass = "text-success-emphasis";
+} else if (beats > 50) {
+  bgColorClass = "bg-warning-subtle";
+  textColorClass = "text-warning-emphasis";
+} else if (beats > 0) {
+  bgColorClass = "bg-danger-subtle";
+  textColorClass = "text-danger-emphasis";
+} else {
+  bgColorClass = "bg-body-secondary";
+  textColorClass = "text-body-secondary";
+}
 ---
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-secondary my-4">
+    <div class={`card my-4 ${bgColorClass} ${textColorClass} my-4`}>
       <div class="card-body">
         <h5 class="card-title">
           <i class="bi bi-stopwatch"></i> Runtime
