@@ -1,0 +1,108 @@
+---
+title: "LeetCode: Roman to Integer"
+date: 2025-11-15
+description: Convert a Roman numeral to an integer.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeResult from "../components/LeetCodeResult.astro";
+
+Convert a [Roman numeral to an integer](https://leetcode.com/problems/roman-to-integer/). Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+## First Approach
+
+My first approach was to iterate through the string, checking both the current character and previous character. For example, `MCM` = 1900.
+
+1. Initialize result to 0.
+2. Character 1 = `M`. Add 1000. Result = 1000.
+3. Character 2 = `C`. Add 100. Result = 1100.
+4. Character 3 = `M`. Previous character is `C`, Add 800. Result = 1900.
+
+<LeetCodeResult runtime="7" beats="42.17" />
+
+```python
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        value = 0
+        prev_char = None
+
+        for idx in range(len(s)):
+            char = s[idx]
+
+            if char == "M" and prev_char == "C":
+                value += 800
+            elif char == "D" and prev_char == "C":
+                value += 300
+            elif char == "C" and prev_char == "X":
+                value += 80
+            elif char == "L" and prev_char == "X":
+                value += 30
+            elif char == "X" and prev_char == "I":
+                value += 8
+            elif char == "V" and prev_char == "I":
+                value += 3
+            elif char == "M":
+                value += 1000
+            elif char == "D":
+                value += 500
+            elif char == "C":
+                value += 100
+            elif char == "L":
+                value += 50
+            elif char == "X":
+                value += 10
+            elif char == "V":
+                value += 5
+            elif char == "I":
+                value += 1
+
+            prev_char = char
+
+        return value
+```
+
+## Second Approach
+
+<LeetCodeResult runtime="3" beats="79.99" />
+
+```python
+cclass Solution:
+    def romanToInt(self, s: str) -> int:
+        char_map = {
+            "CM": 900,
+            "CD": 400,
+            "XC": 90,
+            "XL": 40,
+            "IX": 9,
+            "IV": 4,
+            "M": 1000,
+            "D": 500,
+            "C": 100,
+            "L": 50,
+            "X": 10,
+            "V": 5,
+            "I": 1,
+        }
+
+        result = 0
+
+        idx = 0
+        while idx < len(s):
+            # Check for two characters
+            if idx < len(s) - 1 and s[idx:idx + 2] in char_map:
+                result += char_map[s[idx:idx + 2]]
+                idx += 2
+                continue
+
+            # Otherwise, one character
+            result += char_map[s[idx]]
+            idx += 1
+
+        return result
+
+```
