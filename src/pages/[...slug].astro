@@ -12,9 +12,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const pageTitle = post.data?.title ?? "Post";
+const pageDescription = post.data?.description ?? "";
+const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
 ---
 
-<PageLayout>
+<PageLayout title={pageTitle} description={pageDescription} image={pageImage}>
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <Content />
