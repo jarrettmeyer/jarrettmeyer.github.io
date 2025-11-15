@@ -1,24 +1,35 @@
 ---
 interface Props {
   count?: number;
+  filterTag?: string; // normalized slug to filter by, e.g. "context-engineering" or "uncategorized"
 }
 
 import { getCollection } from "astro:content";
+import { slugifyTag } from "../utils/slugify";
+import TagBadge from "./TagBadge.astro";
 
-const { count } = Astro.props;
+const { count, filterTag } = Astro.props as Props;
 
-const posts = (await getCollection("posts"))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .filter((post, index) => {
-    if (import.meta.env.PROD && post.data.draft) {
-      return false;
+const allPosts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const posts = allPosts.filter((post, index) => {
+  if (import.meta.env.PROD && post.data.draft) {
+    return false;
+  }
+
+  if (filterTag) {
+    if (filterTag === "uncategorized") {
+      return !(post.data.tags && post.data.tags.length > 0);
     }
+    const postHasTag = (post.data.tags || []).some((t) => slugifyTag(t) === filterTag);
+    return postHasTag;
+  }
 
-    if (count && count > 0) {
-      return index < count;
-    }
-    return true;
-  });
+  if (count && count > 0) {
+    return index < count;
+  }
+  return true;
+});
 
 const imageHeight = 80;
 
@@ -60,7 +71,7 @@ function toFriendlyDate(date: Date) {
                 class="card-img-top"
                 style={{
                   "max-height": `${imageHeight}px`,
-                  height: `${imageHeight}px`,
+                  "height": `${imageHeight}px`,
                   "object-fit": "contain",
                 }}
               />
@@ -68,12 +79,13 @@ function toFriendlyDate(date: Date) {
           )}
           <div class="card-body">
             <h5 class="card-title mb-3">
-              <a href={post.id}>{post.data.title}</a>
+              <a href={`/${post.id}`}>{post.data.title}</a>
             </h5>
-            <h6 class="card-subtitle text-secondary mb-4">
-              {toFriendlyDate(post.data.date)}
-            </h6>
+            <h6 class="card-subtitle text-secondary mb-4">{toFriendlyDate(post.data.date)}</h6>
             <p class="card-text">{post.data.description}</p>
+            <div class="mt-2">
+              {post.data.tags && post.data.tags.length > 0 ? post.data.tags.map((t: string) => <TagBadge tag={t} />) : <TagBadge tag="Uncategorized" />}
+            </div>
           </div>
         </div>
       </div>

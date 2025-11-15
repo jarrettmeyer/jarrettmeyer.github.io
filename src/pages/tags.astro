@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import { slugifyTag } from "../utils/slugify";
+
+const posts = await getCollection("posts");
+const counts: Record<string, { label: string; count: number }> = {};
+for (const post of posts) {
+  if (import.meta.env.PROD && post.data.draft) continue;
+  const tags = post.data.tags && post.data.tags.length > 0 ? post.data.tags : ["Uncategorized"];
+  for (const t of tags) {
+    const slug = slugifyTag(t);
+    if (!counts[slug]) counts[slug] = { label: t, count: 0 };
+    counts[slug].count++;
+  }
+}
+const entries = Object.entries(counts).sort((a, b) => b[1].count - a[1].count || a[1].label.localeCompare(b[1].label));
+---
+
+<PageLayout title="Tags">
+  <h1 class="my-4">Tags</h1>
+  <div class="list-group">
+    {
+      entries.map(([slug, info]) => (
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href={`/tags/${slug}`}>
+          <span>{info.label}</span>
+          <span class="badge bg-secondary rounded-pill">{info.count}</span>
+        </a>
+      ))
+    }
+  </div>
+</PageLayout>

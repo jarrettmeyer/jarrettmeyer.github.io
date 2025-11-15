@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import ListPosts from "../../components/ListPosts.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { slugifyTag } from "../../utils/slugify";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  const tagSet = new Set<string>();
+  for (const post of posts) {
+    if (import.meta.env.PROD && post.data.draft) continue;
+    const tags = post.data.tags && post.data.tags.length > 0 ? post.data.tags : ["Uncategorized"];
+    for (const t of tags) tagSet.add(slugifyTag(t));
+  }
+  return Array.from(tagSet).map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const readableTag = (await getCollection("posts")).reduce((acc, p) => {
+  const tags = p.data.tags || [];
+  for (const t of tags) {
+    if (slugifyTag(t) === tag) return t;
+  }
+  return acc;
+}, "Uncategorized");
+---
+
+<PageLayout title={`Tag: ${readableTag}`}>
+  <h1 class="my-4">{`Tag: ${readableTag}`}</h1>
+  <ListPosts filterTag={tag} />
+</PageLayout>
