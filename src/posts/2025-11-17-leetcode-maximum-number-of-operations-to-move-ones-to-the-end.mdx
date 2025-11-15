@@ -1,0 +1,65 @@
+---
+title: "LeetCode: Maximum Number of Operations to Move Ones to the End"
+date: 2025-11-17
+description: Return the maximum number of operations to move ones to the end of a binary string.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/leetcode.svg
+  alt: LeetCode Logo
+draft: true
+---
+
+import LeetCodeResult from "../components/LeetCodeResult.astro";
+
+You are given a binary string `s`.
+
+You can perform the following operation on the string any number of times:
+
+Choose any index `i` from the string where `i + 1 < s.length` such that `s[i] == '1'` and `s[i + 1] == '0'`.
+Move the character `s[i]` to the right until it reaches the end of the string or another `'1'`. For example, for `s = "010010"`, if we choose `i = 1`, the resulting string will be `s = "000110"`.
+Return the maximum number of operations that you can perform.
+
+**Example 1**:
+
+```text
+Input: s = "1001101"
+Output: 4
+Explanation:
+We can perform the following operations:
+
+Choose index i = 0. The resulting string is s = "0011101".
+Choose index i = 4. The resulting string is s = "0011011".
+Choose index i = 3. The resulting string is s = "0010111".
+Choose index i = 2. The resulting string is s = "0001111".
+```
+
+**Example 2**:
+
+```text
+Input: s = "00111"
+Output: 0
+```
+
+## Solution
+
+We don't actualy need to perform the swap operations. Instead we can can count the number of groups of zeros as we iterate backwards through the binary string. Each time we find a `"1"`, we can add the current number of zero groups to the result.
+
+<LeetCodeResult runtime="77" beats="36.14" />
+
+```python
+class Solution:
+    def maxOperations(self, s: str) -> int:
+        zero_groups = 0
+        total = 0
+
+        for i in range(len(s) - 1, -1, -1):
+            if s[i] == "0":
+                if i == len(s) - 1 or s[i + 1] == "1":
+                    zero_groups += 1
+            else:
+                total += zero_groups
+
+        return total
+```
