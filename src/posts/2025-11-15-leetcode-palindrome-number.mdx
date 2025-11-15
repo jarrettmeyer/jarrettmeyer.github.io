@@ -1,0 +1,59 @@
+---
+title: LeetCode Palindrome Number
+date: 2025-11-15
+description: Given an integer, return True if it is a palindrome.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/LeetCode_logo_black.png
+  alt: LeetCode Logo
+---
+
+import LeetCodeResult from "../components/LeetCodeResult.astro";
+
+Determine if an [integer is a palindrome](https://leetcode.com/problems/palindrome-number/). A number is a palindrome if it reads the same forwards and backwards.
+
+## Python Solution
+
+This has a very easy Python solution. Since the string operations in Python are highly optimized, this solution performs very well. Convert the integer to a string and compare it to its reverse.
+
+<LeetCodeResult runtime="0" beats="88.88" />
+
+```python
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        # Convert the integer to a string
+        s = str(x)
+
+        # Compare the string to its reverse
+        return s == s[::-1]
+```
+
+## Two-Pointer Solution
+
+You can also use a two-pointer approach. Set the first pointer to the start of the string and the second pointer to the end of the string. Compare the characters at each pointer. If the characters do not match, immediately return False. If they match, move the first pointer forward and the second pointer backward, and continue comparing until the pointers meet or cross. If all characters match, return True.
+
+<LeetCodeResult runtime="3" beats="88.13" />
+
+```python
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        # Convert the integer to a string
+        s = str(x)
+
+        # Initialize two pointers
+        left = 0
+        right = len(s) - 1
+
+        while left < right:
+            # If the characters at the pointers do not match, it's not a palindrome
+            if s[left] != s[right]:
+                return False
+
+            # Move the pointers closer to the center
+            left += 1
+            right -= 1
+
+        return True
+```

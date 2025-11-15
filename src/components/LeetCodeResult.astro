@@ -1,0 +1,25 @@
+---
+interface Props {
+  runtime: number;
+  beats?: number;
+}
+
+const { runtime, beats } = Astro.props;
+---
+
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-secondary my-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          <i class="bi bi-stopwatch"></i> Runtime
+        </h5>
+        <p class="card-text">
+          <span class="fs-5 fw-bolder">{runtime}</span>
+          <span class="fs-6">ms</span> | <span class="fs-6">Beats</span>
+          <span class="fs-5 fw-bolder">{beats ?? 0}%</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
