@@ -37,7 +37,7 @@ if (!beats) {
         <p class="card-text">
           <span class="fs-5 fw-bolder">{runtime}</span>
           <span class="fs-6">ms</span> | <span class="fs-6">Beats</span>
-          <span class="fs-5 fw-bolder">{beats ?? 0}%</span>
+          <span class="fs-5 fw-bolder">{(beats ?? 0).toFixed(2)}%</span>
         </p>
       </div>
     </div>

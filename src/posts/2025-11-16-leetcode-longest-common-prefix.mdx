@@ -36,7 +36,7 @@ Explanation: There is no common prefix among the input strings.
 
 My first solution was brute force. Start with index 0. Check if all strings have the same character at that index. If they do, add the character to the prefix and move to the next index. Repeat until either the characters do not match or an IndexError is raised (shortest word).
 
-<LeetCodeResult runtime="3" beats="26.38" />
+<LeetCodeResult runtime={3} beats={26.38} />
 
 ```python
 class Solution:
@@ -69,7 +69,7 @@ class Solution:
 
 For my second solution, I used Python's built-in `zip` function to group characters from each string by index. Then I used a regular expression to check that all characters in each group are the same. If they are, I add the character to the prefix. If not, I break the loop.
 
-<LeetCodeResult runtime="0" beats="100.00" />
+<LeetCodeResult runtime={0} beats={100.0} />
 
 ```python
 import re

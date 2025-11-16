@@ -23,7 +23,7 @@ My first approach was to iterate through the string, checking both the current c
 3. Character 2 = `C`. Add 100. Result = 1100.
 4. Character 3 = `M`. Previous character is `C`, Add 800. Result = 1900.
 
-<LeetCodeResult runtime="7" beats="42.17" />
+<LeetCodeResult runtime={7} beats={42.17} />
 
 ```python
 class Solution:
@@ -68,7 +68,11 @@ class Solution:
 
 ## Second Approach
 
-<LeetCodeResult runtime="3" beats="79.99" />
+For my second attempt, I created a mapping of both single and double character Roman numerals to their integer values. I then iterated through the string, checking for two-character matches first, and falling back to single-character matches.
+
+This took me from 7ms to 3ms.
+
+<LeetCodeResult runtime={3} beats={79.99} />
 
 ```python
 cclass Solution:
