@@ -17,7 +17,7 @@ const hrefUrl = new URL(href);
 ---
 
 <p>
-  <a href={href} target="_blank">See original problem on {hrefUrl.host}</a>
+  <a href={href} target="_blank" rel="noopener noreferrer">See original problem on {hrefUrl.host}</a>
 </p>
 <p>
   Difficulty: <span class={`badge rounded-pill ${colorClass}`}>{difficulty}</span>
