@@ -1,6 +1,6 @@
 ---
 title: "LeetCode: Longest Common Prefix"
-date: 2025-11-16
+date: 2025-11-15
 description: Return the longest common prefix of an array of strings.
 tags:
   - LeetCode
@@ -8,33 +8,17 @@ tags:
 thumbnail:
   src: /images/posts/thumbnails/leetcode.svg
   alt: LeetCode Logo
-draft: true
 ---
 
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
 import LeetCodeResult from "@/components/LeetCodeResult.astro";
 
-Write a function to find the longest common prefix string amongst an array of strings.
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/longest-common-prefix/"
+/>
 
-If there is no common prefix, return an empty string "".
-
-**Example 1**:
-
-```text
-Input: strs = ["flower","flow","flight"]
-Output: "fl"
-```
-
-**Example 2**:
-
-```text
-Input: strs = ["dog","racecar","car"]
-Output: ""
-Explanation: There is no common prefix among the input strings.
-```
-
-## First Solution
-
-My first solution was brute force. Start with index 0. Check if all strings have the same character at that index. If they do, add the character to the prefix and move to the next index. Repeat until either the characters do not match or an IndexError is raised (shortest word).
+## Brute Force Solution
 
 <LeetCodeResult runtime={3} beats={26.38} />
 
@@ -67,13 +51,11 @@ class Solution:
 
 ## Second Solution
 
-For my second solution, I used Python's built-in `zip` function to group characters from each string by index. Then I used a regular expression to check that all characters in each group are the same. If they are, I add the character to the prefix. If not, I break the loop.
+For my second solution, I used Python's built-in `zip` function to group characters from each string by index. Then I used a regular expression to check that all characters in each group are the same.
 
 <LeetCodeResult runtime={0} beats={100.0} />
 
 ```python
-import re
-
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         prefix = ""
