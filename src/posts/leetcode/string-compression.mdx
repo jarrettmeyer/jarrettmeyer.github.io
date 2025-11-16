@@ -1,0 +1,50 @@
+---
+title: "LeetCode: String Compression"
+date: 2025-11-16
+description: Return the maximum number of operations to move ones to the end of a binary string.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "../../components/LeetCodeHeader.astro";
+import LeetCodeResult from "../../components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/string-compression/"
+/>
+
+## Solution
+
+I'm rather proud of this one. 😊
+
+<LeetCodeResult runtime={0} beats={100.0} />
+
+```python
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        prev = None
+        count = 1
+        i = 0
+        while i < len(chars):
+            if prev == chars[i]:
+                count += 1
+                chars.pop(i)
+            else:
+                if count > 1:
+                    chars[i:len(str(count))] = str(count)
+                    i += len(str(count))
+
+                prev = chars[i]
+                count = 1
+                i += 1
+
+        if count > 1:
+            chars[i:len(str(count))] = str(count)
+
+        return len(chars)
+```
