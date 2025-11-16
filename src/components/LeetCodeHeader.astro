@@ -1,0 +1,24 @@
+---
+interface Props {
+  difficulty: "Easy" | "Medium" | "Hard";
+  href: string;
+}
+
+const { difficulty, href } = Astro.props;
+
+let colorClass = "text-bg-success";
+if (difficulty === "Medium") {
+  colorClass = "text-bg-warning";
+} else if (difficulty === "Hard") {
+  colorClass = "text-bg-danger";
+}
+
+const hrefUrl = new URL(href);
+---
+
+<p>
+  <a href={href} target="_blank">See original problem on {hrefUrl.host}</a>
+</p>
+<p>
+  Difficulty: <span class={`badge rounded-pill ${colorClass}`}>{difficulty}</span>
+</p>
