@@ -10,9 +10,13 @@ thumbnail:
   alt: LeetCode Logo
 ---
 
-import LeetCodeResult from "../components/LeetCodeResult.astro";
+import LeetCodeHeader from "../../components/LeetCodeHeader.astro";
+import LeetCodeResult from "../../components/LeetCodeResult.astro";
 
-Determine if an [integer is a palindrome](https://leetcode.com/problems/palindrome-number/). A number is a palindrome if it reads the same forwards and backwards.
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/palindrome-number/"
+/>
 
 ## Pythonic Solution
 
@@ -32,7 +36,9 @@ class Solution:
 
 ## Two-Pointer Solution
 
-You can also use a two-pointer approach. Set the first pointer to the start of the string and the second pointer to the end of the string. Compare the characters at each pointer. If the characters do not match, immediately return False. If they match, move the first pointer forward and the second pointer backward, and continue comparing until the pointers meet or cross. If all characters match, return True.
+You can also use a two-pointer approach. Set the first pointer to the start of the string and the second pointer to the end of the string. Compare the characters at each pointer. If the characters do not match, immediately return `False`. If they match, move the first pointer forward and the second pointer backward, and continue comparing until the pointers meet or cross. If all characters match, return `True`.
+
+This solution is slower than the Pythonic solution, but it is a good demonstration of the two-pointer technique.
 
 <LeetCodeResult runtime={3} beats={88.13} />
 
