@@ -10,18 +10,17 @@ thumbnail:
   alt: LeetCode Logo
 ---
 
-import LeetCodeResult from "../components/LeetCodeResult.astro";
+import LeetCodeHeader from "../../components/LeetCodeHeader.astro";
+import LeetCodeResult from "../../components/LeetCodeResult.astro";
 
-Convert a [Roman numeral to an integer](https://leetcode.com/problems/roman-to-integer/). Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/roman-to-integer/"
+/>
 
 ## First Approach
 
-My first approach was to iterate through the string, checking both the current character and previous character. For example, `MCM` = 1900.
-
-1. Initialize result to 0.
-2. Character 1 = `M`. Add 1000. Result = 1000.
-3. Character 2 = `C`. Add 100. Result = 1100.
-4. Character 3 = `M`. Previous character is `C`, Add 800. Result = 1900.
+My first approach was to iterate through the string, checking both the current character and previous character. The "trick" is that sometimes we are adding 800 to the return value, since we've already added 100 for the "C" and now need to add 900 for "CM".
 
 <LeetCodeResult runtime={7} beats={42.17} />
 
@@ -70,12 +69,12 @@ class Solution:
 
 For my second attempt, I created a mapping of both single and double character Roman numerals to their integer values. I then iterated through the string, checking for two-character matches first, and falling back to single-character matches.
 
-This took me from 7ms to 3ms.
+This improved the time from 7 ms to 3 ms.
 
 <LeetCodeResult runtime={3} beats={79.99} />
 
 ```python
-cclass Solution:
+class Solution:
     def romanToInt(self, s: str) -> int:
         char_map = {
             "CM": 900,
@@ -108,5 +107,4 @@ cclass Solution:
             idx += 1
 
         return result
-
 ```
