@@ -2,7 +2,9 @@
 interface Props {
   tag: string;
 }
-import { slugifyTag } from "../utils/slugify";
+
+import { slugifyTag } from "@/utils/slugify";
+
 const { tag } = Astro.props as Props;
 const slug = slugifyTag(tag);
 ---

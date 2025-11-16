@@ -1,7 +1,7 @@
 ---
+import TagBadge from "@/components/TagBadge.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
 import { getCollection, render } from "astro:content";
-import TagBadge from "../components/TagBadge.astro";
-import PageLayout from "../layouts/PageLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");

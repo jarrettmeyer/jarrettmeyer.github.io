@@ -1,8 +1,8 @@
 ---
+import ListPosts from "@/components/ListPosts.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import { slugifyTag } from "@/utils/slugify";
 import { getCollection } from "astro:content";
-import ListPosts from "../../components/ListPosts.astro";
-import PageLayout from "../../layouts/PageLayout.astro";
-import { slugifyTag } from "../../utils/slugify";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");

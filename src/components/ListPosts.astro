@@ -4,10 +4,10 @@ interface Props {
   filterTag?: string; // normalized slug to filter by, e.g. "context-engineering" or "uncategorized"
 }
 
+import TagBadge from "@/components/TagBadge.astro";
+import { toFriendlyDate } from "@/utils/dates";
+import { slugifyTag } from "@/utils/slugify";
 import { getCollection } from "astro:content";
-import { toFriendlyDate } from "../utils/dates";
-import { slugifyTag } from "../utils/slugify";
-import TagBadge from "./TagBadge.astro";
 
 const { count, filterTag } = Astro.props as Props;
 

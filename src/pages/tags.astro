@@ -1,7 +1,7 @@
 ---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { slugifyTag } from "@/utils/slugify";
 import { getCollection } from "astro:content";
-import PageLayout from "../layouts/PageLayout.astro";
-import { slugifyTag } from "../utils/slugify";
 
 const posts = await getCollection("posts");
 const counts: Record<string, { label: string; count: number }> = {};
