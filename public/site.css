@@ -1,3 +1,15 @@
 body div.expressive-code { 
     margin-bottom: 1.5rem; 
 }
+
+#search-modal .pagefind-ui__message {
+    color: var(--bs-body-color);    
+}
+
+#search-modal .pagefind-ui__result-excerpt {
+    color: var(--bs-body-color);    
+}
+
+#search-modal .pagefind-ui__result-link {
+    color: var(--bs-primary);
+}

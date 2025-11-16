@@ -5,6 +5,7 @@ interface Props {
 }
 
 import { getCollection } from "astro:content";
+import { toFriendlyDate } from "../utils/dates";
 import { slugifyTag } from "../utils/slugify";
 import TagBadge from "./TagBadge.astro";
 
@@ -32,30 +33,6 @@ const posts = allPosts.filter((post, index) => {
 });
 
 const imageHeight = 80;
-
-function toFriendlyDate(date: Date) {
-  const monthNum: number = date.getUTCMonth();
-  const dateNum: number = date.getUTCDate();
-  const yearNum: number = date.getUTCFullYear();
-
-  const months: Record<number, string> = {
-    0: "Jan",
-    1: "Feb",
-    2: "Mar",
-    3: "Apr",
-    4: "May",
-    5: "Jun",
-    6: "Jul",
-    7: "Aug",
-    8: "Sep",
-    9: "Oct",
-    10: "Nov",
-    11: "Dec",
-  };
-  const month = months[monthNum];
-
-  return `${dateNum} ${month} ${yearNum}`;
-}
 ---
 
 <section class="row">

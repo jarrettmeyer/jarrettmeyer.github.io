@@ -1,5 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import SearchModal from "../components/SearchModal.astro";
+
 const {
   title = "Jarrett Meyer",
   description = "Senior architecture and technology strategy leader with over 20 years of experience in AWS cloud infrastructure, machine learning engineering, and data solutions.",
@@ -66,6 +68,7 @@ const {
     <Navbar />
     <main class="container my-5">
       <slot />
+      <SearchModal />
     </main>
   </body>
 </html>
