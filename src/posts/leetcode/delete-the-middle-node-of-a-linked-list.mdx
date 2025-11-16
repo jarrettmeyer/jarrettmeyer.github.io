@@ -1,0 +1,43 @@
+---
+title: "LeetCode: Delete the Middle Node of a Linked List"
+date: 2025-11-16
+description: Delete the middle node of a linked list.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/"
+/>
+
+## Solution
+
+Track two pointers, `slow` and `fast`. Move `fast` two nodes for every one node that `slow` moves. When `fast` reaches the end of the list, `slow` will be at the node before the middle node.
+
+<LeetCodeResult runtime={41} beats={92.39} />
+
+```python
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return None
+
+        slow = ListNode(None)
+        slow.next = head
+        fast = head
+
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        slow.next = slow.next.next
+        return head
+```

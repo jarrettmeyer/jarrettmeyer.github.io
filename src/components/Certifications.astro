@@ -23,10 +23,10 @@ const height: number = 120;
 
 <div class="row justify-content-center my-5">
   {
-    certifications.map((cert, index) => (
+    certifications.map((cert) => (
       <div class="col-auto">
-        <div class="card border-0">
-          <div class="card-header bg-dark border-bottom-0">
+        <div class="card bg-transparent border-0">
+          <div class="card-header bg-transparent border-bottom-0">
             <img
               src={`/images/certifications/${cert.image}`}
               alt={cert.label}
