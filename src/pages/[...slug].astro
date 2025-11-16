@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
-import PageLayout from "../layouts/PageLayout.astro";
 import TagBadge from "../components/TagBadge.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -18,15 +18,11 @@ const pageDescription = post.data?.description ?? "";
 const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
 ---
 
-<PageLayout title={pageTitle} description={pageDescription} image={pageImage}>
+<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includePagefind={true}>
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <div class="mb-3">
-    {
-      (post.data.tags && post.data.tags.length > 0)
-        ? post.data.tags.map((t: string) => <TagBadge tag={t} />)
-        : <TagBadge tag="Uncategorized" />
-    }
+    {post.data.tags && post.data.tags.length > 0 ? post.data.tags.map((t: string) => <TagBadge tag={t} />) : <TagBadge tag="Uncategorized" />}
   </div>
   <Content />
 </PageLayout>
