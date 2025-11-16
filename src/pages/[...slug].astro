@@ -1,6 +1,7 @@
 ---
 import TagBadge from "@/components/TagBadge.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
+import { toFriendlyDate } from "@/utils/dates";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -22,6 +23,8 @@ const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <div class="mb-3">
+    <span class="text-body-secondary">Posted on</span>
+    <time datetime={post.data?.date.toISOString()}>{toFriendlyDate(post.data?.date)}</time>
     {post.data.tags && post.data.tags.length > 0 ? post.data.tags.map((t: string) => <TagBadge tag={t} />) : <TagBadge tag="Uncategorized" />}
   </div>
   <Content />

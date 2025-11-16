@@ -9,6 +9,6 @@ const { tag } = Astro.props as Props;
 const slug = slugifyTag(tag);
 ---
 
-<a class="badge bg-secondary text-decoration-none me-1" href={`/tags/${slug}`} aria-label={`Tag ${tag}`}>
+<a class="badge bg-secondary text-decoration-none mx-1" href={`/tags/${slug}`} aria-label={`Tag ${tag}`}>
   {tag}
 </a>
