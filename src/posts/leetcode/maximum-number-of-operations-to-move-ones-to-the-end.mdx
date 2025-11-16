@@ -1,0 +1,43 @@
+---
+title: "LeetCode: Maximum Number of Operations to Move Ones to the End"
+date: 2025-11-15
+description: Return the maximum number of operations to move ones to the end of a binary string.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+draft: true
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/maximum-number-of-operations-to-move-ones-to-the-end/"
+/>
+
+## Solution
+
+We don't actualy need to perform the swap operations. Instead we can can count the number of groups of zeros as we iterate backwards through the binary string.
+
+<LeetCodeResult runtime={63} beats={56.68} />
+
+```python
+class Solution:
+    def maxOperations(self, s: str) -> int:
+        zero_groups = 0
+        total = 0
+        n = len(s)
+
+        for i in range(n - 1, -1, -1):
+            if s[i] == "0":
+                if i == n - 1 or s[i + 1] == "1":
+                    zero_groups += 1
+            else:
+                total += zero_groups
+
+        return total
+```
