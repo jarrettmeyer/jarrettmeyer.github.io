@@ -1,0 +1,37 @@
+---
+title: "LeetCode: Longest Substring Without Repeating Characters"
+date: 2025-11-16
+description: Find the length of the longest substring without repeating characters.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+/>
+
+## Solution
+
+<LeetCodeResult runtime={15} beats={80.95} />
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        best = 0
+        chars = []
+        for char in s:
+            if char in chars:
+                chars = chars[chars.index(char) + 1:]
+            chars.append(char)
+            if len(chars) > best:
+                best = len(chars)
+        return best
+```
