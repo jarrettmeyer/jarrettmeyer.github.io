@@ -1,0 +1,47 @@
+---
+title: "LeetCode: Container With Most Water"
+date: 2025-11-16
+description: Find the container with the most water.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/string-compression/"
+/>
+
+## Solution
+
+This is another two-pointer problem. One pointer starts from the first element; the other starts from the last element.
+
+The area is the distance between the two pointers multiplied by the shorter of the two heights. We keep track of the best area found so far.
+
+<LeetCodeResult runtime={60} beats={93.93} />
+
+```python
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left = 0
+        right = len(height) - 1
+        best_area = -1
+        while left < right:
+            shortest = min(height[left], height[right])
+            area = (right - left) * shortest
+            if area > best_area:
+                best_area = area
+
+            if height[left] == shortest:
+                left += 1
+            else:
+                right -= 1
+
+        return best_area
+```
