@@ -1,0 +1,38 @@
+---
+title: "LeetCode: Kids With the Greatest Number of Candies"
+date: 2025-11-16
+description: Determine which kids can have the greatest number of candies after receiving extra candies.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/"
+/>
+
+## Solution
+
+<LeetCodeResult runtime={0} beats={100.0} />
+
+```python
+class Solution:
+    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+        answer = []
+        most = max(*candies)
+
+        for i in range(len(candies)):
+            if candies[i] + extraCandies >= most:
+                answer.append(True)
+            else:
+                answer.append(False)
+
+        return answer
+```
