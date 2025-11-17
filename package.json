@@ -4,8 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "astro": "astro",
-    "build": "astro build && npx pagefind --site dist",
-    "dev": "astro dev",
+    "astro:build": "astro build",
+    "astro:dev": "astro dev",
+    "astro:preview": "astro preview",
+    "build": "npm run astro:build && npm run pagefind && npm run copy-404",
+    "copy-404": "( [ -f dist/404.html ] || ( [ -f dist/404/index.html ] && cp dist/404/index.html dist/404.html ) )",
+    "dev": "npm run astro:dev",
     "pagefind": "pagefind --site dist",
     "preview": "astro preview"
   },

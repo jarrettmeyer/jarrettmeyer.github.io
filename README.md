@@ -1,5 +1,7 @@
 # jarrettmeyer.github.io
 
+This is my personal website. It is deployed to GitHub Pages.
+
 ## Links
 
 - [jarrettmeyer.com](https://jarrettmeyer.com)
