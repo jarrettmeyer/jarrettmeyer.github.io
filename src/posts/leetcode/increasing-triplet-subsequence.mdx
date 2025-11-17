@@ -1,0 +1,51 @@
+---
+title: "LeetCode: Increasing Triplet Subsequence"
+date: 2025-11-17
+description: Find if there exists an increasing triplet subsequence in an array.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/increasing-triplet-subsequence/"
+/>
+
+## Solution
+
+The constraints state that the maximum value is `2^31 - 1`. This is used as the initial values for `first` and `second`.
+
+Loop through each `val` in `nums`.
+
+- If `val` is equal to `first` or `second`, do nothing.
+- If `val` is less than `first`, update `first` to be `val`.
+- If `val` is less than `second`, update `second` to be `val`. This means that `second` is guaranteed to be strictly greater than `first`.
+- Otherwise, return `True`. This guarantees that `val` is greater than both `first` and `second`.
+
+<LeetCodeResult runtime={11} beats={96.51} />
+
+```python
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        first = 2 ** 31 - 1
+        second = 2 ** 31 - 1
+
+        for val in nums:
+            if val == first or val == second:
+                pass
+            elif val < first:
+                first = val
+            elif val < second:
+                second = val
+            else:
+                return True
+
+        return False
+```

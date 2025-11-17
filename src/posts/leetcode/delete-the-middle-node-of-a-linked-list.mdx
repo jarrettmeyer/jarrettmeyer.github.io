@@ -1,6 +1,6 @@
 ---
 title: "LeetCode: Delete the Middle Node of a Linked List"
-date: 2025-11-16
+date: 2025-11-17
 description: Delete the middle node of a linked list.
 tags:
   - LeetCode
@@ -10,6 +10,7 @@ thumbnail:
   alt: LeetCode Logo
 ---
 
+import Alert from "@/components/Alert.astro";
 import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
 import LeetCodeResult from "@/components/LeetCodeResult.astro";
 
@@ -18,11 +19,17 @@ import LeetCodeResult from "@/components/LeetCodeResult.astro";
   href="https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/"
 />
 
+<Alert type="info">This was originally posted on Nov 16, 2025.</Alert>
+
 ## Solution
 
 Track two pointers, `slow` and `fast`. Move `fast` two nodes for every one node that `slow` moves. When `fast` reaches the end of the list, `slow` will be at the node before the middle node.
 
-<LeetCodeResult runtime={41} beats={92.39} />
+![Algorithm example](/images/posts/leetcode/delete-the-middle-node-of-a-linked-list/example-1.png)
+
+You will notice that `slow` is one node ahead. Let's introduce `prev` to keep track of the node before `slow`.
+
+<LeetCodeResult runtime={43} beats={90.29} />
 
 ```python
 class Solution:
@@ -30,14 +37,17 @@ class Solution:
         if head is None or head.next is None:
             return None
 
-        slow = ListNode(None)
-        slow.next = head
+        slow = head
         fast = head
+        prev = None
 
         while fast is not None and fast.next is not None:
+            prev = slow
             slow = slow.next
             fast = fast.next.next
 
-        slow.next = slow.next.next
+        if prev and prev.next:
+          prev.next = prev.next.next
+
         return head
 ```

@@ -1,0 +1,11 @@
+---
+interface Props {
+  type?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
+}
+
+const { type } = Astro.props;
+---
+
+<div class={`alert alert-${type ?? "primary"}`} role="alert">
+  <slot />
+</div>
