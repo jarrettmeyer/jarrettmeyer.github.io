@@ -1,0 +1,53 @@
+---
+title: "LeetCode: Max Number of K-Sum Pairs"
+date: 2025-11-18
+description: "Return the "
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+draft: true
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/max-number-of-k-sum-pairs/"
+/>
+
+## Solution
+
+I really 🩷 these two-pointer problems!
+
+Start by sorting `nums`. Initialize `count`, `left`, and `right`.
+
+If the sum of `nums[left]` and `nums[right]` is less than the target, then we need to make the smaller number bigger. Move `left` to the right.
+
+If the sum of `nums[left]` and `nums[right]` is greater than the target, then we need to make the bigger number smaller. Move `right` to the left.
+
+If the sum of `nums[left]` and `nums[right]` equals the target, increment `count` and move both pointers inward.
+
+<LeetCodeResult runtime={493} beats={85.26} />
+
+```python
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        count, left, right = 0, 0, len(nums) - 1
+
+        while left < right:
+            if nums[left] + nums[right] < k:
+                left += 1
+            elif nums[left] + nums[right] > k:
+                right -= 1
+            else:
+                count += 1
+                left += 1
+                right -= 1
+
+        return count
+```
