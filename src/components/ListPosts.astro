@@ -11,26 +11,36 @@ import { getCollection } from "astro:content";
 
 const { count, filterTag } = Astro.props as Props;
 
-const allPosts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const posts = allPosts.filter((post, index) => {
-  if (import.meta.env.PROD && post.data.draft) {
-    return false;
-  }
-
-  if (filterTag) {
-    if (filterTag === "uncategorized") {
-      return !(post.data.tags && post.data.tags.length > 0);
-    }
-    const postHasTag = (post.data.tags || []).some((t) => slugifyTag(t) === filterTag);
-    return postHasTag;
-  }
-
+const filterByCount = (_post: any, index: number) => {
   if (count && count > 0) {
     return index < count;
   }
   return true;
-});
+};
+
+const filterByDraft = (post: any) => {
+  if (import.meta.env.PROD && post.data?.draft) {
+    return false;
+  }
+  return true;
+};
+
+const filterByTag = (post: any) => {
+  if (filterTag) {
+    if (filterTag === "uncategorized") {
+      return !(post.data.tags && post.data.tags.length > 0);
+    }
+    const postHasTag = (post.data.tags || []).some((t: string) => slugifyTag(t) === filterTag);
+    return postHasTag;
+  }
+  return true;
+};
+
+const posts = (await getCollection("posts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post) => filterByDraft(post))
+  .filter((post) => filterByTag(post))
+  .filter((post, index) => filterByCount(post, index));
 
 const imageHeight = 80;
 ---
