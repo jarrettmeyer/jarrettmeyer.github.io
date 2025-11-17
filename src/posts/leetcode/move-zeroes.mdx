@@ -1,0 +1,59 @@
+---
+title: "LeetCode: Move Zeroes"
+date: 2025-11-17
+description: Move all zeroes in an array to the end while maintaining the relative order of non-zero elements.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/move-zeroes/"
+/>
+
+## First Solution
+
+My first solution uses `remove()` and `append()` to move zeroes to the end of the list. This satisfies the requirement to reuse the existing array, but is not very efficient since `remove()` has to search through the list to find the first zero each time.
+
+<LeetCodeResult runtime={308} beats={11.28} />
+
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        i = 0
+        n = len(nums)
+        while i < n:
+            if nums[i] == 0:
+                nums.remove(0)
+                nums.append(0)
+                n -= 1
+            else:
+                i += 1
+```
+
+## Second Solution
+
+We need to implement our own swapping logic to efficiently move zeroes to the end of the list. We can implement two pointers, `i` and `j`. `i` will iterate through each element in the list, while `j` will track the position to swap non-zero elements to.
+
+![Example](/images/posts/leetcode/move-zeroes/example-1.png)
+
+<LeetCodeResult runtime={0} beats={100.0} />
+
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        n = len(nums)
+        i = j = 0
+        while i < n:
+            if nums[i] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                j += 1
+            i += 1
+```
