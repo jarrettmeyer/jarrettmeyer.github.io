@@ -1,0 +1,44 @@
+---
+title: "LeetCode: Is Subsequence"
+date: 2025-11-17
+description: "Given two strings, determine if one is a subsequence of the other"
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/is-subsequence/"
+/>
+
+## Solution
+
+Create a pointer `i` for walking through `s`.
+
+Walk through each character `c` in `t`. If `c` matches `s[i]`, increment `i` by 1. If we have reached the end of `s`, then a subsequence is found.
+
+<LeetCodeResult runtime={0} beats={100.00} />
+
+```python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        if len(s) == 0:
+            return True
+
+        s_index = 0
+
+        for c in t:
+            if s[s_index] == c:
+                s_index += 1
+                if s_index >= len(s):
+                    return True
+
+        return False
+```
