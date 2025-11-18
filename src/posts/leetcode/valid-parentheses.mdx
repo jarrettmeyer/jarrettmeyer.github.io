@@ -1,0 +1,51 @@
+---
+title: "LeetCode: Valid Parentheses"
+date: 2025-11-18
+description: "Determine if a string of parentheses is valid."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/valid-parentheses/"
+/>
+
+## Solution
+
+This is a good introduction to LIFO (last-in-first-out) stacks. For this problem, a `list` is sufficient.
+
+If `c` is an opening parenthesis, bracket, or brace, add it to the stack.
+
+Otherwise, we need to pop the last item from the stack. If the stack is empty, the string is invalid. If the popped item does not match the current closing character, the string is invalid.
+
+By the end of the string, the stack must be empty.
+
+<LeetCodeResult runtime={0} beats={100.00} />
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack: List[str] = []
+        mapping = {"(": ")", "[": "]", "{": "}"}
+
+        for c in s:
+            if c in mapping:
+                stack.append(c)
+            else:
+                if not stack:
+                    return False
+
+                last_open = stack.pop()
+                if mapping[last_open] != c:
+                    return False
+
+        return not stack
+```
