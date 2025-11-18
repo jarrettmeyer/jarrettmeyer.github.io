@@ -3,6 +3,13 @@ name: Publish GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/publish_github_pages.yaml"
+      - "public/**"
+      - "src/**"
+      - "astro.config.ts"
+      - "package.json"
+      - "tsconfig.json"
   workflow_dispatch:
 
 permissions:
