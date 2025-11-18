@@ -1,0 +1,41 @@
+---
+title: "LeetCode: Merge Strings Alternately"
+date: 2025-12-03
+description: "Merge two strings by alternating their characters."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/merge-strings-alternately/"
+/>
+
+## Solution
+
+This solution uses string concatenation with `new_word += word1[i]`. In Python, strings are immutable, so each `+=` operation creates a new string object. For small-to-medium inputs, this is usually fast enough (and may be optimized in your specific Python implementation). For larger inputs, using a list and `''.join()` is more efficient.
+
+<LeetCodeResult runtime={28} beats={97.14} />
+
+```python
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        new_word = ""
+        len_word1 = len(word1)
+        len_word2 = len(word2)
+        max_length = max(len_word1, len_word2)
+        for i in range(max_length):
+            if i < len_word1:
+                new_word += word1[i]
+            if i < len_word2:
+                new_word += word2[i]
+
+        return new_word
+```
