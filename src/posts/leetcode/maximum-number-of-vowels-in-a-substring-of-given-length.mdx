@@ -1,0 +1,54 @@
+---
+title: "LeetCode: Maximum Number of Vowels in a Substring of Given Length"
+date: 2025-12-04
+description: "Find maximum number of vowels in any substring of given length k."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import Alert from "@/components/Alert.astro";
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/"
+/>
+
+<Alert type="info">This problem is nearly identical to <a href="/posts/leetcode/maximum-average-subarray-i/">Maximum Average Subarray I</a>, but instead of calculating averages, we are counting vowels in substrings.</Alert>
+
+## Solution
+
+Calculate the number of vowels in the first `k` elements.
+
+Use a sliding window approach to iterate through the array starting from index `k`. For each new element added to the window, add to the vowel count if the `i`-th element is a vowel, and subtract from the vowel count if the `i - k`-th element is a vowel. Update the maximum vowel count found so far.
+
+<LeetCodeResult runtime={40} beats={94.36} />
+
+```python
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = {"a", "e", "i", "o", "u"}
+
+        count_vowels = 0
+
+        for i in range(k):
+            if s[i] in vowels:
+                count_vowels += 1
+
+        max_vowels = count_vowels
+
+        for i in range(k, len(s)):
+            if s[i] in vowels:
+                count_vowels += 1
+            if s[i - k] in vowels:
+                count_vowels -= 1
+            if count_vowels > max_vowels:
+                max_vowels = count_vowels
+
+        return max_vowels
+```
