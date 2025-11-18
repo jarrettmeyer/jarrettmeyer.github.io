@@ -1,0 +1,47 @@
+---
+title: "LeetCode: Maximum Average Subarray I"
+date: 2025-11-18
+description: "Find the contiguous subarray of given length that has the maximum average value."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+draft: true
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/maximum-average-subarray-i/"
+/>
+
+## Solution
+
+Calculate the sum of the first `k` elements.
+
+Use a sliding window approach to iterate through the array starting from index `k`. For each new element added to the window, subtract the element that is leaving the window (i.e., the element at index `i - k`). Update the current sum and check if it's greater than the greatest sum found so far.
+
+Return the greatest sum divided by `k` to get the maximum average.
+
+<LeetCodeResult runtime={40} beats={94.36} />
+
+```python
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        current_sum = 0
+        for i in range(k):
+            current_sum += nums[i]
+
+        greatest_sum = current_sum
+
+        for i in range(k, len(nums)):
+            current_sum += nums[i] - nums[i - k]
+            if current_sum > greatest_sum:
+                greatest_sum = current_sum
+
+        return greatest_sum / k
+```
