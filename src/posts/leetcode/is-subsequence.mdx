@@ -1,6 +1,6 @@
 ---
 title: "LeetCode: Is Subsequence"
-date: 2025-11-18
+date: 2025-11-19
 description: "Given two strings, determine if one is a subsequence of the other"
 tags:
   - LeetCode
@@ -8,7 +8,6 @@ tags:
 thumbnail:
   src: /images/posts/thumbnails/leetcode.svg
   alt: LeetCode Logo
-draft: true
 ---
 
 import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
@@ -25,7 +24,7 @@ Create a pointer `i` for walking through `s`.
 
 Walk through each character `c` in `t`. If `c` matches `s[i]`, increment `i` by 1. If we have reached the end of `s`, then a subsequence is found.
 
-<LeetCodeResult runtime={0} beats={100.00} />
+<LeetCodeResult runtime={0} beats={100.0} />
 
 ```python
 class Solution:

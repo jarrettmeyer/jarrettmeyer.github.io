@@ -1,14 +1,13 @@
 ---
 title: "LeetCode: Max Number of K-Sum Pairs"
 date: 2025-11-18
-description: "Return the "
+description: "Find the maximum number of k-sum pairs in an array."
 tags:
   - LeetCode
   - Python
 thumbnail:
   src: /images/posts/thumbnails/leetcode.svg
   alt: LeetCode Logo
-draft: true
 ---
 
 import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
@@ -37,7 +36,8 @@ If the sum of `nums[left]` and `nums[right]` equals the target, increment `count
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
         nums.sort()
-        count, left, right = 0, 0, len(nums) - 1
+        count = 0
+        left, right = 0, len(nums) - 1
 
         while left < right:
             if nums[left] + nums[right] < k:

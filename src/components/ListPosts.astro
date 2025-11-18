@@ -18,6 +18,13 @@ const filterByCount = (_post: any, index: number) => {
   return true;
 };
 
+const filterByDate = (post: any) => {
+  if (import.meta.env.PROD && post.data?.date > new Date().toISOString()) {
+    return false;
+  }
+  return true;
+};
+
 const filterByDraft = (post: any) => {
   if (import.meta.env.PROD && post.data?.draft) {
     return false;
@@ -39,6 +46,7 @@ const filterByTag = (post: any) => {
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .filter((post) => filterByDraft(post))
+  .filter((post) => filterByDate(post))
   .filter((post) => filterByTag(post))
   .filter((post, index) => filterByCount(post, index));
 
