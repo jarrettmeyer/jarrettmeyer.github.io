@@ -19,7 +19,7 @@ const filterByCount = (_post: any, index: number) => {
 };
 
 const filterByDate = (post: any) => {
-  if (import.meta.env.PROD && post.data?.date > new Date().toISOString()) {
+  if (import.meta.env.PROD && new Date(post.data?.date) > new Date()) {
     return false;
   }
   return true;
