@@ -10,6 +10,9 @@ on:
       - "astro.config.ts"
       - "package.json"
       - "tsconfig.json"
+  schedule:
+    # Runs daily at 12:00 UTC
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 permissions:
