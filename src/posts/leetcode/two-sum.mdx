@@ -1,0 +1,46 @@
+---
+title: "LeetCode: Two Sum"
+date: 2025-12-02
+description: "Find two numbers in an array that add up to a specific target."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/two-sum/"
+/>
+
+## Solution
+
+Create a dictionary to store the numbers we have seen so far, mapping each number to its index. For each number in the array, calculate its complement (i.e., `target - number`). Check if the complement exists in the dictionary. If it does, return the indices of the current number and its complement. If not, add the current number and its index to the dictionary and continue.
+
+Note: The `ValueError` at the end is to handle cases where no solution is found. The problem states that exactly one solution exists. This is just a safeguard.
+
+<LeetCodeResult runtime={0} beats={100.0} />
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Create a map of numbers
+        # { value: index }
+        nums_map = {}
+
+        for idx, value in enumerate(nums):
+            complement = target - value
+
+            # If the complement is already in our nums_map, we are done.
+            if complement in nums_map:
+                return [nums_map[complement], idx]
+
+            nums_map[value] = idx
+
+        raise ValueError("No match found!")
+```
