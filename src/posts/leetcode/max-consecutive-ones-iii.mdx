@@ -1,0 +1,54 @@
+---
+title: "LeetCode: Max Consecutive Ones III"
+date: 2025-12-05
+description: "Find maximum number of consecutive ones in a binary array if you can flip at most k zeros."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import Alert from "@/components/Alert.astro";
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/max-consecutive-ones-iii/"
+/>
+
+## Solution
+
+This is another sliding window problem.
+
+We maintain a window defined by two pointers, `left` and `right`. As we expand the `right` pointer, we count the number of zeros in the current window. If the count of zeros exceeds `k`, we move the `left` pointer to the right until the count of zeros is within the limit `k`. 
+
+Compute the length of the current valid window (`right - left + 1`) and update the longest length found so far.
+
+<LeetCodeResult runtime={75} beats={79.22} />
+
+```python
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        left = 0
+        count_zeros_in_window = 0
+        longest = 0
+        n = len(nums)
+
+        for right in range(n):
+            if nums[right] == 0:
+                count_zeros_in_window += 1
+
+            while count_zeros_in_window > k:
+                if nums[left] == 0:
+                    count_zeros_in_window -= 1
+                left += 1
+
+            longest = max(longest, right - left + 1)
+
+        return longest
+```
+
+My first attempts were by tracking the flipped zero indices in a list. That was giving me times around 600 ms. The trick is to keep a count of zeros without performing list operations, which reduces the time significantly.
