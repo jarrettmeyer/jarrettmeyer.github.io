@@ -18,7 +18,21 @@ import LeetCodeResult from "@/components/LeetCodeResult.astro";
   href="https://leetcode.com/problems/longest-substring-without-repeating-characters/"
 />
 
+Given a string `s`, find the length of the longest substring that contains no repeating characters.
+
 ## Solution
+
+Initialize the list of unique characters - `chars` - to an empty list. Iterate over every character `char` in `s`.
+
+If `char` is already in `chars`, remove all characters up to and including the first occurrence of `char` from `chars`.
+
+Example:
+- `chars = ["a", "b", "c", "d"]` and `char = "b"`. The index of `"b"` is 1. `chars = chars[2:] = ["c", "d"]`.
+- `chars = ["a", "b", "c", "d"]` and `char = "d"`. The index of `"d"` is 3. `chars = chars[4:] = []`, then after appending `"d"` in the next step, `chars = ["d"]`. We take advantage of how indices work with Python slicing.
+
+Append `char` to the end of `chars`.
+
+Return the longest `chars` seen.
 
 <LeetCodeResult runtime={15} beats={80.95} />
 
@@ -30,8 +44,11 @@ class Solution:
         for char in s:
             if char in chars:
                 chars = chars[chars.index(char) + 1:]
+
             chars.append(char)
+
             if len(chars) > best:
                 best = len(chars)
+
         return best
 ```
