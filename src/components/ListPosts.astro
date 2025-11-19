@@ -6,49 +6,16 @@ interface Props {
 
 import TagBadge from "@/components/TagBadge.astro";
 import { toFriendlyDate } from "@/utils/dates";
-import { slugifyTag } from "@/utils/slugify";
-import { getCollection } from "astro:content";
+import { filterByCount, filterByDate, filterByDraft, filterByTag, getAllPosts, sortPostsByDate } from "@/utils/posts";
 
 const { count, filterTag } = Astro.props as Props;
 
-const filterByCount = (_post: any, index: number) => {
-  if (count && count > 0) {
-    return index < count;
-  }
-  return true;
-};
-
-const filterByDate = (post: any) => {
-  if (import.meta.env.PROD && new Date(post.data?.date) > new Date()) {
-    return false;
-  }
-  return true;
-};
-
-const filterByDraft = (post: any) => {
-  if (import.meta.env.PROD && post.data?.draft) {
-    return false;
-  }
-  return true;
-};
-
-const filterByTag = (post: any) => {
-  if (filterTag) {
-    if (filterTag === "uncategorized") {
-      return !(post.data.tags && post.data.tags.length > 0);
-    }
-    const postHasTag = (post.data.tags || []).some((t: string) => slugifyTag(t) === filterTag);
-    return postHasTag;
-  }
-  return true;
-};
-
-const posts = (await getCollection("posts"))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .filter((post) => filterByDraft(post))
-  .filter((post) => filterByDate(post))
-  .filter((post) => filterByTag(post))
-  .filter((post, index) => filterByCount(post, index));
+const posts = (await getAllPosts())
+  .sort(sortPostsByDate())
+  .filter(filterByDraft())
+  .filter(filterByDate(new Date()))
+  .filter(filterByTag(filterTag))
+  .filter(filterByCount(count));
 
 const imageHeight = 80;
 ---

@@ -2,10 +2,11 @@
 import TagBadge from "@/components/TagBadge.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import { toFriendlyDate } from "@/utils/dates";
-import { getCollection, render } from "astro:content";
+import { getAllPosts } from "@/utils/posts";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  const posts = (await getAllPosts());
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
