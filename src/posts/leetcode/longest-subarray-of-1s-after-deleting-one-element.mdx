@@ -1,0 +1,56 @@
+---
+title: "LeetCode: Longest Subarray of 1s After Deleting One Element"
+date: 2025-12-06
+description: "Find the longest subarray of 1s after deleting one element from a binary list."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import Alert from "@/components/Alert.astro";
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/"
+/>
+
+<Alert type="info">This problem is very similar to [Max Consecutive Ones III](/leetcode/max-consecutive-ones-iii/), where you can flip at most `k` zeros to ones. Both problems can be solved using a sliding window approach that allows at most one zero (or one deletion) in the window.</Alert>
+
+## Solution
+
+There is one special note for this problem. The length calculation is purposely incorrect: `length = right - left`. Traditionally, `length = right - left + 1`. This is because we are required to delete one element. Let's consider two cases:
+
+1. In the first condition, we have deleted a zero, so the traditional length calculation would overcount by one.
+2. In the second condition, we have made no deletes, meaning we must intentionally delete one `1` from the count, which again results in an overcount by one.
+
+In my first submission, I computed `length = right - left + 1`, and I had an additional `bool` variable to track whether a zero has been deleted or not. Before the return line, I would subtract one from the length if no zeros were deleted.
+
+<LeetCodeResult runtime={29} beats={91.67} />
+
+```python
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = 0
+        longest = 0
+        count_zeros = 0
+
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                count_zeros += 1
+
+            while count_zeros > 1:
+                if nums[left] == 0:
+                    count_zeros -= 1
+                left += 1
+
+            length = right - left
+            if length > longest:
+                longest = length
+
+        return longest
+```
