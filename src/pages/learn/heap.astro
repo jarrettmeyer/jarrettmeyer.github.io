@@ -1,0 +1,746 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+---
+
+<PageLayout
+  title="Min & Max Heaps"
+  description="Interactive visualization of min and max heaps with step-by-step animations"
+>
+  <div class="container mt-5 mb-5">
+    <h1 class="mb-4">Min & Max Heaps</h1>
+
+    <!-- Educational Content Section -->
+    <section
+      class="mb-5 p-4 rounded"
+      style="background-color: rgba(255, 255, 255, 0.05);"
+    >
+      <h2 class="mb-3">What are Heaps?</h2>
+      <p>
+        A <strong>heap</strong> is a specialized tree-based data structure that satisfies
+        the heap property:
+      </p>
+      <ul>
+        <li>
+          <strong>Min Heap:</strong> Every parent node is smaller than its children.
+          The minimum value is always at the root.
+        </li>
+        <li>
+          <strong>Max Heap:</strong> Every parent node is larger than its children.
+          The maximum value is always at the root.
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">Key Characteristics</h3>
+      <ul>
+        <li>
+          <strong>Complete Binary Tree:</strong> Heaps are stored as arrays where
+          left child of node at index i is at 2i+1, right child at 2i+2
+        </li>
+        <li>
+          <strong>Efficient Operations:</strong> Both push and pop operations run
+          in O(log n) time
+        </li>
+        <li>
+          <strong>Real-world Uses:</strong> Priority queues, heap sort, Dijkstra's
+          algorithm, event scheduling
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">Operations</h3>
+      <ul>
+        <li>
+          <strong>Push:</strong> Add element to the end, then bubble up to maintain
+          heap property
+        </li>
+        <li>
+          <strong>Pop:</strong> Remove root, move last element to root, then bubble
+          down to maintain heap property
+        </li>
+      </ul>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="mb-5 alert alert-info">
+      <h3 class="mb-3">How to Use</h3>
+      <ol>
+        <li>
+          Select <strong>Min Heap</strong> or <strong>Max Heap</strong> mode
+        </li>
+        <li>
+          Enter a number and click <strong>Push</strong> to add elements (max 15
+          elements)
+        </li>
+        <li>Click <strong>Pop</strong> to remove the root element</li>
+        <li>
+          Watch the animations to see how <span style="color: #ffc107;"
+            >comparisons</span
+          >, <span style="color: #28a745;">swaps</span>, and <span
+            style="color: #dc3545;">removals</span
+          > work
+        </li>
+        <li>Click <strong>Clear</strong> to reset and start over</li>
+      </ol>
+    </section>
+
+    <!-- Controls Section -->
+    <section
+      class="mb-4 p-4 rounded"
+      style="background-color: rgba(255, 255, 255, 0.05);"
+    >
+      <div class="row">
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="btn-group" role="group" aria-label="Heap type selection">
+            <input
+              type="radio"
+              class="btn-check"
+              name="heapType"
+              id="minHeapRadio"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-primary" for="minHeapRadio"
+              >Min Heap</label
+            >
+
+            <input
+              type="radio"
+              class="btn-check"
+              name="heapType"
+              id="maxHeapRadio"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-primary" for="maxHeapRadio"
+              >Max Heap</label
+            >
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="mt-1">
+            <label class="form-label">Heap Depth</label>
+            <div
+              class="badge"
+              id="statusBadge"
+              style="font-size: 1rem; background-color: #6c757d;"
+            >
+              Empty (0/15)
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="elementInput"
+            placeholder="Value"
+          />
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="d-grid gap-2 d-md-flex">
+            <button class="btn btn-success" id="pushBtn">Push</button>
+            <button class="btn btn-danger" id="popBtn" disabled>Pop</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section>
+      <div class="mb-4">
+        <div
+          class="p-4 rounded"
+          style="background-color: rgba(255, 255, 255, 0.05);"
+        >
+          <h3 class="mb-3">Tree View</h3>
+          <svg
+            id="treeSvg"
+            width="100%"
+            height="400"
+            style="border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; background: rgba(0,0,0,0.2);"
+          ></svg>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div
+          class="p-4 rounded"
+          style="background-color: rgba(255, 255, 255, 0.05);"
+        >
+          <h3 class="mb-3">Array View</h3>
+          <svg
+            id="arraySvg"
+            width="100%"
+            height="180"
+            style="border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; background: rgba(0,0,0,0.2);"
+          ></svg>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .heap-node {
+      transition: all 0.3s ease;
+    }
+
+    .heap-node text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .array-cell {
+      transition: all 0.3s ease;
+    }
+
+    .array-cell text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .highlight-yellow {
+      animation: pulse 0.3s ease;
+      fill: #ffc107 !important;
+    }
+
+    .highlight-green {
+      animation: pulse 0.3s ease;
+      fill: #28a745 !important;
+    }
+
+    .highlight-red {
+      animation: pulse 0.3s ease;
+      fill: #dc3545 !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+
+  <script>
+    class HeapVisualizer {
+      constructor() {
+        this.heap = [];
+        this.isMinHeap = true;
+        this.isAnimating = false;
+        this.maxSize = 15;
+
+        this.treeSvg = document.getElementById("treeSvg");
+        this.arraySvg = document.getElementById("arraySvg");
+        this.elementInput = document.getElementById("elementInput");
+        this.pushBtn = document.getElementById("pushBtn");
+        this.popBtn = document.getElementById("popBtn");
+        this.clearBtn = document.getElementById("clearBtn");
+        this.minHeapRadio = document.getElementById("minHeapRadio");
+        this.maxHeapRadio = document.getElementById("maxHeapRadio");
+        this.statusBadge = document.getElementById("statusBadge");
+
+        this.setupEventListeners();
+        this.render();
+      }
+
+      setupEventListeners() {
+        this.pushBtn.addEventListener("click", () => this.handlePush());
+        this.popBtn.addEventListener("click", () => this.handlePop());
+        this.clearBtn.addEventListener("click", () => this.handleClear());
+        this.minHeapRadio.addEventListener("change", () =>
+          this.handleToggleHeapType()
+        );
+        this.maxHeapRadio.addEventListener("change", () =>
+          this.handleToggleHeapType()
+        );
+        this.elementInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") this.handlePush();
+        });
+      }
+
+      handleToggleHeapType() {
+        const newHeapType = this.minHeapRadio.checked;
+
+        // If heap is not empty and we're actually changing the type, show confirmation
+        if (this.heap.length > 0 && newHeapType !== this.isMinHeap) {
+          const heapTypeName = newHeapType ? "Min Heap" : "Max Heap";
+          const confirmed = confirm(
+            `Switching to ${heapTypeName} will clear the current heap. Continue?`
+          );
+
+          if (!confirmed) {
+            // Revert the radio button selection
+            if (this.isMinHeap) {
+              this.minHeapRadio.checked = true;
+              this.maxHeapRadio.checked = false;
+            } else {
+              this.minHeapRadio.checked = false;
+              this.maxHeapRadio.checked = true;
+            }
+            return;
+          }
+
+          // Clear the heap
+          this.heap = [];
+        }
+
+        this.isMinHeap = newHeapType;
+        this.render();
+      }
+
+      handlePush() {
+        if (this.isAnimating) return;
+        if (this.heap.length >= this.maxSize) {
+          alert(`Maximum heap size (${this.maxSize}) reached!`);
+          return;
+        }
+
+        const value = parseInt(this.elementInput.value);
+        if (isNaN(value)) {
+          alert("Please enter a number");
+          return;
+        }
+
+        this.heap.push(value);
+        this.elementInput.value = "";
+        const insertIndex = this.heap.length - 1;
+        this.bubbleUp(insertIndex);
+      }
+
+      handleClear() {
+        if (this.isAnimating) return;
+        this.heap = [];
+        this.render();
+      }
+
+      compare(a, b) {
+        return this.isMinHeap ? a < b : a > b;
+      }
+
+      getParentIndex(i) {
+        return Math.floor((i - 1) / 2);
+      }
+
+      getLeftChildIndex(i) {
+        return 2 * i + 1;
+      }
+
+      getRightChildIndex(i) {
+        return 2 * i + 2;
+      }
+
+      async bubbleUp(index) {
+        if (index === 0) {
+          this.render();
+          this.isAnimating = false;
+          return;
+        }
+
+        const parentIndex = this.getParentIndex(index);
+
+        if (this.compare(this.heap[index], this.heap[parentIndex])) {
+          await this.animateSwap(index, parentIndex);
+          [this.heap[index], this.heap[parentIndex]] = [
+            this.heap[parentIndex],
+            this.heap[index],
+          ];
+          this.render();
+          await this.delay(500);
+          await this.bubbleUp(parentIndex);
+        } else {
+          this.render();
+          this.isAnimating = false;
+        }
+      }
+
+      async bubbleDown(index) {
+        const leftChildIndex = this.getLeftChildIndex(index);
+        const rightChildIndex = this.getRightChildIndex(index);
+        let smallest = index;
+
+        if (
+          leftChildIndex < this.heap.length &&
+          this.compare(this.heap[leftChildIndex], this.heap[smallest])
+        ) {
+          smallest = leftChildIndex;
+        }
+
+        if (
+          rightChildIndex < this.heap.length &&
+          this.compare(this.heap[rightChildIndex], this.heap[smallest])
+        ) {
+          smallest = rightChildIndex;
+        }
+
+        if (smallest !== index) {
+          await this.animateSwap(index, smallest);
+          [this.heap[index], this.heap[smallest]] = [
+            this.heap[smallest],
+            this.heap[index],
+          ];
+          this.render();
+          await this.delay(500);
+          await this.bubbleDown(smallest);
+        } else {
+          this.render();
+          this.isAnimating = false;
+        }
+      }
+
+      async handlePop() {
+        if (this.isAnimating) return;
+        if (this.heap.length === 0) return;
+
+        this.isAnimating = true;
+        await this.animatePop(0);
+
+        if (this.heap.length === 1) {
+          this.heap.pop();
+          this.render();
+        } else {
+          // Move last element to root
+          this.heap[0] = this.heap[this.heap.length - 1];
+          this.heap.pop();
+          this.render();
+          await this.delay(500);
+          await this.bubbleDown(0);
+        }
+
+        this.isAnimating = false;
+        this.render();
+      }
+
+      animateSwap(index1, index2) {
+        return new Promise((resolve) => {
+          this.highlightNodes([index1, index2], "yellow");
+          setTimeout(() => {
+            this.highlightNodes([index1, index2], "green");
+            setTimeout(resolve, 800);
+          }, 600);
+        });
+      }
+
+      animatePop(index) {
+        return new Promise((resolve) => {
+          this.highlightNodes([index], "red");
+          setTimeout(resolve, 800);
+        });
+      }
+
+      highlightNodes(indices, color) {
+        this.renderTree(indices, color);
+        this.renderArray(indices, color);
+      }
+
+      delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      render() {
+        this.updateStatusBadge();
+        this.updateButtonStates();
+        this.renderTree();
+        this.renderArray();
+      }
+
+      updateStatusBadge() {
+        this.statusBadge.textContent = `${this.heap.length}/${this.maxSize}`;
+        if (this.heap.length === this.maxSize) {
+          this.statusBadge.style.backgroundColor = "#dc3545";
+        } else if (this.heap.length === 0) {
+          this.statusBadge.style.backgroundColor = "#6c757d";
+        } else {
+          this.statusBadge.style.backgroundColor = "#0d6efd";
+        }
+      }
+
+      updateButtonStates() {
+        this.pushBtn.disabled =
+          this.isAnimating || this.heap.length >= this.maxSize;
+        this.popBtn.disabled = this.isAnimating || this.heap.length === 0;
+        this.clearBtn.disabled = this.isAnimating;
+        this.elementInput.disabled = this.isAnimating;
+      }
+
+      renderTree(highlightIndices = [], highlightColor = "") {
+        this.treeSvg.innerHTML = "";
+
+        if (this.heap.length === 0) {
+          const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+          );
+          text.setAttribute("x", "50%");
+          text.setAttribute("y", "50%");
+          text.setAttribute("text-anchor", "middle");
+          text.setAttribute("dominant-baseline", "middle");
+          text.setAttribute("fill", "#999");
+          text.setAttribute("font-size", "16");
+          text.textContent = "Heap is empty";
+          this.treeSvg.appendChild(text);
+          return;
+        }
+
+        const svgWidth = this.treeSvg.clientWidth;
+        const svgHeight = this.treeSvg.clientHeight;
+        const nodeRadius = 25;
+
+        // Calculate node positions
+        const positions = this.calculateTreePositions(
+          svgWidth,
+          svgHeight,
+          nodeRadius
+        );
+
+        // Draw edges
+        for (let i = 0; i < this.heap.length; i++) {
+          const leftChildIndex = this.getLeftChildIndex(i);
+          const rightChildIndex = this.getRightChildIndex(i);
+
+          if (leftChildIndex < this.heap.length) {
+            this.drawEdge(positions[i], positions[leftChildIndex]);
+          }
+          if (rightChildIndex < this.heap.length) {
+            this.drawEdge(positions[i], positions[rightChildIndex]);
+          }
+        }
+
+        // Draw nodes
+        for (let i = 0; i < this.heap.length; i++) {
+          const pos = positions[i];
+          const isHighlighted = highlightIndices.includes(i);
+          this.drawNode(
+            pos.x,
+            pos.y,
+            this.heap[i],
+            isHighlighted,
+            highlightColor
+          );
+        }
+      }
+
+      calculateTreePositions(svgWidth, svgHeight, nodeRadius) {
+        const positions = [];
+        const levels = Math.ceil(Math.log2(this.heap.length + 1));
+
+        for (let i = 0; i < this.heap.length; i++) {
+          const level = Math.floor(Math.log2(i + 1));
+          const positionInLevel = i - (Math.pow(2, level) - 1);
+          const nodesAtLevel = Math.pow(2, level);
+
+          const levelHeight = (svgHeight - 80) / Math.max(1, levels - 1);
+          const y = 40 + level * levelHeight;
+
+          // Center the nodes for each level
+          const levelWidth = svgWidth - 60; // Account for padding
+          const spacing = levelWidth / (nodesAtLevel + 1);
+          const x = spacing * (positionInLevel + 1) + 30; // 30 is left padding
+
+          positions.push({ x, y });
+        }
+
+        return positions;
+      }
+
+      drawEdge(from, to) {
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", from.x);
+        line.setAttribute("y1", from.y);
+        line.setAttribute("x2", to.x);
+        line.setAttribute("y2", to.y);
+        line.setAttribute("stroke", "#666");
+        line.setAttribute("stroke-width", "2");
+        this.treeSvg.appendChild(line);
+      }
+
+      drawNode(x, y, value, highlight = false, color = "") {
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+        circle.setAttribute("cx", x);
+        circle.setAttribute("cy", y);
+        circle.setAttribute("r", "25");
+        circle.setAttribute(
+          "fill",
+          highlight ? this.getHighlightColor(color) : "#0d6efd"
+        );
+        circle.setAttribute("stroke", "#fff");
+        circle.setAttribute("stroke-width", "2");
+        circle.setAttribute("class", "heap-node");
+        if (highlight) {
+          circle.classList.add(`highlight-${color}`);
+        }
+        this.treeSvg.appendChild(circle);
+
+        const text = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text"
+        );
+        text.setAttribute("x", x);
+        text.setAttribute("y", y);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.setAttribute("fill", "#fff");
+        text.setAttribute("font-size", "16");
+        text.setAttribute("font-weight", "bold");
+        text.textContent = value;
+        this.treeSvg.appendChild(text);
+      }
+
+      renderArray(highlightIndices = [], highlightColor = "") {
+        this.arraySvg.innerHTML = "";
+
+        if (this.heap.length === 0) {
+          const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+          );
+          text.setAttribute("x", "50%");
+          text.setAttribute("y", "50%");
+          text.setAttribute("text-anchor", "middle");
+          text.setAttribute("dominant-baseline", "middle");
+          text.setAttribute("fill", "#999");
+          text.setAttribute("font-size", "16");
+          text.textContent = "Heap is empty";
+          this.arraySvg.appendChild(text);
+          return;
+        }
+
+        const svgWidth = this.arraySvg.clientWidth;
+        const cellWidth = 60;
+        const cellHeight = 60;
+        const padding = 20;
+        const startX = Math.max(
+          padding,
+          (svgWidth - this.maxSize * cellWidth) / 2
+        );
+        const startY = 60;
+
+        // Draw indices
+        for (let i = 0; i < this.maxSize; i++) {
+          const x = startX + i * cellWidth;
+          const indexText = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+          );
+          indexText.setAttribute("x", x + cellWidth / 2);
+          indexText.setAttribute("y", startY - 25);
+          indexText.setAttribute("text-anchor", "middle");
+          indexText.setAttribute("fill", "#999");
+          indexText.setAttribute("font-size", "12");
+          indexText.textContent = i;
+          this.arraySvg.appendChild(indexText);
+        }
+
+        // Draw cells
+        for (let i = 0; i < this.maxSize; i++) {
+          const x = startX + i * cellWidth;
+          const y = startY;
+          const isHighlighted = highlightIndices.includes(i);
+          const isFilled = i < this.heap.length;
+
+          // Draw cell border
+          const rect = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect"
+          );
+          rect.setAttribute("x", x);
+          rect.setAttribute("y", y);
+          rect.setAttribute("width", cellWidth);
+          rect.setAttribute("height", cellHeight);
+          rect.setAttribute(
+            "fill",
+            isFilled
+              ? isHighlighted
+                ? this.getHighlightColor(highlightColor)
+                : "#0d6efd"
+              : "rgba(255,255,255,0.1)"
+          );
+          rect.setAttribute("stroke", isFilled ? "#fff" : "#666");
+          rect.setAttribute("stroke-width", "2");
+          rect.setAttribute("class", "array-cell");
+          if (isHighlighted) {
+            rect.classList.add(`highlight-${highlightColor}`);
+          }
+          this.arraySvg.appendChild(rect);
+
+          // Draw value
+          if (isFilled) {
+            const text = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "text"
+            );
+            text.setAttribute("x", x + cellWidth / 2);
+            text.setAttribute("y", y + cellHeight / 2);
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("dominant-baseline", "middle");
+            text.setAttribute("fill", "#fff");
+            text.setAttribute("font-size", "18");
+            text.setAttribute("font-weight", "bold");
+            text.textContent = this.heap[i];
+            this.arraySvg.appendChild(text);
+          }
+        }
+
+        // Draw legend
+        const legendY = startY + cellHeight + 20;
+        this.drawLegendItem(startX, legendY, "#ffc107", "Comparison");
+        this.drawLegendItem(startX + 150, legendY, "#28a745", "Swap/Move");
+        this.drawLegendItem(startX + 300, legendY, "#dc3545", "Remove");
+      }
+
+      drawLegendItem(x, y, color, label) {
+        const rect = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        rect.setAttribute("x", x);
+        rect.setAttribute("y", y);
+        rect.setAttribute("width", "15");
+        rect.setAttribute("height", "15");
+        rect.setAttribute("fill", color);
+        this.arraySvg.appendChild(rect);
+
+        const text = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text"
+        );
+        text.setAttribute("x", x + 25);
+        text.setAttribute("y", y + 12);
+        text.setAttribute("fill", "#ccc");
+        text.setAttribute("font-size", "12");
+        text.textContent = label;
+        this.arraySvg.appendChild(text);
+      }
+
+      getHighlightColor(color) {
+        const colors = {
+          yellow: "#ffc107",
+          green: "#28a745",
+          red: "#dc3545",
+        };
+        return colors[color] || "#0d6efd";
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      new HeapVisualizer();
+    });
+  </script>
+</PageLayout>
