@@ -1,6 +1,6 @@
 # Claude Instructions
 
-This is my personal website.
+This is my personal website deployed to GitHub pages.
 
 ## Project Structure
 
@@ -15,8 +15,8 @@ This is my personal website.
 │   ├── robots.txt
 │   └── site.css                # Globally applied CSS
 ├── src                         # Source code for website
-│   ├── components
-│   ├── layouts
+│   ├── components              # Astro component
+│   ├── layouts                 # Astro layouts
 │   ├── pages                   # Astro pages
 │   ├── posts                   # Astro posts, *.md or *.mdx
 │   ├── utils                   # TypeScript utilities
@@ -29,6 +29,32 @@ This is my personal website.
 ├── README.md
 └── tsconfig.json
 ```
+
+### `src/components`
+
+Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
+
+### `Navbar.astro`
+
+Site navigation.
+
+### `src/layouts`
+
+Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
+
+### `src/pages`
+
+### `src/posts`
+
+Posts, written in either `*.md` or `*.mdx` format.
+
+## Build
+
+To build the project, run `npm run build`.
+
+## Deploy
+
+This website is hosted in GitHub pages. The website is deployed when source code is pushed to the `main` branch. See [publish_github_pages.yaml](./.github/workflows/publish_github_pages.yaml) for more details.
 
 ## MCP Servers
 
