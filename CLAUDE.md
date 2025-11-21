@@ -1,5 +1,9 @@
 # Claude Instructions
 
+This is my personal website.
+
+## Project Structure
+
 ## MCP Servers
 
 ### Context7
