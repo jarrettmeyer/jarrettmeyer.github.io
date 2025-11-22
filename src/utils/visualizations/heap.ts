@@ -635,22 +635,6 @@ export class HeapVisualizer {
   ): void {
     this.arraySvg.innerHTML = "";
 
-    if (this.heap.length === 0) {
-      const text = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "text"
-      );
-      text.setAttribute("x", "50%");
-      text.setAttribute("y", "50%");
-      text.setAttribute("text-anchor", "middle");
-      text.setAttribute("dominant-baseline", "middle");
-      text.setAttribute("fill", "#999");
-      text.setAttribute("font-size", "16");
-      text.textContent = "Heap is empty";
-      this.arraySvg.appendChild(text);
-      return;
-    }
-
     const svgWidth = this.arraySvg.clientWidth;
     const cellWidth = 60;
     const cellHeight = 60;
