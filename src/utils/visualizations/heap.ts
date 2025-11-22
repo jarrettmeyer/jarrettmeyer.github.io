@@ -11,15 +11,15 @@ export class HeapVisualizer {
   private compareDuration: number = 500;
   private swapDuration: number = 1000;
 
-  private treeSvg: SVGSVGElement | null;
-  private arraySvg: SVGSVGElement | null;
-  private elementInput: HTMLInputElement | null;
-  private pushBtn: HTMLButtonElement | null;
-  private popBtn: HTMLButtonElement | null;
-  private clearBtn: HTMLButtonElement | null;
-  private minHeapRadio: HTMLInputElement | null;
-  private maxHeapRadio: HTMLInputElement | null;
-  private statusBadge: HTMLElement | null;
+  private treeSvg: SVGSVGElement;
+  private arraySvg: SVGSVGElement;
+  private elementInput: HTMLInputElement;
+  private pushBtn: HTMLButtonElement;
+  private popBtn: HTMLButtonElement;
+  private clearBtn: HTMLButtonElement;
+  private minHeapRadio: HTMLInputElement;
+  private maxHeapRadio: HTMLInputElement;
+  private statusBadge: HTMLElement;
 
   constructor() {
     this.heap = [];
@@ -27,52 +27,58 @@ export class HeapVisualizer {
     this.isAnimating = false;
     this.maxSize = 15;
 
-    this.treeSvg = document.getElementById("treeSvg") as SVGSVGElement | null;
-    this.arraySvg = document.getElementById("arraySvg") as SVGSVGElement | null;
-    this.elementInput = document.getElementById(
+    const treeSvg = document.getElementById("treeSvg") as SVGSVGElement | null;
+    const arraySvg = document.getElementById("arraySvg") as SVGSVGElement | null;
+    const elementInput = document.getElementById(
       "elementInput"
     ) as HTMLInputElement | null;
-    this.pushBtn = document.getElementById("pushBtn") as HTMLButtonElement | null;
-    this.popBtn = document.getElementById("popBtn") as HTMLButtonElement | null;
-    this.clearBtn = document.getElementById(
+    const pushBtn = document.getElementById("pushBtn") as HTMLButtonElement | null;
+    const popBtn = document.getElementById("popBtn") as HTMLButtonElement | null;
+    const clearBtn = document.getElementById(
       "clearBtn"
     ) as HTMLButtonElement | null;
-    this.minHeapRadio = document.getElementById(
+    const minHeapRadio = document.getElementById(
       "minHeapRadio"
     ) as HTMLInputElement | null;
-    this.maxHeapRadio = document.getElementById(
+    const maxHeapRadio = document.getElementById(
       "maxHeapRadio"
     ) as HTMLInputElement | null;
-    this.statusBadge = document.getElementById("statusBadge");
+    const statusBadge = document.getElementById("statusBadge") as HTMLElement | null;
+
+    if (!treeSvg || !arraySvg || !elementInput || !pushBtn || !popBtn || !clearBtn || !minHeapRadio || !maxHeapRadio || !statusBadge) {
+      throw new Error("Required elements not found in the DOM");
+    }
+
+    this.treeSvg = treeSvg;
+    this.arraySvg = arraySvg;
+    this.elementInput = elementInput;
+    this.pushBtn = pushBtn;
+    this.popBtn = popBtn;
+    this.clearBtn = clearBtn;
+    this.minHeapRadio = minHeapRadio;
+    this.maxHeapRadio = maxHeapRadio;
+    this.statusBadge = statusBadge;
 
     this.setupEventListeners();
     this.render();
   }
 
   private setupEventListeners(): void {
-    if (this.pushBtn)
-      this.pushBtn.addEventListener("click", () => this.handlePush());
-    if (this.popBtn)
-      this.popBtn.addEventListener("click", () => void this.handlePop());
-    if (this.clearBtn)
-      this.clearBtn.addEventListener("click", () => this.handleClear());
-    if (this.minHeapRadio)
-      this.minHeapRadio.addEventListener("change", () =>
-        this.handleToggleHeapType()
-      );
-    if (this.maxHeapRadio)
-      this.maxHeapRadio.addEventListener("change", () =>
-        this.handleToggleHeapType()
-      );
-    if (this.elementInput)
-      this.elementInput.addEventListener("keypress", (e: KeyboardEvent) => {
-        if (e.key === "Enter") this.handlePush();
-      });
+    this.pushBtn.addEventListener("click", () => this.handlePush());
+    this.popBtn.addEventListener("click", () => void this.handlePop());
+    this.clearBtn.addEventListener("click", () => this.handleClear());
+    this.minHeapRadio.addEventListener("change", () =>
+      this.handleToggleHeapType()
+    );
+    this.maxHeapRadio.addEventListener("change", () =>
+      this.handleToggleHeapType()
+    );
+    this.elementInput.addEventListener("keypress", (e: KeyboardEvent) => {
+      if (e.key === "Enter") this.handlePush();
+    });
   }
 
   private handleToggleHeapType(): void {
-    if (!this.minHeapRadio || !this.maxHeapRadio) return;
-
     const newHeapType = this.minHeapRadio.checked;
 
     // If heap is not empty and we're actually changing the type, show confirmation
@@ -109,8 +115,6 @@ export class HeapVisualizer {
       return;
     }
 
-    if (!this.elementInput) return;
-
     const value = parseInt(this.elementInput.value);
     if (isNaN(value)) {
       alert("Please enter a number");
@@ -120,6 +124,7 @@ export class HeapVisualizer {
     this.heap.push(value);
     this.elementInput.value = "";
     const insertIndex = this.heap.length - 1;
+    this.isAnimating = true;
     void this.bubbleUp(insertIndex);
   }
 
@@ -149,6 +154,7 @@ export class HeapVisualizer {
     if (index === 0) {
       this.render();
       this.isAnimating = false;
+      this.updateButtonStates();
       return;
     }
 
@@ -166,6 +172,7 @@ export class HeapVisualizer {
     } else {
       this.render();
       this.isAnimating = false;
+      this.updateButtonStates();
     }
   }
 
@@ -200,6 +207,7 @@ export class HeapVisualizer {
     } else {
       this.render();
       this.isAnimating = false;
+      this.updateButtonStates();
     }
   }
 
@@ -223,6 +231,7 @@ export class HeapVisualizer {
     }
 
     this.isAnimating = false;
+    this.updateButtonStates();
     this.render();
   }
 
@@ -236,8 +245,8 @@ export class HeapVisualizer {
     await this.animateTextSwap(index1, index2, this.swapDuration);
 
     // Step 3: Update text elements to show the swapped values
-    const treeTexts = this.treeSvg?.querySelectorAll("text");
-    const arrayTexts = this.arraySvg?.querySelectorAll("text");
+    const treeTexts = this.treeSvg.querySelectorAll("text");
+    const arrayTexts = this.arraySvg.querySelectorAll("text");
 
     if (treeTexts && treeTexts.length > 0) {
       const temp = (treeTexts[index1] as SVGTextElement).textContent;
@@ -260,8 +269,6 @@ export class HeapVisualizer {
     color: string
   ): void {
     // Update only the circle colors without re-rendering text positions
-    if (!this.treeSvg || !this.arraySvg) return;
-
     const treeCircles = this.treeSvg.querySelectorAll("circle");
     const arrayRects = this.arraySvg.querySelectorAll("rect");
 
@@ -294,8 +301,8 @@ export class HeapVisualizer {
     return new Promise((resolve) => {
       this.highlightNodes([index], "red");
       // Fade out the text element being removed
-      const treeTexts = this.treeSvg?.querySelectorAll("text");
-      const arrayTexts = this.arraySvg?.querySelectorAll("text");
+      const treeTexts = this.treeSvg.querySelectorAll("text");
+      const arrayTexts = this.arraySvg.querySelectorAll("text");
 
       if (treeTexts && index < treeTexts.length) {
         (treeTexts[index] as SVGTextElement).style.opacity = "0";
@@ -327,8 +334,6 @@ export class HeapVisualizer {
   }
 
   private getTreeNodePosition(index: number): Position {
-    if (!this.treeSvg) return { x: 0, y: 0 };
-
     const svgWidth = this.treeSvg.clientWidth;
     const svgHeight = this.treeSvg.clientHeight;
     const nodeRadius = 25;
@@ -349,8 +354,6 @@ export class HeapVisualizer {
   }
 
   private getArrayCellPosition(index: number): Position {
-    if (!this.arraySvg) return { x: 0, y: 0 };
-
     const svgWidth = this.arraySvg.clientWidth;
     const cellWidth = 60;
     const cellHeight = 60;
@@ -382,7 +385,7 @@ export class HeapVisualizer {
         const eased = this.easeInOutQuad(progress);
 
         // Animate tree text
-        const treeTexts = this.treeSvg?.querySelectorAll("text");
+        const treeTexts = this.treeSvg.querySelectorAll("text");
         if (treeTexts && treeTexts.length > 0) {
           const treeTextElements = Array.from(treeTexts);
           if (fromIndex < treeTextElements.length) {
@@ -402,7 +405,7 @@ export class HeapVisualizer {
         }
 
         // Animate array text
-        const arrayTexts = this.arraySvg?.querySelectorAll("text");
+        const arrayTexts = this.arraySvg.querySelectorAll("text");
         if (arrayTexts && arrayTexts.length > 0) {
           // Skip index labels (first maxSize text elements)
           const offset = this.maxSize;
@@ -466,7 +469,6 @@ export class HeapVisualizer {
   }
 
   private updateStatusBadge(): void {
-    if (!this.statusBadge) return;
     this.statusBadge.textContent = `${this.heap.length}/${this.maxSize}`;
     if (this.heap.length === this.maxSize) {
       this.statusBadge.style.backgroundColor = "#dc3545";
@@ -478,21 +480,16 @@ export class HeapVisualizer {
   }
 
   private updateButtonStates(): void {
-    if (!this.pushBtn || !this.popBtn || !this.clearBtn || !this.elementInput)
-      return;
-
     this.pushBtn.disabled =
       this.isAnimating || this.heap.length >= this.maxSize;
     this.popBtn.disabled = this.isAnimating || this.heap.length === 0;
     this.clearBtn.disabled = this.isAnimating;
-    this.elementInput.disabled = this.isAnimating;
   }
 
   private renderTree(
     highlightIndices: number[] = [],
     highlightColor: string = ""
   ): void {
-    if (!this.treeSvg) return;
     this.treeSvg.innerHTML = "";
 
     if (this.heap.length === 0) {
@@ -577,7 +574,6 @@ export class HeapVisualizer {
   }
 
   private drawEdge(from: Position, to: Position): void {
-    if (!this.treeSvg) return;
     const line = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "line"
@@ -597,7 +593,6 @@ export class HeapVisualizer {
     highlight: boolean = false,
     color: string = ""
   ): void {
-    if (!this.treeSvg) return;
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
@@ -619,7 +614,6 @@ export class HeapVisualizer {
   }
 
   private drawNodeText(x: number, y: number, value: number): void {
-    if (!this.treeSvg) return;
     const text = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "text"
@@ -639,7 +633,6 @@ export class HeapVisualizer {
     highlightIndices: number[] = [],
     highlightColor: string = ""
   ): void {
-    if (!this.arraySvg) return;
     this.arraySvg.innerHTML = "";
 
     if (this.heap.length === 0) {
@@ -752,7 +745,6 @@ export class HeapVisualizer {
     color: string,
     label: string
   ): void {
-    if (!this.arraySvg) return;
     const rect = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"

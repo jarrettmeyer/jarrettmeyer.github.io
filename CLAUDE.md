@@ -66,7 +66,7 @@ Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
 #### `learn/heap.astro`
 
-Visualization to demonstrate how min and max heaps work.
+Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/utils/visualizations/heap.ts`.
 
 ### `src/posts`
 
@@ -99,4 +99,4 @@ Always use Context7 when I need code generation, setup or configuration steps, o
 
 ### Playwright
 
-Always use Playwright for browser automation testing. **DO NOT** take browser screenshots after making updates or running tests. Close the browser after you complete testing.
+Always use Playwright for browser automation testing. **DO NOT** take browser screenshots or snapshots. Close the browser after you complete testing.
