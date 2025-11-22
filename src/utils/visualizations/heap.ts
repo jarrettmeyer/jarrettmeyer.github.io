@@ -665,23 +665,7 @@ export class HeapVisualizer {
     const startX = Math.max(padding, (svgWidth - this.maxSize * cellWidth) / 2);
     const startY = 60;
 
-    // Draw indices
-    for (let i = 0; i < this.maxSize; i++) {
-      const x = startX + i * cellWidth;
-      const indexText = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "text"
-      );
-      indexText.setAttribute("x", (x + cellWidth / 2).toString());
-      indexText.setAttribute("y", (startY - 25).toString());
-      indexText.setAttribute("text-anchor", "middle");
-      indexText.setAttribute("fill", "#999");
-      indexText.setAttribute("font-size", "12");
-      indexText.textContent = i.toString();
-      this.arraySvg.appendChild(indexText);
-    }
-
-    // Draw cells
+    // Draw all rect elements first (so text appears on top)
     for (let i = 0; i < this.maxSize; i++) {
       const x = startX + i * cellWidth;
       const y = startY;
@@ -712,6 +696,30 @@ export class HeapVisualizer {
         rect.classList.add(`highlight-${highlightColor}`);
       }
       this.arraySvg.appendChild(rect);
+    }
+
+    // Draw all text elements (on top of rects)
+    // Draw indices
+    for (let i = 0; i < this.maxSize; i++) {
+      const x = startX + i * cellWidth;
+      const indexText = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+      );
+      indexText.setAttribute("x", (x + cellWidth / 2).toString());
+      indexText.setAttribute("y", (startY - 25).toString());
+      indexText.setAttribute("text-anchor", "middle");
+      indexText.setAttribute("fill", "#999");
+      indexText.setAttribute("font-size", "12");
+      indexText.textContent = i.toString();
+      this.arraySvg.appendChild(indexText);
+    }
+
+    // Draw cell values
+    for (let i = 0; i < this.maxSize; i++) {
+      const x = startX + i * cellWidth;
+      const y = startY;
+      const isFilled = i < this.heap.length;
 
       // Draw value
       if (isFilled) {
