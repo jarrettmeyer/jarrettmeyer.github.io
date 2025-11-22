@@ -231,7 +231,8 @@ export class HeapVisualizer {
     this.highlightNodes([index1, index2], "yellow");
     await this.delay(this.compareDuration);
 
-    // Step 2: Animate text movement while swapping content
+    // Step 2: Turn nodes green and animate text movement simultaneously
+    this.highlightNodesPreservePositions([index1, index2], "green");
     await this.animateTextSwap(index1, index2, this.swapDuration);
 
     // Step 3: Update text elements to show the swapped values
@@ -253,8 +254,7 @@ export class HeapVisualizer {
       }
     }
 
-    // Step 4: Show green highlight for swap
-    this.highlightNodesPreservePositions([index1, index2], "green");
+    // Step 4: Reset highlight after swap completes
     await this.delay(this.compareDuration);
   }
 
