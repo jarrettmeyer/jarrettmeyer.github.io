@@ -8,6 +8,8 @@ export class HeapVisualizer {
   private isMinHeap: boolean = true;
   private isAnimating: boolean = false;
   private maxSize: number = 15;
+  private compareDuration: number = 500;
+  private swapDuration: number = 1000;
 
   private treeSvg: SVGSVGElement | null;
   private arraySvg: SVGSVGElement | null;
@@ -224,19 +226,91 @@ export class HeapVisualizer {
     this.render();
   }
 
-  private animateSwap(index1: number, index2: number): Promise<void> {
-    return new Promise((resolve) => {
-      this.highlightNodes([index1, index2], "yellow");
-      setTimeout(() => {
-        this.highlightNodes([index1, index2], "green");
-        setTimeout(resolve, 800);
-      }, 600);
-    });
+  private async animateSwap(index1: number, index2: number): Promise<void> {
+    // Step 1: Show yellow highlight for comparison
+    this.highlightNodes([index1, index2], "yellow");
+    await this.delay(this.compareDuration);
+
+    // Step 2: Animate text movement while swapping content
+    await this.animateTextSwap(index1, index2, this.swapDuration);
+
+    // Step 3: Update text elements to show the swapped values
+    const treeTexts = this.treeSvg?.querySelectorAll("text");
+    const arrayTexts = this.arraySvg?.querySelectorAll("text");
+
+    if (treeTexts && treeTexts.length > 0) {
+      const temp = (treeTexts[index1] as SVGTextElement).textContent;
+      (treeTexts[index1] as SVGTextElement).textContent = (treeTexts[index2] as SVGTextElement).textContent;
+      (treeTexts[index2] as SVGTextElement).textContent = temp;
+    }
+
+    if (arrayTexts && arrayTexts.length > 0) {
+      const offset = this.maxSize;
+      if (index1 + offset < arrayTexts.length && index2 + offset < arrayTexts.length) {
+        const temp = (arrayTexts[index1 + offset] as SVGTextElement).textContent;
+        (arrayTexts[index1 + offset] as SVGTextElement).textContent = (arrayTexts[index2 + offset] as SVGTextElement).textContent;
+        (arrayTexts[index2 + offset] as SVGTextElement).textContent = temp;
+      }
+    }
+
+    // Step 4: Show green highlight for swap
+    this.highlightNodesPreservePositions([index1, index2], "green");
+    await this.delay(this.compareDuration);
+  }
+
+  private highlightNodesPreservePositions(
+    indices: number[],
+    color: string
+  ): void {
+    // Update only the circle colors without re-rendering text positions
+    if (!this.treeSvg || !this.arraySvg) return;
+
+    const treeCircles = this.treeSvg.querySelectorAll("circle");
+    const arrayRects = this.arraySvg.querySelectorAll("rect");
+
+    // Update tree circles
+    for (let i = 0; i < treeCircles.length; i++) {
+      if (indices.includes(i)) {
+        (treeCircles[i] as SVGCircleElement).setAttribute(
+          "fill",
+          this.getHighlightColor(color)
+        );
+      }
+    }
+
+    // Update array cells - skip the first maxSize rects (they're indices), update actual cells
+    let cellIndex = 0;
+    for (let i = 0; i < arrayRects.length; i++) {
+      const rect = arrayRects[i] as SVGRectElement;
+      // Check if this is a data cell (has y > 50)
+      const y = parseFloat(rect.getAttribute("y") || "0");
+      if (y > 50) {
+        if (indices.includes(cellIndex)) {
+          rect.setAttribute("fill", this.getHighlightColor(color));
+        }
+        cellIndex++;
+      }
+    }
   }
 
   private animatePop(index: number): Promise<void> {
     return new Promise((resolve) => {
       this.highlightNodes([index], "red");
+      // Fade out the text element being removed
+      const treeTexts = this.treeSvg?.querySelectorAll("text");
+      const arrayTexts = this.arraySvg?.querySelectorAll("text");
+
+      if (treeTexts && index < treeTexts.length) {
+        (treeTexts[index] as SVGTextElement).style.opacity = "0";
+      }
+
+      if (arrayTexts) {
+        const arrayTextIndex = index + this.maxSize;
+        if (arrayTextIndex < arrayTexts.length) {
+          (arrayTexts[arrayTextIndex] as SVGTextElement).style.opacity = "0";
+        }
+      }
+
       setTimeout(resolve, 800);
     });
   }
@@ -248,6 +322,143 @@ export class HeapVisualizer {
 
   private delay(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  private easeInOutQuad(t: number): number {
+    // t is normalized progress (0 to 1)
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
+  private getTreeNodePosition(index: number): Position {
+    if (!this.treeSvg) return { x: 0, y: 0 };
+
+    const svgWidth = this.treeSvg.clientWidth;
+    const svgHeight = this.treeSvg.clientHeight;
+    const nodeRadius = 25;
+    const levels = Math.ceil(Math.log2(this.heap.length + 1));
+
+    const level = Math.floor(Math.log2(index + 1));
+    const positionInLevel = index - (Math.pow(2, level) - 1);
+    const nodesAtLevel = Math.pow(2, level);
+
+    const levelHeight = (svgHeight - 80) / Math.max(1, levels - 1);
+    const y = 40 + level * levelHeight;
+
+    const levelWidth = svgWidth - 60;
+    const spacing = levelWidth / (nodesAtLevel + 1);
+    const x = spacing * (positionInLevel + 1) + 30;
+
+    return { x, y };
+  }
+
+  private getArrayCellPosition(index: number): Position {
+    if (!this.arraySvg) return { x: 0, y: 0 };
+
+    const svgWidth = this.arraySvg.clientWidth;
+    const cellWidth = 60;
+    const cellHeight = 60;
+    const padding = 20;
+    const startX = Math.max(padding, (svgWidth - this.maxSize * cellWidth) / 2);
+    const startY = 60;
+
+    const x = startX + index * cellWidth + cellWidth / 2;
+    const y = startY + cellHeight / 2;
+
+    return { x, y };
+  }
+
+  private animateTextSwap(
+    fromIndex: number,
+    toIndex: number,
+    duration: number
+  ): Promise<void> {
+    return new Promise((resolve) => {
+      const startTime = performance.now();
+      const fromTreePos = this.getTreeNodePosition(fromIndex);
+      const toTreePos = this.getTreeNodePosition(toIndex);
+      const fromArrayPos = this.getArrayCellPosition(fromIndex);
+      const toArrayPos = this.getArrayCellPosition(toIndex);
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = this.easeInOutQuad(progress);
+
+        // Animate tree text
+        const treeTexts = this.treeSvg?.querySelectorAll("text");
+        if (treeTexts && treeTexts.length > 0) {
+          const treeTextElements = Array.from(treeTexts);
+          if (fromIndex < treeTextElements.length) {
+            const fromText = treeTextElements[fromIndex];
+            const currentX = fromTreePos.x + (toTreePos.x - fromTreePos.x) * eased;
+            const currentY = fromTreePos.y + (toTreePos.y - fromTreePos.y) * eased;
+            fromText.setAttribute("x", currentX.toString());
+            fromText.setAttribute("y", currentY.toString());
+          }
+          if (toIndex < treeTextElements.length) {
+            const toText = treeTextElements[toIndex];
+            const currentX = toTreePos.x + (fromTreePos.x - toTreePos.x) * eased;
+            const currentY = toTreePos.y + (fromTreePos.y - toTreePos.y) * eased;
+            toText.setAttribute("x", currentX.toString());
+            toText.setAttribute("y", currentY.toString());
+          }
+        }
+
+        // Animate array text
+        const arrayTexts = this.arraySvg?.querySelectorAll("text");
+        if (arrayTexts && arrayTexts.length > 0) {
+          // Skip index labels (first maxSize text elements)
+          const offset = this.maxSize;
+          if (fromIndex + offset < arrayTexts.length) {
+            const fromText = arrayTexts[fromIndex + offset];
+            const currentX = fromArrayPos.x + (toArrayPos.x - fromArrayPos.x) * eased;
+            const currentY = fromArrayPos.y + (toArrayPos.y - fromArrayPos.y) * eased;
+            fromText.setAttribute("x", currentX.toString());
+            fromText.setAttribute("y", currentY.toString());
+          }
+          if (toIndex + offset < arrayTexts.length) {
+            const toText = arrayTexts[toIndex + offset];
+            const currentX = toArrayPos.x + (fromArrayPos.x - toArrayPos.x) * eased;
+            const currentY = toArrayPos.y + (fromArrayPos.y - toArrayPos.y) * eased;
+            toText.setAttribute("x", currentX.toString());
+            toText.setAttribute("y", currentY.toString());
+          }
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // Reset text positions to their original locations after animation
+          if (treeTexts && treeTexts.length > 0) {
+            const treeTextElements = Array.from(treeTexts);
+            if (fromIndex < treeTextElements.length) {
+              (treeTextElements[fromIndex] as SVGTextElement).setAttribute("x", fromTreePos.x.toString());
+              (treeTextElements[fromIndex] as SVGTextElement).setAttribute("y", fromTreePos.y.toString());
+            }
+            if (toIndex < treeTextElements.length) {
+              (treeTextElements[toIndex] as SVGTextElement).setAttribute("x", toTreePos.x.toString());
+              (treeTextElements[toIndex] as SVGTextElement).setAttribute("y", toTreePos.y.toString());
+            }
+          }
+
+          if (arrayTexts && arrayTexts.length > 0) {
+            const offset = this.maxSize;
+            if (fromIndex + offset < arrayTexts.length) {
+              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute("x", fromArrayPos.x.toString());
+              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute("y", fromArrayPos.y.toString());
+            }
+            if (toIndex + offset < arrayTexts.length) {
+              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute("x", toArrayPos.x.toString());
+              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute("y", toArrayPos.y.toString());
+            }
+          }
+
+          resolve();
+        }
+      };
+
+      requestAnimationFrame(animate);
+    });
   }
 
   private render(): void {
@@ -327,11 +538,17 @@ export class HeapVisualizer {
       }
     }
 
-    // Draw nodes
+    // Draw circles (not text)
     for (let i = 0; i < this.heap.length; i++) {
       const pos = positions[i];
       const isHighlighted = highlightIndices.includes(i);
-      this.drawNode(pos.x, pos.y, this.heap[i], isHighlighted, highlightColor);
+      this.drawCircle(pos.x, pos.y, isHighlighted, highlightColor);
+    }
+
+    // Draw text (on top of circles)
+    for (let i = 0; i < this.heap.length; i++) {
+      const pos = positions[i];
+      this.drawNodeText(pos.x, pos.y, this.heap[i]);
     }
   }
 
@@ -377,10 +594,9 @@ export class HeapVisualizer {
     this.treeSvg.appendChild(line);
   }
 
-  private drawNode(
+  private drawCircle(
     x: number,
     y: number,
-    value: number,
     highlight: boolean = false,
     color: string = ""
   ): void {
@@ -403,7 +619,10 @@ export class HeapVisualizer {
       circle.classList.add(`highlight-${color}`);
     }
     this.treeSvg.appendChild(circle);
+  }
 
+  private drawNodeText(x: number, y: number, value: number): void {
+    if (!this.treeSvg) return;
     const text = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "text"

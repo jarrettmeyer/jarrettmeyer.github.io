@@ -34,9 +34,29 @@ This is my personal website deployed to GitHub pages.
 
 Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
 
-### `Navbar.astro`
+#### `Alert.astro`
 
-Site navigation.
+Alert messages component based on [Bootstrap Alerts](https://getbootstrap.com/docs/5.3/components/alerts/).
+
+#### `Certifications.astro`
+
+#### `FeaturedContent.astro`
+
+#### `Hero.astro`
+
+#### `LeetCodeHeader.astro`
+
+#### `LeetCodeResult.astro`
+
+#### `ListPosts.astro`
+
+#### `Navbar.astro`
+
+Site navigation component based on [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/).
+
+#### `SearchModal.astro`
+
+Search component based on [Pagefind](https://pagefind.app/) and [Bootstrap Modal](https://getbootstrap.com/docs/5.3/components/modal/).
 
 ### `src/layouts`
 
@@ -44,9 +64,19 @@ Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
 ### `src/pages`
 
+#### `learn/heap.astro`
+
+Visualization to demonstrate how min and max heaps work.
+
 ### `src/posts`
 
 Posts, written in either `*.md` or `*.mdx` format.
+
+## Develop
+
+The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing. 
+
+You can use Playwright to determine if the development server is running. If you open `localhost:4321` and see  the page and see "localhost refused to connect", then the development server is not running. Use `npm run dev` to start the development server.
 
 ## Build
 
@@ -60,4 +90,13 @@ This website is hosted in GitHub pages. The website is deployed when source code
 
 ### Context7
 
-Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
+Always use Context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library ID and get library documentation without me having to explicitly ask. This includes, but is not limited to, the following libraries:
+
+- Astro
+- Boostrap
+- Pagefind
+- Playwright
+
+### Playwright
+
+Always use Playwright for browser automation testing. It is **not** necessary to take browser screenshots after making updates or running tests.
