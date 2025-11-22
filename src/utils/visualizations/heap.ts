@@ -718,8 +718,8 @@ export class HeapVisualizer {
 
     // Draw legend
     const legendY = startY + cellHeight + 20;
-    this.drawLegendItem(startX, legendY, "#ffc107", "Comparison");
-    this.drawLegendItem(startX + 150, legendY, "#28a745", "Swap/Move");
+    this.drawLegendItem(startX, legendY, "#ffc107", "Compare");
+    this.drawLegendItem(startX + 150, legendY, "#28a745", "Swap");
     this.drawLegendItem(startX + 300, legendY, "#dc3545", "Remove");
   }
 
