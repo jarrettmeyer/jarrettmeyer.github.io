@@ -99,4 +99,4 @@ Always use Context7 when I need code generation, setup or configuration steps, o
 
 ### Playwright
 
-Always use Playwright for browser automation testing. It is **not** necessary to take browser screenshots after making updates or running tests.
+Always use Playwright for browser automation testing. **DO NOT** take browser screenshots after making updates or running tests. Close the browser after you complete testing.
