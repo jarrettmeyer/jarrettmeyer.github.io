@@ -253,9 +253,6 @@ export class HeapVisualizer {
         (arrayTexts[index2 + offset] as SVGTextElement).textContent = temp;
       }
     }
-
-    // Step 4: Reset highlight after swap completes
-    await this.delay(this.compareDuration);
   }
 
   private highlightNodesPreservePositions(
