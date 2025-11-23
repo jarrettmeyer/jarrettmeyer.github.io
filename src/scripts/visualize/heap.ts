@@ -3,6 +3,18 @@ interface Position {
   y: number;
 }
 
+enum Color {
+  Blue = "#0d6efd",
+  Yellow = "#ffc107",
+  Green = "#28a745",
+  Red = "#dc3545",
+  White = "#fff",
+  LighterGray = "#ccc",
+  LightGray = "#999",
+  DarkGray = "#666",
+  None = "",
+}
+
 export class HeapVisualizer {
   private heap: number[] = [];
   private isMinHeap: boolean = true;
@@ -507,7 +519,7 @@ export class HeapVisualizer {
       text.setAttribute("y", "50%");
       text.setAttribute("text-anchor", "middle");
       text.setAttribute("dominant-baseline", "middle");
-      text.setAttribute("fill", "#999");
+      text.setAttribute("fill", Color.LightGray);
       text.setAttribute("font-size", "16");
       text.textContent = "Heap is empty";
       this.treeSvg.appendChild(text);
@@ -588,7 +600,7 @@ export class HeapVisualizer {
     line.setAttribute("y1", from.y.toString());
     line.setAttribute("x2", to.x.toString());
     line.setAttribute("y2", to.y.toString());
-    line.setAttribute("stroke", "#666");
+    line.setAttribute("stroke", Color.DarkGray);
     line.setAttribute("stroke-width", "2");
     this.treeSvg.appendChild(line);
   }
@@ -608,9 +620,9 @@ export class HeapVisualizer {
     circle.setAttribute("r", "25");
     circle.setAttribute(
       "fill",
-      highlight ? this.getHighlightColor(color) : "#0d6efd"
+      highlight ? this.getHighlightColor(color) : Color.Blue
     );
-    circle.setAttribute("stroke", "#fff");
+    circle.setAttribute("stroke", Color.White);
     circle.setAttribute("stroke-width", "2");
     circle.setAttribute("class", "heap-node");
     if (highlight) {
@@ -628,7 +640,7 @@ export class HeapVisualizer {
     text.setAttribute("y", y.toString());
     text.setAttribute("text-anchor", "middle");
     text.setAttribute("dominant-baseline", "middle");
-    text.setAttribute("fill", "#fff");
+    text.setAttribute("fill", Color.White);
     text.setAttribute("font-size", "16");
     text.setAttribute("font-weight", "bold");
     text.textContent = value.toString();
@@ -669,10 +681,10 @@ export class HeapVisualizer {
         isFilled
           ? isHighlighted
             ? this.getHighlightColor(highlightColor)
-            : "#0d6efd"
+            : Color.Blue
           : "rgba(255,255,255,0.1)"
       );
-      rect.setAttribute("stroke", isFilled ? "#fff" : "#666");
+      rect.setAttribute("stroke", isFilled ? Color.White : Color.DarkGray);
       rect.setAttribute("stroke-width", "2");
       rect.setAttribute("class", "array-cell");
       if (isHighlighted) {
@@ -692,7 +704,7 @@ export class HeapVisualizer {
       indexText.setAttribute("x", (x + cellWidth / 2).toString());
       indexText.setAttribute("y", (startY - 25).toString());
       indexText.setAttribute("text-anchor", "middle");
-      indexText.setAttribute("fill", "#999");
+      indexText.setAttribute("fill", Color.LightGray);
       indexText.setAttribute("font-size", "12");
       indexText.textContent = i.toString();
       this.arraySvg.appendChild(indexText);
@@ -714,7 +726,7 @@ export class HeapVisualizer {
         text.setAttribute("y", (y + cellHeight / 2).toString());
         text.setAttribute("text-anchor", "middle");
         text.setAttribute("dominant-baseline", "middle");
-        text.setAttribute("fill", "#fff");
+        text.setAttribute("fill", Color.White);
         text.setAttribute("font-size", "18");
         text.setAttribute("font-weight", "bold");
         text.textContent = this.heap[i].toString();
@@ -724,9 +736,9 @@ export class HeapVisualizer {
 
     // Draw legend
     const legendY = startY + cellHeight + 20;
-    this.drawLegendItem(startX, legendY, "#ffc107", "Compare");
-    this.drawLegendItem(startX + 150, legendY, "#28a745", "Swap");
-    this.drawLegendItem(startX + 300, legendY, "#dc3545", "Remove");
+    this.drawLegendItem(startX, legendY, Color.Yellow, "Compare");
+    this.drawLegendItem(startX + 150, legendY, Color.Green, "Swap");
+    this.drawLegendItem(startX + 300, legendY, Color.Red, "Remove");
   }
 
   private drawLegendItem(
@@ -752,7 +764,7 @@ export class HeapVisualizer {
     );
     text.setAttribute("x", (x + 25).toString());
     text.setAttribute("y", (y + 12).toString());
-    text.setAttribute("fill", "#ccc");
+    text.setAttribute("fill", Color.LighterGray);
     text.setAttribute("font-size", "12");
     text.textContent = label;
     this.arraySvg.appendChild(text);
@@ -760,10 +772,10 @@ export class HeapVisualizer {
 
   private getHighlightColor(color: string): string {
     const colors: { [key: string]: string } = {
-      yellow: "#ffc107",
-      green: "#28a745",
-      red: "#dc3545",
+      yellow: Color.Yellow,
+      green: Color.Green,
+      red: Color.Red,
     };
-    return colors[color] || "#0d6efd";
+    return colors[color] || Color.Blue;
   }
 }

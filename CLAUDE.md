@@ -32,31 +32,41 @@ This is my personal website deployed to GitHub pages.
 └── tsconfig.json
 ```
 
+### `src/`
+
+#### `src/content.config.ts`
+
+Defines the `posts` collection used in the website.
+
+#### `src/types.ts`
+
+Defines the `Post` type using Astro's `CollectionEntry<"posts">`. This collection is defined in `src/content.config.ts`.
+
 ### `src/components/`
 
 Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
 
-#### `Alert.astro`
+#### `src/components/Alert.astro`
 
 Alert messages component based on [Bootstrap Alerts](https://getbootstrap.com/docs/5.3/components/alerts/).
 
-#### `Certifications.astro`
+#### `src/components/Certifications.astro`
 
-#### `FeaturedContent.astro`
+#### `src/components/FeaturedContent.astro`
 
-#### `Hero.astro`
+#### `src/components/Hero.astro`
 
-#### `LeetCodeHeader.astro`
+#### `src/components/LeetCodeHeader.astro`
 
-#### `LeetCodeResult.astro`
+#### `src/components/LeetCodeResult.astro`
 
-#### `ListPosts.astro`
+#### `src/components/ListPosts.astro`
 
-#### `Navbar.astro`
+#### `src/components/Navbar.astro`
 
 Site navigation component based on [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/).
 
-#### `SearchModal.astro`
+#### `src/components/SearchModal.astro`
 
 Search component based on [Pagefind](https://pagefind.app/) and [Bootstrap Modal](https://getbootstrap.com/docs/5.3/components/modal/).
 
@@ -66,31 +76,42 @@ Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
 ### `src/pages/`
 
+Site pages, written in Astro.
+
 #### `index.astro`
 
 Welcome page. Contains Hero, Featured Content, and Latest Posts.
 
-#### `visualize/heap/index.astro`
+### `src/pages/tags/`
 
-Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/pages/visualize/heap/heap.ts`.
+### `src/pages/visualize/`
+
+#### `src/pages/visualize/heap.astro`
+
+Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/scripts/visualize/heap/heap.ts`.
 
 ### `src/posts/`
 
 Posts, written in either `*.md` or `*.mdx` format.
 
-### `src/content.config.ts`
+### `src/scripts/`
 
-Defines the `posts` collection used in the website.
+Scripts in this folder are intended to be used as client scripts for specific pages.
 
-### `src/types.ts`
+### `src/utils/`
 
-Defines the `Post` type using Astro's `CollectionEntry<"posts">`. This collection is defined in `src/content.config.ts`.
+Utility functions, written in TypeScript, used throughout the website.
 
 ## Develop
 
 The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing. 
 
 You can use Playwright to determine if the development server is running. If you open `localhost:4321` and see  the page and see "localhost refused to connect", then the development server is not running. Use `npm run dev` to start the development server.
+
+### Guidelines
+
+- Use TypeScript for all scripts.
+- Create descriptive variables instead of magic numbers or strings. Do this even for one-time use variables.
 
 ## Build
 
