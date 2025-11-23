@@ -10,10 +10,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
     <h1 class="mb-4">Min & Max Heaps</h1>
 
     <!-- Educational Content Section -->
-    <section
-      class="mb-5 p-4 rounded"
-      style="background-color: rgba(255, 255, 255, 0.05);"
-    >
+    <section class="mb-5 p-4 rounded bg-body-tertiary">
       <h2 class="mb-3">What are Heaps?</h2>
       <p>
         A <strong>heap</strong> is a specialized tree-based data structure that satisfies
@@ -83,10 +80,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
     </section>
 
     <!-- Controls Section -->
-    <section
-      class="mb-4 p-4 rounded"
-      style="background-color: rgba(255, 255, 255, 0.05);"
-    >
+    <section class="mb-4 p-4 rounded bg-body-tertiary">
       <div class="row">
         <div class="col-6 col-lg-3 mb-3">
           <div class="btn-group" role="group" aria-label="Heap type selection">
@@ -150,10 +144,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
     <!-- Visualizations Section -->
     <section>
       <div class="mb-4">
-        <div
-          class="p-4 rounded"
-          style="background-color: rgba(255, 255, 255, 0.05);"
-        >
+        <div class="p-4 rounded bg-body-tertiary">
           <h3 class="mb-3">Tree View</h3>
           <svg
             id="treeSvg"
@@ -164,10 +155,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
         </div>
       </div>
       <div class="mb-4">
-        <div
-          class="p-4 rounded"
-          style="background-color: rgba(255, 255, 255, 0.05);"
-        >
+        <div class="p-4 rounded bg-body-tertiary">
           <h3 class="mb-3">Array View</h3>
           <svg
             id="arraySvg"
@@ -233,7 +221,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
   </style>
 
   <script>
-    import { HeapVisualizer } from "@/pages/visualize/heap";
+    import { HeapVisualizer } from "@/pages/visualize/heap/heap";
     // Initialize on page load
     document.addEventListener("DOMContentLoaded", () => {
       new HeapVisualizer();

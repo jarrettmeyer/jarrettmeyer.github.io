@@ -5,21 +5,23 @@ This is my personal website deployed to GitHub pages.
 ## Project Structure
 
 ```text
-├── dist                        # Astro build output
-├── docs
-├── node_modules
-├── public
-│   ├── images
+├── dist/                       # Astro build output
+├── docs/
+├── node_modules/
+├── public/
+│   ├── images/
 │   ├── CNAME
 │   ├── favicon.ico
 │   ├── robots.txt
 │   └── site.css                # Globally applied CSS
-├── src                         # Source code for website
-│   ├── components              # Astro component
-│   ├── layouts                 # Astro layouts
-│   ├── pages                   # Astro pages
-│   ├── posts                   # Astro posts, *.md or *.mdx
-│   ├── utils                   # TypeScript utilities
+├── src/                        # Source code for website
+│   ├── components/             # Astro component
+│   ├── layouts/                # Astro layouts
+│   ├── pages/                  # Astro pages
+│   │   ├── tags/
+│   │   └── visualize/
+│   ├── posts/                  # Astro posts, *.md or *.mdx
+│   ├── utils/                  # TypeScript utilities
 │   ├── content.config.ts
 │   └── types.ts
 ├── astro.config.ts
@@ -30,7 +32,7 @@ This is my personal website deployed to GitHub pages.
 └── tsconfig.json
 ```
 
-### `src/components`
+### `src/components/`
 
 Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
 
@@ -58,23 +60,31 @@ Site navigation component based on [Bootstrap Navbar](https://getbootstrap.com/d
 
 Search component based on [Pagefind](https://pagefind.app/) and [Bootstrap Modal](https://getbootstrap.com/docs/5.3/components/modal/).
 
-### `src/layouts`
+### `src/layouts/`
 
 Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
-### `src/pages`
+### `src/pages/`
 
 #### `index.astro`
 
 Welcome page. Contains Hero, Featured Content, and Latest Posts.
 
-#### `visualize/heap.astro`
+#### `visualize/heap/index.astro`
 
-Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/pages/visualize/heap.ts`.
+Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/pages/visualize/heap/heap.ts`.
 
-### `src/posts`
+### `src/posts/`
 
 Posts, written in either `*.md` or `*.mdx` format.
+
+### `src/content.config.ts`
+
+Defines the `posts` collection used in the website.
+
+### `src/types.ts`
+
+Defines the `Post` type using Astro's `CollectionEntry<"posts">`. This collection is defined in `src/content.config.ts`.
 
 ## Develop
 
