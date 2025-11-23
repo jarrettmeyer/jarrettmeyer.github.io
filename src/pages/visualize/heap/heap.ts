@@ -469,13 +469,19 @@ export class HeapVisualizer {
   }
 
   private updateStatusBadge(): void {
-    this.statusBadge.textContent = `${this.heap.length}/${this.maxSize}`;
+    this.statusBadge.textContent = `${this.heap.length} / ${this.maxSize}`;
     if (this.heap.length === this.maxSize) {
-      this.statusBadge.style.backgroundColor = "#dc3545";
+      this.statusBadge.classList.remove("bg-primary");
+      this.statusBadge.classList.remove("bg-secondary");
+      this.statusBadge.classList.add("bg-danger");
     } else if (this.heap.length === 0) {
-      this.statusBadge.style.backgroundColor = "#6c757d";
+      this.statusBadge.classList.remove("bg-primary");
+      this.statusBadge.classList.add("bg-secondary");
+      this.statusBadge.classList.remove("bg-danger");
     } else {
-      this.statusBadge.style.backgroundColor = "#0d6efd";
+      this.statusBadge.classList.add("bg-primary");
+      this.statusBadge.classList.remove("bg-secondary");
+      this.statusBadge.classList.remove("bg-danger");
     }
   }
 
