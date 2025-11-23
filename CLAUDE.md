@@ -64,9 +64,13 @@ Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
 ### `src/pages`
 
-#### `learn/heap.astro`
+#### `index.astro`
 
-Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/utils/visualizations/heap.ts`.
+Welcome page. Contains Hero, Featured Content, and Latest Posts.
+
+#### `visualize/heap.astro`
+
+Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/pages/visualize/heap.ts`.
 
 ### `src/posts`
 
