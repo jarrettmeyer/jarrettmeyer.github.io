@@ -13,7 +13,7 @@ export function PlayControl({
   playSpeed = 500,
   onChange,
 }: PlayPauseControlProps) {
-  const speeds = [0.25, 0.5, 1, 1.25, 1.5, 2];
+  const speeds = [2, 1.5, 1.25, 1, 0.5, 0.25];
 
   const [value, setValue] = useState<number>(min);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -45,7 +45,13 @@ export function PlayControl({
   };
 
   const togglePlaying = () => {
-    setIsPlaying((prev) => !prev);
+    setIsPlaying((prev) => {
+      const newIsPlaying = !prev;
+      if (newIsPlaying && value === max) {
+        setValue(min);
+      }
+      return newIsPlaying;
+    });
   };
 
   return (
@@ -68,7 +74,7 @@ export function PlayControl({
       <div className="d-flex justify-content-between gap-2 ">
         <div>
           <button
-            className="btn btn-primary"
+            className={`btn ${isPlaying ? "btn-danger" : "btn-success"}`}
             onClick={togglePlaying}
             title={isPlaying ? "Pause" : "Play"}
           >

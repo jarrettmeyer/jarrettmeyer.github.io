@@ -70,6 +70,10 @@ Interactive React component that visualizes global daily calorie supply per capi
 
 Site navigation component based on [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/).
 
+#### `src/components/PlayControl.tsx`
+
+Playback control component for animating sequences. Features include a range slider spanning `min` to `max`, a play/pause toggle button, a number input for direct value entry with automatic clamping to bounds, and a speed multiplier selector (0.25x to 2x). When playing, the value increments every `playSpeed / speedMultiplier` milliseconds and stops automatically upon reaching the max value. The `onChange` callback fires whenever the value changes.
+
 #### `src/components/SearchModal.astro`
 
 Search component based on [Pagefind](https://pagefind.app/) and [Bootstrap Modal](https://getbootstrap.com/docs/5.3/components/modal/).
