@@ -1,0 +1,36 @@
+{
+  "name": "world-atlas",
+  "version": "2.0.2",
+  "description": "Pre-built TopoJSON from Natural Earth.",
+  "license": "ISC",
+  "keywords": [
+    "topojson",
+    "geojson",
+    "shapefile"
+  ],
+  "author": {
+    "name": "Mike Bostock",
+    "url": "https://bost.ocks.org/mike"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/topojson/world-atlas.git"
+  },
+  "files": [
+    "*-10m.json",
+    "*-50m.json",
+    "*-110m.json"
+  ],
+  "scripts": {
+    "prepublishOnly": "bash prepublish",
+    "postpublish": "git push && git push --tags"
+  },
+  "devDependencies": {
+    "d3-geo-projection": "^2.0.1",
+    "ndjson-cli": "^0.3.0",
+    "shapefile": "^0.6.1",
+    "topojson-client": "^3.0.0",
+    "topojson-server": "^3.0.0",
+    "topojson-simplify": "^3.0.0"
+  }
+}

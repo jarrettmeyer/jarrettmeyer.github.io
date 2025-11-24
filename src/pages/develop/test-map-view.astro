@@ -1,0 +1,63 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { MapView } from "@/components/MapView.tsx";
+
+// Sample data: population of some countries
+const data = [
+  { name: "China", value: 1400000000 },
+  { name: "India", value: 1380000000 },
+  { name: "United States", value: 330000000 },
+  { name: "Indonesia", value: 270000000 },
+  { name: "Pakistan", value: 220000000 },
+  { name: "Brazil", value: 215000000 },
+  { name: "Nigeria", value: 210000000 },
+  { name: "Bangladesh", value: 170000000 },
+  { name: "Russia", value: 145000000 },
+  { name: "Mexico", value: 130000000 },
+  { name: "Japan", value: 125000000 },
+  { name: "Ethiopia", value: 120000000 },
+  { name: "Philippines", value: 115000000 },
+  { name: "Egypt", value: 100000000 },
+  { name: "Vietnam", value: 98000000 },
+  { name: "Turkey", value: 85000000 },
+  { name: "Iran", value: 85000000 },
+  { name: "Germany", value: 83000000 },
+  { name: "Thailand", value: 71000000 },
+  { name: "France", value: 67000000 },
+  { name: "United States of America", value: 340000000 }
+];
+---
+
+<PageLayout title="MapView Test">
+  <div class="mt-5 mb-5">
+    <h1 class="mb-4">MapView Component Test</h1>
+
+    <div class="mb-5">
+      <h2 class="mb-3">Default Configuration (Viridis, 50m)</h2>
+      <p class="text-muted mb-3">
+        Shows population data using the default Viridis color scale and 50m resolution map.
+      </p>
+      <div class="bg-white p-2 rounded">
+        <MapView client:load data={data} />
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <h2 class="mb-3">Mercator Projection (110m)</h2>
+      <p class="text-muted mb-3">
+        Shows population data using Mercator projection with 110m resolution (lower detail).
+      </p>
+      <div class="bg-white p-2 rounded">
+        <MapView
+          client:load
+          data={data}
+          colorScale="cool"
+          mapType="countries-110m"
+          projection="mercator"
+          backgroundColor="white"
+          borderColor="#ccc"
+        />
+      </div>
+    </div>
+  </div>
+</PageLayout>
