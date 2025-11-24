@@ -52,7 +52,7 @@ Alert messages component based on [Bootstrap Alerts](https://getbootstrap.com/do
 
 #### `src/components/CaloriesMap.tsx`
 
-Interactive React component that visualizes global daily calorie supply per capita from 1961 to 2022 using D3.js and TopoJSON. Features include playable animation, year slider, speed control, and hover tooltips. Uses country name aliases to map CSV data to geospatial features.
+Interactive React component that visualizes global daily calorie supply per capita from 1961 to 2022 using D3.js and TopoJSON. Features include playable animation, year slider, and speed control. Uses country name aliases to map CSV data to geospatial features.
 
 #### `src/components/Certifications.astro`
 
@@ -113,6 +113,10 @@ Scripts in this folder are intended to be used as client scripts for specific pa
 ### `src/utils/`
 
 Utility functions, written in TypeScript, used throughout the website.
+
+### `src/utils/hooks`
+
+Reusable [React](https://react.dev/) hooks.
 
 ## Develop
 

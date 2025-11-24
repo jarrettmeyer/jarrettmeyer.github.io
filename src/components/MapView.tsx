@@ -31,6 +31,9 @@ export type MapViewProps = {
   mapType?: MapType;
   projection?: ProjectionType;
   onHover?: (name: string | null, value: number | null) => void;
+  min?: number;
+  max?: number;
+  formatter?: (value: number) => string;
 };
 
 export function MapView({
@@ -42,6 +45,9 @@ export function MapView({
   mapType = "countries-50m",
   projection = "natural",
   onHover,
+  min,
+  max,
+  formatter = (value) => value.toString(),
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -105,8 +111,8 @@ export function MapView({
 
   // Find min and max values for color scale
   const values = data.map((d) => d.value);
-  const minValue = Math.min(...values);
-  const maxValue = Math.max(...values);
+  const minValue = min !== undefined ? min : Math.min(...values);
+  const maxValue = max !== undefined ? max : Math.max(...values);
   const valueRange = maxValue - minValue || 1;
 
   // Get the color scale function
@@ -244,8 +250,8 @@ export function MapView({
           </linearGradient>
         </defs>
         <rect x={0} y={0} width={width} height={50} fill={backgroundColor} />
-        <text x="20" y="20" textAnchor="start">{minValue}</text>
-        <text x={width - 20} y="20" textAnchor="end">{maxValue}</text>
+        <text x="20" y="20" textAnchor="start">{formatter(minValue)}</text>
+        <text x={width - 20} y="20" textAnchor="end">{formatter(maxValue)}</text>
         <rect
           x={20}
           y={25}

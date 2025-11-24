@@ -5,16 +5,20 @@ export interface UseFetchResult<T> {
   error: Error | null;
 }
 
+export type FetchResponseType = "json" | "text";
+
 /**
  * Simple fetch hook for loading data from a URL.
  *
  * @param url - The URL to fetch from
  * @param options - Optional RequestInit options for fetch
- * @returns Object with data (parsed JSON or null) and error (Error or null)
+ * @param responseType - Response type: "json" (default) or "text"
+ * @returns Object with data (parsed content or null) and error (Error or null)
  */
 export function useFetch<T = any>(
   url: string,
-  options?: RequestInit
+  options?: RequestInit,
+  responseCallback: (response: Response) => Promise<T> = async (response) => response.json(),
 ): UseFetchResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -26,8 +30,8 @@ export function useFetch<T = any>(
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const json = await response.json();
-        setData(json);
+        const content = await responseCallback(response);
+        setData(content);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err : new Error(String(err)));
@@ -36,7 +40,7 @@ export function useFetch<T = any>(
     };
 
     fetchData();
-  }, [url, options]);
+  }, [url, options, responseCallback]);
 
   return { data, error };
 }
