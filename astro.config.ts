@@ -6,10 +6,12 @@ import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://jarrettmeyer.com",
-  integrations: [expressiveCode(), mdx(), pagefind(), sitemap()],
+  integrations: [expressiveCode(), mdx(), pagefind(), sitemap(), react()],
   vite: {
     plugins: [tsconfigPaths() as any],
   },
