@@ -19,7 +19,7 @@
     "@pagefind/default-ui": "^1.4.0",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.15.9",
+    "astro": "^5.16.0",
     "astro-expressive-code": "^0.41.3",
     "astro-pagefind": "^1.8.5",
     "d3": "^7.9.0",
