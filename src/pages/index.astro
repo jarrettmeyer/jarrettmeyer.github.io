@@ -1,5 +1,6 @@
 ---
 import Certifications from "@/components/Certifications.astro";
+import FeaturedContent from "@/components/FeaturedContent.astro";
 import Hero from "@/components/Hero.astro";
 import ListPosts from "@/components/ListPosts.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
@@ -7,6 +8,14 @@ import PageLayout from "@/layouts/PageLayout.astro";
 
 <PageLayout title="Home">
   <Hero />
+
+  <h2 class="my-5">Featured Content</h2>
+  <FeaturedContent
+    title="Min & Max Heaps"
+    description="Interactive visualization of min and max heaps with step-by-step animations"
+    linkText="Try the Interactive Visualizer"
+    linkUrl="/visualize/heap"
+  />
 
   <h2 class="my-5">Latest Posts</h2>
   <ListPosts count={6} />

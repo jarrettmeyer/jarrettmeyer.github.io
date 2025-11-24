@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+}
+
+const { title, description, linkText, linkUrl } = Astro.props;
+---
+
+<section class="featured-content my-5 py-4 text-center">
+  <h2 class="fs-4 fw-semibold mb-3">{title}</h2>
+  <p class="fs-5 fw-light mb-4">{description}</p>
+  <a href={linkUrl} class="btn btn-primary">{linkText}</a>
+</section>
+
+<style>
+  .featured-content {
+    background: linear-gradient(135deg, rgba(133, 13, 253, 0.05) 0%, rgba(165, 13, 253, 0.02) 100%);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(13, 110, 253, 0.15);
+  }
+
+  .featured-content p {
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #b8b8b8;
+  }
+
+  .featured-content .btn {
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+  }
+</style>

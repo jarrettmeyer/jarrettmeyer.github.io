@@ -1,0 +1,229 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+---
+
+<PageLayout
+  title="Min & Max Heaps"
+  description="Interactive visualization of min and max heaps with step-by-step animations"
+>
+  <div class="container mt-5 mb-5">
+    <h1 class="mb-4">Min & Max Heaps</h1>
+
+    <!-- Educational Content Section -->
+    <section class="mb-5 p-4 rounded bg-body-tertiary">
+      <h2 class="mb-3">What are Heaps?</h2>
+      <p>
+        A <strong>heap</strong> is a specialized tree-based data structure that satisfies
+        the heap property:
+      </p>
+      <ul>
+        <li>
+          <strong>Min Heap:</strong> Every parent node is smaller than its children.
+          The minimum value is always at the root.
+        </li>
+        <li>
+          <strong>Max Heap:</strong> Every parent node is larger than its children.
+          The maximum value is always at the root.
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">Key Characteristics</h3>
+      <ul>
+        <li>
+          <strong>Complete Binary Tree:</strong> Heaps are stored as arrays where
+          left child of node at index i is at 2i+1, right child at 2i+2
+        </li>
+        <li>
+          <strong>Efficient Operations:</strong> Both push and pop operations run
+          in O(log n) time
+        </li>
+        <li>
+          <strong>Real-world Uses:</strong> Priority queues, heap sort, Dijkstra's
+          algorithm, event scheduling
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">Operations</h3>
+      <ul>
+        <li>
+          <strong>Push:</strong> Add element to the end, then bubble up to maintain
+          heap property
+        </li>
+        <li>
+          <strong>Pop:</strong> Remove root, move last element to root, then bubble
+          down to maintain heap property
+        </li>
+      </ul>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="mb-5 alert alert-info">
+      <h3 class="mb-3">How to Use</h3>
+      <ol>
+        <li>
+          Select <strong>Min Heap</strong> or <strong>Max Heap</strong> mode
+        </li>
+        <li>
+          Enter a number and click <strong>Push</strong> to add elements (max 15
+          elements)
+        </li>
+        <li>Click <strong>Pop</strong> to remove the root element</li>
+        <li>
+          Watch the animations to see how <span style="color: #ffc107;"
+            >comparisons</span
+          >, <span style="color: #28a745;">swaps</span>, and <span
+            style="color: #dc3545;">removals</span
+          > work
+        </li>
+        <li>Click <strong>Clear</strong> to reset and start over</li>
+      </ol>
+    </section>
+
+    <!-- Controls Section -->
+    <section class="mb-4 p-4 rounded bg-body-tertiary">
+      <div class="row">
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="btn-group" role="group" aria-label="Heap type selection">
+            <input
+              type="radio"
+              class="btn-check"
+              name="heapType"
+              id="minHeapRadio"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-primary" for="minHeapRadio"
+              >Min Heap</label
+            >
+
+            <input
+              type="radio"
+              class="btn-check"
+              name="heapType"
+              id="maxHeapRadio"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-primary" for="maxHeapRadio"
+              >Max Heap</label
+            >
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="mt-1">
+            <label class="form-label">Heap Depth</label>
+            <div
+              class="badge bg-secondary fs-6"
+              id="statusBadge"
+            >
+             0 / 15 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="elementInput"
+            placeholder="Value"
+          />
+        </div>
+
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="d-grid gap-2 d-md-flex">
+            <button class="btn btn-success" id="pushBtn">Push</button>
+            <button class="btn btn-danger" id="popBtn" disabled>Pop</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section>
+      <div class="mb-4">
+        <div class="p-4 rounded bg-body-tertiary">
+          <h3 class="mb-3">Tree View</h3>
+          <svg
+            id="treeSvg"
+            width="100%"
+            height="400"
+            class="border rounded-1 bg-dark-subtle"
+          ></svg>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="p-4 rounded bg-body-tertiary">
+          <h3 class="mb-3">Array View</h3>
+          <svg
+            id="arraySvg"
+            width="100%"
+            height="180"
+            class="border rounded-1 bg-dark-subtle"
+          ></svg>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .heap-node {
+      transition: all 0.3s ease;
+    }
+
+    .heap-node text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .array-cell {
+      transition: all 0.3s ease;
+    }
+
+    .array-cell text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .highlight-yellow {
+      animation: pulse 0.3s ease;
+      fill: #ffc107 !important;
+    }
+
+    .highlight-green {
+      animation: pulse 0.3s ease;
+      fill: #28a745 !important;
+    }
+
+    .highlight-red {
+      animation: pulse 0.3s ease;
+      fill: #dc3545 !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+
+  <script>
+    import { HeapVisualizer } from "@/pages/visualize/heap/heap";
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      new HeapVisualizer();
+    });
+  </script>
+</PageLayout>
