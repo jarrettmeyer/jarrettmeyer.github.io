@@ -45,6 +45,7 @@ export function MapView({
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const legendGradientId = useRef(`legend-gradient-${Math.random().toString(36).slice(2)}`).current;
   const [containerWidth, setContainerWidth] = useState(0);
   const { data: topoData, error: fetchError } = useFetch(
     `/data/world-atlas@2.0.2/${mapType}.json`
@@ -218,13 +219,41 @@ export function MapView({
   }
 
   return (
-    <div ref={containerRef} className="w-100" style={{ height: `${height}px` }}>
+    <div ref={containerRef} className="w-100">
       <svg
         ref={svgRef}
         width={width}
         height={height}
         preserveAspectRatio="xMidYMid meet"
+        className="pb-2"
       />
+      <svg width={width} height={50}>
+        <defs>
+          <linearGradient id={legendGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+            {Array.from({ length: 101 }, (_, i) => {
+              const t = i / 100;
+              const color = getColorScaleFunction(colorScale)(t);
+              return (
+                <stop
+                  key={i}
+                  offset={`${t * 100}%`}
+                  stopColor={color}
+                />
+              );
+            })}
+          </linearGradient>
+        </defs>
+        <rect x={0} y={0} width={width} height={50} fill={backgroundColor} />
+        <text x="20" y="20" textAnchor="start">{minValue}</text>
+        <text x={width - 20} y="20" textAnchor="end">{maxValue}</text>
+        <rect
+          x={20}
+          y={25}
+          width={width - 40}
+          height={20}
+          fill={`url(#${legendGradientId})`}
+        />
+      </svg>
     </div>
   );
 }
