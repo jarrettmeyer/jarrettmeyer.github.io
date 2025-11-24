@@ -1,0 +1,73 @@
+---
+title: "Kth Largest Element in an Array"
+date: "2025-12-07"
+description: "Find the kth largest element in an unsorted array."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import Alert from "@/components/Alert.astro";
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/problems/kth-largest-element-in-an-array/"
+/>
+
+## Solution
+
+This solution uses a min-heap to keep track of the k largest elements seen so far. We iterate through each number in the array and perform the following steps:
+
+1. If the heap has fewer than k elements, we add the current element.
+2. If the heap is full and the current element is larger than the smallest element in the heap (the root), we replace the root with the current element.
+
+At the end, the root of the heap will be the kth largest element.
+
+This solution takes advantage of Python's [`heapq`](https://docs.python.org/3/library/heapq.html) module.
+
+<LeetCodeResult runtime={56} beats={77.66} />
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+
+        for value in nums:
+            if len(heap) < k:
+                heapq.heappush(heap, value)
+
+            elif value > heap[0]:
+                heapq.heappushpop(heap, value)
+
+        return heapq.heappop(heap)
+```
+
+## Other solutions
+
+You can sort the array and return the kth largest element directly.
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return sorted(nums)[-k]
+```
+
+This solution always adds every element to the heap, then always removes the smallest element when the heap exceeds size k. This solves the problem in the same complexity, but there are more heap operations with each operation.
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+
+        for value in nums:
+            heapq.heappush(heap, value)
+            if len(heap) > k:
+                heapq.heappop(heap)
+
+        return heapq.heappop(heap)
+```
