@@ -1,0 +1,8 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { PlayControl } from "@/components/PlayControl";
+---
+
+<PageLayout title="PlayPauseControl">
+  <PlayControl min={0} max={100} client:load />
+</PageLayout>

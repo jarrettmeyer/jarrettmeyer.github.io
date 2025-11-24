@@ -50,6 +50,10 @@ Contains [Astro components](https://docs.astro.build/en/basics/astro-components/
 
 Alert messages component based on [Bootstrap Alerts](https://getbootstrap.com/docs/5.3/components/alerts/).
 
+#### `src/components/CaloriesMap.tsx`
+
+Interactive React component that visualizes global daily calorie supply per capita from 1961 to 2022 using D3.js and TopoJSON. Features include playable animation, year slider, speed control, and hover tooltips. Uses country name aliases to map CSV data to geospatial features.
+
 #### `src/components/Certifications.astro`
 
 #### `src/components/FeaturedContent.astro`
@@ -86,9 +90,13 @@ Welcome page. Contains Hero, Featured Content, and Latest Posts.
 
 ### `src/pages/visualize/`
 
+#### `src/pages/visualize/global-daily-calories.astro`
+
+Interactive visualization of global daily calorie supply per capita from 1961 to 2022. Displays an animated world map with controls for playback speed and year selection. Includes educational content explaining the data source, key insights, and metric definitions.
+
 #### `src/pages/visualize/heap.astro`
 
-Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/scripts/visualize/heap/heap.ts`.
+Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/scripts/visualize/heap.ts`.
 
 ### `src/posts/`
 
@@ -112,6 +120,7 @@ You can use Playwright to determine if the development server is running. If you
 
 - Use TypeScript for all scripts.
 - Create descriptive variables instead of magic numbers or strings. Do this even for one-time use variables.
+- Avoid adding inline styles to HTML elements. Instead, always use an available Bootstrap utility class when possible. This includes color, font size, font weight, sizing, padding, margins, etc.
 
 ## Build
 
