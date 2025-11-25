@@ -151,4 +151,4 @@ Always use Context7 when I need code generation, setup or configuration steps, o
 
 ### Playwright
 
-Always use Playwright for browser automation testing. **DO NOT** take browser screenshots or snapshots. Close the browser after you complete testing.
+Always use Playwright for browser automation testing.
