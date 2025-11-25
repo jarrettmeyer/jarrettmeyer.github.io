@@ -18,7 +18,26 @@ import LeetCodeResult from "@/components/LeetCodeResult.astro";
   href="https://leetcode.com/problems/add-two-numbers/"
 />
 
+I love this problem! It is the standard addition algorithm represented using linked lists. Let's consider the following example: `342 + 465`.
+
+Turn this into two linked lists:
+
+```text
+l1: 2 -> 4 -> 3
+l2: 5 -> 6 -> 4
+```
+
 ## Solution
+
+We need to track a `carry` digit. This defaults to `0`.
+
+- Add the values of the two nodes and the `carry` digit: `0 + 2 + 5 + 0 = 7`
+- Integer divide by `10` to get the next `carry`: `7 // 10 = 0`
+- Subtract 10 * the `carry` digit to get the value. `7 - 10 * 0 = 7`
+- Create a new node with value `7`.
+- Move to the next digit.
+- Repeat until both linked lists are exhausted.
+- If there is a remaining `carry` digit, create a new node with that value.
 
 <LeetCodeResult runtime={0} beats={100.0} />
 
