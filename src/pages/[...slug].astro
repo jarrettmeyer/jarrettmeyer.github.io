@@ -18,9 +18,10 @@ const { Content } = await render(post);
 const pageTitle = post.data?.title ?? "Post";
 const pageDescription = post.data?.description ?? "";
 const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
+const isDraft = (post.data?.draft ?? false) || post.id.includes("drafts/");
 ---
 
-<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includePagefind={true}>
+<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includePagefind={true} isDraft={isDraft}>
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <div class="mb-3">
