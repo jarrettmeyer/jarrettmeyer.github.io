@@ -1,11 +1,12 @@
 ---
 import PageLayout from "@/layouts/PageLayout.astro";
-import { CaloriesMap } from "@/components/CaloriesMap";
+import { DailyCaloriesMap } from "@/components/DailyCaloriesMap";
 ---
 
 <PageLayout
   title="Global Daily Calories Per Capita"
   description="Interactive visualization of daily calorie supply per capita across countries from 1961 to 2022"
+  includeInSearchResults={false}
 >
   <div class="container mt-5 mb-5">
     <h1 class="mb-4">Global Daily Calories Per Capita</h1>
@@ -28,7 +29,7 @@ import { CaloriesMap } from "@/components/CaloriesMap";
 
     <!-- Visualization Section -->
     <section class="mb-5">
-      <CaloriesMap client:load />
+      <DailyCaloriesMap client:load />
     </section>
 
     <!-- Educational Content Section -->

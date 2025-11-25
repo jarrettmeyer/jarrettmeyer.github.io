@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
-import * as d3 from "d3";
-import { useFetch } from "@/utils/hooks/useFetch";
 import { MapView } from "@/components/MapView";
 import { PlayControl } from "@/components/PlayControl";
+import { useFetch } from "@/utils/hooks/useFetch";
+import * as d3 from "d3";
+import { useMemo, useState } from "react";
 
 interface CalorieData {
   [country: string]: {
@@ -20,7 +20,7 @@ const countryAliases: { [key: string]: string } = {
   "Democratic Republic of Congo": "Dem. Rep. Congo",
   "Dominican Republic": "Dominican Rep.",
   "East Timor": "Timor-Leste",
-  "Eswatini": "eSwatini",
+  Eswatini: "eSwatini",
   "French Polynesia": "Fr. Polynesia",
   "Marshall Islands": "Marshall Is.",
   "Micronesia (country)": "Micronesia",
@@ -37,7 +37,7 @@ const getCountryDataName = (csvCountryName: string): string => {
   return countryAliases[csvCountryName] || csvCountryName;
 };
 
-export const CaloriesMap: React.FC = () => {
+export function DailyCaloriesMap() {
   const minYear = 1961;
   const maxYear = 2022;
   const [currentYear, setCurrentYear] = useState(minYear);
@@ -46,7 +46,7 @@ export const CaloriesMap: React.FC = () => {
   const { data: csvText } = useFetch<string>(
     "/data/total-daily-supply-of-calories-per-person.csv",
     undefined,
-    async (response) => response.text(),
+    async (response) => response.text()
   );
 
   // Parse and transform CSV data
@@ -106,4 +106,4 @@ export const CaloriesMap: React.FC = () => {
       </div>
     </div>
   );
-};
+}

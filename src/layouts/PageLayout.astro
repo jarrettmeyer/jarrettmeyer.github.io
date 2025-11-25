@@ -7,7 +7,7 @@ interface Props {
   description?: string;
   image?: string;
   url?: string;
-  includePagefind?: boolean;
+  includeInSearchResults?: boolean;
   isDraft?: boolean;
 }
 
@@ -16,7 +16,7 @@ const {
   description = "Senior architecture and technology strategy leader with over 20 years of experience in AWS cloud infrastructure, machine learning engineering, and data solutions.",
   image = "/images/site-default.png",
   url = typeof Astro.url === "string" ? Astro.url : "",
-  includePagefind,
+  includeInSearchResults,
   isDraft = false,
 } = Astro.props;
 ---
@@ -79,7 +79,7 @@ const {
     <Navbar />
     <main
       class="container my-5"
-      {...includePagefind && !isDraft && { "data-pagefind-body": "" }}
+      {...includeInSearchResults && !isDraft && { "data-pagefind-body": "" }}
       {...isDraft && { "data-pagefind-ignore": "all" }}
     >
       <slot />

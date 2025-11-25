@@ -1,4 +1,8 @@
 ---
+/**
+ * By default, `includeInSearchResults` is set to true for all posts.
+ * The `isDraft` flag will override this setting.
+ */ 
 import TagBadge from "@/components/TagBadge.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import { toFriendlyDate } from "@/utils/dates";
@@ -21,7 +25,7 @@ const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
 const isDraft = (post.data?.draft ?? false) || post.id.includes("drafts/");
 ---
 
-<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includePagefind={true} isDraft={isDraft}>
+<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includeInSearchResults={true} isDraft={isDraft}>
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <div class="mb-3">
