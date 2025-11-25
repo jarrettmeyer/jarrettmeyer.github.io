@@ -1,0 +1,73 @@
+---
+title: "Median of Two Sorted Arrays"
+date: "2025-12-08"
+description: "Find the median of two sorted arrays in O(log(m+n))."
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import Alert from "@/components/Alert.astro";
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Hard"
+  href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/"
+/>
+
+This is my first **hard** rated LeetCode problem, and I solved it in 0ms!
+
+- Find the total length of both arrays.
+- Determine if the total length is even or odd. This will affect how we calculate the median.
+- Use two pointers to traverse both arrays simultaneously.
+- Keep track of the current and previous elements. We will need the previous element if the total length is even.
+- If `i` has reached the end of `nums1`, we must take the next element from `nums2`.
+- If `j` has reached the end of `nums2`, we must take the next element from `nums1`.
+- If the current element in `nums1` is less than or equal to the current element in `nums2`, we take the element from `nums1`.
+- Otherwise, we take the element from `nums2`.
+- Stop when we have traversed half of the total elements.
+
+<LeetCodeResult runtime={0} beats={100.0} />
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        n = len(nums1) + len(nums2)
+        even = n % 2 == 0
+        stop = n // 2
+        
+        i = 0
+        j = 0
+        prev = None
+        curr = None
+
+        while i < len(nums1) or j < len(nums2):
+            if curr is not None:
+                prev = curr
+
+            if i == len(nums1):
+                curr = nums2[j]
+                j += 1
+            elif j == len(nums2):
+                curr = nums1[i]
+                i += 1
+            elif nums1[i] <= nums2[j]:
+                curr = nums1[i]
+                i += 1
+            else:
+                curr = nums2[j]
+                j += 1
+
+            if i + j > stop:
+                break
+
+        if even:
+            return (prev + curr) / 2
+
+        return curr
+
+```
