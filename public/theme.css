@@ -1,0 +1,427 @@
+/**
+ * Architect's Terminal Theme
+ * Custom Bootstrap 5.3 theme with monospaced typography and square/minimal corners
+ * All customizations use CSS variables only (no SASS compilation)
+ */
+
+/* ========================================
+   ROOT - Font and Border Radius Overrides
+   ======================================== */
+
+:root {
+  /* Monospace fonts - Fira Code everywhere */
+  --bs-font-sans-serif: "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-monospace: "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Square/minimal border radius - architectural aesthetic */
+  --bs-border-radius: 0.125rem;        /* 2px - minimal rounding */
+  --bs-border-radius-sm: 0.0625rem;    /* 1px */
+  --bs-border-radius-lg: 0.1875rem;    /* 3px */
+  --bs-border-radius-xl: 0.25rem;      /* 4px */
+  --bs-border-radius-xxl: 0.375rem;    /* 6px */
+  --bs-border-radius-pill: 0.25rem;    /* Override pill to be slightly rounded */
+}
+
+/* ========================================
+   DARK THEME - Architect's Terminal Colors
+   ======================================== */
+
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+
+  /* Primary Colors - Terminal-inspired palette */
+  --bs-primary: #4fd1c5;              /* Cyan-teal accent */
+  --bs-secondary: #718096;            /* Slate gray */
+  --bs-success: #48bb78;              /* Terminal green */
+  --bs-info: #63b3ed;                 /* Electric blue */
+  --bs-warning: #ed8936;              /* Warm amber */
+  --bs-danger: #f56565;               /* Ruby red */
+
+  /* RGB variants for use with opacity */
+  --bs-primary-rgb: 79, 209, 197;
+  --bs-secondary-rgb: 113, 128, 150;
+  --bs-success-rgb: 72, 187, 120;
+  --bs-info-rgb: 99, 179, 237;
+  --bs-warning-rgb: 237, 137, 54;
+  --bs-danger-rgb: 245, 101, 101;
+
+  /* Body - Deep slate background with light gray text */
+  --bs-body-bg: #0a0e14;              /* Deep slate */
+  --bs-body-bg-rgb: 10, 14, 20;
+  --bs-body-color: #c7cdd8;           /* Light gray */
+  --bs-body-color-rgb: 199, 205, 216;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+
+  /* Emphasis colors */
+  --bs-emphasis-color: #e6eaf0;       /* Near white for headings */
+  --bs-emphasis-color-rgb: 230, 234, 240;
+  --bs-secondary-color: rgba(199, 205, 216, 0.65);   /* Muted text */
+  --bs-secondary-color-rgb: 199, 205, 216;
+  --bs-tertiary-color: rgba(199, 205, 216, 0.45);    /* Very muted text */
+  --bs-tertiary-color-rgb: 199, 205, 216;
+
+  /* Background colors */
+  --bs-secondary-bg: #151a21;         /* Elevated surface */
+  --bs-secondary-bg-rgb: 21, 26, 33;
+  --bs-tertiary-bg: #1a2029;          /* Cards/components */
+  --bs-tertiary-bg-rgb: 26, 32, 41;
+
+  /* Text emphasis colors (for `.text-*-emphasis` utilities) */
+  --bs-primary-text-emphasis: #81e6d9;     /* Lighter cyan */
+  --bs-secondary-text-emphasis: #a7acb1;   /* Light slate */
+  --bs-success-text-emphasis: #75b798;
+  --bs-info-text-emphasis: #6edff6;
+  --bs-warning-text-emphasis: #ffda6a;
+  --bs-danger-text-emphasis: #ea868f;
+  --bs-light-text-emphasis: #f8f9fa;
+  --bs-dark-text-emphasis: #c7cdd8;
+
+  /* Subtle background colors */
+  --bs-primary-bg-subtle: #0d2e2a;
+  --bs-secondary-bg-subtle: #161719;
+  --bs-success-bg-subtle: #051b11;
+  --bs-info-bg-subtle: #032830;
+  --bs-warning-bg-subtle: #332701;
+  --bs-danger-bg-subtle: #2c0b0e;
+  --bs-light-bg-subtle: #1a1f26;
+  --bs-dark-bg-subtle: #0a0e14;
+
+  /* Subtle border colors */
+  --bs-primary-border-subtle: #1f7f7a;
+  --bs-secondary-border-subtle: #41464b;
+  --bs-success-border-subtle: #0f5132;
+  --bs-info-border-subtle: #1a7f99;
+  --bs-warning-border-subtle: #b38600;
+  --bs-danger-border-subtle: #a02622;
+  --bs-light-border-subtle: #343a40;
+  --bs-dark-border-subtle: #252d3a;
+
+  /* Borders */
+  --bs-border-color: #252d3a;
+  --bs-border-color-translucent: rgba(110, 168, 254, 0.12);
+
+  /* Headings */
+  --bs-heading-color: var(--bs-emphasis-color);
+
+  /* Links */
+  --bs-link-color: #4fd1c5;
+  --bs-link-hover-color: #81e6d9;
+  --bs-link-color-rgb: 79, 209, 197;
+  --bs-link-hover-color-rgb: 129, 230, 217;
+  --bs-link-decoration: none;
+
+  /* Code */
+  --bs-code-color: #f687b3;           /* Pink for inline code */
+
+  /* Highlights */
+  --bs-highlight-color: #c7cdd8;
+  --bs-highlight-bg: #664d03;
+
+  /* Form validation */
+  --bs-form-valid-color: #48bb78;
+  --bs-form-valid-border-color: #48bb78;
+  --bs-form-invalid-color: #f56565;
+  --bs-form-invalid-border-color: #f56565;
+
+  /* Navbar */
+  --bs-navbar-color: rgba(199, 205, 216, 0.65);
+  --bs-navbar-hover-color: rgba(199, 205, 216, 0.85);
+  --bs-navbar-disabled-color: rgba(199, 205, 216, 0.25);
+  --bs-navbar-active-color: #e6eaf0;
+  --bs-navbar-brand-color: #e6eaf0;
+  --bs-navbar-brand-hover-color: #e6eaf0;
+  --bs-navbar-toggler-border-color: rgba(199, 205, 216, 0.1);
+
+  /* Dropdown */
+  --bs-dropdown-color: #c7cdd8;
+  --bs-dropdown-bg: #151a21;
+  --bs-dropdown-border-color: #252d3a;
+  --bs-dropdown-link-color: #c7cdd8;
+  --bs-dropdown-link-hover-color: #e6eaf0;
+  --bs-dropdown-link-hover-bg: #1a2029;
+  --bs-dropdown-link-active-color: #4fd1c5;
+  --bs-dropdown-link-active-bg: #0d2e2a;
+
+  /* Buttons */
+  --bs-btn-active-bg: #0d2e2a;
+  --bs-btn-active-border-color: #1f7f7a;
+  --bs-btn-disabled-opacity: 0.65;
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(79, 209, 197, 0.25);
+}
+
+/* ========================================
+   COMPONENT STYLES
+   ======================================== */
+
+/* Navbar */
+[data-bs-theme="dark"] .navbar {
+  border-bottom: 1px solid var(--bs-border-color);
+  background-color: rgba(10, 14, 20, 0.95);
+  backdrop-filter: blur(4px);
+}
+
+[data-bs-theme="dark"] .navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--bs-emphasis-color);
+}
+
+[data-bs-theme="dark"] .nav-link {
+  transition: color 0.15s ease-in-out;
+}
+
+[data-bs-theme="dark"] .nav-link:hover {
+  color: var(--bs-primary);
+}
+
+/* Cards */
+[data-bs-theme="dark"] .card {
+  --bs-card-bg: var(--bs-tertiary-bg);
+  --bs-card-border-color: var(--bs-border-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-bs-theme="dark"] .card:hover {
+  --bs-card-border-color: var(--bs-primary-border-subtle);
+  box-shadow: 0 4px 16px rgba(79, 209, 197, 0.08);
+}
+
+/* Buttons */
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-color: #0a0e14;
+  --bs-btn-bg: #4fd1c5;
+  --bs-btn-border-color: #4fd1c5;
+  --bs-btn-hover-bg: #3ab8ac;
+  --bs-btn-hover-border-color: #3ab8ac;
+  box-shadow: 0 2px 8px rgba(79, 209, 197, 0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(79, 209, 197, 0.3);
+}
+
+[data-bs-theme="dark"] .btn-secondary {
+  --bs-btn-bg: var(--bs-secondary-bg);
+  --bs-btn-border-color: var(--bs-border-color);
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-hover-bg: var(--bs-tertiary-bg);
+  --bs-btn-hover-border-color: var(--bs-primary-border-subtle);
+  --bs-btn-hover-color: var(--bs-primary);
+}
+
+/* Button sizing for icons */
+[data-bs-theme="dark"] .btn-sm {
+  font-size: 0.8125rem;
+}
+
+/* Badges */
+[data-bs-theme="dark"] .badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+[data-bs-theme="dark"] .badge.bg-secondary {
+  background-color: var(--bs-secondary-bg-subtle) !important;
+  border: 1px solid var(--bs-secondary-border-subtle);
+  color: var(--bs-secondary-text-emphasis);
+}
+
+/* Alerts */
+[data-bs-theme="dark"] .alert {
+  --bs-alert-border-color: transparent;
+}
+
+[data-bs-theme="dark"] .alert-info {
+  --bs-alert-bg: rgba(99, 179, 237, 0.1);
+  --bs-alert-border-left-color: #63b3ed;
+  border-left: 3px solid var(--bs-alert-border-left-color);
+}
+
+[data-bs-theme="dark"] .alert-warning {
+  --bs-alert-bg: rgba(237, 137, 54, 0.1);
+  border-left: 3px solid #ed8936;
+}
+
+[data-bs-theme="dark"] .alert-danger {
+  --bs-alert-bg: rgba(245, 101, 101, 0.1);
+  border-left: 3px solid #f56565;
+}
+
+[data-bs-theme="dark"] .alert-success {
+  --bs-alert-bg: rgba(72, 187, 120, 0.1);
+  border-left: 3px solid #48bb78;
+}
+
+/* Forms */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  --bs-form-control-bg: var(--bs-secondary-bg);
+  --bs-form-control-border-color: var(--bs-border-color);
+  --bs-form-control-color: var(--bs-body-color);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+  --bs-form-control-border-color: var(--bs-primary);
+  --bs-form-control-focus-border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(79, 209, 197, 0.15);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+  color: rgba(199, 205, 216, 0.4);
+  opacity: 1;
+}
+
+[data-bs-theme="dark"] .form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23c7cdd8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Pagination */
+[data-bs-theme="dark"] .pagination .page-link {
+  --bs-pagination-bg: var(--bs-tertiary-bg);
+  --bs-pagination-border-color: var(--bs-border-color);
+  --bs-pagination-color: var(--bs-body-color);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+[data-bs-theme="dark"] .pagination .page-link:hover {
+  --bs-pagination-bg: var(--bs-secondary-bg);
+  --bs-pagination-color: var(--bs-primary);
+}
+
+[data-bs-theme="dark"] .pagination .page-item.active .page-link {
+  --bs-pagination-bg: var(--bs-primary);
+  --bs-pagination-border-color: var(--bs-primary);
+  --bs-pagination-color: #0a0e14;
+}
+
+/* Tables */
+[data-bs-theme="dark"] .table {
+  --bs-table-color: var(--bs-body-color);
+  --bs-table-bg: var(--bs-body-bg);
+  --bs-table-border-color: var(--bs-border-color);
+  --bs-table-striped-bg: rgba(79, 209, 197, 0.05);
+  --bs-table-hover-bg: rgba(79, 209, 197, 0.08);
+}
+
+/* Scrollbar styling (Webkit browsers) */
+[data-bs-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bs-tertiary-bg);
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary-bg);
+  border-radius: 0.125rem;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary-border-subtle);
+}
+
+/* ========================================
+   TYPOGRAPHY ENHANCEMENTS
+   ======================================== */
+
+[data-bs-theme="dark"] body {
+  font-feature-settings: "calt" 1, "liga" 1;  /* Enable ligatures for Fira Code */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bs-emphasis-color);
+}
+
+[data-bs-theme="dark"] h1 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+[data-bs-theme="dark"] code {
+  color: var(--bs-code-color);
+  font-size: 0.9em;
+  background-color: rgba(79, 209, 197, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.125rem;
+}
+
+[data-bs-theme="dark"] pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+[data-bs-theme="dark"] a {
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+[data-bs-theme="dark"] a:hover {
+  text-decoration: underline;
+}
+
+[data-bs-theme="dark"] blockquote {
+  border-left: 3px solid var(--bs-primary);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--bs-secondary-color);
+}
+
+/* ========================================
+   ICON STYLING
+   ======================================== */
+
+[data-bs-theme="dark"] .bi {
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+[data-bs-theme="dark"] .bi-primary {
+  color: var(--bs-primary);
+}
+
+[data-bs-theme="dark"] a .bi {
+  transition: color 0.15s ease-in-out;
+}
+
+[data-bs-theme="dark"] a:hover .bi {
+  color: var(--bs-primary);
+}
+
+/* ========================================
+   UTILITY CLASS OVERRIDES
+   ======================================== */
+
+[data-bs-theme="dark"] .text-muted {
+  color: var(--bs-secondary-color) !important;
+}
+
+[data-bs-theme="dark"] .text-secondary {
+  color: var(--bs-secondary-color) !important;
+}
+
+[data-bs-theme="dark"] .bg-secondary {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
+[data-bs-theme="dark"] .border {
+  border-color: var(--bs-border-color) !important;
+}
+
+[data-bs-theme="dark"] .border-subtle {
+  border-color: var(--bs-border-color) !important;
+}

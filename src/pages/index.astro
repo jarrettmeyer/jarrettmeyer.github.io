@@ -9,7 +9,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
 <PageLayout title="Home">
   <Hero />
 
-  <h2 class="my-5">Featured Content</h2>
+  <h2 class="my-5"><i class="bi bi-star-fill text-primary me-2"></i>Featured Content</h2>
   <FeaturedContent
     title="Min & Max Heaps"
     description="Interactive visualization of min and max heaps with step-by-step animations"
@@ -17,7 +17,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
     linkUrl="/visualize/heap"
   />
 
-  <h2 class="my-5">Latest Posts</h2>
+  <h2 class="my-5"><i class="bi bi-file-text text-primary me-2"></i>Latest Posts</h2>
   <ListPosts count={6} />
 
   <Certifications />

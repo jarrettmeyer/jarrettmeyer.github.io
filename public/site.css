@@ -1,10 +1,5 @@
-:root {
-    --bs-body-bg: rgba(26, 30, 33, 1);
-    --bs-font-sans-serif: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-body div.expressive-code { 
-    margin-bottom: 1.5rem; 
+body div.expressive-code {
+    margin-bottom: 1.5rem;
 }
 
 #search-modal {
@@ -12,11 +7,11 @@ body div.expressive-code {
 }
 
 #search-modal .pagefind-ui__message {
-    color: var(--bs-body-color);    
+    color: var(--bs-body-color);
 }
 
 #search-modal .pagefind-ui__result-excerpt {
-    color: var(--bs-body-color);    
+    color: var(--bs-body-color);
 }
 
 #search-modal .pagefind-ui__result-link {

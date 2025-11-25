@@ -45,7 +45,7 @@ const imageHeight = 80;
                 {post.data.title}
               </a>
             </h5>
-            <h6 class="card-subtitle mb-2">{toFriendlyDate(post.data.date)}</h6>
+            <h6 class="card-subtitle mb-2"><i class="bi bi-calendar3 me-1"></i>{toFriendlyDate(post.data.date)}</h6>
             <p class="card-text">{post.data.description}</p>
             <div class="mt-2">
               {post.data.tags && post.data.tags.length > 0 ? post.data.tags.map((t: string) => <TagBadge tag={t} />) : <TagBadge tag="Uncategorized" />}
