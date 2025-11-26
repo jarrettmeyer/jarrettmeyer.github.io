@@ -1,7 +1,7 @@
 {
   "name": "jarrettmeyer-github-io",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "astro": "astro",
     "astro:build": "astro build",
@@ -17,9 +17,9 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.4.0",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.15.9",
+    "astro": "^5.16.0",
     "astro-expressive-code": "^0.41.3",
     "astro-pagefind": "^1.8.5",
     "d3": "^7.9.0",
@@ -30,11 +30,11 @@
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.11",
+    "@astrojs/mdx": "^4.3.12",
     "@types/d3": "^7.4.3",
     "@types/topojson-client": "^3.1.5",
     "typescript": "^5.9.3",
-    "vite": "^7.2.2",
+    "vite": "^7.2.4",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
