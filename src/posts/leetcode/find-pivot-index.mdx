@@ -1,0 +1,44 @@
+---
+title: "LeetCode: Find Pivot Index"
+date: 2025-11-26
+description: Find the pivot index in an array where the sum of the numbers to the left is equal to the sum of the numbers to the right.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Easy"
+  href="https://leetcode.com/problems/find-pivot-index/"
+/>
+
+## Solution
+
+The pivot index is the index where the sum of all the numbers to the left of the index is equal to the sum of all the numbers to the right of the index. 
+
+For every index `i`, `total_sum = left_sum + nums[i] + right_sum`.
+
+<LeetCodeResult runtime={4} beats={73.33} />
+
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        total_sum = sum(nums)
+        
+        left_sum = 0
+        for i in range(n):
+            if left_sum == (total_sum - nums[i] - left_sum):
+                return i
+
+            left_sum += nums[i]
+
+        return -1
+```

@@ -16,9 +16,12 @@ if (difficulty === "Medium") {
 const hrefUrl = new URL(href);
 ---
 
-<p>
-  <a href={href} target="_blank" rel="noopener noreferrer">See original problem on {hrefUrl.host}</a>
-</p>
-<p>
-  Difficulty: <span class={`badge rounded-pill ${colorClass}`}>{difficulty}</span>
-</p>
+<div class="alert alert-secondary" role="alert">
+  <p>
+    <a href={href} target="_blank" rel="noopener noreferrer">See original problem on {hrefUrl.host}</a>
+  </p>
+  <p>
+    Difficulty: <span class={`badge rounded-pill ${colorClass}`}>{difficulty}</span>
+  </p>
+</div>
+

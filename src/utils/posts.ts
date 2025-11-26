@@ -23,10 +23,11 @@ export const filterByDate = (date?: Date) => {
 
 export const filterByDraft = () => {
   return (post: Post) => {
-    if (import.meta.env.PROD && post.data?.draft) {
-      return false;
-    }
-    return true;
+    // if (import.meta.env.PROD && post.data?.draft) {
+    //   return false;
+    // }
+    // return true;
+    return !(post.data?.draft);
   };
 };
 
