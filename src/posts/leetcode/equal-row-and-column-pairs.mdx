@@ -1,0 +1,52 @@
+---
+title: "LeetCode: Equal Row and Column Pairs"
+date: 2025-11-28
+description: Find the number of equal row and column pairs in a square matrix using Python.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/equal-row-and-column-pairs/"
+/>
+
+For this solution, I created two hash maps to track the frequency of each row and column in the grid. 
+
+I converted each row and column into a tuple, since lists are not hashable and cannot be used as dictionary keys.
+
+Next, I find the intersection of the keys in both hash maps to identify the rows and columns that are identical.
+
+Finally, for each identical row-column pair, I multiply their frequencies from both hash maps and sum these products to get the total count of equal row and column pairs.
+
+<LeetCodeResult runtime={20} beats={75.43} />
+
+```python
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        n = len(grid)
+        seen_cols = {}
+        seen_rows = {}
+        
+        for i in range(n):
+            col = tuple(grid[i])
+            seen_cols[col] = seen_cols.get(col, 0) + 1
+            
+            row = tuple([grid[j][i] for j in range(n)])
+            seen_rows[row] = seen_rows.get(row, 0) + 1
+
+        seen_both = seen_cols.keys() & seen_rows.keys()
+
+        total_count = 0
+        for x in seen_both:
+            total_count += seen_cols[x] * seen_rows[x]
+
+        return int(total_count)
+```
