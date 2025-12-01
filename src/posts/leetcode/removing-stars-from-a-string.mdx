@@ -1,0 +1,45 @@
+---
+title: "LeetCode: Removing Stars From a String"
+date: 2025-12-01
+description: Remove stars from a string using a stack approach.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/removing-stars-from-a-string/"
+/>
+
+## Solution
+
+Create a stack of characters to contain the answer.
+
+Loop through each character in the string. If the character is a star (`*`), pop the last character from the stack. Otherwise, append the character to the stack.
+
+Finally, join the characters in the stack to form the resulting string without stars.
+
+<LeetCodeResult runtime={90} beats={83.71} />
+
+```python
+class Solution:
+    def removeStars(self, s: str) -> str:
+        answer = []
+
+        for c in s:
+            if c == "*":
+                answer.pop()
+            else:
+                answer.append(c)
+
+        return "".join(answer)
+```
+
+**Note**: I attempted this problem with a two-pointer solution, just to compare performance. That solution times out on large test cases. In this example, you move through the string, tracking the last non-star character with one pointer and the current character with another pointer.
