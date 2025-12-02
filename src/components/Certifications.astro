@@ -1,46 +1,44 @@
 ---
-const certifications = [
-  {
-    image: "aws-certified-cloud-practitioner.png",
-    label: "AWS Certified Cloud Practitioner",
-  },
-  {
-    image: "aws-certified-solutions-architect-associate.png",
-    label: "AWS Certified Solutions Architect Associate",
-  },
-  {
-    image: "aws-certified-machine-learning-engineer-associate.png",
-    label: "AWS Certified Machine Learning Engineer Associate",
-  },
-  {
-    image: "microsoft-certified-fundamentals-badge.svg",
-    label: "Microsoft Certified Azure AI Fundamentals",
-  },
-];
-
-const height: number = 120;
+import Certification from "./Certification.astro";
 ---
 
 <div class="row justify-content-center my-5">
-  {
-    certifications.map((cert) => (
-      <div class="col-auto">
-        <div class="card bg-transparent border-0">
-          <div class="card-header bg-transparent border-bottom-0">
-            <img
-              src={`/images/certifications/${cert.image}`}
-              alt={cert.label}
-              class="card-img-top"
-              style={{ "height": `${height}px`, "max-height": `${height}px`, "object-fit": "contain" }}
-            />
-          </div>
-          <div class="card-body p-0">
-            <p class="card-text">
-              <small>{cert.label}</small>
-            </p>
-          </div>
-        </div>
-      </div>
-    ))
-  }
+  <div class="col-auto">
+    <Certification
+      imageSrc="aws-certified-cloud-practitioner.png"
+      imageAlt="AWS Certified Cloud Practicioner"
+    >
+      AWS Certified<br />
+      Cloud Practitioner
+    </Certification>
+  </div>
+  <div class="col-auto">
+    <Certification 
+      imageSrc="aws-certified-solutions-architect-associate.png"
+      imageAlt="AWS Certified Solutions Architect Associate"
+    >
+      AWS Certified<br />
+      Solutions Architect<br />
+      Associate
+    </Certification>
+  </div>
+  <div class="col-auto">
+    <Certification
+      imageSrc="aws-certified-machine-learning-engineer-associate.png"
+      imageAlt="AWS Certified Machine Learning Engineer Associate"
+    >
+      AWS Certified<br />
+      Machine Learning Engineer<br />
+      Associate
+    </Certification>
+  </div>
+  <div class="col-auto">
+    <Certification
+      imageSrc="microsoft-certified-fundamentals-badge.svg"
+      imageAlt="Microsoft Certified Azure AI Fundamentals"
+    >
+      Microsoft Certified<br>
+      Azure AI Fundamentals
+    </Certification>
+  </div>
 </div>

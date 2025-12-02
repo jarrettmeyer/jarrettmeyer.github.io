@@ -1,0 +1,29 @@
+---
+interface Props {
+  imageSrc: string;
+  imageAlt?: string;
+  imageHeight?: number;
+}
+
+const { imageSrc, imageAlt, imageHeight = 120 } = Astro.props;
+---
+
+<div class="card bg-transparent border-0">
+  <div class="card-header bg-transparent border-bottom-0">
+    <img
+      src={`/images/certifications/${imageSrc}`}
+      alt={imageAlt ?? imageSrc}
+      class="card-img-top"
+      style={{
+        height: `${imageHeight}px`,
+        "max-height": `${imageHeight}px`,
+        "object-fit": "contain",
+      }}
+    />
+  </div>
+  <div class="card-body px-3">
+    <p class="card-text text-center">
+      <slot />
+    </p>
+  </div>
+</div>
