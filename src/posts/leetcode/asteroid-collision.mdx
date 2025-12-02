@@ -1,0 +1,58 @@
+---
+title: "LeetCode: Asteroid Collision"
+date: 2025-12-02
+description: Determine the state of asteroids after all possible collisions.
+tags:
+  - LeetCode
+  - Python
+thumbnail:
+  src: /images/posts/thumbnails/leetcode.svg
+  alt: LeetCode Logo
+---
+
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
+
+<LeetCodeHeader
+  difficulty="Medium"
+  href="https://leetcode.com/problems/asteroid-collision/"
+/>
+
+## Solution
+
+First, determine if a collision will occur. This will only happen when a right-moving asteroid (positive value) meets a left-moving asteroid (negative value).
+
+- If the two colliding asteroids have equal magnitudes, both will be destroyed (`pop()` and `break`).
+- If the left-moving asteroid has a larger magnitude, the right-moving asteroid will be destroyed (`pop()`).
+- If the right-moving asteroid has a larger magnitude, the left-moving asteroid will be destroyed (`break`).
+
+If there is no collision, simply append the asteroid to the stack.
+
+<LeetCodeResult runtime={5} beats={70.62} />
+
+```python
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+
+        for x in asteroids:
+            while True:
+                # A collision is only possible if:
+                # 1. stack is not empty
+                # 2. stack[-1] > 0 and x < 0
+                if stack and stack[-1] > 0 and x < 0:
+                    # Collision
+                    if stack[-1] + x == 0:
+                        stack.pop(-1)
+                        break
+                    elif stack[-1] + x < 0:
+                        stack.pop(-1)
+                    else:
+                        break
+                else:
+                    # No collision
+                    stack.append(x)
+                    break
+
+        return stack
+```
