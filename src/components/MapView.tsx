@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useFetch } from "@/hooks/useFetch";
 import * as d3 from "d3";
+import { useEffect, useRef, useState } from "react";
 import * as topojson from "topojson-client";
-import { useFetch } from "@/utils/hooks/useFetch";
 
 export type MapType =
   | "countries-10m"
@@ -51,7 +51,9 @@ export function MapView({
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const legendGradientId = useRef(`legend-gradient-${Math.random().toString(36).slice(2)}`).current;
+  const legendGradientId = useRef(
+    `legend-gradient-${Math.random().toString(36).slice(2)}`
+  ).current;
   const [containerWidth, setContainerWidth] = useState(0);
   const { data: topoData, error: fetchError } = useFetch(
     `/data/world-atlas@2.0.2/${mapType}.json`
@@ -217,11 +219,19 @@ export function MapView({
   ]);
 
   if (!topoData || containerWidth === 0) {
-    return <div ref={containerRef} className="placeholder bg-primary">Loading map...</div>;
+    return (
+      <div ref={containerRef} className="placeholder bg-primary">
+        Loading map...
+      </div>
+    );
   }
 
   if (fetchError) {
-    return <div ref={containerRef} className="">Error loading map: {fetchError.message}</div>;
+    return (
+      <div ref={containerRef} className="">
+        Error loading map: {fetchError.message}
+      </div>
+    );
   }
 
   return (
@@ -235,23 +245,27 @@ export function MapView({
       />
       <svg width={width} height={50}>
         <defs>
-          <linearGradient id={legendGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient
+            id={legendGradientId}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
             {Array.from({ length: 101 }, (_, i) => {
               const t = i / 100;
               const color = getColorScaleFunction(colorScale)(t);
-              return (
-                <stop
-                  key={i}
-                  offset={`${t * 100}%`}
-                  stopColor={color}
-                />
-              );
+              return <stop key={i} offset={`${t * 100}%`} stopColor={color} />;
             })}
           </linearGradient>
         </defs>
         <rect x={0} y={0} width={width} height={50} fill={backgroundColor} />
-        <text x="20" y="20" textAnchor="start">{formatter(minValue)}</text>
-        <text x={width - 20} y="20" textAnchor="end">{formatter(maxValue)}</text>
+        <text x="20" y="20" textAnchor="start">
+          {formatter(minValue)}
+        </text>
+        <text x={width - 20} y="20" textAnchor="end">
+          {formatter(maxValue)}
+        </text>
         <rect
           x={20}
           y={25}

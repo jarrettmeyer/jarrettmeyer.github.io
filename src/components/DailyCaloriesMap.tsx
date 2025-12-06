@@ -1,6 +1,6 @@
 import { MapView } from "@/components/MapView";
 import { PlayControl } from "@/components/PlayControl";
-import { useFetch } from "@/utils/hooks/useFetch";
+import { useFetch } from "@/hooks/useFetch";
 import * as d3 from "d3";
 import { useMemo, useState } from "react";
 
