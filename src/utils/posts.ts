@@ -1,6 +1,6 @@
+import type { Post } from "@/types";
 import { getCollection } from "astro:content";
 import { slugifyTag } from "./slugify";
-import type { Post } from "@/types";
 
 export const filterByCount = (count?: number) => {
   return (_post: Post, index: number) => {
@@ -9,7 +9,7 @@ export const filterByCount = (count?: number) => {
     }
     return true;
   };
-}; 
+};
 
 export const filterByDate = (date?: Date) => {
   date = date || new Date();
@@ -19,15 +19,11 @@ export const filterByDate = (date?: Date) => {
     }
     return true;
   };
-}; 
+};
 
 export const filterByDraft = () => {
   return (post: Post) => {
-    // if (import.meta.env.PROD && post.data?.draft) {
-    //   return false;
-    // }
-    // return true;
-    return !(post.data?.draft);
+    return !post.data?.draft;
   };
 };
 
