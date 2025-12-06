@@ -1,0 +1,282 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import Alert from "@/components/Alert.astro";
+---
+
+<PageLayout
+  title="Binary Tree Breadth-First Search"
+  description="Interactive visualization of breadth-first search algorithm with step-by-step animations showing queue operations, visit order, and level traversal"
+  includeInSearchResults={true}
+>
+  <div class="container mt-5 mb-5">
+    <h1 class="mb-4">Binary Tree Breadth-First Search</h1>
+
+    <!-- Educational Content Section -->
+    <section class="mb-5 p-4 rounded bg-body-tertiary">
+      <h2 class="mb-3">What is BFS?</h2>
+      <p>
+        <strong>Breadth-First Search (BFS)</strong> is a graph traversal algorithm that explores nodes level by level, starting from a source node. It uses a queue
+        data structure to keep track of nodes to visit next.
+      </p>
+
+      <h3 class="mt-4 mb-2">Key Characteristics</h3>
+      <ul>
+        <li>
+          <strong>Level-Order Traversal:</strong> Visits all nodes at depth d before visiting nodes at depth d+1
+        </li>
+        <li>
+          <strong>Queue-Based:</strong> Uses FIFO (First-In-First-Out) queue to manage which nodes to visit next
+        </li>
+        <li>
+          <strong>Complete Algorithm:</strong> Guarantees finding a path if one exists
+        </li>
+        <li>
+          <strong>Optimal for Shortest Path:</strong> Finds the shortest path in unweighted graphs
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">BFS vs DFS</h3>
+      <ul>
+        <li>
+          <strong>BFS:</strong> Explores breadth-first using a queue. Better for finding shortest paths and analyzing levels.
+        </li>
+        <li>
+          <strong>DFS:</strong> Explores depth-first using a stack or recursion. Better for path finding and topological sorting.
+        </li>
+      </ul>
+
+      <h3 class="mt-4 mb-2">Real-World Applications</h3>
+      <ul>
+        <li>
+          <strong>Social Networks:</strong> Finding degrees of separation between people
+        </li>
+        <li>
+          <strong>Web Crawlers:</strong> Systematically exploring web pages
+        </li>
+        <li>
+          <strong>GPS Navigation:</strong> Finding shortest routes between locations
+        </li>
+        <li>
+          <strong>Network Broadcasting:</strong> Distributing messages to all nodes
+        </li>
+      </ul>
+    </section>
+
+    <!-- Instructions Section -->
+    <Alert type="info">
+      <h3 class="mb-3">How to Use</h3>
+      <ol>
+        <li>Click <strong>Generate New Tree</strong> to create a random 15-node binary tree</li>
+        <li>
+          Click any <strong>node</strong> to select it as the starting point (shown with <span class="badge" style="background-color: #6f42c1;"
+            >purple fill</span
+          >)
+        </li>
+        <li>
+          Click a <strong>different node</strong> to select it as the target (shown with <span class="badge" style="background-color: #dc3545;">red border</span
+          >)
+        </li>
+        <li>
+          Click <strong>Play</strong> to watch the BFS algorithm search for the target
+        </li>
+        <li>
+          Adjust speed with the dropdown (0.25x - 2x) and use <strong>Pause</strong> or <strong>Reset</strong> as needed
+        </li>
+        <li>
+          When the target is found, it will turn
+          <span class="badge bg-success">green</span> and the status will update
+        </li>
+        <li>Watch the <strong>Status</strong> badge to track your progress through the three steps</li>
+      </ol>
+
+      <h4 class="mt-3 mb-2">Visual Guide</h4>
+      <ul>
+        <li>
+          <span class="badge" style="background-color: #6f42c1;">Purple</span>: Starting node
+        </li>
+        <li>
+          <span class="badge" style="background-color: #dc3545;">Red border</span>: Target node (searching)
+        </li>
+        <li>
+          <span class="badge" style="background-color: #ffc107; color: #000;">Yellow</span>: Currently visiting
+        </li>
+        <li>
+          <span class="badge bg-primary">Blue with number</span>: Visited (shows visit order)
+        </li>
+        <li>
+          <span class="badge bg-success">Green</span>: Target found!
+        </li>
+        <li>
+          <span class="badge" style="background-color: #fd7e14;">Orange border</span>: Current BFS level
+        </li>
+      </ul>
+    </Alert>
+
+    <!-- Controls Section -->
+    <section class="mb-4 p-4 rounded bg-body-tertiary">
+      <div class="row mb-3">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <label class="form-label d-block">Actions</label>
+          <button class="btn btn-primary" id="generateBtn">Generate tree</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label d-block">Status</label>
+          <ol id="statusList" class="mb-0">
+            <li>Generate tree</li>
+            <li>Select start node</li>
+            <li>Select target node</li>
+            <li>Find target node</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <label class="form-label d-block">Playback Controls</label>
+          <div class="btn-group me-2 mb-2" role="group">
+            <button class="btn btn-success" id="playBtn" disabled>
+              <i class="bi bi-play-fill"></i> Play
+            </button>
+            <button class="btn btn-warning" id="pauseBtn" disabled>
+              <i class="bi bi-pause-fill"></i> Pause
+            </button>
+          </div>
+          <button class="btn btn-outline-danger me-2 mb-2" id="resetBtn" disabled>
+            <i class="bi bi-arrow-counterclockwise"></i> Reset
+          </button>
+          <select class="form-select d-inline-block w-auto mb-2" id="speedSelect">
+            <option value="0.25">0.25x</option>
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section>
+      <!-- Tree View -->
+      <div class="mb-4">
+        <div class="p-4 rounded bg-body-tertiary">
+          <h3 class="mb-3">Tree View</h3>
+          <svg id="treeSvg" width="100%" height="450" class="border rounded-1 bg-dark-subtle"></svg>
+        </div>
+      </div>
+
+      <!-- Queue View -->
+      <div class="mb-4">
+        <div class="p-4 rounded bg-body-tertiary">
+          <h3 class="mb-3">Queue State</h3>
+          <svg id="queueSvg" width="100%" height="120" class="border rounded-1 bg-dark-subtle"></svg>
+        </div>
+      </div>
+
+      <!-- Statistics Panel -->
+      <div class="mb-4">
+        <div class="p-4 rounded bg-body-tertiary">
+          <h3 class="mb-3">Statistics</h3>
+          <div class="row">
+            <div class="col-6 col-md-3 mb-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Progress</h5>
+                  <p class="card-text fs-4" id="progressStat">-</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Current Level</h5>
+                  <p class="card-text fs-4" id="levelStat">-</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Nodes Visited</h5>
+                  <p class="card-text fs-4" id="visitedStat">-</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Queue Size</h5>
+                  <p class="card-text fs-4" id="queueSizeStat">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .tree-node {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tree-node:hover {
+      opacity: 0.8;
+    }
+
+    .tree-node text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .queue-box {
+      transition: all 0.3s ease;
+    }
+
+    .queue-box text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    .level-highlight {
+      animation: pulse 0.6s ease-in-out infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem 0.5rem;
+      }
+
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.25rem;
+      }
+    }
+  </style>
+
+  <script>
+    import { BFSVisualizer } from "@/scripts/visualize/bfs";
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      new BFSVisualizer();
+    });
+  </script>
+</PageLayout>
