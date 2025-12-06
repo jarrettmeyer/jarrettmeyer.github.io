@@ -52,6 +52,7 @@ export function MapView({
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  // TODO: This uses a random number generator. Use useId hook instead.
   const legendGradientId = useRef(
     `legend-gradient-${Math.random().toString(36).slice(2)}`
   ).current;
@@ -61,6 +62,7 @@ export function MapView({
   const { width } = useDimensions(containerRef);
 
   // Calculate aspect ratio from TopoJSON bbox
+  // TODO: This uses `any` for the topology. This should have a proper type.
   const getAspectRatio = (topology: any): number => {
     if (topology && topology.bbox) {
       const [minX, minY, maxX, maxY] = topology.bbox;
