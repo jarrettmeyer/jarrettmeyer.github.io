@@ -34,49 +34,15 @@ This is my personal website deployed to GitHub pages.
 
 ### `src/`
 
-#### `src/content.config.ts`
-
-Defines the `posts` collection used in the website.
-
-#### `src/types.ts`
-
-Defines the `Post` type using Astro's `CollectionEntry<"posts">`. This collection is defined in `src/content.config.ts`.
+Astro website source code.
 
 ### `src/components/`
 
 Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
 
-#### `src/components/Alert.astro`
+### `src/hooks/`
 
-Alert messages component based on [Bootstrap Alerts](https://getbootstrap.com/docs/5.3/components/alerts/).
-
-#### `src/components/CaloriesMap.tsx`
-
-Interactive React component that visualizes global daily calorie supply per capita from 1961 to 2022 using D3.js and TopoJSON. Features include playable animation, year slider, and speed control. Uses country name aliases to map CSV data to geospatial features.
-
-#### `src/components/Certifications.astro`
-
-#### `src/components/FeaturedContent.astro`
-
-#### `src/components/Hero.astro`
-
-#### `src/components/LeetCodeHeader.astro`
-
-#### `src/components/LeetCodeResult.astro`
-
-#### `src/components/ListPosts.astro`
-
-#### `src/components/Navbar.astro`
-
-Site navigation component based on [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/).
-
-#### `src/components/PlayControl.tsx`
-
-Playback control component for animating sequences. Features include a range slider spanning `min` to `max`, a play/pause toggle button, a number input for direct value entry with automatic clamping to bounds, and a speed multiplier selector (0.25x to 2x). When playing, the value increments every `playSpeed / speedMultiplier` milliseconds and stops automatically upon reaching the max value. The `onChange` callback fires whenever the value changes.
-
-#### `src/components/SearchModal.astro`
-
-Search component based on [Pagefind](https://pagefind.app/) and [Bootstrap Modal](https://getbootstrap.com/docs/5.3/components/modal/).
+Reusable [React](https://react.dev/) hooks.
 
 ### `src/layouts/`
 
@@ -86,21 +52,9 @@ Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
 
 Site pages, written in Astro.
 
-#### `index.astro`
-
-Welcome page. Contains Hero, Featured Content, and Latest Posts.
-
 ### `src/pages/tags/`
 
 ### `src/pages/visualize/`
-
-#### `src/pages/visualize/global-daily-calories.astro`
-
-Interactive visualization of global daily calorie supply per capita from 1961 to 2022. Displays an animated world map with controls for playback speed and year selection. Includes educational content explaining the data source, key insights, and metric definitions.
-
-#### `src/pages/visualize/heap.astro`
-
-Visualization demonstrating how min and max heaps work. The client script for this page is located at `src/scripts/visualize/heap.ts`.
 
 ### `src/posts/`
 
@@ -114,15 +68,9 @@ Scripts in this folder are intended to be used as client scripts for specific pa
 
 Utility functions, written in TypeScript, used throughout the website.
 
-### `src/utils/hooks`
-
-Reusable [React](https://react.dev/) hooks.
-
 ## Develop
 
 The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing.
-
-You can use Playwright to determine if the development server is running. If you open `localhost:4321` and see the page and see "localhost refused to connect", then the development server is not running. Use `npm run dev` to start the development server.
 
 ### Guidelines
 
