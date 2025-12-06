@@ -57,8 +57,8 @@ This project uses:
 - **Astro** as the framework with React integration
 - **Bootstrap 5.3** for styling (utility-first approach)
 - **TypeScript** for type safety
-- **D3.js** for data visualizations (see CaloriesMap.tsx)
-- Project structure with components in src/components/, layouts in src/layouts/, pages in src/pages/
+- **D3.js** for data visualizations (see DailyCaloriesMap.tsx)
+- Project structure with components in `src/components/`, hooks in `src/hooks/`, layouts in `src/layouts/`, pages in `src/pages/`
 
 ### Performance Optimization
 
