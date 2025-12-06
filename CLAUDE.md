@@ -120,9 +120,9 @@ Reusable [React](https://react.dev/) hooks.
 
 ## Develop
 
-The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing. 
+The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing.
 
-You can use Playwright to determine if the development server is running. If you open `localhost:4321` and see  the page and see "localhost refused to connect", then the development server is not running. Use `npm run dev` to start the development server.
+You can use Playwright to determine if the development server is running. If you open `localhost:4321` and see the page and see "localhost refused to connect", then the development server is not running. Use `npm run dev` to start the development server.
 
 ### Guidelines
 
@@ -142,7 +142,9 @@ This website is hosted in GitHub pages. The website is deployed when source code
 
 ### Context7
 
-Always use Context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library ID and get library documentation without me having to explicitly ask. This includes, but is not limited to, the following libraries:
+Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
+
+This includes, but is not limited to, the following libraries:
 
 - Astro
 - Boostrap
