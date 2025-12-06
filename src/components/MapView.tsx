@@ -1,6 +1,7 @@
+import { useDimensions } from "@/hooks/useDimensions";
 import { useFetch } from "@/hooks/useFetch";
 import * as d3 from "d3";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as topojson from "topojson-client";
 
 export type MapType =
@@ -54,35 +55,10 @@ export function MapView({
   const legendGradientId = useRef(
     `legend-gradient-${Math.random().toString(36).slice(2)}`
   ).current;
-  const [containerWidth, setContainerWidth] = useState(0);
   const { data: topoData, error: fetchError } = useFetch(
     `/data/world-atlas@2.0.2/${mapType}.json`
   );
-
-  // Measure container using ResizeObserver on the ref itself
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const checkWidth = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth;
-        if (width > 0) {
-          setContainerWidth(width);
-        }
-      }
-    };
-
-    const resizeObserver = new ResizeObserver(checkWidth);
-    resizeObserver.observe(containerRef.current);
-
-    // Schedule checks for initial width (ResizeObserver may not fire on first layout)
-    const timeoutId = setTimeout(checkWidth, 0);
-
-    return () => {
-      clearTimeout(timeoutId);
-      resizeObserver.disconnect();
-    };
-  }, []);
+  const { width } = useDimensions(containerRef);
 
   // Calculate aspect ratio from TopoJSON bbox
   const getAspectRatio = (topology: any): number => {
@@ -97,7 +73,6 @@ export function MapView({
 
   // Calculate dimensions based on container width and aspect ratio
   const aspectRatio = getAspectRatio(topoData);
-  const width = containerWidth;
   const height = Math.round(width / aspectRatio);
 
   // Determine which feature key to use based on mapType
@@ -218,7 +193,7 @@ export function MapView({
     onHover,
   ]);
 
-  if (!topoData || containerWidth === 0) {
+  if (!topoData || width === 0 /* containerWidth === 0 */) {
     return (
       <div ref={containerRef} className="placeholder bg-primary">
         Loading map...
