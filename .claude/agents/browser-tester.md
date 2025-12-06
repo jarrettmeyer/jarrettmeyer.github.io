@@ -2,7 +2,7 @@
 name: browser-tester
 description: Use this agent when you need to perform automated browser testing, validate UI functionality, verify page behavior, or run end-to-end tests using Playwright. Examples include:\n\n<example>\nContext: User wants to verify that the search modal opens correctly on their website.\nuser: "Can you test if the search modal opens when I click the search button?"\nassistant: "I'll use the browser-tester agent to write and execute a Playwright test for the search modal functionality."\n<commentary>\nSince the user needs browser testing, use the Task tool to launch the browser-tester agent to create and run the test.\n</commentary>\n</example>\n\n<example>\nContext: User has just implemented a new visualization component and wants to ensure it renders correctly.\nuser: "I just finished implementing the CaloriesMap component. Here's the code: [code]"\nassistant: "Great work on the CaloriesMap component! Now let me use the browser-tester agent to create comprehensive tests to verify it renders and functions correctly."\n<commentary>\nSince code was just written, proactively use the browser-tester agent to validate the implementation through automated testing.\n</commentary>\n</example>\n\n<example>\nContext: User is troubleshooting why navigation doesn't work on mobile viewports.\nuser: "The navbar collapse isn't working on mobile. Can you help debug this?"\nassistant: "I'll use the browser-tester agent to create a test that simulates mobile viewport behavior and identifies the issue with the navbar collapse."\n<commentary>\nSince this requires browser interaction testing, use the browser-tester agent to diagnose the mobile viewport issue.\n</commentary>\n</example>
 tools: mcp__playwright__browser_close, mcp__playwright__browser_resize, mcp__playwright__browser_console_messages, mcp__playwright__browser_handle_dialog, mcp__playwright__browser_evaluate, mcp__playwright__browser_file_upload, mcp__playwright__browser_fill_form, mcp__playwright__browser_install, mcp__playwright__browser_press_key, mcp__playwright__browser_type, mcp__playwright__browser_navigate, mcp__playwright__browser_navigate_back, mcp__playwright__browser_network_requests, mcp__playwright__browser_run_code, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_snapshot, mcp__playwright__browser_click, mcp__playwright__browser_drag, mcp__playwright__browser_hover, mcp__playwright__browser_select_option, mcp__playwright__browser_tabs, mcp__playwright__browser_wait_for
-model: sonnet
+model: haiku
 color: cyan
 ---
 
@@ -84,6 +84,7 @@ Your Core Responsibilities:
    - Suggest additional test cases when gaps in coverage are identified
 
 10. **Self-Verification**
+
     - Before running tests, verify all necessary imports and dependencies
     - Confirm test files are in appropriate locations
     - Validate that selectors match the actual DOM structure
