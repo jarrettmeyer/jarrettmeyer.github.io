@@ -24,7 +24,7 @@
     "astro-pagefind": "^1.8.5",
     "d3": "^7.9.0",
     "pagefind": "^1.4.0",
-    "react": "^19.2.0",
+    "react": "^19.2.2",
     "react-dom": "^19.2.1",
     "topojson-client": "^3.1.0",
     "world-atlas": "^2.0.2"
