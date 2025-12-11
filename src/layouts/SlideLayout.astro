@@ -20,10 +20,10 @@ const { title, includeInSearchResults } = Astro.props;
 
     <!-- Reveal.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.css" />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.min.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.min.css" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/night.min.css" /> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/dracula.min.css" /> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/blood.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/blood.min.css" /> -->
 
     <!-- Support Hebrew fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,6 +52,7 @@ const { title, includeInSearchResults } = Astro.props;
         controlsLayout: "bottom-right",
         controlsBackArrows: "faded",
         progress: true,
+        hash: true,
         hashOneBasedIndex: true,
       });
     </script>
