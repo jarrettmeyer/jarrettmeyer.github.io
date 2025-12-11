@@ -18,6 +18,7 @@ This is my personal website deployed to GitHub pages.
 │   ├── components/             # Astro component
 │   ├── layouts/                # Astro layouts
 │   ├── pages/                  # Astro pages
+│   │   ├── present/            # Presentations, Reveal.js
 │   │   ├── tags/
 │   │   └── visualize/
 │   ├── posts/                  # Astro posts, *.md or *.mdx

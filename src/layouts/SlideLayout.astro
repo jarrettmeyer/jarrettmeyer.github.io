@@ -1,9 +1,10 @@
 ---
 export type Props = {
   title: string;
+  includeInSearchResults?: boolean;
 };
 
-const { title } = Astro.props;
+const { title, includeInSearchResults } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +39,7 @@ const { title } = Astro.props;
       }
     </style>
   </head>
-  <body data-pagefind-ignore>
+  <body {...includeInSearchResults && { "data-pagefind-body": "" }}>
     <div class="reveal">
       <div class="slides">
         <slot />
