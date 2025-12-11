@@ -1,0 +1,60 @@
+---
+export type Props = {
+  title: string;
+  includeInSearchResults?: boolean;
+};
+
+const { title, includeInSearchResults } = Astro.props;
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="author" content="Jarrett Nevitt Meyer" />
+
+    <!-- Reveal.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/black.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/night.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/dracula.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/blood.min.css" /> -->
+
+    <!-- Support Hebrew fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@100..900&display=swap" />
+    <style is:inline>
+      .reveal .font-hebrew {
+        font-family: "Noto Serif Hebrew";
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+    </style>
+  </head>
+  <body {...includeInSearchResults && { "data-pagefind-body": "" }}>
+    <div class="reveal">
+      <div class="slides">
+        <slot />
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.js" is:inline></script>
+    <script is:inline>
+      Reveal.initialize({
+        controls: true,
+        controlsLayout: "bottom-right",
+        controlsBackArrows: "faded",
+        progress: true,
+        hash: true,
+        hashOneBasedIndex: true,
+      });
+    </script>
+  </body>
+</html>

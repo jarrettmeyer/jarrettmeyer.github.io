@@ -12,8 +12,7 @@ Save the generated plan to the current project's `.claude/plans/` directory. Giv
 Claude should copy the plan from `~/.claude/plans/` and rename the file.
 
 ```bash
-cp ~/.claude/plans/random-generated-filename.md .claude/plans/
-mv .claude/plans/random-generated-filename.md .claude/plans/meaningful-filename.md
+cp ~/.claude/plans/random-generated-filename.md .claude/plans/meaningful-filename.md
 ```
 
 ## Why use this skill?
