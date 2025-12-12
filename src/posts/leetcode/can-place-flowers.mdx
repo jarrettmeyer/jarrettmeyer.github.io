@@ -10,6 +10,9 @@ thumbnail:
   alt: LeetCode Logo
 ---
 
+import { Image } from "astro:assets";
+import skip3 from "@/assets/images/posts/leetcode/can-place-flowers/skip-3.png";
+import skip2 from "@/assets/images/posts/leetcode/can-place-flowers/skip-2.png";
 import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
 import LeetCodeResult from "@/components/LeetCodeResult.astro";
 
@@ -24,11 +27,11 @@ _Hint: think about how you can skip over the greatest number of spots._
 
 If there is a flower in the next spot, you can skip three spots ahead.
 
-![Skip next 3 spots](/images/posts/leetcode/can-place-flowers/skip-3.png)
+<Image src={skip3} alt="Skip next 3 spots" class="my-4" />
 
 If there is a flower in the current spot, you can skip two spots ahead.
 
-![Skip next 2 spots](/images/posts/leetcode/can-place-flowers/skip-2.png)
+<Image src={skip2} alt="Skip next 2 spots" class="my-4" />
 
 Notice that we never need to check the previous spot.
 
