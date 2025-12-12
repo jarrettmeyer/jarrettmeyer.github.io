@@ -10,6 +10,8 @@ thumbnail:
   alt: LeetCode Logo
 ---
 
+import { Image } from "astro:assets";
+import example1 from "@/assets/images/posts/leetcode/move-zeroes/example-1.png";
 import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
 import LeetCodeResult from "@/components/LeetCodeResult.astro";
 
@@ -42,7 +44,7 @@ class Solution:
 
 We need to implement our own swapping logic to efficiently move zeroes to the end of the list. We can implement two pointers, `i` and `j`. `i` will iterate through each element in the list, while `j` will track the position to swap non-zero elements to.
 
-![Example](/images/posts/leetcode/move-zeroes/example-1.png)
+<Image src={example1} alt="Example" class="my-5" />
 
 <LeetCodeResult runtime={0} beats={100.0} />
 
