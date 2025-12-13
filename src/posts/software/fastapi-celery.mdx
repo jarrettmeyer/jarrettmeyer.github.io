@@ -56,7 +56,7 @@ Celery solves these problems by providing a robust, distributed task queue syste
 
 First, let's take a look at the [project dependencies](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/pyproject.toml). Dependencies can be installed with `uv sync`.
 
-```toml
+```toml title="pyproject.toml"
 dependencies = [
     "celery>=5.5.3",
     "fastapi[standard]>=0.124.2",
@@ -71,7 +71,7 @@ dependencies = [
 
 This demo uses Docker Compose to manage all services. Here's the [docker-compose.yaml](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/docker-compose.yaml) from my repository:
 
-```yaml
+```yaml title="docker-compose.yaml"
 services:
   redis:
     container_name: redis
@@ -121,7 +121,6 @@ services:
 - `restart: unless-stopped` ensures workers auto-restart on failures during development
 - `--concurrency=2` runs 2 worker processes for parallel task execution
 - `CELERY_RESULT_EXPIRES=900` automatically cleans up results after 15 minutes
-- `PROGRESS_UPDATE_INTERVAL=1.0` controls how often progress updates are sent
 
 **API Service:**
 - Depends on worker service to ensure proper startup order
@@ -133,7 +132,7 @@ services:
 
 Create a task definition file to implement your background tasks. Here's the [sleep_task.py](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/src/task_defs/sleep_task.py) from the demo:
 
-```python
+```python title="src/task_defs/sleep_task.py"
 import logging
 import time
 from pydantic import BaseModel, Field
@@ -204,7 +203,7 @@ def sleep_task(self, duration: int) -> dict[str, object]:
 
 Now let's build the API that will dispatch tasks to Celery. The [models.py](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/src/models.py) defines the response structure:
 
-```python
+```python title="src/models.py"
 from datetime import datetime
 from pydantic import BaseModel
 
@@ -228,7 +227,7 @@ class TaskResponse(BaseModel):
 
 The API endpoint in [api.py](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/src/api.py) creates and monitors tasks:
 
-```python
+```python title="src/api.py"
 from fastapi import FastAPI
 from celery.result import AsyncResult
 from src.worker import celery_app
@@ -268,7 +267,7 @@ async def get_task(task_id: str) -> TaskResponse:
 
 The `get_task` function can be found in [tasks.py](https://github.com/jarrettmeyer/fastapi-celery-demo/blob/main/src/tasks.py).
 
-```python
+```python src="src/tasks.py"
 def get_task(task_id: str) -> TaskResponse:
     """
     Get detailed status of a specific task by ID.
