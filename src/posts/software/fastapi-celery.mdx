@@ -93,7 +93,6 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379/0
       - CELERY_RESULT_EXPIRES=900
-      - PROGRESS_UPDATE_INTERVAL=1.0
     command: celery -A src.worker worker --concurrency=2 --loglevel=INFO
 
   api:
