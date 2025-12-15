@@ -1,5 +1,8 @@
 ---
+import luddites from "@/assets/images/present/let-us-make-ai-in-our-image/luddites.webp";
+import xaiMemphis from "@/assets/images/present/let-us-make-ai-in-our-image/xAI-datacenter.jpg";
 import SlideLayout from "@/layouts/SlideLayout.astro";
+import { Image } from "astro:assets";
 ---
 
 <SlideLayout title="Let us make AI in our image">
@@ -8,43 +11,182 @@ import SlideLayout from "@/layouts/SlideLayout.astro";
   </section>
 
   <section>
-    <h2>"Let us make humankind in our image, after our likeness."</h2>
-    <h4>Genesis 1:26</h4>
+    <blockquote>
+      <p>"Let us make humankind in our image, after our likeness."<br /><small>Genesis 1:26</small></p>
+    </blockquote>
+    <ul>
+      <li>Each creation inherits the nature of its creator</li>
+      <li>Do we take responsiblity for our creation?</li>
+    </ul>
   </section>
 
   <section>
-    <h2>1. AI is already here...<br />And you ❤️ it!</h2>
+    <h2>The Luddites</h2>
+    <Image src={luddites} alt="Luddites" width={800} />
   </section>
 
   <section>
-    <h2>2.</h2>
+    <h3>1811 - 1816, Textile workers in England destroyed mechanical looms</h3>
+    <ul>
+      <li>Skilled artisans were replaced loom operators</li>
+      <li>Wages collapsed</li>
+      <li>Factory owners captured productivity gains</li>
+    </ul>
   </section>
 
   <section>
-    <h2>3.</h2>
+    <h3>Consequences</h3>
+    <ul>
+      <li>Mill owners trespassed protesters</li>
+      <li>British government deployed 12,000 troops to protect factories</li>
+      <li>Parliament made breaking machinery punishable by 💀 penalty</li>
+      <li>Killing workers was protecting property</li>
+      <li>"Criminals" were deported to Australia</li>
+    </ul>
   </section>
 
   <section>
-    <h2>4.</h2>
+    <h3>The pattern continues</h3>
+    <ul>
+      <li>New technology enables labor to be done faster &amp; cheaper</li>
+      <li>Owners capture gains</li>
+      <li>Workers bear losses</li>
+      <li>Laws protect capital, not people</li>
+      <li>State uses violence to suppress voices</li>
+      <li>We blame technology, not systems of power</li>
+    </ul>
   </section>
 
   <section>
-    <h2>5.</h2>
+    <h2>1. What is Artificial Intelligence?</h2>
   </section>
 
   <section>
-    <h2>6.</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="700">
+      <g>
+        <circle cx="300" cy="300" r="280" fill="#ffff00" stroke="#909000" stroke-width="3"></circle>
+        <text x="300" y="60" font-size="20" fill="#909000" stroke="none" text-anchor="middle">Artificial Intelligence</text>
+      </g>
+      <g class="fragment">
+        <circle cx="300" cy="300" r="220" fill="#ff8000" stroke="#903000" stroke-width="3"></circle>
+        <text x="300" y="120" font-size="20" fill="#903000" stroke="none" text-anchor="middle">Machine Learning</text>
+      </g>
+      <g class="fragment">
+        <circle cx="300" cy="300" r="160" fill="#0f0" stroke="#0a6107" stroke-width="3"></circle>
+        <text x="300" y="180" font-size="20" fill="#0a6107" stroke="none" text-anchor="middle">Deep Learning</text>
+      </g>
+      <g class="fragment">
+        <circle cx="300" cy="300" r="100" fill="#00dbf7" stroke="#004e55" stroke-width="3"></circle>
+        <text x="300" y="250" font-size="20" fill="#004e55" stroke="none" text-anchor="middle">Neural Language</text>
+      </g>
+      <g class="fragment">
+        <circle cx="300" cy="300" r="40" fill="#f0f" stroke="#51007f" stroke-width="3"></circle>
+        <text x="300" y="306" font-size="20" fill="#51007f" stroke="none" text-anchor="middle">LLM</text>
+      </g>
+    </svg>
   </section>
 
   <section>
-    <h2>7.</h2>
+    <h2>2. AI is Remarkably Human</h2>
+    <p><strong>Critiques of AI are critiques of humanity</strong></p>
   </section>
 
   <section>
-    <h2>8.</h2>
+    <h3>"AI doesn't really understand what you teach it"</h3>
+    <p>
+      It's a context machine. After a few billion text examples, it learns that there is a semantic difference between a clear blue skies and dark, ominous
+      clouds.
+    </p>
+  </section>
+
+  <section>
+    <h3>"AI just predicts the next word"</h3>
+    <p>If I start a sentence with "How are...", your brain is filling in gaps and context before I finish the word.</p>
+  </section>
+
+  <section>
+    <h3>"AI doesn't remember; it keeps context and runs compaction algorithms"</h3>
+    <p>How, exactly is this different from how human memory works?</p>
+  </section>
+
+  <section>
+    <h3>"AI can't be creative"</h3>
+  </section>
+
+  <section>
+    <h3>"AI can be manipulated with the right prompts"</h3>
+  </section>
+
+  <section>
+    <h3>"AI is biased"</h3>
+  </section>
+
+  <section>
+    <h3>"AI makes confident mistakes"</h3>
+    <p>Seriously?</p>
+  </section>
+
+  <section>
+    <h2>3. Why LLMs Hallucinate</h2>
+  </section>
+
+  <section>
+    <h2>4. AI Will Not Take Jobs...</h2>
+    <h2 class="fragment">... But Capitalists Will</h2>
+  </section>
+
+  <section>
+    <h2>5. Value = Impact</h2>
+  </section>
+
+  <section>
+    <h2>6. Energy and Environmental Impact</h2>
+  </section>
+
+  <section>
+    <h3>xAI Colossus, Memphis, TN</h3>
+    <Image src={xaiMemphis} alt="xAI Colossus Data Center, Memphis, TN" width={600} />
+    <p><small>Steve Jones, Southern Environmental Law Center</small></p>
+  </section>
+
+  <section>
+    <h2>7. Laws and Regulations</h2>
   </section>
 
   <section>
     <h2>Conclusion</h2>
+  </section>
+
+  <section>
+    <h3>We made AI like us</h3>
+    <ul>
+      <li>Intelligence <strong>AND</strong> bias</li>
+      <li>Creativity <strong>AND</strong> shortcuts</li>
+      <li>Problem-solving <strong>AND</strong> mistakes</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>AI reveals that we are biological machines. We are uncomfortable because AI is a mirror.</p>
+  </section>
+
+  <section>
+    <h3>If we want ethical AI...</h3>
+    <ul>
+      <li class="fragment">We must protect workers and labor</li>
+      <li class="fragment">We must have clean energy laws</li>
+      <li class="fragment">We must eliminate the centuries of human biases that fed the training data</li>
+      <li class="fragment">We must create an ethical society</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Social media was the great connector...</h3>
+  </section>
+
+  <section>
+    <h3>... AI is the great accelerator</h3>
+    <p class="fragment">Is this version of humanity worth accelerating?</p>
+    <p class="fragment">The challenge is not technical, it's moral</p>
   </section>
 </SlideLayout>
