@@ -12,6 +12,15 @@ Personal website (jarrettmeyer.com) built with Astro, deployed to GitHub Pages o
 - Create a pull request when work is complete.
 - Match Jarrett's writing tone and style in blog posts — sound like a person, not an AI.
 
+### Plan Structure
+
+Every implementation plan must include these four sections:
+
+1. **Branch** — Create a worktree with a descriptive branch name
+2. **Changes** — The actual code changes
+3. **Verification** — Concrete steps: build, dev server, Playwright checks
+4. **PR** — Commit, push, and create a pull request
+
 ## Commands
 
 - `npm run dev` — dev server at localhost:4321
