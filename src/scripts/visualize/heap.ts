@@ -40,24 +40,42 @@ export class HeapVisualizer {
     this.maxSize = 15;
 
     const treeSvg = document.getElementById("treeSvg") as SVGSVGElement | null;
-    const arraySvg = document.getElementById("arraySvg") as SVGSVGElement | null;
+    const arraySvg = document.getElementById(
+      "arraySvg",
+    ) as SVGSVGElement | null;
     const elementInput = document.getElementById(
-      "elementInput"
+      "elementInput",
     ) as HTMLInputElement | null;
-    const pushBtn = document.getElementById("pushBtn") as HTMLButtonElement | null;
-    const popBtn = document.getElementById("popBtn") as HTMLButtonElement | null;
+    const pushBtn = document.getElementById(
+      "pushBtn",
+    ) as HTMLButtonElement | null;
+    const popBtn = document.getElementById(
+      "popBtn",
+    ) as HTMLButtonElement | null;
     const clearBtn = document.getElementById(
-      "clearBtn"
+      "clearBtn",
     ) as HTMLButtonElement | null;
     const minHeapRadio = document.getElementById(
-      "minHeapRadio"
+      "minHeapRadio",
     ) as HTMLInputElement | null;
     const maxHeapRadio = document.getElementById(
-      "maxHeapRadio"
+      "maxHeapRadio",
     ) as HTMLInputElement | null;
-    const statusBadge = document.getElementById("statusBadge") as HTMLElement | null;
+    const statusBadge = document.getElementById(
+      "statusBadge",
+    ) as HTMLElement | null;
 
-    if (!treeSvg || !arraySvg || !elementInput || !pushBtn || !popBtn || !clearBtn || !minHeapRadio || !maxHeapRadio || !statusBadge) {
+    if (
+      !treeSvg ||
+      !arraySvg ||
+      !elementInput ||
+      !pushBtn ||
+      !popBtn ||
+      !clearBtn ||
+      !minHeapRadio ||
+      !maxHeapRadio ||
+      !statusBadge
+    ) {
       throw new Error("Required elements not found in the DOM");
     }
 
@@ -80,10 +98,10 @@ export class HeapVisualizer {
     this.popBtn.addEventListener("click", () => void this.handlePop());
     this.clearBtn.addEventListener("click", () => this.handleClear());
     this.minHeapRadio.addEventListener("change", () =>
-      this.handleToggleHeapType()
+      this.handleToggleHeapType(),
     );
     this.maxHeapRadio.addEventListener("change", () =>
-      this.handleToggleHeapType()
+      this.handleToggleHeapType(),
     );
     this.elementInput.addEventListener("keypress", (e: KeyboardEvent) => {
       if (e.key === "Enter") this.handlePush();
@@ -97,7 +115,7 @@ export class HeapVisualizer {
     if (this.heap.length > 0 && newHeapType !== this.isMinHeap) {
       const heapTypeName = newHeapType ? "Min Heap" : "Max Heap";
       const confirmed = confirm(
-        `Switching to ${heapTypeName} will clear the current heap. Continue?`
+        `Switching to ${heapTypeName} will clear the current heap. Continue?`,
       );
 
       if (!confirmed) {
@@ -262,15 +280,23 @@ export class HeapVisualizer {
 
     if (treeTexts && treeTexts.length > 0) {
       const temp = (treeTexts[index1] as SVGTextElement).textContent;
-      (treeTexts[index1] as SVGTextElement).textContent = (treeTexts[index2] as SVGTextElement).textContent;
+      (treeTexts[index1] as SVGTextElement).textContent = (
+        treeTexts[index2] as SVGTextElement
+      ).textContent;
       (treeTexts[index2] as SVGTextElement).textContent = temp;
     }
 
     if (arrayTexts && arrayTexts.length > 0) {
       const offset = this.maxSize;
-      if (index1 + offset < arrayTexts.length && index2 + offset < arrayTexts.length) {
-        const temp = (arrayTexts[index1 + offset] as SVGTextElement).textContent;
-        (arrayTexts[index1 + offset] as SVGTextElement).textContent = (arrayTexts[index2 + offset] as SVGTextElement).textContent;
+      if (
+        index1 + offset < arrayTexts.length &&
+        index2 + offset < arrayTexts.length
+      ) {
+        const temp = (arrayTexts[index1 + offset] as SVGTextElement)
+          .textContent;
+        (arrayTexts[index1 + offset] as SVGTextElement).textContent = (
+          arrayTexts[index2 + offset] as SVGTextElement
+        ).textContent;
         (arrayTexts[index2 + offset] as SVGTextElement).textContent = temp;
       }
     }
@@ -278,7 +304,7 @@ export class HeapVisualizer {
 
   private highlightNodesPreservePositions(
     indices: number[],
-    color: string
+    color: string,
   ): void {
     // Update only the circle colors without re-rendering text positions
     const treeCircles = this.treeSvg.querySelectorAll("circle");
@@ -289,7 +315,7 @@ export class HeapVisualizer {
       if (indices.includes(i)) {
         (treeCircles[i] as SVGCircleElement).setAttribute(
           "fill",
-          this.getHighlightColor(color)
+          this.getHighlightColor(color),
         );
       }
     }
@@ -382,7 +408,7 @@ export class HeapVisualizer {
   private animateTextSwap(
     fromIndex: number,
     toIndex: number,
-    duration: number
+    duration: number,
   ): Promise<void> {
     return new Promise((resolve) => {
       const startTime = performance.now();
@@ -402,15 +428,19 @@ export class HeapVisualizer {
           const treeTextElements = Array.from(treeTexts);
           if (fromIndex < treeTextElements.length) {
             const fromText = treeTextElements[fromIndex];
-            const currentX = fromTreePos.x + (toTreePos.x - fromTreePos.x) * eased;
-            const currentY = fromTreePos.y + (toTreePos.y - fromTreePos.y) * eased;
+            const currentX =
+              fromTreePos.x + (toTreePos.x - fromTreePos.x) * eased;
+            const currentY =
+              fromTreePos.y + (toTreePos.y - fromTreePos.y) * eased;
             fromText.setAttribute("x", currentX.toString());
             fromText.setAttribute("y", currentY.toString());
           }
           if (toIndex < treeTextElements.length) {
             const toText = treeTextElements[toIndex];
-            const currentX = toTreePos.x + (fromTreePos.x - toTreePos.x) * eased;
-            const currentY = toTreePos.y + (fromTreePos.y - toTreePos.y) * eased;
+            const currentX =
+              toTreePos.x + (fromTreePos.x - toTreePos.x) * eased;
+            const currentY =
+              toTreePos.y + (fromTreePos.y - toTreePos.y) * eased;
             toText.setAttribute("x", currentX.toString());
             toText.setAttribute("y", currentY.toString());
           }
@@ -423,15 +453,19 @@ export class HeapVisualizer {
           const offset = this.maxSize;
           if (fromIndex + offset < arrayTexts.length) {
             const fromText = arrayTexts[fromIndex + offset];
-            const currentX = fromArrayPos.x + (toArrayPos.x - fromArrayPos.x) * eased;
-            const currentY = fromArrayPos.y + (toArrayPos.y - fromArrayPos.y) * eased;
+            const currentX =
+              fromArrayPos.x + (toArrayPos.x - fromArrayPos.x) * eased;
+            const currentY =
+              fromArrayPos.y + (toArrayPos.y - fromArrayPos.y) * eased;
             fromText.setAttribute("x", currentX.toString());
             fromText.setAttribute("y", currentY.toString());
           }
           if (toIndex + offset < arrayTexts.length) {
             const toText = arrayTexts[toIndex + offset];
-            const currentX = toArrayPos.x + (fromArrayPos.x - toArrayPos.x) * eased;
-            const currentY = toArrayPos.y + (fromArrayPos.y - toArrayPos.y) * eased;
+            const currentX =
+              toArrayPos.x + (fromArrayPos.x - toArrayPos.x) * eased;
+            const currentY =
+              toArrayPos.y + (fromArrayPos.y - toArrayPos.y) * eased;
             toText.setAttribute("x", currentX.toString());
             toText.setAttribute("y", currentY.toString());
           }
@@ -444,24 +478,48 @@ export class HeapVisualizer {
           if (treeTexts && treeTexts.length > 0) {
             const treeTextElements = Array.from(treeTexts);
             if (fromIndex < treeTextElements.length) {
-              (treeTextElements[fromIndex] as SVGTextElement).setAttribute("x", fromTreePos.x.toString());
-              (treeTextElements[fromIndex] as SVGTextElement).setAttribute("y", fromTreePos.y.toString());
+              (treeTextElements[fromIndex] as SVGTextElement).setAttribute(
+                "x",
+                fromTreePos.x.toString(),
+              );
+              (treeTextElements[fromIndex] as SVGTextElement).setAttribute(
+                "y",
+                fromTreePos.y.toString(),
+              );
             }
             if (toIndex < treeTextElements.length) {
-              (treeTextElements[toIndex] as SVGTextElement).setAttribute("x", toTreePos.x.toString());
-              (treeTextElements[toIndex] as SVGTextElement).setAttribute("y", toTreePos.y.toString());
+              (treeTextElements[toIndex] as SVGTextElement).setAttribute(
+                "x",
+                toTreePos.x.toString(),
+              );
+              (treeTextElements[toIndex] as SVGTextElement).setAttribute(
+                "y",
+                toTreePos.y.toString(),
+              );
             }
           }
 
           if (arrayTexts && arrayTexts.length > 0) {
             const offset = this.maxSize;
             if (fromIndex + offset < arrayTexts.length) {
-              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute("x", fromArrayPos.x.toString());
-              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute("y", fromArrayPos.y.toString());
+              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute(
+                "x",
+                fromArrayPos.x.toString(),
+              );
+              (arrayTexts[fromIndex + offset] as SVGTextElement).setAttribute(
+                "y",
+                fromArrayPos.y.toString(),
+              );
             }
             if (toIndex + offset < arrayTexts.length) {
-              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute("x", toArrayPos.x.toString());
-              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute("y", toArrayPos.y.toString());
+              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute(
+                "x",
+                toArrayPos.x.toString(),
+              );
+              (arrayTexts[toIndex + offset] as SVGTextElement).setAttribute(
+                "y",
+                toArrayPos.y.toString(),
+              );
             }
           }
 
@@ -506,14 +564,14 @@ export class HeapVisualizer {
 
   private renderTree(
     highlightIndices: number[] = [],
-    highlightColor: string = ""
+    highlightColor: string = "",
   ): void {
     this.treeSvg.innerHTML = "";
 
     if (this.heap.length === 0) {
       const text = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "text"
+        "text",
       );
       text.setAttribute("x", "50%");
       text.setAttribute("y", "50%");
@@ -534,7 +592,7 @@ export class HeapVisualizer {
     const positions = this.calculateTreePositions(
       svgWidth,
       svgHeight,
-      nodeRadius
+      nodeRadius,
     );
 
     // Draw edges
@@ -567,7 +625,7 @@ export class HeapVisualizer {
   private calculateTreePositions(
     svgWidth: number,
     svgHeight: number,
-    nodeRadius: number
+    nodeRadius: number,
   ): Position[] {
     const positions: Position[] = [];
     const levels = Math.ceil(Math.log2(this.heap.length + 1));
@@ -592,10 +650,7 @@ export class HeapVisualizer {
   }
 
   private drawEdge(from: Position, to: Position): void {
-    const line = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
     line.setAttribute("x1", from.x.toString());
     line.setAttribute("y1", from.y.toString());
     line.setAttribute("x2", to.x.toString());
@@ -609,18 +664,18 @@ export class HeapVisualizer {
     x: number,
     y: number,
     highlight: boolean = false,
-    color: string = ""
+    color: string = "",
   ): void {
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
-      "circle"
+      "circle",
     );
     circle.setAttribute("cx", x.toString());
     circle.setAttribute("cy", y.toString());
     circle.setAttribute("r", "25");
     circle.setAttribute(
       "fill",
-      highlight ? this.getHighlightColor(color) : Color.Blue
+      highlight ? this.getHighlightColor(color) : Color.Blue,
     );
     circle.setAttribute("stroke", Color.White);
     circle.setAttribute("stroke-width", "2");
@@ -632,10 +687,7 @@ export class HeapVisualizer {
   }
 
   private drawNodeText(x: number, y: number, value: number): void {
-    const text = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "text"
-    );
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute("x", x.toString());
     text.setAttribute("y", y.toString());
     text.setAttribute("text-anchor", "middle");
@@ -649,7 +701,7 @@ export class HeapVisualizer {
 
   private renderArray(
     highlightIndices: number[] = [],
-    highlightColor: string = ""
+    highlightColor: string = "",
   ): void {
     this.arraySvg.innerHTML = "";
 
@@ -670,7 +722,7 @@ export class HeapVisualizer {
       // Draw cell border
       const rect = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "rect"
+        "rect",
       );
       rect.setAttribute("x", x.toString());
       rect.setAttribute("y", y.toString());
@@ -682,7 +734,7 @@ export class HeapVisualizer {
           ? isHighlighted
             ? this.getHighlightColor(highlightColor)
             : Color.Blue
-          : "rgba(255,255,255,0.1)"
+          : "rgba(255,255,255,0.1)",
       );
       rect.setAttribute("stroke", isFilled ? Color.White : Color.DarkGray);
       rect.setAttribute("stroke-width", "2");
@@ -699,7 +751,7 @@ export class HeapVisualizer {
       const x = startX + i * cellWidth;
       const indexText = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "text"
+        "text",
       );
       indexText.setAttribute("x", (x + cellWidth / 2).toString());
       indexText.setAttribute("y", (startY - 25).toString());
@@ -720,7 +772,7 @@ export class HeapVisualizer {
       if (isFilled) {
         const text = document.createElementNS(
           "http://www.w3.org/2000/svg",
-          "text"
+          "text",
         );
         text.setAttribute("x", (x + cellWidth / 2).toString());
         text.setAttribute("y", (y + cellHeight / 2).toString());
@@ -745,12 +797,9 @@ export class HeapVisualizer {
     x: number,
     y: number,
     color: string,
-    label: string
+    label: string,
   ): void {
-    const rect = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "rect"
-    );
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", x.toString());
     rect.setAttribute("y", y.toString());
     rect.setAttribute("width", "15");
@@ -758,10 +807,7 @@ export class HeapVisualizer {
     rect.setAttribute("fill", color);
     this.arraySvg.appendChild(rect);
 
-    const text = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "text"
-    );
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute("x", (x + 25).toString());
     text.setAttribute("y", (y + 12).toString());
     text.setAttribute("fill", Color.LighterGray);

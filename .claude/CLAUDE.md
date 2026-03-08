@@ -1,105 +1,111 @@
 # Claude Instructions
 
-This is my personal website deployed to GitHub pages.
+Personal website (jarrettmeyer.com) built with Astro, deployed to GitHub Pages on push to `main`.
 
-## Project Structure
+## Workflow
 
-```text
-├── dist/                       # Astro build output
-├── docs/
-├── node_modules/
-├── public/
-│   ├── images/
-│   ├── CNAME
-│   ├── favicon.ico
-│   ├── robots.txt
-│   └── site.css                # Globally applied CSS
-├── src/                        # Source code for website
-│   ├── components/             # Astro component
-│   ├── layouts/                # Astro layouts
-│   ├── pages/                  # Astro pages
-│   │   ├── present/            # Presentations, Reveal.js
-│   │   ├── tags/
-│   │   └── visualize/
-│   ├── posts/                  # Astro posts, *.md or *.mdx
-│   ├── utils/                  # TypeScript utilities
-│   ├── content.config.ts
-│   └── types.ts
-├── astro.config.ts
-├── CLAUDE.md
-├── package-lock.json
-├── package.json
-├── README.md
-└── tsconfig.json
+- Always start in plan mode. Ask clarifying questions before writing code.
+- Define and verify success criteria before claiming done.
+- Use worktrees for feature work. Worktrees are saved in `.worktrees/<branch-name>`.
+- Prefer smaller, atomic commits. We can always squash later.
+- Test locally: run the dev server (`npm run dev`). Use Playwright for more sophisticated testing.
+- Create a pull request when work is complete.
+- Match Jarrett's writing tone and style in blog posts — sound like a person, not an AI.
+
+## Commands
+
+- `npm run dev` — dev server at localhost:4321
+- `npm run build` — build (astro build + pagefind index + copy-404)
+- `npm run format` — format all files with Prettier
+- `npm run format:check` — check formatting (used in CI)
+- CI: `.github/workflows/publish_github_pages.yaml`
+
+## Tech Stack
+
+- **Astro 5** with MDX, React 19, Expressive Code, Pagefind, Sitemap
+- **Bootstrap 5.3** via CDN (dark theme default). Use Bootstrap utility classes — no inline styles.
+- **TypeScript** (strict mode). Path alias: `@/*` → `src/*`
+- **Google Fonts**: Fira Code (code display)
+- **D3 v7** for data visualizations
+
+## Posts (`src/posts/`)
+
+All posts are `.mdx` files organized in subdirectories:
+
+- `leetcode/` — LeetCode problem solutions
+- `software/` — general software/engineering articles
+- `drafts/` — work-in-progress posts (set `draft: true`)
+
+### Frontmatter (defined in `src/content.config.ts`)
+
+```yaml
+title: "Post Title" # required
+date: YYYY-MM-DD # required
+description: "Summary" # optional
+tags: [Tag1, Tag2] # optional
+draft: true # optional, only in drafts/
+thumbnail: # optional
+  src: /images/posts/thumbnails/example.svg
+  alt: "Alt text"
 ```
 
-### `src/`
+### LeetCode Post Pattern
 
-Astro website source code.
+```mdx
+import LeetCodeHeader from "@/components/LeetCodeHeader.astro";
+import LeetCodeResult from "@/components/LeetCodeResult.astro";
 
-### `src/components/`
+<LeetCodeHeader difficulty="Easy" href="https://leetcode.com/problems/..." />
 
-Contains [Astro components](https://docs.astro.build/en/basics/astro-components/). These are reusable pieces of content.
+## Solution explanation...
 
-### `src/hooks/`
+<LeetCodeResult runtime={0} beats={100.0} />
+```
 
-Reusable [React](https://react.dev/) hooks.
+### Software Post Pattern
 
-### `src/layouts/`
+Freeform article structure. Code fences support titles: ` ```toml title="pyproject.toml" `
 
-Contains [Astro layouts](https://docs.astro.build/en/basics/layouts/).
+## Layouts (`src/layouts/`)
 
-### `src/pages/`
+- **PageLayout** — standard pages and posts. Props: `title`, `description`, `image`, `url`, `includeInSearchResults`, `isDraft`
+- **SlideLayout** — Reveal.js presentations (`src/pages/present/`). Props: `title`, `includeInSearchResults`
 
-Site pages, written in Astro.
+## Key Components (`src/components/`)
 
-### `src/pages/tags/`
+| Component               | Purpose                                |
+| ----------------------- | -------------------------------------- |
+| `ListPosts.astro`       | Post grid with filtering (count, tag)  |
+| `TagBadge.astro`        | Tag link badge                         |
+| `Alert.astro`           | Bootstrap alert wrapper (type prop)    |
+| `LeetCodeHeader.astro`  | Problem link + difficulty badge        |
+| `LeetCodeResult.astro`  | Runtime performance card               |
+| `Navbar.astro`          | Site navigation                        |
+| `Hero.astro`            | Homepage hero section                  |
+| `SearchModal.astro`     | Pagefind search modal                  |
+| `FeaturedContent.astro` | CTA card with title, description, link |
+| `Certifications.astro`  | Certification badges row               |
 
-### `src/pages/visualize/`
+## Utilities (`src/utils/`)
 
-### `src/posts/`
+- `posts.ts` — `getAllPosts()`, filters (`filterByCount`, `filterByDate`, `filterByDraft`, `filterByTag`), `sortPostsByDate`
+- `dates.ts` — `toFriendlyDate(date)` → "8 Mar 2026"
+- `slugify.ts` — `slugifyTag(input)` → URL-safe slug
 
-Posts, written in either `*.md` or `*.mdx` format.
-
-### `src/scripts/`
-
-Scripts in this folder are intended to be used as client scripts for specific pages.
-
-### `src/utils/`
-
-Utility functions, written in TypeScript, used throughout the website.
-
-## Develop
-
-The development website runs at [localhost:4321](http://localhost:4321). If the development site is not running, it can be started with `npm run dev`. The development server can be used with Playwright for browser automation testing.
-
-### Guidelines
+## Guidelines
 
 - Use TypeScript for all scripts.
-- Create descriptive variables instead of magic numbers or strings. Do this even for one-time use variables.
-- Avoid adding inline styles to HTML elements. Instead, always use an available Bootstrap utility class when possible. This includes color, font size, font weight, sizing, padding, margins, etc.
-
-## Build
-
-To build the project, run `npm run build`.
-
-## Deploy
-
-This website is hosted in GitHub pages. The website is deployed when source code is pushed to the `main` branch. See [publish_github_pages.yaml](./.github/workflows/publish_github_pages.yaml) for more details.
+- Create descriptive variables instead of magic numbers or strings.
+- Use Bootstrap utility classes for styling — no inline styles.
+- Images: use `import { Image } from "astro:assets"` with assets from `@/assets/images/`.
+- EditorConfig: 2-space indent, LF line endings, UTF-8.
 
 ## MCP Servers
 
 ### Context7
 
-Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
-
-This includes, but is not limited to, the following libraries:
-
-- Astro
-- Boostrap
-- Pagefind
-- Playwright
+Always use Context7 for code generation, setup/configuration, or library/API docs — including Astro, Bootstrap, Pagefind, and Playwright.
 
 ### Playwright
 
-Always use Playwright for browser automation testing.
+Always use Playwright for browser automation testing. Save all screenshots to `.playwright-mcp/` (already in `.gitignore`).

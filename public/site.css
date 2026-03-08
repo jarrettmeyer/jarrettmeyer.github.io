@@ -1,19 +1,19 @@
 body div.expressive-code {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 #search-modal {
-    --pagefind-ui-font: var(--bs-font-sans-serif);
+  --pagefind-ui-font: var(--bs-font-sans-serif);
 }
 
 #search-modal .pagefind-ui__message {
-    color: var(--bs-body-color);
+  color: var(--bs-body-color);
 }
 
 #search-modal .pagefind-ui__result-excerpt {
-    color: var(--bs-body-color);
+  color: var(--bs-body-color);
 }
 
 #search-modal .pagefind-ui__result-link {
-    color: var(--bs-primary);
+  color: var(--bs-primary);
 }

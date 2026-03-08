@@ -22,7 +22,7 @@ type Measure = "client" | "offset" | "scroll";
  */
 export function useDimensions(
   ref: RefObject<HTMLElement | null>,
-  measure: Measure = "offset"
+  measure: Measure = "offset",
 ): Dimensions {
   const [dimensions, setDimensions] = useState<Dimensions>({
     width: 0,

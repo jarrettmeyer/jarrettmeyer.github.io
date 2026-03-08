@@ -18,7 +18,8 @@ export type FetchResponseType = "json" | "text";
 export function useFetch<T = any>(
   url: string,
   options?: RequestInit,
-  responseCallback: (response: Response) => Promise<T> = async (response) => response.json(),
+  responseCallback: (response: Response) => Promise<T> = async (response) =>
+    response.json(),
 ): UseFetchResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);

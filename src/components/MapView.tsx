@@ -54,10 +54,10 @@ export function MapView({
   const svgRef = useRef<SVGSVGElement>(null);
   // TODO: This uses a random number generator. Use useId hook instead.
   const legendGradientId = useRef(
-    `legend-gradient-${Math.random().toString(36).slice(2)}`
+    `legend-gradient-${Math.random().toString(36).slice(2)}`,
   ).current;
   const { data: topoData, error: fetchError } = useFetch(
-    `/data/world-atlas@2.0.2/${mapType}.json`
+    `/data/world-atlas@2.0.2/${mapType}.json`,
   );
   const { width } = useDimensions(containerRef);
 
@@ -112,7 +112,7 @@ export function MapView({
 
   // Get the projection function
   const getProjectionFunction = (
-    proj: ProjectionType
+    proj: ProjectionType,
   ): (() => d3.GeoProjection) => {
     switch (proj) {
       case "mercator":

@@ -1,6 +1,14 @@
 ---
 interface Props {
-  type?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
+  type?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "light"
+    | "dark";
 }
 
 const { type } = Astro.props;

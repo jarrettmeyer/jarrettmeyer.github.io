@@ -19,7 +19,10 @@ const navbarContentId = "navbar-collapsible-content";
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id={navbarContentId} class="collapse navbar-collapse justify-content-between">
+    <div
+      id={navbarContentId}
+      class="collapse navbar-collapse justify-content-between"
+    >
       <div class="navbar-nav me-auto mb-2 mb-lg-0">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/posts">Posts</a>
@@ -28,13 +31,23 @@ const navbarContentId = "navbar-collapsible-content";
 
       <!-- Icons (Right) -->
       <div class="navbar-nav flex-row gap-2">
-        <a class="nav-link" href="https://github.com/jarrettmeyer" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <a
+          class="nav-link"
+          href="https://github.com/jarrettmeyer"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
           <i class="bi bi-github fs-5"></i>
         </a>
         <a class="nav-link" href="https://linkedin.com/in/jarrettmeyer">
           <i class="bi bi-linkedin fs-5"></i>
         </a>
-        <button class="btn" data-bs-toggle="modal" data-bs-target="#search-modal">
+        <button
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#search-modal"
+        >
           <i class="bi bi-search fs-5"></i>
         </button>
       </div>

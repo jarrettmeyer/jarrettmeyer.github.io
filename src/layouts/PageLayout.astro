@@ -33,7 +33,10 @@ const {
     <title>{title} | Jarrett Meyer</title>
     <meta name="description" content={description} />
     <meta name="author" content="Jarrett Nevitt Meyer" />
-    <meta name="keywords" content="AWS, Machine Learning, Cloud Architecture, Data Solutions, Software Engineering, Technology Leadership, LeetCode, Python" />
+    <meta
+      name="keywords"
+      content="AWS, Machine Learning, Cloud Architecture, Data Solutions, Software Engineering, Technology Leadership, LeetCode, Python"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -51,7 +54,10 @@ const {
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Bootstrap -->
     <link
@@ -79,7 +85,11 @@ const {
   </head>
   <body>
     <Navbar />
-    <main class="container my-5" {...includeInSearchResults && !isDraft && { "data-pagefind-body": "" }} {...isDraft && { "data-pagefind-ignore": "all" }}>
+    <main
+      class="container my-5"
+      {...includeInSearchResults && !isDraft && { "data-pagefind-body": "" }}
+      {...isDraft && { "data-pagefind-ignore": "all" }}
+    >
       <slot />
       <SearchModal />
     </main>

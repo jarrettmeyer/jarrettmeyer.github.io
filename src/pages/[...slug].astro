@@ -2,7 +2,7 @@
 /**
  * By default, `includeInSearchResults` is set to true for all posts.
  * The `isDraft` flag will override this setting.
- */ 
+ */
 import TagBadge from "@/components/TagBadge.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import { toFriendlyDate } from "@/utils/dates";
@@ -10,7 +10,7 @@ import { getAllPosts } from "@/utils/posts";
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = (await getAllPosts());
+  const posts = await getAllPosts();
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -25,13 +25,27 @@ const pageImage = post.data?.thumbnail?.src ?? "/images/site-default.png";
 const isDraft = (post.data?.draft ?? false) || post.id.includes("drafts/");
 ---
 
-<PageLayout title={pageTitle} description={pageDescription} image={pageImage} includeInSearchResults={true} isDraft={isDraft}>
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  includeInSearchResults={true}
+  isDraft={isDraft}
+>
   <h1 class="my-4">{post.data.title}</h1>
   <p class="fs-4 fw-lighter">{post.data.description}</p>
   <div class="mb-3">
     <span class="text-body-secondary">Posted on</span>
-    <time datetime={post.data?.date.toISOString()}>{toFriendlyDate(post.data?.date)}</time>
-    {post.data.tags && post.data.tags.length > 0 ? post.data.tags.map((t: string) => <TagBadge tag={t} />) : <TagBadge tag="Uncategorized" />}
+    <time datetime={post.data?.date.toISOString()}
+      >{toFriendlyDate(post.data?.date)}</time
+    >
+    {
+      post.data.tags && post.data.tags.length > 0 ? (
+        post.data.tags.map((t: string) => <TagBadge tag={t} />)
+      ) : (
+        <TagBadge tag="Uncategorized" />
+      )
+    }
   </div>
   <Content />
 </PageLayout>

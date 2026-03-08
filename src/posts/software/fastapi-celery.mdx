@@ -113,20 +113,22 @@ services:
 ### Configuration Details
 
 **Redis Service:**
+
 - Uses `redis:8-alpine` for a lightweight, up-to-date Redis image
 - Health checks ensure dependent services wait for Redis to be ready
 - Named container makes debugging and monitoring easier
 
 **Worker Service:**
+
 - `restart: unless-stopped` ensures workers auto-restart on failures during development
 - `--concurrency=2` runs 2 worker processes for parallel task execution
 - `CELERY_RESULT_EXPIRES=900` automatically cleans up results after 15 minutes
 
 **API Service:**
+
 - Depends on worker service to ensure proper startup order
 - Volume mounts allow live updates to static files and templates without rebuilding
 - Exposes port 8000 for HTTP access
-
 
 ## Building the Celery Worker
 
@@ -310,6 +312,7 @@ docker compose up
 ```
 
 The services will start in the following order:
+
 - **redis**: Starts and waits for health check to pass
 - **worker**: Starts after Redis is healthy and begins processing tasks
 - **api**: Starts after the worker is ready and listens on port 8000
@@ -318,17 +321,23 @@ You should see log output from all three services. Once you see messages indicat
 
 In the UI, can create a task and see the result in the table.
 
-<Image src={listRunningTasks} alt="List running tasks" class="w-100 h-auto mb-3" />
+<Image
+  src={listRunningTasks}
+  alt="List running tasks"
+  class="w-100 h-auto mb-3"
+/>
 
 ## When to Use Celery vs. FastAPI Background Tasks
 
 **Use FastAPI Background Tasks when:**
+
 - The operation is lightweight (< 1 second)
 - You don't need task persistence
 - You don't need to track task status
 - Single-server deployment is sufficient
 
 **Use Celery when:**
+
 - Tasks take more than a few seconds
 - You need task persistence and reliability
 - You want to track task progress and status
