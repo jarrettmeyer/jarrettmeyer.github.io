@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.6.1",
     "@pagefind/default-ui": "^1.4.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
