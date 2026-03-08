@@ -12,7 +12,10 @@ const posts: Post[] = (await getAllPosts())
 const counts: Record<string, { label: string; count: number }> = {};
 
 for (const post of posts) {
-  const tags = post.data.tags && post.data.tags.length > 0 ? post.data.tags : ["Uncategorized"];
+  const tags =
+    post.data.tags && post.data.tags.length > 0
+      ? post.data.tags
+      : ["Uncategorized"];
   for (const t of tags) {
     const slug = slugifyTag(t);
     if (!counts[slug]) counts[slug] = { label: t, count: 0 };
@@ -20,7 +23,9 @@ for (const post of posts) {
   }
 }
 
-const entries = Object.entries(counts).sort((a, b) => b[1].count - a[1].count || a[1].label.localeCompare(b[1].label));
+const entries = Object.entries(counts).sort(
+  (a, b) => b[1].count - a[1].count || a[1].label.localeCompare(b[1].label),
+);
 ---
 
 <PageLayout title="Tags">
@@ -28,7 +33,10 @@ const entries = Object.entries(counts).sort((a, b) => b[1].count - a[1].count ||
   <div class="list-group">
     {
       entries.map(([slug, info]) => (
-        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href={`/tags/${slug}`}>
+        <a
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          href={`/tags/${slug}`}
+        >
           <span>{info.label}</span>
           <span class="badge bg-secondary rounded-pill">{info.count}</span>
         </a>

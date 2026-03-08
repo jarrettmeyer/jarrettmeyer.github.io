@@ -18,7 +18,7 @@ import LeetCodeResult from "@/components/LeetCodeResult.astro";
   href="https://leetcode.com/problems/equal-row-and-column-pairs/"
 />
 
-For this solution, I created two hash maps to track the frequency of each row and column in the grid. 
+For this solution, I created two hash maps to track the frequency of each row and column in the grid.
 
 I converted each row and column into a tuple, since lists are not hashable and cannot be used as dictionary keys.
 
@@ -34,11 +34,11 @@ class Solution:
         n = len(grid)
         seen_cols = {}
         seen_rows = {}
-        
+
         for i in range(n):
             col = tuple(grid[i])
             seen_cols[col] = seen_cols.get(col, 0) + 1
-            
+
             row = tuple([grid[j][i] for j in range(n)])
             seen_rows[row] = seen_rows.get(row, 0) + 1
 

@@ -24,7 +24,7 @@ const data = [
   { name: "Germany", value: 83000000 },
   { name: "Thailand", value: 71000000 },
   { name: "France", value: 67000000 },
-  { name: "United States of America", value: 340000000 }
+  { name: "United States of America", value: 340000000 },
 ];
 ---
 
@@ -35,7 +35,8 @@ const data = [
     <div class="mb-5">
       <h2 class="mb-3">Default Configuration (Viridis, 50m)</h2>
       <p class="text-muted mb-3">
-        Shows population data using the default Viridis color scale and 50m resolution map.
+        Shows population data using the default Viridis color scale and 50m
+        resolution map.
       </p>
       <div class="bg-white p-2 rounded">
         <MapView client:load data={data} />
@@ -45,7 +46,8 @@ const data = [
     <div class="mb-5">
       <h2 class="mb-3">Mercator Projection (110m)</h2>
       <p class="text-muted mb-3">
-        Shows population data using Mercator projection with 110m resolution (lower detail).
+        Shows population data using Mercator projection with 110m resolution
+        (lower detail).
       </p>
       <div class="bg-white p-2 rounded">
         <MapView

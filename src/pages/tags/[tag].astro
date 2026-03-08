@@ -10,16 +10,18 @@ import { filterByDate, filterByDraft, getAllPosts } from "@/utils/posts";
 import { slugifyTag } from "@/utils/slugify";
 import { getCollection } from "astro:content";
 
-
 export async function getStaticPaths() {
   const posts: Post[] = (await getAllPosts())
     .filter(filterByDraft())
     .filter(filterByDate(new Date()));
 
   const tagSet = new Set<string>();
-  
+
   for (const post of posts) {
-    const tags = post.data.tags && post.data.tags.length > 0 ? post.data.tags : ["Uncategorized"];
+    const tags =
+      post.data.tags && post.data.tags.length > 0
+        ? post.data.tags
+        : ["Uncategorized"];
     for (const t of tags) tagSet.add(slugifyTag(t));
   }
 

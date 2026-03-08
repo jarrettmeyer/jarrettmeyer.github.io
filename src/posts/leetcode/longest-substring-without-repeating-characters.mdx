@@ -27,6 +27,7 @@ Initialize the list of unique characters - `chars` - to an empty list. Iterate o
 If `char` is already in `chars`, remove all characters up to and including the first occurrence of `char` from `chars`.
 
 Example:
+
 - `chars = ["a", "b", "c", "d"]` and `char = "b"`. The index of `"b"` is 1. `chars = chars[2:] = ["c", "d"]`.
 - `chars = ["a", "b", "c", "d"]` and `char = "d"`. The index of `"d"` is 3. `chars = chars[4:] = []`, then after appending `"d"` in the next step, `chars = ["d"]`. We take advantage of how indices work with Python slicing.
 

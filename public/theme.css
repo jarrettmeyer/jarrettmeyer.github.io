@@ -10,16 +10,20 @@
 
 :root {
   /* Monospace fonts - Fira Code everywhere */
-  --bs-font-sans-serif: "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-font-monospace: "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-sans-serif:
+    "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
+    "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-monospace:
+    "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
+    "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Square/minimal border radius - architectural aesthetic */
-  --bs-border-radius: 0.125rem;        /* 2px - minimal rounding */
-  --bs-border-radius-sm: 0.0625rem;    /* 1px */
-  --bs-border-radius-lg: 0.1875rem;    /* 3px */
-  --bs-border-radius-xl: 0.25rem;      /* 4px */
-  --bs-border-radius-xxl: 0.375rem;    /* 6px */
-  --bs-border-radius-pill: 0.25rem;    /* Override pill to be slightly rounded */
+  --bs-border-radius: 0.125rem; /* 2px - minimal rounding */
+  --bs-border-radius-sm: 0.0625rem; /* 1px */
+  --bs-border-radius-lg: 0.1875rem; /* 3px */
+  --bs-border-radius-xl: 0.25rem; /* 4px */
+  --bs-border-radius-xxl: 0.375rem; /* 6px */
+  --bs-border-radius-pill: 0.25rem; /* Override pill to be slightly rounded */
 }
 
 /* ========================================
@@ -30,12 +34,12 @@
   color-scheme: dark;
 
   /* Primary Colors - Terminal-inspired palette */
-  --bs-primary: #4fd1c5;              /* Cyan-teal accent */
-  --bs-secondary: #718096;            /* Slate gray */
-  --bs-success: #48bb78;              /* Terminal green */
-  --bs-info: #63b3ed;                 /* Electric blue */
-  --bs-warning: #ed8936;              /* Warm amber */
-  --bs-danger: #f56565;               /* Ruby red */
+  --bs-primary: #4fd1c5; /* Cyan-teal accent */
+  --bs-secondary: #718096; /* Slate gray */
+  --bs-success: #48bb78; /* Terminal green */
+  --bs-info: #63b3ed; /* Electric blue */
+  --bs-warning: #ed8936; /* Warm amber */
+  --bs-danger: #f56565; /* Ruby red */
 
   /* RGB variants for use with opacity */
   --bs-primary-rgb: 79, 209, 197;
@@ -46,29 +50,29 @@
   --bs-danger-rgb: 245, 101, 101;
 
   /* Body - Deep slate background with light gray text */
-  --bs-body-bg: #0a0e14;              /* Deep slate */
+  --bs-body-bg: #0a0e14; /* Deep slate */
   --bs-body-bg-rgb: 10, 14, 20;
-  --bs-body-color: #c7cdd8;           /* Light gray */
+  --bs-body-color: #c7cdd8; /* Light gray */
   --bs-body-color-rgb: 199, 205, 216;
   --bs-body-font-family: var(--bs-font-sans-serif);
 
   /* Emphasis colors */
-  --bs-emphasis-color: #e6eaf0;       /* Near white for headings */
+  --bs-emphasis-color: #e6eaf0; /* Near white for headings */
   --bs-emphasis-color-rgb: 230, 234, 240;
-  --bs-secondary-color: rgba(199, 205, 216, 0.65);   /* Muted text */
+  --bs-secondary-color: rgba(199, 205, 216, 0.65); /* Muted text */
   --bs-secondary-color-rgb: 199, 205, 216;
-  --bs-tertiary-color: rgba(199, 205, 216, 0.45);    /* Very muted text */
+  --bs-tertiary-color: rgba(199, 205, 216, 0.45); /* Very muted text */
   --bs-tertiary-color-rgb: 199, 205, 216;
 
   /* Background colors */
-  --bs-secondary-bg: #151a21;         /* Elevated surface */
+  --bs-secondary-bg: #151a21; /* Elevated surface */
   --bs-secondary-bg-rgb: 21, 26, 33;
-  --bs-tertiary-bg: #1a2029;          /* Cards/components */
+  --bs-tertiary-bg: #1a2029; /* Cards/components */
   --bs-tertiary-bg-rgb: 26, 32, 41;
 
   /* Text emphasis colors (for `.text-*-emphasis` utilities) */
-  --bs-primary-text-emphasis: #81e6d9;     /* Lighter cyan */
-  --bs-secondary-text-emphasis: #a7acb1;   /* Light slate */
+  --bs-primary-text-emphasis: #81e6d9; /* Lighter cyan */
+  --bs-secondary-text-emphasis: #a7acb1; /* Light slate */
   --bs-success-text-emphasis: #75b798;
   --bs-info-text-emphasis: #6edff6;
   --bs-warning-text-emphasis: #ffda6a;
@@ -111,7 +115,7 @@
   --bs-link-decoration: none;
 
   /* Code */
-  --bs-code-color: #f687b3;           /* Pink for inline code */
+  --bs-code-color: #f687b3; /* Pink for inline code */
 
   /* Highlights */
   --bs-highlight-color: #c7cdd8;
@@ -178,7 +182,9 @@
 [data-bs-theme="dark"] .card {
   --bs-card-bg: var(--bs-tertiary-bg);
   --bs-card-border-color: var(--bs-border-color);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 [data-bs-theme="dark"] .card:hover {
@@ -259,7 +265,9 @@
   --bs-form-control-bg: var(--bs-secondary-bg);
   --bs-form-control-border-color: var(--bs-border-color);
   --bs-form-control-color: var(--bs-body-color);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 [data-bs-theme="dark"] .form-control:focus,
@@ -283,7 +291,9 @@
   --bs-pagination-bg: var(--bs-tertiary-bg);
   --bs-pagination-border-color: var(--bs-border-color);
   --bs-pagination-color: var(--bs-body-color);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out;
 }
 
 [data-bs-theme="dark"] .pagination .page-link:hover {
@@ -330,7 +340,9 @@
    ======================================== */
 
 [data-bs-theme="dark"] body {
-  font-feature-settings: "calt" 1, "liga" 1;  /* Enable ligatures for Fira Code */
+  font-feature-settings:
+    "calt" 1,
+    "liga" 1; /* Enable ligatures for Fira Code */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

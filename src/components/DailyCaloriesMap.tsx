@@ -46,7 +46,7 @@ export function DailyCaloriesMap() {
   const { data: csvText } = useFetch<string>(
     "/data/total-daily-supply-of-calories-per-person.csv",
     undefined,
-    async (response) => response.text()
+    async (response) => response.text(),
   );
 
   // Parse and transform CSV data

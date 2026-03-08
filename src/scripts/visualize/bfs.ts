@@ -78,37 +78,37 @@ export class BFSVisualizer {
     // Initialize DOM references
     const treeSvg = document.getElementById("treeSvg") as SVGSVGElement | null;
     const queueSvg = document.getElementById(
-      "queueSvg"
+      "queueSvg",
     ) as SVGSVGElement | null;
     const generateBtn = document.getElementById(
-      "generateBtn"
+      "generateBtn",
     ) as HTMLButtonElement | null;
     const statusList = document.getElementById(
-      "statusList"
+      "statusList",
     ) as HTMLOListElement | null;
     const playBtn = document.getElementById(
-      "playBtn"
+      "playBtn",
     ) as HTMLButtonElement | null;
     const pauseBtn = document.getElementById(
-      "pauseBtn"
+      "pauseBtn",
     ) as HTMLButtonElement | null;
     const resetBtn = document.getElementById(
-      "resetBtn"
+      "resetBtn",
     ) as HTMLButtonElement | null;
     const speedSelect = document.getElementById(
-      "speedSelect"
+      "speedSelect",
     ) as HTMLSelectElement | null;
     const progressStat = document.getElementById(
-      "progressStat"
+      "progressStat",
     ) as HTMLElement | null;
     const levelStat = document.getElementById(
-      "levelStat"
+      "levelStat",
     ) as HTMLElement | null;
     const visitedStat = document.getElementById(
-      "visitedStat"
+      "visitedStat",
     ) as HTMLElement | null;
     const queueSizeStat = document.getElementById(
-      "queueSizeStat"
+      "queueSizeStat",
     ) as HTMLElement | null;
 
     if (
@@ -283,7 +283,7 @@ export class BFSVisualizer {
     (node as any).rightOffset = rightOffset;
     (node as any).subtreeWidth = Math.max(
       totalWidth,
-      this.MIN_HORIZONTAL_SPACING
+      this.MIN_HORIZONTAL_SPACING,
     );
 
     return (node as any).subtreeWidth;
@@ -293,7 +293,7 @@ export class BFSVisualizer {
     node: TreeNode | null,
     x: number,
     y: number,
-    level: number
+    level: number,
   ): void {
     if (!node) return;
 
@@ -317,7 +317,7 @@ export class BFSVisualizer {
           node.right,
           rightChildX,
           childY,
-          level + 1
+          level + 1,
         );
       } else if (node.left) {
         // Only left child
@@ -325,7 +325,7 @@ export class BFSVisualizer {
           node.left,
           x - spacing / 2,
           childY,
-          level + 1
+          level + 1,
         );
       } else if (node.right) {
         // Only right child
@@ -333,7 +333,7 @@ export class BFSVisualizer {
           node.right,
           x + spacing / 2,
           childY,
-          level + 1
+          level + 1,
         );
       }
     }
@@ -392,7 +392,7 @@ export class BFSVisualizer {
       this.bfsSteps = this.computeBFSSteps(
         this.root,
         this.startNodeValue,
-        this.targetNodeValue
+        this.targetNodeValue,
       );
       this.updateStatusBadge();
       this.render();
@@ -414,7 +414,7 @@ export class BFSVisualizer {
   private computeBFSSteps(
     root: TreeNode,
     startValue: number,
-    targetValue: number
+    targetValue: number,
   ): BFSStep[] {
     const steps: BFSStep[] = [];
     const startNode = this.findNodeByValue(root, startValue);
@@ -557,7 +557,7 @@ export class BFSVisualizer {
 
   private findNodeByValue(
     node: TreeNode | null,
-    value: number
+    value: number,
   ): TreeNode | null {
     if (!node) return null;
     if (node.value === value) return node;
@@ -707,7 +707,8 @@ export class BFSVisualizer {
         this.targetFoundAtStep !== -1 &&
         this.currentStepIndex >= this.targetFoundAtStep;
       const searchComplete = this.currentStepIndex >= this.bfsSteps.length - 1;
-      const targetNotReachable = isTarget && this.targetNotFound && searchComplete;
+      const targetNotReachable =
+        isTarget && this.targetNotFound && searchComplete;
 
       // Determine fill color
       let fillColor = Color.DarkGray; // Unvisited
@@ -998,7 +999,8 @@ export class BFSVisualizer {
   private updateButtonStates(): void {
     const hasStart = this.startNodeValue !== null && this.bfsSteps.length > 0;
     const atEnd = this.currentStepIndex >= this.bfsSteps.length - 1;
-    const hasAnySelection = this.startNodeValue !== null || this.targetNodeValue !== null;
+    const hasAnySelection =
+      this.startNodeValue !== null || this.targetNodeValue !== null;
 
     this.generateBtn.disabled = this.isAnimating;
     this.playBtn.disabled = this.isAnimating || !hasStart || atEnd;
@@ -1008,7 +1010,7 @@ export class BFSVisualizer {
 
   private createSVGElement(
     tag: string,
-    attrs: { [key: string]: string }
+    attrs: { [key: string]: string },
   ): SVGElement {
     const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
     for (const [key, value] of Object.entries(attrs)) {
