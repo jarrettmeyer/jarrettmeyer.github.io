@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-  # Monitor npm dependencies
+  # Monitor JavaScript dependencies (npm registry)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
