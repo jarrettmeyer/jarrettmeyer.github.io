@@ -8,7 +8,7 @@ Personal website (jarrettmeyer.com) built with Astro, deployed to GitHub Pages o
 - Define and verify success criteria before claiming done.
 - Use worktrees for feature work. Worktrees are saved in `.worktrees/<branch-name>`.
 - Prefer smaller, atomic commits. We can always squash later.
-- Test locally: run the dev server (`npm run dev`). Use Playwright for more sophisticated testing.
+- Test locally: run the dev server (`bun run dev`). Use Playwright for more sophisticated testing.
 - Create a pull request when work is complete.
 - Match Jarrett's writing tone and style in blog posts — sound like a person, not an AI.
 
@@ -23,10 +23,10 @@ Every implementation plan must include these four sections:
 
 ## Commands
 
-- `npm run dev` — dev server at localhost:4321
-- `npm run build` — build (astro build + pagefind index + copy-404)
-- `npm run format` — format all files with Prettier
-- `npm run format:check` — check formatting (used in CI)
+- `bun run dev` — dev server at localhost:4321
+- `bun run build` — build (astro build + pagefind index + copy-404)
+- `bun run format` — format all files with Prettier
+- `bun run format:check` — check formatting (used in CI)
 - CI: `.github/workflows/publish_github_pages.yaml`
 
 ## Tech Stack
