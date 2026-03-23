@@ -2,6 +2,42 @@ body div.expressive-code {
   margin-bottom: 1.5rem;
 }
 
+/* Markdown tables — full width, striped, with breathing room */
+main table {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+}
+
+main table th,
+main table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+main table thead th {
+  border-bottom-width: 2px;
+}
+
+main table tbody tr:nth-child(odd) {
+  background-color: var(--bs-table-striped-bg, rgba(79, 209, 197, 0.05));
+}
+
+/* H2 headings — extra breathing room for section breaks */
+main h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Display math — center standalone KaTeX paragraphs like academic papers */
+p.math-display {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1em;
+}
+
 #search-modal {
   --pagefind-ui-font: var(--bs-font-sans-serif);
 }

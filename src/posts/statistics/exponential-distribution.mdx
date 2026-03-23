@@ -1,0 +1,97 @@
+---
+title: "Introduction to the Exponential Distribution"
+date: 2026-03-23
+description: "The exponential distribution models the time between independent events. Let's take a look at its parameter, PDF, CDF, and real-world applications."
+tags:
+  - Mathematics
+  - Simulation
+  - Statistics
+thumbnail:
+  src: /images/posts/thumbnails/histogram.svg
+  alt: Histogram
+---
+
+import ExponentialPlot from "@/components/ExponentialPlot";
+
+The exponential distribution is one of the most important probability distributions in applied mathematics and simulation. It models the time between independent events that occur at a constant average rate. Examples: how long until the next customer arrives, how long until a machine fails, or how long until a radioactive atom decays.
+
+If you're building simulations, this distribution will be your workhorse. It's vital that we understand this distribution and how it works.
+
+## The Parameter: Lambda
+
+The exponential distribution has a single parameter: the **rate parameter** $\lambda$ (lambda), where $\lambda > 0$.
+
+Lambda represents the average number of events per unit time, often called the **tick** in simulations. From this single parameter, we derive everything else:
+
+| Property              | Formula                               |
+| --------------------- | ------------------------------------- |
+| Mean (expected value) | $E[X] = \frac{1}{\lambda}$            |
+| Variance              | $\text{Var}(X) = \frac{1}{\lambda^2}$ |
+| Standard deviation    | $\sigma = \frac{1}{\lambda}$          |
+
+Notice that the mean and standard deviation are equal: $\frac{1}{\lambda}$. This is a distinctive feature of the exponential distribution.
+
+**Example:** If customers arrive at a coffee shop at an average rate of $\lambda = 3$ per hour, the expected time between arrivals is $\frac{1}{3}$ hour, or 20 minutes.
+
+## Probability Density Function (PDF)
+
+The PDF gives the probability of the random variable having a specific value. For the exponential distribution:
+
+$$f(x) = \lambda e^{-\lambda x} \quad \text{for } x \geq 0$$
+
+The PDF is $0$ for $x < 0$. Negative time does not make sense.
+
+Key observations:
+
+- The curve starts at $f(0) = \lambda$ and decreases monotonically.
+- Higher $\lambda$ values produce steeper curves concentrated near zero.
+- Lower $\lambda$ values produce flatter curves that spread further out.
+- All exponential distributions have a long tail that goes to infinity.
+
+Use the slider below to see how $\lambda$ shapes the PDF:
+
+<ExponentialPlot client:visible mode="pdf" />
+
+## Cumulative Distribution Function (CDF)
+
+The CDF gives the probability that the random variable is less than or equal to a given value. For the exponential distribution:
+
+$$F(x) = P(X \leq x) = 1 - e^{-\lambda x} \quad \text{for } x \geq 0$$
+
+Key observations:
+
+- $F(0) = 0$. The probability of a zero-length wait is zero.
+- The CDF approaches $1$ as $x$ goes to $\infty$. The event will eventually happen if you wait long enough.
+- Higher $\lambda$ values cause the CDF to rise more quickly. Events happen sooner.
+
+Use the slider below to see how $\lambda$ shapes the CDF:
+
+<ExponentialPlot client:visible mode="cdf" />
+
+**Reading the CDF:** Pick a point on the x-axis (a time $x$) and read the corresponding y-value. That's the probability the event has occurred by time $x$. For example, with $\lambda = 0.5$, the probability of the event occurring within 2 time units is $F(2) = 1 - e^{-0.5 \cdot 2} = 1 - e^{-1} \approx 0.632$.
+
+## The Survival Function
+
+A natural companion to the CDF is the **survival function** (also called the reliability function):
+
+$$S(x) = P(X > x) = 1 - F(x) = e^{-\lambda x}$$
+
+Where the CDF answers "what's the probability the event has happened by time $x$?", the survival function answers "what's the probability the event has _not_ happened by time $x$?" This perspective is especially useful in reliability engineering and medical statistics.
+
+## Real-World Examples
+
+The exponential distribution appears whenever events occur independently at a roughly constant rate:
+
+- **Customer arrivals.** A call center receives calls at a rate of $\lambda = 12$ per hour. The time between consecutive calls follows $\text{Exp}(12)$, with an expected gap of 5 minutes.
+
+- **Equipment failure.** A server has a failure rate of $\lambda = 0.001$ per hour (one failure per 1,000 hours on average). The time until the next failure follows $\text{Exp}(0.001)$.
+
+- **Radioactive decay.** A radioactive isotope decays at rate $\lambda$. The time until the next decay event is exponentially distributed.
+
+- **Wait times.** Patients arrive at a client at a rate of $\lambda = 12$ per hour. The time between arrivals follows $\text{Exp}(12)$, with a mean of 5 minutes.
+
+In each case, the key assumption is that events are **independent** and occur at a **constant average rate**. When this assumption holds, the exponential distribution is the right model. When it doesn't — say, if failure rates increase with equipment age — a different distribution is needed.
+
+## What's Next
+
+The exponential distribution has a remarkable property that no other continuous distribution shares: **memorylessness**. In the next post, we'll explore what this means, why it matters for simulation, and how it connects to Markov processes.
