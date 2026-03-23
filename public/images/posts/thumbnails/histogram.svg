@@ -1,0 +1,13 @@
+<svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Axes -->
+  <line x1="15" y1="10" x2="15" y2="95" stroke="#555555" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="15" y1="95" x2="100" y2="95" stroke="#555555" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Histogram bars (7-bin bell-curve distribution) -->
+  <rect x="17" y="82" width="10" height="13" rx="1" fill="#5B9BD5"/>
+  <rect x="28" y="70" width="10" height="25" rx="1" fill="#5B9BD5"/>
+  <rect x="39" y="25" width="10" height="70" rx="1" fill="#5B9BD5"/>
+  <rect x="50" y="45" width="10" height="50" rx="1" fill="#5B9BD5"/>
+  <rect x="61" y="50" width="10" height="45" rx="1" fill="#5B9BD5"/>
+  <rect x="72" y="68" width="10" height="27" rx="1" fill="#5B9BD5"/>
+  <rect x="83" y="80" width="10" height="15" rx="1" fill="#5B9BD5"/>
+</svg>
