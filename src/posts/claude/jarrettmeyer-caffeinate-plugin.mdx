@@ -1,0 +1,37 @@
+---
+title: "My Claude Code Plugin Repo"
+date: 2026-03-23
+description: "I've started a Claude Code plugin repo with reusable skills. The first one keeps your MacBook awake."
+tags:
+  - Claude
+thumbnail:
+  src: /images/posts/thumbnails/claude-color.svg
+  alt: Claude
+draft: true
+---
+
+I've started a Claude Code plugin repo at [github.com/jarrettmeyer/skills](https://github.com/jarrettmeyer/skills). It's a collection of skills — slash commands that you can install and invoke directly inside Claude Code. Think of them as reusable, shareable extensions for your workflow.
+
+## Installation
+
+```bash
+claude plugin install jarrettmeyer/skills
+```
+
+That's it. After installation, the skills are available under the `jarrettmeyer:` namespace.
+
+## The First Skill: Caffeinate
+
+Ever kick off a long build, a deployment, or a model training run and walk away — only to come back and find your Mac fell asleep halfway through?
+
+macOS has a built-in utility for this called `caffeinate`. It prevents the system from sleeping. The problem is remembering the flags. The `-d` flag prevents display sleep. The `-i` flag prevents idle sleep. The `-m` flag prevents disk sleep. The `-s` flag prevents system sleep. The `-u` flag declares a user-active assertion. And you need to run it in the background with `&` so it doesn't block your terminal.
+
+Now you don't have to remember any of that.
+
+```
+/jarrettmeyer:caffeinate Stay awake for 1 hour
+```
+
+Claude calculates the number of seconds, kills any existing caffeinate process so they don't stack, and runs the new one in the background. You can also say "stay awake until 4:30 pm", "keep my computer awake", or "stop caffeinate" — it handles all of it.
+
+The plugin repo is open source and MIT licensed. Check it out at [github.com/jarrettmeyer/skills](https://github.com/jarrettmeyer/skills).
