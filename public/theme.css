@@ -9,10 +9,10 @@
    ======================================== */
 
 :root {
-  /* Monospace fonts - Fira Code everywhere */
-  --bs-font-sans-serif:
-    "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
-    "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+  /* Body text - readable sans-serif */
+  --bs-font-sans-serif: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+
+  /* Code and headings - monospace */
   --bs-font-monospace:
     "Fira Code", "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
     "Roboto Mono", Consolas, "Liberation Mono", "Courier New", monospace;
@@ -159,6 +159,7 @@
 
 /* Navbar */
 [data-bs-theme="dark"] .navbar {
+  font-family: var(--bs-font-monospace);
   border-bottom: 1px solid var(--bs-border-color);
   background-color: rgba(10, 14, 20, 0.95);
   backdrop-filter: blur(4px);
@@ -353,6 +354,7 @@
 [data-bs-theme="dark"] h4,
 [data-bs-theme="dark"] h5,
 [data-bs-theme="dark"] h6 {
+  font-family: var(--bs-font-monospace);
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--bs-emphasis-color);

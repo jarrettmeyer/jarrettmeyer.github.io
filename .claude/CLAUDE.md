@@ -113,8 +113,4 @@ Freeform article structure. Code fences support titles: ` ```toml title="pyproje
 
 ### Context7
 
-Always use Context7 for code generation, setup/configuration, or library/API docs — including Astro, Bootstrap, Pagefind, and Playwright.
-
-### Playwright
-
-Always use Playwright for browser automation testing. Save all screenshots to `.playwright-mcp/` (already in `.gitignore`).
+Always use Context7 for code generation, setup/configuration, or library/API docs. This includes Astro, Bootstrap, and Pagefind.
