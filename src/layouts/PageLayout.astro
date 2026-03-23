@@ -91,16 +91,21 @@ const {
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <Navbar />
     <main
-      class="container my-5"
+      class="container my-5 flex-grow-1"
       {...includeInSearchResults && !isDraft && { "data-pagefind-body": "" }}
       {...isDraft && { "data-pagefind-ignore": "all" }}
     >
       <slot />
       <SearchModal />
     </main>
+    <footer
+      class="bg-body-tertiary border-top mt-auto py-3 text-center text-body-secondary small"
+    >
+      &copy; {new Date().getFullYear()} Jarrett Meyer
+    </footer>
     <script is:inline>
       /* Mark display-math paragraphs (those whose only child is a .katex span)
          so CSS can center them like academic papers. Needed because Astro's MDX
