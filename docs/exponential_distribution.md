@@ -12,11 +12,15 @@ This series is for the person who wants that deeper understanding without the gr
 
 ## 1. ~~Exponential distribution~~
 
-Done. See post at `/statistics/exponential-distribution`
+Done. See post at `/statistics/exponential-distribution`.
 
 ## 2. Poisson process
 
 The Poisson process is the other side of the exponential coin. Where the exponential models the time _between_ events, the Poisson counts how many events occur in a fixed interval. We'll show that these are two views of the same underlying process and derive one from the other.
+
+## 2a. Simulation of a Poisson process
+
+Seeing the theory is one thing; watching it unfold is another. We'll simulate a Poisson process directly — generate exponential interarrival times, accumulate them into event timestamps, and count arrivals per interval. Then we'll overlay the simulated counts as a histogram against the theoretical Poisson PMF. The goal is to show how quickly the simulated distribution converges to the theoretical one, and to build intuition for what "Poisson arrivals" actually look like in a stream of events.
 
 ## 3. Erlang and k-Erlang
 

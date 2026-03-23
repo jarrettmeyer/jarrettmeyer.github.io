@@ -1,0 +1,114 @@
+---
+title: "The Poisson Process"
+date: 2026-03-25
+description: "The Poisson process counts events in a fixed interval. We derive it from the exponential distribution and explore the duality between waiting times and event counts."
+tags:
+  - Mathematics
+  - Simulation
+  - Statistics
+thumbnail:
+  src: /images/posts/thumbnails/histogram.svg
+  alt: Histogram
+draft: true
+---
+
+import PoissonPlot from "@/components/PoissonPlot";
+
+Previously, we modeled the time between independent events using the [exponential distribution](/statistics/exponential-distribution). We gave the example of customers arriving at a coffee shop at a rate of $\lambda = 3$ per hour (the **tick**). The time between arrivals follows $\text{Exp}(3)$. This gives us an expected gap of 20 minutes between customers.
+
+Now we flip the question. Instead of asking, "How long until the next customer?", we ask: "How many customers arrive in a given window of time?" If we watch the shop for an entire 8-hour shift, how many customers should we expect?
+
+The answer is the **Poisson distribution** — the other side of the exponential question.
+
+## From Exponential to Poisson
+
+The derivation starts with the same setup. Events arrive at a constant average rate $\lambda$. We want to count how many events occur in a fixed interval of length $t$.
+
+**Step 1: Partition the interval.** Chop $[0, t]$ into $n$ equal subintervals, each of length $\frac{t}{n}$.
+
+**Step 2: Probability per subinterval.** For large $n$, each subinterval is so short that at most one event can fall in it. The probability of exactly one event in a subinterval of length $\frac{t}{n}$ is approximately:
+
+$$P(\text{one event}) \approx \lambda \cdot \frac{t}{n}$$
+
+**Step 3: Recognize the binomial.** Each subinterval either contains an event or it doesn't, independently of the others. The total number of events across $n$ subintervals follows a binomial distribution:
+
+$$X \sim \text{Binomial}\!\left(n,\, \frac{\lambda t}{n}\right)$$
+
+The probability of exactly $k$ events is:
+
+$$P(X = k) = \binom{n}{k} \left(\frac{\lambda t}{n}\right)^k \left(1 - \frac{\lambda t}{n}\right)^{n-k}$$
+
+**Step 4: Take the limit.** Let $n \to \infty$ — infinitely many, infinitely thin subintervals. Each factor converges separately:
+
+$$\binom{n}{k} \cdot \frac{1}{n^k} \;\to\; \frac{1}{k!} \qquad \left(\frac{\lambda t}{n}\right)^k \cdot n^k = (\lambda t)^k \qquad \left(1 - \frac{\lambda t}{n}\right)^n \;\to\; e^{-\lambda t}$$
+
+Multiplying the pieces together:
+
+$$P(X = k) = \frac{(\lambda t)^k \, e^{-\lambda t}}{k!} \quad \text{for } k = 0, 1, 2, \ldots$$
+
+This is the **Poisson distribution**.
+
+## The Poisson Distribution
+
+The Poisson **probability mass function** (PMF) has one parameter: $\mu = \lambda t$, the expected number of events in the interval.
+
+**Note:** We say PMF rather than PDF because $k$ is discrete — you can have 0, 1, 2, or 24 customers, but you can't have 3.7 customers. The exponential distribution used a PDF because time is continuous and can take any non-negative real value.
+
+$$P(X = k) = \frac{\mu^k \, e^{-\mu}}{k!}$$
+
+Its key properties:
+
+| Property              | Formula                     |
+| --------------------- | --------------------------- |
+| Mean (expected value) | $E[X] = \lambda t$          |
+| Variance              | $\text{Var}(X) = \lambda t$ |
+| Standard deviation    | $\sigma = \sqrt{\lambda t}$ |
+
+The mean and variance are equal. This is the fingerprint of the Poisson distribution — if you fit a Poisson model to real data and find the sample mean and variance are very different, that's a signal the Poisson isn't the right model.
+
+**Back to the coffee shop.** With $\lambda = 3$ and $t = 8$, we get $\mu = \lambda t = 24$. Over a full shift, the expected number of customers is 24. But how does the probability spread?
+
+$$P(X = 20) = \dfrac{24^{20} \, e^{-24}}{20!} \approx 0.0624$$
+
+$$P(X = 24) = \dfrac{24^{24} \, e^{-24}}{24!} \approx 0.0812$$
+
+$$P(X = 30) = \dfrac{24^{30} \, e^{-24}}{30!} \approx 0.0363$$
+
+Even the most likely outcome ($k = 24$) only occurs about 8% of the time. The probability spreads across a wide range. That's typical for a Poisson distribution with a large mean — it looks roughly bell-shaped, which is no accident (the central limit theorem explains why).
+
+## Interactive PMF
+
+Use the slider to see how $\mu = \lambda t$ shapes the distribution.
+
+<PoissonPlot client:visible />
+
+A few things to notice:
+
+- Small $\lambda t$: the distribution is right-skewed, concentrated near zero.
+- Large $\lambda t$: the distribution spreads and approaches a bell curve.
+- The peak always sits near $k = \lambda t$, confirming that $\lambda t$ is both the mean and the most likely value (approximately).
+
+## Two Sides of the Same Coin
+
+The exponential distribution and the Poisson distribution describe the same underlying process from two different perspectives. Both stem from the same assumption: events arrive independently at a constant average rate $\lambda$.
+
+| Question                       | Distribution                | Type       |
+| ------------------------------ | --------------------------- | ---------- |
+| How long until the next event? | $\text{Exp}(\lambda)$       | Continuous |
+| How many events in time $t$?   | $\text{Poisson}(\lambda t)$ | Discrete   |
+
+If you know $\lambda$ for one, you know it for the other. The two distributions are mathematically inseparable — they are two windows into the same process.
+
+## Real-World Examples
+
+Anywhere events arrive at a roughly constant, independent rate, you can count them with the Poisson distribution:
+
+- **Customer arrivals.** A coffee shop sees $\lambda = 3$ arrivals per hour. In an 8-hour shift, the customer count follows $\text{Poisson}(24)$.
+
+- **Server requests.** A web server handles $\lambda = 500$ requests per minute. The number of requests in a 10-second window follows $\text{Poisson}(83.3)$.
+
+- **Manufacturing defects.** A factory produces defects at a rate of $\lambda = 0.02$ per item. In a batch of 1,000 items, the defect count follows $\text{Poisson}(20)$.
+
+- **Natural events.** A seismograph records minor tremors at $\lambda = 2$ per day. The weekly count follows $\text{Poisson}(14)$.
+
+The same caveats apply as with the exponential: the Poisson is the right model when events are independent and the rate is roughly constant. If customers tend to arrive in groups, or if the rush-hour rate is three times the off-peak rate, a more nuanced model is needed.

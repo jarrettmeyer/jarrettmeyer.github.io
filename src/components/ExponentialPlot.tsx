@@ -1,4 +1,5 @@
 import { useDimensions } from "@/hooks/useDimensions";
+import { PLOT_ACCENT_COLOR, PLOT_ASPECT_RATIO } from "@/utils/plotConstants";
 import * as d3 from "d3";
 import { useEffect, useRef, useState } from "react";
 
@@ -19,7 +20,7 @@ function exponentialCdf(x: number, lambda: number): number {
 }
 
 const MARGIN = { top: 20, right: 20, bottom: 40, left: 50 };
-const ASPECT_RATIO = 2.2;
+const ASPECT_RATIO = PLOT_ASPECT_RATIO;
 const X_DOMAIN_MAX = 8;
 const NUM_POINTS = 200;
 const DEFAULT_LAMBDA = 0.5;
@@ -102,7 +103,7 @@ export default function ExponentialPlot({ mode }: ExponentialPlotProps) {
     g.append("path")
       .datum(data)
       .attr("d", area)
-      .attr("fill", "#5B9BD5")
+      .attr("fill", PLOT_ACCENT_COLOR)
       .attr("fill-opacity", 0.2);
 
     // Curve line
@@ -115,7 +116,7 @@ export default function ExponentialPlot({ mode }: ExponentialPlotProps) {
       .datum(data)
       .attr("d", line)
       .attr("fill", "none")
-      .attr("stroke", "#5B9BD5")
+      .attr("stroke", PLOT_ACCENT_COLOR)
       .attr("stroke-width", 2.5);
   }, [lambda, innerWidth, innerHeight, mode, fn, yLabel]);
 
