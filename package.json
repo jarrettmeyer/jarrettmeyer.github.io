@@ -16,12 +16,12 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/react": "^5.0.0",
+    "@astrojs/react": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
     "@pagefind/default-ui": "^1.4.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.0.2",
+    "astro": "^6.0.8",
     "astro-expressive-code": "^0.41.7",
     "astro-pagefind": "^1.8.5",
     "d3": "^7.9.0",
@@ -34,12 +34,12 @@
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^5.0.0",
+    "@astrojs/mdx": "^5.0.2",
     "@types/d3": "^7.4.3",
     "@types/topojson-client": "^3.1.5",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^6.1.1"
   }
