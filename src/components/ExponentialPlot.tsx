@@ -129,7 +129,7 @@ export default function ExponentialPlot({ mode }: ExponentialPlotProps) {
       <div className="d-flex align-items-center gap-3 mt-2 mb-3">
         <label
           htmlFor={`lambda-slider-${mode}`}
-          className="form-label mb-0 fw-semibold"
+          className="form-label mb-0 fw-semibold text-nowrap"
         >
           &lambda; = {lambdaDisplay}
         </label>
@@ -143,7 +143,7 @@ export default function ExponentialPlot({ mode }: ExponentialPlotProps) {
           value={lambda}
           onChange={(e) => setLambda(parseFloat(e.target.value))}
         />
-        <span className="text-secondary">mean = {meanDisplay}</span>
+        <span className="text-secondary text-nowrap">mean = {meanDisplay}</span>
       </div>
     </div>
   );
