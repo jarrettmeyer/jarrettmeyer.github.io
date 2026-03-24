@@ -1,3 +1,5 @@
+.astro/
+.worktrees/
 dist/
 node_modules/
-.worktrees/
+public/data/world-atlas@2.0.2/
