@@ -6,17 +6,17 @@ Personal website (jarrettmeyer.com) built with Astro, deployed to GitHub Pages o
 
 - Always start in plan mode. Ask clarifying questions before writing code.
 - Define and verify success criteria before claiming done.
-- Use worktrees for feature work. Worktrees are saved in `.worktrees/<branch-name>`.
+- If using worktrees, worktrees are saved in the project root at `.worktrees/<branch-name>`.
 - Prefer smaller, atomic commits. We can always squash later.
 - Test locally: run the dev server (`bun run dev`). Use Playwright for more sophisticated testing.
 - Create a pull request when work is complete.
-- Match Jarrett's writing tone and style in blog posts — sound like a person, not an AI.
+- Match Jarrett's writing tone and style in blog posts. Sound like a person, not an AI.
 
 ### Plan Structure
 
 Every implementation plan must include these four sections:
 
-1. **Branch** — Create a worktree with a descriptive branch name
+1. **Branch** — What branch should you work on? Should you create a worktree?
 2. **Changes** — The actual code changes
 3. **Verification** — Concrete steps: build, dev server, Playwright checks
 4. **PR** — Commit, push, and create a pull request
@@ -41,9 +41,10 @@ Every implementation plan must include these four sections:
 
 All posts are `.mdx` files organized in subdirectories:
 
-- `leetcode/` — LeetCode problem solutions
-- `software/` — general software/engineering articles
 - `drafts/` — work-in-progress posts (set `draft: true`)
+- `leetcode/` — LeetCode problem solutions
+- `software/` — General software/engineering articles
+- `statistics/`
 
 ### Frontmatter (defined in `src/content.config.ts`)
 
