@@ -1,0 +1,36 @@
+---
+layout: "@/layouts/SlideLayout.astro"
+title: "Introduction to Simulation"
+---
+
+import ExponentialPlot from "@/components/ExponentialPlot";
+
+# Introduction to Simulation
+
+Jarrett Meyer — March 2026
+
+---
+
+## The Exponential Distribution
+
+---
+
+The exponential distribution models the time between events. If events arrive at rate $\lambda$ per unit time, the waiting time until the next event follows:
+
+$$f(x) = \lambda e^{-\lambda x}, \quad x \ge 0$$
+
+The mean waiting time is $\frac{1}{\lambda}$.
+
+---
+
+<ExponentialPlot mode="pdf" client:only="react" />
+
+---
+
+## Poisson Process
+
+---
+
+### Simulation of a Poisson Process
+
+---

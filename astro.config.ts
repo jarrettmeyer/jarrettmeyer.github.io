@@ -7,6 +7,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { defineConfig } from "astro/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { rehypeRevealSlides } from "./src/utils/rehypeRevealSlides";
 
 import react from "@astrojs/react";
 
@@ -18,7 +19,7 @@ export default defineConfig({
   site: "https://jarrettmeyer.com",
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeRevealSlides],
   },
   integrations: [
     expressiveCode(),

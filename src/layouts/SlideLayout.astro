@@ -32,6 +32,12 @@ const { title, includeInSearchResults } = Astro.props;
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/dracula.min.css" /> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/blood.min.css" /> -->
 
+    <!-- KaTeX -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.40/dist/katex.min.css"
+    />
+
     <!-- Support Hebrew fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -58,6 +64,12 @@ const { title, includeInSearchResults } = Astro.props;
     <script
       src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.js"
       is:inline></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"
+      is:inline></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"
+      is:inline></script>
     <script is:inline>
       Reveal.initialize({
         controls: true,
@@ -66,6 +78,8 @@ const { title, includeInSearchResults } = Astro.props;
         progress: true,
         hash: true,
         hashOneBasedIndex: true,
+        slideNumber: true,
+        plugins: [RevealMarkdown, RevealMath.KaTeX],
       });
     </script>
   </body>
