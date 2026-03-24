@@ -10,6 +10,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 import react from "@astrojs/react";
 
+/** Paths excluded from the sitemap and not intended for public discovery. */
+const SITEMAP_EXCLUDED_PATHS = ["/present/", "/visualize/"];
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://jarrettmeyer.com",
@@ -17,7 +20,16 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
-  integrations: [expressiveCode(), mdx(), pagefind(), sitemap(), react()],
+  integrations: [
+    expressiveCode(),
+    mdx(),
+    pagefind(),
+    sitemap({
+      filter: (page) =>
+        SITEMAP_EXCLUDED_PATHS.every((path) => !page.includes(path)),
+    }),
+    react(),
+  ],
   vite: {
     plugins: [tsconfigPaths() as any],
   },

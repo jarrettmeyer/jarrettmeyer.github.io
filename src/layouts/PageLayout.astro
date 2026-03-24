@@ -37,6 +37,11 @@ const {
       name="keywords"
       content="AWS, Machine Learning, Cloud Architecture, Data Solutions, Software Engineering, Technology Leadership, LeetCode, Python"
     />
+    {
+      !includeInSearchResults && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
