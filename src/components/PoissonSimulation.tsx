@@ -582,7 +582,7 @@ export default function PoissonSimulation() {
         <div className="d-flex align-items-center gap-3 mt-3">
           <label
             htmlFor="lambda-sim-slider"
-            className="form-label mb-0 fw-semibold"
+            className="form-label mb-0 fw-semibold text-nowrap"
           >
             &lambda; = {lambda}/hr
           </label>
@@ -596,7 +596,7 @@ export default function PoissonSimulation() {
             value={lambda}
             onChange={(e) => setLambda(parseFloat(e.target.value))}
           />
-          <span className="text-secondary">
+          <span className="text-secondary text-nowrap">
             expected = {(lambda * OBSERVATION_WINDOW_HOURS).toFixed(0)} arrivals
           </span>
         </div>

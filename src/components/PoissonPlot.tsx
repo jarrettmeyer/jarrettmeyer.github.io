@@ -137,9 +137,9 @@ export default function PoissonPlot() {
       <div className="d-flex align-items-center gap-3 mt-2 mb-3">
         <label
           htmlFor="lambda-t-slider"
-          className="form-label mb-0 fw-semibold"
+          className="form-label mb-0 fw-semibold text-nowrap"
         >
-          &lambda;t = {lambdaT}
+          &mu; = &lambda;t = {lambdaT}
         </label>
         <input
           id="lambda-t-slider"
@@ -151,7 +151,7 @@ export default function PoissonPlot() {
           value={lambdaT}
           onChange={(e) => setLambdaT(parseInt(e.target.value, 10))}
         />
-        <span className="text-secondary">
+        <span className="text-secondary text-nowrap">
           mean = {lambdaT}, variance = {lambdaT}
         </span>
       </div>
