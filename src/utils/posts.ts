@@ -14,7 +14,7 @@ export const filterByCount = (count?: number) => {
 export const filterByDate = (date?: Date) => {
   date = date || new Date();
   return (post: Post) => {
-    if (import.meta.env.PROD && new Date(post.data?.date) >= date) {
+    if (import.meta.env.PROD && new Date(post.data?.date) > date) {
       return false;
     }
     return true;
