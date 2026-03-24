@@ -4,6 +4,8 @@ title: "Introduction to Simulation"
 ---
 
 import ExponentialPlot from "@/components/ExponentialPlot";
+import PoissonPlot from "@/components/PoissonPlot";
+import PoissonSimulation from "@/components/PoissonSimulation";
 
 # Introduction to Simulation
 
@@ -15,11 +17,27 @@ Jarrett Meyer — March 2026
 
 ---
 
-The exponential distribution models the time between events. If events arrive at rate $\lambda$ per unit time, the waiting time until the next event follows:
+### Exponentional Distribution
+
+Models the time between events. If events arrive at rate $\lambda$ per unit time, the waiting time until the next event is:
 
 $$f(x) = \lambda e^{-\lambda x}, \quad x \ge 0$$
 
-The mean waiting time is $\frac{1}{\lambda}$.
+The mean waiting time between events is $\frac{1}{\lambda}$.
+
+---
+
+Customers arrive at a coffee shop at an average rate of $\lambda = 3$ customers per hour.
+
+The average time between arrivals is:
+
+$$\frac{1}{\lambda} = \frac{1}{3} \space \text{hours} = 20 \space \text{minutes}$$
+
+---
+
+### Probability Density Function (PDF)
+
+$$f(x) = \lambda e^{-\lambda x} \quad \forall x \geq 0$$
 
 ---
 
@@ -27,10 +45,114 @@ The mean waiting time is $\frac{1}{\lambda}$.
 
 ---
 
-## Poisson Process
+### Cumulative Density Function (CDF)
+
+$$F(x) = P(X \leq x) = 1 - e^{-\lambda x} \quad \forall x \geq 0$$
+
+---
+
+<ExponentialPlot mode="cdf" client:only="react" />
+
+---
+
+### Observations
+
+- $F(0) = 0$. The probability of a 0-length wait is 0.
+- CDF approaches 1 as $x$ goes to $\infty$. If you wait long enough, the event is guaranteed to happen.
+- Higher $\lambda$ means events happen sooner.
+
+---
+
+### Real-World Examples
+
+- Customer arrivals
+- Wait times
+- Equipment failure
+- Radioactive decay
+
+Key assumptions are **independent** events and **constant average rate**.
+
+---
+
+## Poisson Processes
+
+---
+
+If the **exponential** distribution tells us the time between events, the **Poisson** distribution tells us the number of events in a given time period.
+
+---
+
+### 1. Partition the Interval
+
+Slice $[0, t]$ into $n$ equal subintervals, each of length $\frac{t}{n}$.
+
+---
+
+### 2. Probability per Subinterval
+
+For large enough $n$, each subinterval is so short that at most one event can happen.
+
+$$P(\text{one event}) \approx \lambda \cdot \frac{t}{n}$$
+
+---
+
+### 3. Each subinterval is a Bernoulli trial
+
+Either an event happens or it doesn't.
+
+$$X \sim \text{Binomial}\!\left(n,\, p\right) = \text{Binomial}\!\left(n,\, \frac{\lambda t}{n}\right)$$
+
+---
+
+### 4. To $\infty$ and Beyond
+
+Let $n \to \infty$...
+
+$$\binom{n}{k} \cdot \frac{1}{n^k} \;\to\; \frac{1}{k!}$$
+
+$$\left(\frac{\lambda t}{n}\right)^k \cdot n^k = (\lambda t)^k$$
+
+$$\left(1 - \frac{\lambda t}{n}\right)^n \;\to\; e^{-\lambda t}$$
+
+Put them all together...
+
+---
+
+### Poisson Distribution!
+
+$$P(X = k) = \frac{(\lambda t)^k \, e^{-\lambda t}}{k!}, \quad k \in \mathbb{N}_0$$
+
+$$P(X = k) = \frac{\mu^k \, e^{-\mu}}{k!}, \quad k \in \mathbb{N}_0$$
+
+---
+
+<PoissonPlot client:only="react" />
+
+---
+
+- Small $\lambda t$: distribution is right-skewed, concentrated near 0
+- Large $\lambda t$: distribution spreads, approaches a normal distribution
+- Peak is always $k = \lambda t$
+
+---
+
+| Question                       | Distribution                | Type       |
+| ------------------------------ | --------------------------- | ---------- |
+| How long until the next event? | $\text{Exp}(\lambda)$       | Continuous |
+| How many events in time $t$?   | $\text{Poisson}(\lambda t)$ | Discrete   |
+
+The two distributions are mathematically inseparable. If you know one, you know the other.
+
+---
+
+All the same caveats apply. Independent events at a constant rate.
 
 ---
 
 ### Simulation of a Poisson Process
+
+---
+
+<PoissonSimulation client:only="react" />
 
 ---

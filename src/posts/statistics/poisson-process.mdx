@@ -27,7 +27,7 @@ The answer is the **Poisson distribution**.
 
 The derivation starts with the same setup. Events arrive at a constant average rate $\lambda$. We want to count how many events occur in a fixed interval of length $t$.
 
-**Step 1: Partition the interval.** Chop $[0, t]$ into $n$ equal subintervals, each of length $\frac{t}{n}$.
+**Step 1: Partition the interval.** Slice $[0, t]$ into $n$ equal subintervals, each of length $\frac{t}{n}$.
 
 **Step 2: Probability per subinterval.** For large $n$, each subinterval is so short that at most one event can fall in it. The probability of exactly one event in a subinterval of length $\frac{t}{n}$ is approximately:
 
@@ -49,7 +49,7 @@ $$\binom{n}{k} \cdot \frac{1}{n^k} \;\to\; \frac{1}{k!} \qquad \left(\frac{\lamb
 
 Multiplying the pieces together:
 
-$$P(X = k) = \frac{(\lambda t)^k \, e^{-\lambda t}}{k!} \quad \text{for } k = 0, 1, 2, \ldots$$
+$$P(X = k) = \frac{(\lambda t)^k \, e^{-\lambda t}}{k!}, \quad k \in \mathbb{N}_0$$
 
 This is the **Poisson distribution**.
 
@@ -90,7 +90,7 @@ Use the slider to see how $\mu = \lambda t$ shapes the distribution.
 A few things to notice:
 
 - Small $\lambda t$: the distribution is right-skewed, concentrated near zero.
-- Large $\lambda t$: the distribution spreads and approaches a bell curve.
+- Large $\lambda t$: the distribution spreads and approaches a normal distribution.
 - The peak always sits near $k = \lambda t$, confirming that $\lambda t$ is both the mean and the most likely value (approximately).
 
 ## Two Sides of the Same Coin

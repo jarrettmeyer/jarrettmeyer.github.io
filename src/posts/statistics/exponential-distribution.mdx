@@ -37,7 +37,7 @@ Notice that the mean and standard deviation are equal: $\frac{1}{\lambda}$. This
 
 The PDF gives the probability of the random variable having a specific value. For the exponential distribution:
 
-$$f(x) = \lambda e^{-\lambda x} \quad \text{for } x \geq 0$$
+$$f(x) = \lambda e^{-\lambda x} \quad \forall x \geq 0$$
 
 The PDF is $0$ for $x < 0$. Negative time does not make sense.
 
@@ -56,7 +56,7 @@ Use the slider below to see how $\lambda$ shapes the PDF:
 
 The CDF gives the probability that the random variable is less than or equal to a given value. For the exponential distribution:
 
-$$F(x) = P(X \leq x) = 1 - e^{-\lambda x} \quad \text{for } x \geq 0$$
+$$F(x) = P(X \leq x) = 1 - e^{-\lambda x} \quad \forall x \geq 0$$
 
 Key observations:
 
@@ -88,6 +88,6 @@ The exponential distribution appears whenever events occur independently at a ro
 
 - **Radioactive decay.** A radioactive isotope decays at rate $\lambda$. The time until the next decay event is exponentially distributed.
 
-- **Wait times.** Patients arrive at a client at a rate of $\lambda = 12$ per hour. The time between arrivals follows $\text{Exp}(12)$, with a mean of 5 minutes.
+- **Wait times.** After arriving at a clinic, patients are seen at a rate of $\lambda = 12$ per hour. The average wait time for a patient is 5 minutes.
 
 In each case, the key assumption is that events are **independent** and occur at a **constant average rate**. When this assumption holds, the exponential distribution is the right model. When it doesn't — say, if failure rates increase with equipment age — a different distribution is needed.
