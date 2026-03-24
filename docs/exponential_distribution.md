@@ -18,21 +18,29 @@ Done. See post at `/statistics/exponential-distribution`.
 
 Done. See post at `/statistics/poisson-process`.
 
-## 2a. Simulation of a Poisson process
+## 2a. ~~Simulation of a Poisson process~~
 
-Seeing the theory is one thing; watching it unfold is another. We'll simulate a Poisson process directly — generate exponential interarrival times, accumulate them into event timestamps, and count arrivals per interval. Then we'll overlay the simulated counts as a histogram against the theoretical Poisson PMF. The goal is to show how quickly the simulated distribution converges to the theoretical one, and to build intuition for what "Poisson arrivals" actually look like in a stream of events.
+Done. See post at `/statistics/poisson-process-simulation`.
 
-## 3. Erlang and k-Erlang
+## 3. Discrete Event Simulation vs. Discrete Time Simulation
+
+Two ways to simulate a process like a coffee shop queue or a clinical trial.
+
+**Discrete Time Simulation (DTS)** runs a fixed clock tick. At each tick, it asks: did anything happen? Each patient, each provider, each drug, each possible outcome gets a Bernoulli draw. The work per tick grows multiplicatively with model complexity — patients × medications × adverse event profiles × efficacy outcomes. And the tick has to be small enough to capture rapid events accurately, so you can't just make it coarse. The cost is O(T / Δt), and the ratio to DES is 1 / (λΔt). For a trivial coffee shop example at 1-minute resolution, DTS is already 20× more expensive than it needs to be.
+
+**Discrete Event Simulation (DES)** generates a time-to-next-event from Exp(λ) for each event type and puts them on a priority queue. The simulation jumps directly from event to event — nothing happens between events, so nothing is computed between events. A patient who stays stable for 6 months costs you nothing until month 6. The cost is O(number of events), which is O(λT). Work is proportional to what actually happens, not to elapsed time.
+
+The difference is manageable for a single Poisson process. It becomes the difference between a model that runs in seconds and one that would run for days once you add multiple patients, providers, medications, adverse events, and efficacy outcomes — all interacting. This is why every serious healthcare simulation platform (Arena, Simul8, AnyLogic, R's `simmer`) is a DES engine. The exponential distribution isn't just a math curiosity; it's the engine underneath all of them.
+
+## 4. Erlang and k-Erlang
 
 The Erlang distribution is the sum of k independent exponential random variables. It models the time until the kth event in a Poisson process — the waiting time for multiple arrivals rather than just one. We'll build intuition for how k shapes the distribution and where Erlang appears in practice (e.g., call center staffing, multi-stage service processes).
 
-## 4. Generating random variates (inverse transform)
-
-Theory is only useful if you can turn it into numbers. We'll derive the inverse transform method — turning uniform random numbers into exponential samples via $X = -\frac{1}{\lambda} \ln(1 - U)$ — and show why this works by connecting it back to the CDF. This is the fundamental technique that powers every simulation engine.
-
 ## 5. Memorylessness and Markov property
 
-The exponential distribution is the only continuous distribution with the memoryless property: $P(X > s + t \mid X > s) = P(X > t)$. The system doesn't remember how long it's been waiting. We'll prove this, show why it matters for Markov chains, and explain why it makes exponential arrivals the natural building block for discrete event simulation.
+Erlang is not memoryless — if you're waiting for the kth arrival, how long you've already waited tells you something about how much longer you'll wait. The exponential distribution is different. It's the only continuous distribution with the memoryless property: $P(X > s + t \mid X > s) = P(X > t)$. The system has no memory of how long it's been waiting. We'll prove this, show why it's what makes the Poisson process's independent increments work, and connect it to the Markov property. This also explains something that's been true since post #3: why DES can generate the next event time independently, without tracking history. That only works because of memorylessness. With Erlang service times, you'd need to track which phase you're in.
+
+Memorylessness is powerful, but not everything follows an exponential distribution. For a distribution with $k$ parameters, you have $k+1$ problems: estimating each of the $k$ parameters, plus tracking how long you've been in the current state. Exponential is the only distribution where the $+1$ vanishes. With $\text{Exp}(\lambda)$, there's nothing to track — the past is irrelevant. If the system state changes (more baristas hired, arrival rate shifts), you can discard the current event and generate a fresh one from scratch. With any other distribution, you can't. You need to know how far through the distribution you already are before you can properly handle a state change.
 
 ## 6. Queueing theory (M/M/1, Little's Law)
 
@@ -40,7 +48,7 @@ This is where the distributions pay off. We'll start with the M/M/1 queue (expon
 
 ## 7. Building a DES in Python
 
-We bring everything together by building a simple discrete event simulation from scratch. Using only stdlib and numpy, we'll simulate a service queue: generate exponential arrivals, Erlang service times, track wait times, and compare our simulation results against the queueing theory formulas from the previous post. Time until first event, time until kth event, histograms vs. theoretical curves.
+Open with the feedback loop problem: arrivals increase, capacity constraints bite, satisfaction drops, arrivals decrease again. Rates change based on system state. This is what a real model looks like — and it's why you need a proper DES. Then build one from scratch using only stdlib and numpy: exponential arrivals, Erlang service times, state-dependent rate updates, wait time tracking. Compare simulation results against the M/M/1 closed-form results from the previous post.
 
 ## 8. Modeling in AnyLogic
 
