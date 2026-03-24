@@ -14,9 +14,9 @@ This series is for the person who wants that deeper understanding without the gr
 
 Done. See post at `/statistics/exponential-distribution`.
 
-## 2. Poisson process
+## 2. ~~Poisson process~~
 
-The Poisson process is the other side of the exponential coin. Where the exponential models the time _between_ events, the Poisson counts how many events occur in a fixed interval. We'll show that these are two views of the same underlying process and derive one from the other.
+Done. See post at `/statistics/poisson-process`.
 
 ## 2a. Simulation of a Poisson process
 

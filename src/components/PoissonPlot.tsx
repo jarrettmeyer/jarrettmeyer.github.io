@@ -35,7 +35,7 @@ function buildPmfData(lambdaT: number): Array<{ k: number; p: number }> {
   const data: Array<{ k: number; p: number }> = [];
   let cumulative = 0;
   let k = 0;
-  while (cumulative < 0.9999 && k < 200) {
+  while (cumulative < 0.999999 && k < 200) {
     const p = poissonPmf(k, lambdaT);
     data.push({ k, p });
     cumulative += p;

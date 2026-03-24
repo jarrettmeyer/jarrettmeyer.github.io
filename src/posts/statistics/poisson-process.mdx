@@ -1,7 +1,7 @@
 ---
 title: "The Poisson Process"
-date: 2026-03-25
-description: "The Poisson process counts events in a fixed interval. We derive it from the exponential distribution and explore the duality between waiting times and event counts."
+date: 2026-03-26
+description: "The Poisson process counts independent, exponentially-spaced arrivals in a fixed interval."
 tags:
   - Mathematics
   - Simulation
@@ -9,16 +9,19 @@ tags:
 thumbnail:
   src: /images/posts/thumbnails/histogram.svg
   alt: Histogram
-draft: true
 ---
 
 import PoissonPlot from "@/components/PoissonPlot";
 
-Previously, we modeled the time between independent events using the [exponential distribution](/statistics/exponential-distribution). We gave the example of customers arriving at a coffee shop at a rate of $\lambda = 3$ per hour (the **tick**). The time between arrivals follows $\text{Exp}(3)$. This gives us an expected gap of 20 minutes between customers.
+Previously, we modeled the time between independent events using the [exponential distribution](/statistics/exponential-distribution). We gave the example of customers arriving at a coffee shop at a rate of $\lambda = 3$ per hour (where the **tick** is one hour). The time between arrivals follows $\text{Exp}(3)$. This gives us an expected gap of 20 minutes between customers.
+
+_Note: If the **tick** were 1 minute, instead of 1 hour, $\lambda = 0.05$. The tick is important!_
 
 Now we flip the question. Instead of asking, "How long until the next customer?", we ask: "How many customers arrive in a given window of time?" If we watch the shop for an entire 8-hour shift, how many customers should we expect?
 
-The answer is the **Poisson distribution** — the other side of the exponential question.
+The expected value is obvious. An average of 3 customers per hour. 8 hours. We should expect 24 customers in 8 hours. But what about every other possibility?
+
+The answer is the **Poisson distribution**.
 
 ## From Exponential to Poisson
 
@@ -30,9 +33,11 @@ The derivation starts with the same setup. Events arrive at a constant average r
 
 $$P(\text{one event}) \approx \lambda \cdot \frac{t}{n}$$
 
-**Step 3: Recognize the binomial.** Each subinterval either contains an event or it doesn't, independently of the others. The total number of events across $n$ subintervals follows a binomial distribution:
+**Step 3: Recognize the binomial.** Each subinterval either contains an event or it doesn't, independently of the others. That's a classic binomial setup: $n$ independent trials, each with success probability $p = \frac{\lambda t}{n}$. The total number of events across all $n$ subintervals follows:
 
-$$X \sim \text{Binomial}\!\left(n,\, \frac{\lambda t}{n}\right)$$
+$$X \sim \text{Binomial}\!\left(n,\, p\right) = \text{Binomial}\!\left(n,\, \frac{\lambda t}{n}\right)$$
+
+Here $n$ is the number of subintervals (trials) and $p = \frac{\lambda t}{n}$ is the probability of exactly one event in each subinterval. Notice that as $n$ grows, $p$ shrinks proportionally. We continue to slice the interval ever finer while keeping the total expected count $np = \lambda t$ fixed.
 
 The probability of exactly $k$ events is:
 
@@ -52,7 +57,7 @@ This is the **Poisson distribution**.
 
 The Poisson **probability mass function** (PMF) has one parameter: $\mu = \lambda t$, the expected number of events in the interval.
 
-**Note:** We say PMF rather than PDF because $k$ is discrete — you can have 0, 1, 2, or 24 customers, but you can't have 3.7 customers. The exponential distribution used a PDF because time is continuous and can take any non-negative real value.
+**Note:** We say PMF rather than PDF because $k$ is discrete. You can have 0, 1, 2, or 24 customers, but you can't have 3.7 customers. The exponential distribution used a PDF because time is continuous and can take any non-negative real value.
 
 $$P(X = k) = \frac{\mu^k \, e^{-\mu}}{k!}$$
 
@@ -97,7 +102,7 @@ The exponential distribution and the Poisson distribution describe the same unde
 | How long until the next event? | $\text{Exp}(\lambda)$       | Continuous |
 | How many events in time $t$?   | $\text{Poisson}(\lambda t)$ | Discrete   |
 
-If you know $\lambda$ for one, you know it for the other. The two distributions are mathematically inseparable — they are two windows into the same process.
+If you know $\lambda$ for one, you know it for the other. The two distributions are mathematically inseparable. They are two ways of viewing the same process.
 
 ## Real-World Examples
 
