@@ -1,0 +1,81 @@
+---
+title: "jarrettmeyer/skills v1.0.0"
+date: 2026-03-24
+description: "Introducing v1.0.0 of my Claude Code skills plugin: caffeinate, uv, podman, and scrapling."
+tags:
+  - Claude
+  - Software
+thumbnail:
+  src: /images/posts/thumbnails/claude-color.svg
+  alt: Claude
+---
+
+I've published v1.0.0 of my Claude Code skills plugin at [github.com/jarrettmeyer/skills](https://github.com/jarrettmeyer/skills). It's a collection of reusable skills — slash commands and instructions that you can install and invoke directly inside Claude Code.
+
+## Installation
+
+```bash
+claude plugin install jarrettmeyer/skills
+```
+
+After installation, the skills are available under the `jarrettmeyer:` namespace.
+
+## caffeinate
+
+Ever kick off a long build, a deployment, or a model training run and walk away? Then you come back and find your Mac fell asleep halfway through?
+
+macOS has a built-in utility for this called `caffeinate`. It prevents the system from sleeping. The problem is remembering the flags. The `-d` flag prevents display sleep. The `-i` flag prevents idle sleep. The `-m` flag prevents disk sleep. The `-s` flag prevents system sleep. The `-u` flag declares a user-active assertion. And you need to run it in the background with `&` so it doesn't block your terminal.
+
+Now you don't have to remember any of that.
+
+```
+/jarrettmeyer:caffeinate Stay awake for 1 hour
+```
+
+Claude calculates the number of seconds, kills any existing caffeinate process so they don't stack, and runs the new one in the background. You can also say "stay awake until 4:30 pm", "keep my computer awake", or "stop caffeinate". This skill handles all of it.
+
+## uv
+
+If you've been doing Python development for more than five minutes, you've felt the pain: `pip` vs `pip3`, virtualenvs you forgot to activate, projects that break because they share a global Python installation, and the endless `which python` guessing game.
+
+[uv](https://docs.astral.sh/uv/) solves most of this. It's a fast Python package and project manager that handles dependencies, virtual environments, tool installs (like pipx), and Python version management (like pyenv) — all in one tool.
+
+The `jarrettmeyer:uv` skill teaches Claude how to use it. Need to add a dependency? Run a one-off script without touching your project? Install `ruff` globally? Switch a project to Python 3.13? Claude knows the right `uv` command for each of these.
+
+```
+/jarrettmeyer:uv Add httpx to this project as a dependency
+```
+
+```
+/jarrettmeyer:uv Run this script with pandas and openpyxl available, without modifying pyproject.toml
+```
+
+## Podman
+
+[Podman](https://podman.io) is a daemonless, rootless container engine. It's CLI-compatible with Docker, so most commands are a straight swap — but it doesn't require a background daemon and doesn't need root.
+
+The `jarrettmeyer:podman` skill covers building images, running containers, Compose workflows, logs, volumes, and networking. It also handles log analysis by spawning a subagent to keep the main context clean. Quite useful when you need to dig through hundreds of lines of container output without losing your place.
+
+```
+/jarrettmeyer:podman Build this container and run it on port 8080
+```
+
+```
+/jarrettmeyer:podman Show me the errors from the api container logs
+```
+
+## Scrapling
+
+Web scraping is annoying. Static sites are easy until they're not. JS-rendered pages need a headless browser. Some sites actively fight you with bot detection and Cloudflare challenges. Libraries that worked last year break when the site updates its markup.
+
+[Scrapling](https://github.com/D4Vinci/Scrapling) handles all of this through a single consistent API. You pick a fetcher — `Fetcher` for plain HTML, `StealthyFetcher` for bot-protected sites, or `DynamicFetcher` for JS-rendered content. Tnd the extraction syntax is identical regardless.
+
+The `jarrettmeyer:scrapling` skill knows how to pick the right fetcher, write the extraction code, and run it with `uv run --with scrapling` so there's no install step or virtualenv required. Output goes to a local `.scrapling/` directory to keep scraping artifacts out of your project root.
+
+```
+/jarrettmeyer:scrapling Scrape the title and price from each product on this page
+```
+
+---
+
+The plugin is open source and MIT licensed. Check it out at [github.com/jarrettmeyer/skills](https://github.com/jarrettmeyer/skills).
