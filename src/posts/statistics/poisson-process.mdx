@@ -1,6 +1,6 @@
 ---
 title: "The Poisson Process"
-date: 2026-03-26
+date: 2026-03-25
 description: "The Poisson process counts independent, exponentially-spaced arrivals in a fixed interval."
 tags:
   - Mathematics
@@ -40,6 +40,8 @@ $$X \sim \text{Binomial}\!\left(n,\, p\right) = \text{Binomial}\!\left(n,\, \fra
 Here $n$ is the number of subintervals (trials) and $p = \frac{\lambda t}{n}$ is the probability of exactly one event in each subinterval. Notice that as $n$ grows, $p$ shrinks proportionally. We continue to slice the interval ever finer while keeping the total expected count $np = \lambda t$ fixed.
 
 The probability of exactly $k$ events is:
+
+$$P(X = k) = \binom{n}{k} \left(p\right)^k \left(1 - p\right)^{n-k}, \quad \text{where} \space p = \frac{\lambda t}{n}$$
 
 $$P(X = k) = \binom{n}{k} \left(\frac{\lambda t}{n}\right)^k \left(1 - \frac{\lambda t}{n}\right)^{n-k}$$
 
