@@ -1,0 +1,57 @@
+---
+title: "jarrettmeyer/skills v1.0.4"
+date: 2026-03-29
+description: "v1.0.4 of my Claude Code skills plugin is out, with a new gan skill: an adversarial multi-agent loop that iterates until quality converges."
+tags:
+  - Claude
+  - Software
+thumbnail:
+  src: /images/posts/thumbnails/claude-color.svg
+  alt: Claude
+---
+
+Today I shipped v1.0.4 of [jarrettmeyer/skills](https://github.com/jarrettmeyer/skills). If you missed the [v1.0.0 post](/software/jarrettmeyer-skills-v1.0.0), the plugin is a collection of reusable Claude Code skills — slash commands you can install once and use across all your projects.
+
+```bash
+claude plugin install jarrettmeyer/skills
+```
+
+![The jarrettmeyer/skills plugin installed in Claude Code](/images/posts/software/claude-code-plugin-jarrettmeyer-skills.png)
+
+## The `gan` skill
+
+The name is borrowed from generative adversarial networks. In a GAN, two neural networks compete: a generator produces samples, a discriminator tries to distinguish them from real data. Neither network sees the other's internals — just the output. They push each other toward better results through adversarial pressure.
+
+The `/jarrettmeyer:gan` skill applies the same structure to any artifact, using Claude subagents instead of neural networks.
+
+### Two phases
+
+**Creation phase.** A Creator subagent produces the artifact — a plan, a code change, a memo, whatever you asked for. A Critic subagent then reviews it, with no knowledge of how it was made. The Critic only sees the artifact itself, not the Creator's reasoning or context. Issues are classified as `critical`, `major`, or `minor`. Critical and major issues trigger another round; minor issues don't. This repeats until the Critic approves or you hit the round limit.
+
+**Execution phase.** Once the Creation phase produces an approved artifact, an Executor subagent implements it. A second Critic reviews the implementation against a one-sentence acceptance criterion derived from your original request. Same loop: critical and major issues get another round, minor issues are accepted as-is.
+
+The context isolation is a deliberate design choice. A Critic that can see the Creator's reasoning will naturally be anchored by it. By passing only the output, the Critic is forced to evaluate the artifact on its own merits.
+
+### Invocation
+
+```
+/jarrettmeyer:gan refactor the authentication module
+```
+
+```
+/jarrettmeyer:gan --plan-only draft a build vs. buy strategy to be presented to senior leadership.
+```
+
+```
+/jarrettmeyer:gan --max-rounds 2 --creator-role "novelist" --critic-role "literary editor" write a short story about a recursive function
+```
+
+The `--plan-only` flag stops after the Creation phase — useful when you want a reviewed plan but aren't ready to execute. `--max-rounds` overrides the default of 3 rounds per phase. You can also set custom roles for each agent via `--creator-role`, `--critic-role`, and `--executor-role`.
+
+### Not just for code
+
+The skill is general-purpose. Anything with a quality bar can go through it: code, architecture documents, blog post outlines, technical memos, API designs. The role assignment adapts: a coding request gets a software engineer as Creator and a senior code reviewer as Critic; a business case gets a business analyst and a CFO.
+
+---
+
+The plugin is open source and MIT licensed. All the source is at [github.com/jarrettmeyer/skills](https://github.com/jarrettmeyer/skills).
