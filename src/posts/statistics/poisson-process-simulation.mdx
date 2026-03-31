@@ -1,6 +1,6 @@
 ---
 title: "Simulating a Poisson Process"
-date: 2026-03-30
+date: 2026-03-31
 description: "Watch arrivals unfold in real time. This interactive simulation generates exponential interarrival times and builds the counting function N(t) step by step."
 tags:
   - Mathematics
@@ -9,6 +9,7 @@ tags:
 thumbnail:
   src: /images/posts/thumbnails/histogram.svg
   alt: Histogram
+draft: false
 ---
 
 import PoissonSimulation from "@/components/PoissonSimulation";
@@ -27,7 +28,7 @@ The random variable $T$ follows $\text{Exp}(\lambda)$.
 
 To simulate over an 8-hour window:
 
-1. Draw $U_1 \sim \text{Uniform}(0, 1)$, compute $T_1 = -\ln(U_1) / \lambda$. The first arrival is at time $S_1 = T_1$.
+1. Draw $U_1 \sim \text{Uniform}(0, 1)$, compute $T_1 = -\frac{\ln(U_1)}{\lambda}$. The first arrival is at time $S_1 = T_1$.
 2. Draw $U_2$, compute $T_2$. Second arrival at $S_2 = S_1 + T_2$.
 3. Continue accumulating: $S_n = S_{n-1} + T_n$.
 4. Stop when $S_n > 8$.
@@ -42,15 +43,15 @@ The red dashed line shows the expected value: $E[N(t)] = \lambda t$. This is the
 
 ## Interactive Simulation
 
-> Press **Play** to watch the process unfold. The blue staircase is $N(t)$. Each step is one arrival. The red line is the theoretical expectation $\lambda t$. The dashed vertical line marks the current time.
+> Press **Play** to watch the process unfold. The left chart is $N(t)$: a blue staircase that climbs by one at each arrival. The red dashed line is the theoretical expectation $\lambda t$. The right chart builds an empirical histogram of $N(8)$ over completed runs, with the theoretical Poisson PMF overlaid in red.
 >
-> Use **Reset** to generate a fresh realization. The same $\lambda$, but a different stream of random interarrival times. Use the **$\lambda$ slider** to change the arrival rate.
+> Use **Reset** to generate a fresh realization and clear the histogram. The **speed selector** controls how fast the animation runs. Drag the **scrub bar** to jump to any point in time. Use the **$\lambda$ slider** to change the arrival rate.
 
 <PoissonSimulation client:visible />
 
 ## What to Notice
 
-- **The staircase is a random walk.** It only steps forward — never back — but the underlying mechanism is identical to flipping coins. Every infinitesimal slice of time is a Bernoulli trial; the Poisson distribution is what you get when you take infinitely many of them. Because you're accumulating independent trials, the spread of possible outcomes grows with time, exactly as it does in any random walk. A run that ends far from $\lambda t$ isn't unusual — it's the variance doing what variance does.
+- **The staircase is built from coin flips.** Every infinitesimal slice of time is a Bernoulli trial. During this slice of time, did an event happen or not? The Poisson distribution is what you get when you take infinitely many of those trials. Of course, the staircase only steps up, never down. You can never have fewer total events later in time. The randomness comes from the same place as any sequence of independent trials: nobody knows which slices will fire until they do.
 
 - **Higher $\lambda$ means more arrivals and a steeper staircase.** The gaps between steps get shorter. At $\lambda = 12$, you're averaging 96 arrivals over the shift; the staircase looks almost smooth.
 
@@ -58,6 +59,8 @@ The red dashed line shows the expected value: $E[N(t)] = \lambda t$. This is the
 
 ## Connection to Theory
 
-Here's the bridge back to the [previous post](/statistics/poisson-process). Fix any time $t$ and ask: what is $N(t)$? It's a random variable. Each run of the simulation, you get a different value. But the distribution of that random variable is exactly $\text{Poisson}(\lambda t)$.
+Here's the connection to the [previous post](/statistics/poisson-process): Fix any time $t$ and ask: what is $N(t)$? It's a random variable. Each run of the simulation, you get a different value. The distribution of that random variable is exactly $\text{Poisson}(\lambda t)$.
 
-The PMF we derived — $P(N(t) = k) = \frac{(\lambda t)^k e^{-\lambda t}}{k!}$ — tells you the probability of landing on each staircase height at time $t$. The simulation makes that abstract distribution concrete. When you watch the staircase and notice it usually ends somewhere close to $\lambda t = 24$ (for $\lambda = 3$, $t = 8$), and occasionally ends at 18 or 30, you're seeing the Poisson distribution play out in real time.
+$$P(N(t) = k) = \frac{(\lambda t)^k e^{-\lambda t}}{k!}$$
+
+The PMF we derived tells you the probability of landing on each staircase height at time $t$. The simulation makes that abstract distribution concrete. When you watch the staircase and notice it usually ends somewhere close to $\lambda t = 24$ (given $\lambda = 3$, $t = 8$), and occasionally ends at 18 or 30, you're seeing the Poisson distribution play out in real time.
