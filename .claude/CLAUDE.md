@@ -53,7 +53,7 @@ title: "Post Title" # required
 date: YYYY-MM-DD # required
 description: "Summary" # optional
 tags: [Tag1, Tag2] # optional
-draft: true # optional, only in drafts/
+draft: true # optional
 thumbnail: # optional
   src: /images/posts/thumbnails/example.svg
   alt: "Alt text"
