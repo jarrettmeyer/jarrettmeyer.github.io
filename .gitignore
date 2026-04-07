@@ -1,4 +1,5 @@
 .astro/
+.scratch/
 .superpowers/
 dist/
 node_modules/
