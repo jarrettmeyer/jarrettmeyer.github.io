@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -39,6 +40,7 @@ import HeaderLink from './HeaderLink.astro';
 					></path></svg
 				>
 			</a>
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -46,8 +48,9 @@ import HeaderLink from './HeaderLink.astro';
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
+		background: rgb(var(--bg-surface));
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		transition: background-color 0.2s ease;
 	}
 	h2 {
 		margin: 0;
@@ -65,7 +68,7 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		color: rgb(var(--black));
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}

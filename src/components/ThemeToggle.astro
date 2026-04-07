@@ -1,0 +1,60 @@
+---
+import { Sun, Moon } from 'lucide-astro';
+---
+
+<button id="theme-toggle" aria-label="Switch to dark mode">
+	<span class="sun-icon"><Sun size="20" /></span>
+	<span class="moon-icon"><Moon size="20" /></span>
+</button>
+
+<style>
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5em;
+		color: rgb(var(--black));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4px;
+		transition: color 0.2s ease;
+	}
+	button:hover {
+		color: var(--accent);
+	}
+	.sun-icon {
+		display: none;
+	}
+	.moon-icon {
+		display: block;
+	}
+	:global(html.dark) .sun-icon {
+		display: block;
+	}
+	:global(html.dark) .moon-icon {
+		display: none;
+	}
+</style>
+
+<script>
+	const btn = document.getElementById('theme-toggle');
+	const html = document.documentElement;
+
+	function updateLabel() {
+		if (!btn) return;
+		btn.setAttribute(
+			'aria-label',
+			html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode'
+		);
+	}
+
+	updateLabel();
+
+	btn?.addEventListener('click', () => {
+		html.classList.toggle('dark');
+		const isDark = html.classList.contains('dark');
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		updateLabel();
+	});
+</script>
