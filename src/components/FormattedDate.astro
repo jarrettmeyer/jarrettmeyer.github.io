@@ -1,31 +1,31 @@
 ---
-import { Calendar } from 'lucide-astro';
+import { Calendar } from "lucide-astro";
 
 interface Props {
-	date: Date;
+  date: Date;
 }
 
 const { date } = Astro.props;
 ---
 
 <span class="formatted-date">
-	<Calendar size="1em" aria-hidden="true" />
-	<time datetime={date.toISOString()}>
-		{
-			date.toLocaleDateString('en-us', {
-				year: 'numeric',
-				month: 'short',
-				day: 'numeric',
-			})
-		}
-	</time>
+  <Calendar size="1em" aria-hidden="true" />
+  <time datetime={date.toISOString()}>
+    {
+      date.toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    }
+  </time>
 </span>
 
 <style>
-	.formatted-date {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.25em;
-		color: rgb(var(--gray));
-	}
+  .formatted-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    color: rgb(var(--gray));
+  }
 </style>

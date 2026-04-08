@@ -1,0 +1,6 @@
+.astro/
+.scratch/
+dist/
+node_modules/
+public/
+bun.lock

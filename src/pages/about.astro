@@ -1,29 +1,77 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from "../layouts/Page.astro";
 
-/**
- * Calendar date I was hired at Eli Lilly.
- */
+const ABOUT_DESCRIPTION =
+  "About Jarrett Meyer — ML engineering advisor, software architect, and the person behind jarrettmeyer.com.";
+
 const eliLillyHireDate = new Date("2018-09-10");
-const yearsAtLilly = Math.floor((Date.now() - eliLillyHireDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+const yearsAtLilly = Math.floor(
+  (Date.now() - eliLillyHireDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
+);
 ---
 
-<Layout
-  title="About Me"
-  description="Lorem ipsum dolor sit amet"
-  pubDate={new Date('07 Apr 2026')}
-  heroImage={AboutHeroImage}
->
-  <p>
-	I am an Advisor in Machine Learning Engineering with Eli Lilly's
-	Decision Analytics and Optimization team. I have been with Eli Lilly
-	for {yearsAtLilly} years.
-  </p>
+<Layout title="About" description={ABOUT_DESCRIPTION}>
+  <h1>About</h1>
 
-  <h2>About this site</h2>
+  <section>
+    <p>
+      I'm Jarrett Meyer, an Advisor in Machine Learning Engineering at Eli
+      Lilly, where I've spent the last {yearsAtLilly} years working at the intersection
+      of data, infrastructure, and the decisions they inform. Before that, I spent
+      fifteen years building enterprise software. I've been writing code professionally
+      since 2004.
+    </p>
+  </section>
 
-  <p>
-	Icons by <a href="https://lucide.dev/" target="_blank">Lucide</a>.
-  </p>
+  <section>
+    <h2>The Long Version</h2>
+    <p>
+      I started in enterprise .NET and C# — application development, solutions
+      architecture, business intelligence. SQL Server was the center of gravity,
+      and the problems were about getting the right data to the right people in
+      a format they could act on. I did that for about fifteen years.
+    </p>
+    <p>
+      In 2018 I joined Eli Lilly's Decision Analytics and Optimization team. I
+      started with data visualizations — D3.js, Spotfire, the kind of work where
+      you're translating complex datasets into something a human can reason
+      about. That led into machine learning engineering, and now into advisory
+      work around AI and ML strategy. The throughline across all of it: finding
+      the right tool for the problem at hand.
+    </p>
+  </section>
+
+  <section>
+    <h2>There Is No Free Version</h2>
+    <p>
+      That phrase isn't cynicism. It's twenty-five years of watching teams pay
+      the wrong bill. You're always paying — in engineering effort, in
+      operational complexity, in the expertise required to keep things running.
+      The only question is whether you're paying intentionally or discovering
+      the cost after it's too late to renegotiate.
+    </p>
+  </section>
+
+  <section>
+    <h2>Outside of Work</h2>
+    <p>
+      Husband and father, based in Indianapolis. Voracious reader. Caffeine
+      enthusiast — a holdover from the early days when this was the
+      "Caffeine-Powered Life" blog.
+    </p>
+  </section>
+
+  <section>
+    <h2>About This Site</h2>
+    <p>
+      Built with <a href="https://astro.build/" target="_blank">Astro</a>. Icons
+      by <a href="https://lucide.dev/" target="_blank">Lucide</a>.
+    </p>
+  </section>
 </Layout>
+
+<style>
+  section + section {
+    margin-top: 2em;
+  }
+</style>

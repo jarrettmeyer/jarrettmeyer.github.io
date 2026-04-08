@@ -1,26 +1,178 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import awsCloudPractitioner from "../assets/aws-certified-cloud-practitioner.png";
+import awsMlEngineer from "../assets/aws-certified-machine-learning-engineer-associate.png";
+import awsSolutionsArchitect from "../assets/aws-certified-solutions-architect-associate.png";
+import azureAiFundamentals from "../assets/microsoft-certified-fundamentals-badge.svg";
+import Layout from "../layouts/Page.astro";
+
+const articles = (await getCollection("articles", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Hello, I'm Jarrett!</h1>
-			<h2>Senior Machine Learning Architect and Technology Strategy Leader</h2>
-			<p>
-			    Over 20 years of experience driving transformational software and data
-				solutions. Expertise in AWS cloud infrastructure, machine learning
-				engineering, and delivering scalable data solutions.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="hero">
+    <h1>Jarrett Meyer</h1>
+    <p class="tagline">
+      25 years building software and data systems. ML Engineering Advisor at Eli
+      Lilly. I write about using the right tool — not the trendy one.
+    </p>
+  </section>
+
+  <section class="thesis">
+    <p>
+      You pay in engineering, skill, and forethought — or you pay in managed
+      service charges, operational chaos, and non-reproducible models. The bill
+      always comes. Every article on this site is the same argument in a
+      different domain.
+    </p>
+  </section>
+
+  <section class="certifications">
+    <h2>Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <Image
+          src={awsCloudPractitioner}
+          alt="AWS Certified Cloud Practitioner badge"
+          width={80}
+          height={80}
+        />
+        <span>AWS Certified Cloud Practitioner</span>
+      </div>
+      <div class="cert-card">
+        <Image
+          src={awsSolutionsArchitect}
+          alt="AWS Certified Solutions Architect Associate badge"
+          width={80}
+          height={80}
+        />
+        <span>AWS Certified Solutions Architect — Associate</span>
+      </div>
+      <div class="cert-card">
+        <Image
+          src={awsMlEngineer}
+          alt="AWS Certified Machine Learning Engineer Associate badge"
+          width={80}
+          height={80}
+        />
+        <span>AWS Certified Machine Learning Engineer — Associate</span>
+      </div>
+      <div class="cert-card">
+        <img
+          src={azureAiFundamentals.src}
+          alt="Microsoft Certified Azure AI Fundamentals badge"
+          width={80}
+          height={80}
+        />
+        <span>Microsoft Certified Azure AI Fundamentals</span>
+      </div>
+    </div>
+  </section>
+
+  {
+    articles.length > 0 && (
+      <section class="recent-articles">
+        <h2>Recent Articles</h2>
+        <ul>
+          {articles.map((article) => (
+            <li>
+              <a href={`/articles/${article.id}/`}>
+                <h4 class="title">{article.data.title}</h4>
+                <p class="description">{article.data.description}</p>
+                <p class="date">
+                  <FormattedDate date={article.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p>
+          <a href="/articles/">View all articles &rarr;</a>
+        </p>
+      </section>
+    )
+  }
+</Layout>
+
+<style>
+  .tagline {
+    font-size: 1.2em;
+    color: rgb(var(--gray-dark));
+    line-height: 1.5;
+    margin-top: 0.5em;
+  }
+  .thesis {
+    border-left: 4px solid var(--accent);
+    padding-left: 1em;
+    margin: 2em 0;
+  }
+  .certifications {
+    margin: 2em 0;
+  }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+  }
+  .cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 8px;
+  }
+  .cert-card img {
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+  .cert-card span {
+    font-size: 0.9em;
+    color: rgb(var(--gray-dark));
+  }
+  .recent-articles ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .recent-articles ul li a {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  .recent-articles ul li:last-child a {
+    border-bottom: none;
+  }
+  .recent-articles .title {
+    margin: 0;
+    color: rgb(var(--black));
+    line-height: 1.3;
+  }
+  .recent-articles .description {
+    margin: 0.4em 0 0;
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+  .recent-articles .date {
+    margin: 0;
+    color: rgb(var(--gray));
+    font-size: 0.85em;
+  }
+  .recent-articles ul li a:hover .title {
+    color: var(--accent);
+  }
+  @media (max-width: 720px) {
+    .cert-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
