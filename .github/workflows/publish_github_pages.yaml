@@ -1,0 +1,56 @@
+name: Publish GitHub Pages
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish_github_pages.yaml"
+      - "public/**"
+      - "src/**"
+      - "astro.config.ts"
+      - "bun.lock"
+      - "package.json"
+      - "tsconfig.json"
+  pull_request:
+    paths:
+      - ".github/workflows/publish_github_pages.yaml"
+      - "public/**"
+      - "src/**"
+      - "astro.config.ts"
+      - "bun.lock"
+      - "package.json"
+      - "tsconfig.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v6
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Check formatting
+        run: bun run format:check
+      - name: Install, build, and upload your site
+        uses: withastro/action@v6
+        with:
+          package-manager: bun
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

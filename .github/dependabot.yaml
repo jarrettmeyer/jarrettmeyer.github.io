@@ -1,0 +1,14 @@
+version: 2
+
+updates:
+  # Monitor JavaScript dependencies (npm registry)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
