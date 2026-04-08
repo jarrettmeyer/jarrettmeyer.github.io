@@ -5,8 +5,8 @@
  */
 
 :root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
+  --accent: #3d5afe;
+  --accent-dark: #1a237e;
   --black: 32, 33, 34;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
@@ -15,10 +15,16 @@
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
   --bg-surface: 255, 255, 255;
+  --h1-color: 0, 119, 182;    /* #0077b6 deep cyan */
+  --h2-color: 21, 101, 192;   /* #1565c0 deep blue */
+  --h3-color: 30, 64, 175;    /* #1e40af indigo-blue */
+  --h4-color: 59, 80, 153;    /* #3b5099 muted blue */
+  --h5-color: 74, 85, 128;    /* #4a5580 gray-blue */
+  --h6-color: 74, 80, 112;    /* #4a5070 dark gray-blue */
 }
 html.dark {
-  --accent: #6b8aff;
-  --accent-dark: #8fa8ff;
+  --accent: #7aa2f7;
+  --accent-dark: #89ddff;
   --black: 240, 240, 245;
   --gray: 160, 170, 190;
   --gray-light: 45, 50, 60;
@@ -28,6 +34,12 @@ html.dark {
     0 16px 32px rgba(0, 0, 0, 33%);
   --bg-surface: 32, 33, 34;
   color-scheme: dark;
+  --h1-color: 137, 221, 255;   /* #89ddff bright cyan */
+  --h2-color: 97, 189, 242;    /* #61bdf2 light blue */
+  --h3-color: 122, 162, 247;   /* #7aa2f7 blue */
+  --h4-color: 109, 145, 222;   /* #6d91de muted blue */
+  --h5-color: 154, 165, 206;   /* #9aa5ce gray-blue */
+  --h6-color: 116, 124, 161;   /* #747ca1 dark gray-blue */
 }
 @font-face {
   font-family: "Atkinson";
@@ -71,23 +83,30 @@ h4,
 h5,
 h6 {
   margin: 0 0 0.5rem 0;
-  color: rgb(var(--black));
   line-height: 1.2;
 }
 h1 {
   font-size: 3.052em;
+  color: rgb(var(--h1-color));
 }
 h2 {
   font-size: 2.441em;
+  color: rgb(var(--h2-color));
 }
 h3 {
   font-size: 1.953em;
+  color: rgb(var(--h3-color));
 }
 h4 {
   font-size: 1.563em;
+  color: rgb(var(--h4-color));
 }
 h5 {
   font-size: 1.25em;
+  color: rgb(var(--h5-color));
+}
+h6 {
+  color: rgb(var(--h6-color));
 }
 strong,
 b {
@@ -97,7 +116,7 @@ a {
   color: var(--accent);
 }
 a:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 p {
   margin-bottom: 1em;
@@ -151,16 +170,6 @@ hr {
   }
 }
 
-.external-link-icon {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0.15em;
-  vertical-align: middle;
-}
-.external-link-icon svg {
-  width: 0.75em;
-  height: 0.75em;
-}
 .sr-only {
   border: 0;
   padding: 0;
