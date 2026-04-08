@@ -20,7 +20,7 @@ The problem is that projects aren't a single decision. They're five hundred deci
 
 Put succinctly: it's a vibe-coded, AI slop shit show. 💩
 
-## 💰 The greedy algorithm
+## The greedy algorithm
 
 Computer science has a name for "always pick the locally optimal choice": greedy algorithms. Sometimes they produce globally optimal results. [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) is greedy. [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) is greedy. They work because the problem is structured to guarantee that local decisions compose into a global optimum.
 
@@ -28,17 +28,17 @@ Most software projects do not have this structure.
 
 You're not pathfinding on a weighted graph.
 
-"Do the simplest thing" is a greedy algorithm applied to a problem that doesn't have the greedy choice property. Each PR looks fine. The accumulation is a mass of indecipherable spaghetti code that is no longer readable by humans (and barely interpreted by _&lt;insert coding agent of your choice&gt;_).
+"Do the simplest thing" is a greedy algorithm applied to a problem that doesn't have the greedy choice property. Each PR looks fine. The accumulation is a mass of indecipherable spaghetti code that is no longer readable by humans (and barely understood by Claude).
 
-## 📝 Context is the bottleneck
+## Context is the bottleneck
 
 The system prompt isn't wrong. It's incomplete. There's a quiet clause in there about Claude asking for clarification when context is missing. Claude doesn't know what it doesn't know. It can't ask about the edge case it's never seen.
 
-That's the job of the developer providing context. Historically, that person was a senior engineer — someone who'd been through the last three rewrites, who'd watched the "simple" CSV ingestion blow up the first time a vendor sent a file with a comma in a field name. The one who has experienced the build up of scar tissue.
+That's the job of the developer providing context. Historically, that person was a senior engineer — someone who'd been through the last three rewrites, who'd watched the "simple" CSV ingestion blow up the first time a vendor sent a file with a comma in a field name. The one who has experienced the buildup of scar tissue.
 
-Context management is a shared responsibility. The human brings the history, the institutional knowledge, the "wait, we tried that in 2019 and here's why it failed." No documentation and retrieval system has yet to capture the human brain.
+Context management is a shared responsibility. The human brings the history, the institutional knowledge, the "wait, we tried that in 2019 and here's why it failed." No documentation and retrieval system has yet captured the human brain.
 
-## 🔄 The missing feedback loop
+## The missing feedback loop
 
 So who was doing this work? Who was the person saying "that's the simplest thing, but it's not the right thing"?
 
@@ -56,7 +56,7 @@ Some of those cuts were overdue. Every honest engineer knows someone who'd been 
 - [Amazon Convenes Engineers for Urgent Review of AI-Driven Service Outages](https://mlq.ai/news/amazon-convenes-engineers-for-urgent-review-of-ai-driven-service-outages/)
 - [Amazon holds engineer meeting over AI-linked service disruptions](https://www.investing.com/news/stock-market-news/amazon-holds-engineer-meeting-over-ailinked-service-disruptions-ft-93CH-4551080)
 
-## 🍆 You're gonna fuck up
+## You're gonna fuck up
 
 You are always going to make bad early decisions. That's not a failure of process. That's the nature of building software with incomplete information. Every first design is wrong. The question is whether you have the feedback loops to catch it before it metastasizes.
 
@@ -64,11 +64,13 @@ You are always going to make bad early decisions. That's not a failure of proces
 
 The system prompt doesn't have a clause for that. It doesn't say "try the simplest approach first, then circle back in three weeks and ask whether the simple approach is still good enough." That's not the model's fault. That's a job for a human - ideally, one who's been around long enough to know what "good enough" means in the context of this specific system.
 
-## ❓ What to do about it
+## What to do about it
 
 I'm not here to write a thinkpiece about how AI is ruining software development. I use Claude every day. I build MCP servers. I write Claude Code skills plugins. The tooling is genuinely good, and it makes me faster at the parts of my job that benefit from speed.
 
 But speed without direction is just velocity in a random walk.
+
+So here's the part where I tell you what to do. You're not going to like it, because none of it is novel.
 
 If you're leading a team that's leaning heavily on AI-assisted development — and you should be, the productivity gains are real — here's what I'd actually tell you:
 
@@ -83,6 +85,8 @@ If you're leading a team that's leaning heavily on AI-assisted development — a
 The simplest thing is almost never the last thing. It's the starting point. The question is whether anyone's still around to know when it's time to move past it.
 
 ![Clean cable management](../../assets/pexels-cookiecutter-19166565.jpg)
+
+This doesn't happen by accident.
 
 ---
 
