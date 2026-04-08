@@ -8,10 +8,11 @@ import awsMlEngineer from "../assets/aws-certified-machine-learning-engineer-ass
 import awsSolutionsArchitect from "../assets/aws-certified-solutions-architect-associate.png";
 import azureAiFundamentals from "../assets/microsoft-certified-fundamentals-badge.svg";
 import Layout from "../layouts/Page.astro";
+import { MS_PER_YEAR } from "../consts";
 
-const startDate = new Date("2001-05-31");
+const bsGraduationDate = new Date("2004-01-01");
 const developmentDuration = Math.floor(
-  (Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
+  (Date.now() - bsGraduationDate.getTime()) / MS_PER_YEAR,
 );
 
 const articles = (await getCollection("articles", ({ data }) => !data.draft))
@@ -23,18 +24,9 @@ const articles = (await getCollection("articles", ({ data }) => !data.draft))
   <section class="hero">
     <h1>Jarrett Meyer</h1>
     <p class="tagline">
-      {developmentDuration} years building software and data systems. Machine Learning
-      Engineering Advisor at Eli Lilly. I write about using the right tool — not the
-      trendy one.
-    </p>
-  </section>
-
-  <section class="thesis">
-    <p>
-      You pay in engineering, skill, and forethought — or you pay in managed
-      service charges, operational chaos, and non-reproducible models. The bill
-      always comes. Every article on this site is the same argument in a
-      different domain.
+      Over {developmentDuration} years of experience driving technology transformation
+      and building software solutions. Expertise in AWS cloud infrastructure, machine
+      learning engineering, and delivering scalable data solutions.
     </p>
   </section>
 

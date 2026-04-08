@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Page.astro";
+import { MS_PER_YEAR } from "../consts";
 
 const ABOUT_DESCRIPTION =
   "About Jarrett Meyer — ML engineering advisor, software architect, and the person behind jarrettmeyer.com.";
 
 const eliLillyHireDate = new Date("2018-09-10");
-const yearsAtLilly = Math.floor(
-  (Date.now() - eliLillyHireDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
+const yearsAtLilly = Math.round(
+  (Date.now() - eliLillyHireDate.getTime()) / MS_PER_YEAR,
 );
 ---
 
@@ -27,13 +28,14 @@ const yearsAtLilly = Math.floor(
     <h2>The Long Version</h2>
     <p>
       I started in enterprise .NET and C#. Application development, solutions
-      architecture, business intelligence. SQL Server was the center of gravity,
-      and the problems were about getting the right data to the right people in
-      a format they could act on. I did that for about fifteen years.
+      architecture, business intelligence. Domain driven design. Clean code.
+      Test-driven development. Agile. SQL Server was the center of gravity, and
+      the problems were about getting the right data to the right people in a
+      format they could act on. I did that for about fifteen years.
     </p>
     <p>
       In 2018 I joined Eli Lilly's Decision Analytics and Optimization team. I
-      started with data visualizations — D3.js, Spotfire, the kind of work where
+      started with data visualizations. D3.js, Spotfire, the kind of work where
       you're translating complex datasets into something a human can reason
       about. That led into machine learning engineering, and now into advisory
       work around AI and ML strategy. The throughline across all of it: finding
@@ -42,22 +44,10 @@ const yearsAtLilly = Math.floor(
   </section>
 
   <section>
-    <h2>There Is No Free Version</h2>
-    <p>
-      That phrase isn't cynicism. It's twenty-five years of watching teams pay
-      the wrong bill. You're always paying — in engineering effort, in
-      operational complexity, in the expertise required to keep things running.
-      The only question is whether you're paying intentionally or discovering
-      the cost after it's too late to renegotiate.
-    </p>
-  </section>
-
-  <section>
     <h2>Outside of Work</h2>
     <p>
-      Husband and father, based in Indianapolis. Voracious reader. Caffeine
-      enthusiast — a holdover from the early days when this was the
-      "Caffeine-Powered Life" blog.
+      Husband and father. Voracious reader. Caffeine enthusiast. Bourbon
+      enjoyer.
     </p>
   </section>
 
