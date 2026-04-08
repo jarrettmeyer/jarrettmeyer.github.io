@@ -1,0 +1,78 @@
+---
+title: "The Simplest Thing"
+description: "Claude's system prompt says 'try the simplest approach first.' That's good advice for a single decision. It's terrible advice for a project. Here's what happens when nobody's left to know the difference."
+pubDate: 2026-04-07
+draft: true
+tags: ["ai", "engineering", "architecture", "claude"]
+---
+
+In March 2026, Claude Code's system prompt leaked. Buried in the instructions were the following lines:
+
+- "Try the simplest approach first"
+- "Don't add features, refactor code, or make 'improvements' beyond what was asked"
+- "Three similar lines of code is better than a premature abstraction"
+- "Don't design for hypothetical future requirements"
+
+These are good instructions. I mean that. If you're generating a single function, a single commit, a single pull request — do the simplest thing. Don't over-engineer. Ship it.
+
+The problem is that projects aren't a single decision. They're five hundred decisions. And "the simplest thing" applied five hundred times in a row, without someone asking "where is this going?" produces a very specific kind of disaster.
+
+Put succinctly: it's vibe-coded, AI slop.
+
+![Jurassic Park](../../assets/jurassic_park_thats_one_big_pile_of_shit.jpg)
+
+## 💰 The greedy algorithm
+
+Computer science has a name for "always pick the locally optimal choice": greedy algorithms. Sometimes they produce globally optimal results. [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) is greedy. [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) is greedy. They work because the problem is structured to guarantee that local decisions compose into a global optimum.
+
+Most software projects do not have this structure.
+
+You're not pathfinding on a weighted graph.
+
+"Do the simplest thing" is a greedy algorithm applied to a problem that doesn't have the greedy choice property. Each PR looks fine. The accumulation is a mass of indecipherable spaghetti code that is no longer readable by humans (and barely interpreted by _&lt;insert coding agent of your choice&gt;_).
+
+## 📝 Context is the bottleneck
+
+The system prompt isn't wrong. It's incomplete. There's a quiet clause in there about Claude asking for clarification when context is missing. Claude doesn't know what it doesn't know. It can't ask about the edge case it's never seen.
+
+That's the job of the developer providing context. Historically, that person was a senior engineer — someone who'd been through the last three rewrites, who'd watched the "simple" CSV ingestion blow up the first time a vendor sent a file with a comma in a field name. The one who has experienced the build up of scar tissue.
+
+Context management is a shared responsibility. The human brings the history, the institutional knowledge, the "wait, we tried that in 2019 and here's why it failed." No documentation and retrieval system has yet to capture the human brain.
+
+## 🔄 The missing feedback loop
+
+So who was doing this work? Who was the person saying "that's the simplest thing, but it's not the right thing"?
+
+In a lot of shops, it was the senior staff engineer. The principal. The person whose job title didn't fully capture what they actually did. The person who's a little bit autistic, doesn't get along with upper management, and who struggles to bridge the gap between "what do you do" (a technical question) and "what value do you bring" (a business question). They were expensive, and their value was invisible right up until they were gone.
+
+The 2024-2026 tech layoffs have hit this population hard. Not exclusively — plenty of junior and mid-level engineers lost jobs too, but senior devs were disproportionately expensive and disproportionately difficult to justify on a spreadsheet. Their output wasn't measured in commits per week. Their value was in the problems that _didn't happen_, which is notoriously hard to put on a dashboard.
+
+Some of those cuts were overdue. Every honest engineer knows someone who'd been coasting for years. Dead weight exists. I'm not going to pretend otherwise.
+
+But you don't notice the structural pillars until the ceiling sags.
+
+## 🍆 You're gonna fuck up
+
+You were always going to make bad early decisions. That's not a failure of process. That's the nature of building software with incomplete information. Every first design is wrong. The question is whether you have the feedback loops to catch it before it metastasizes.
+
+"Do the simplest thing" is a fine heuristic for the first draft. It's a terrible heuristic for the fifth revision, when you know things you didn't know at the start and the simple choice from week one is now a load-bearing assumption in fourteen different modules.
+
+The system prompt doesn't have a clause for that. It doesn't say "try the simplest approach first, then circle back in three weeks and ask whether the simple approach is still serving you." That's not the model's fault. That's a job for a human — ideally, one who's been around long enough to know what "serving you" means in the context of this specific system.
+
+## ❓ What to do about it
+
+I'm not here to write a thinkpiece about how AI is ruining software development. I use Claude every day. I build MCP servers. I write Claude Code skills plugins. The tooling is genuinely good, and it makes me faster at the parts of my job that benefit from speed.
+
+But speed without direction is just velocity in a random walk.
+
+If you're leading a team that's leaning heavily on AI-assisted development — and you should be, the productivity gains are real — here's what I'd actually tell you:
+
+**Invest in context, not prompts.** The quality of AI-generated code is bounded by the quality of the context you provide. Architecture decision records, design docs, a written-down explanation of _why_ the system looks the way it does — these aren't bureaucratic overhead. They're the context that makes "do the simplest thing" actually produce good results, because now "simple" is defined relative to a coherent plan instead of relative to the nothing that Claude knows about the long-term scope of your project.
+
+**Reinforce your feedback loops.** Code review - by actual human beings! - who understand the system's trajectory, not just its syntax. Periodic architecture reviews that ask "are the assumptions from three months ago still valid?" Retrospectives that look at the decisions that compounded well and the ones that didn't. These are the mechanisms that convert local decisions into global coherence.
+
+**Protect the people who provide judgment.** If you have senior engineers whose value is "the production incidents that didn't happen," find a way to make that visible before someone with a spreadsheet decides they're overhead. Scar tissue is institutional knowledge. It's not glamorous, it's not measurable on a velocity chart, and it's irreplaceable once it walks out the door.
+
+**Use the AI for what it's good at.** Generation. Exploration. First drafts. Boilerplate. The parts of the job that benefit from speed and breadth. Then apply human judgment to the output — the judgment that comes from having been wrong before, in this specific codebase, with these specific tradeoffs.
+
+The simplest thing is almost never the last thing. It's the starting point. The question is whether anyone's still around to know when it's time to move past it.
