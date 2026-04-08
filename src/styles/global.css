@@ -15,12 +15,12 @@
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
   --bg-surface: 255, 255, 255;
-  --h1-color: 0, 119, 182;    /* #0077b6 deep cyan */
-  --h2-color: 21, 101, 192;   /* #1565c0 deep blue */
-  --h3-color: 30, 64, 175;    /* #1e40af indigo-blue */
-  --h4-color: 59, 80, 153;    /* #3b5099 muted blue */
-  --h5-color: 74, 85, 128;    /* #4a5580 gray-blue */
-  --h6-color: 74, 80, 112;    /* #4a5070 dark gray-blue */
+  --h1-color: 0, 119, 182; /* #0077b6 deep cyan */
+  --h2-color: 21, 101, 192; /* #1565c0 deep blue */
+  --h3-color: 30, 64, 175; /* #1e40af indigo-blue */
+  --h4-color: 59, 80, 153; /* #3b5099 muted blue */
+  --h5-color: 74, 85, 128; /* #4a5580 gray-blue */
+  --h6-color: 74, 80, 112; /* #4a5070 dark gray-blue */
 }
 html.dark {
   --accent: #7aa2f7;
@@ -34,12 +34,12 @@ html.dark {
     0 16px 32px rgba(0, 0, 0, 33%);
   --bg-surface: 32, 33, 34;
   color-scheme: dark;
-  --h1-color: 137, 221, 255;   /* #89ddff bright cyan */
-  --h2-color: 97, 189, 242;    /* #61bdf2 light blue */
-  --h3-color: 122, 162, 247;   /* #7aa2f7 blue */
-  --h4-color: 109, 145, 222;   /* #6d91de muted blue */
-  --h5-color: 154, 165, 206;   /* #9aa5ce gray-blue */
-  --h6-color: 116, 124, 161;   /* #747ca1 dark gray-blue */
+  --h1-color: 137, 221, 255; /* #89ddff bright cyan */
+  --h2-color: 97, 189, 242; /* #61bdf2 light blue */
+  --h3-color: 122, 162, 247; /* #7aa2f7 blue */
+  --h4-color: 109, 145, 222; /* #6d91de muted blue */
+  --h5-color: 154, 165, 206; /* #9aa5ce gray-blue */
+  --h6-color: 116, 124, 161; /* #747ca1 dark gray-blue */
 }
 @font-face {
   font-family: "Atkinson";
