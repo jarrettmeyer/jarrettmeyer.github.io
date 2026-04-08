@@ -9,6 +9,11 @@ import awsSolutionsArchitect from "../assets/aws-certified-solutions-architect-a
 import azureAiFundamentals from "../assets/microsoft-certified-fundamentals-badge.svg";
 import Layout from "../layouts/Page.astro";
 
+const startDate = new Date("2001-05-31");
+const developmentDuration = Math.floor(
+  (Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
+);
+
 const articles = (await getCollection("articles", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
@@ -18,8 +23,9 @@ const articles = (await getCollection("articles", ({ data }) => !data.draft))
   <section class="hero">
     <h1>Jarrett Meyer</h1>
     <p class="tagline">
-      25 years building software and data systems. ML Engineering Advisor at Eli
-      Lilly. I write about using the right tool — not the trendy one.
+      {developmentDuration} years building software and data systems. Machine Learning
+      Engineering Advisor at Eli Lilly. I write about using the right tool — not the
+      trendy one.
     </p>
   </section>
 

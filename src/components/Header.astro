@@ -1,7 +1,6 @@
 ---
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
-import SocialLinks from "./SocialLinks.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
@@ -15,15 +14,15 @@ import ThemeToggle from "./ThemeToggle.astro";
           width="24"
           height="24"
           style="vertical-align: middle; margin-right: 0.4em;"
-        />{SITE_TITLE}</a>
+        />{SITE_TITLE}</a
+      >
     </h2>
-    <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/articles">Articles</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
-    </div>
-    <div class="social-links">
-      <SocialLinks size={28} />
+    <div class="right-nav">
+      <div class="internal-links">
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/articles">Articles</HeaderLink>
+        <HeaderLink href="/about">About</HeaderLink>
+      </div>
       <ThemeToggle />
     </div>
   </nav>
@@ -59,18 +58,12 @@ import ThemeToggle from "./ThemeToggle.astro";
     text-decoration: none;
     border-bottom-color: var(--accent);
   }
-  .social-links {
+  .right-nav {
     display: flex;
-  }
-  .social-links :global(a) {
-    display: flex;
-    padding: 1em 0.5em;
-    color: rgb(var(--black));
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
+    align-items: center;
   }
   @media (max-width: 720px) {
-    .social-links {
+    .internal-links {
       display: none;
     }
   }
