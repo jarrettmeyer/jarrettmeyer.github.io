@@ -2,7 +2,7 @@
 
 ## Package Manager
 
-Always use `bun`. Never use `npm`, `yarn`, or `pnpm`.
+**Always** use `bun`. **Never** use `npm`, `yarn`, or `pnpm`.
 
 ## Superpowers
 

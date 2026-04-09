@@ -1,6 +1,7 @@
 // @ts-check
 
 import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import externalLinkDecorator from "./src/plugins/external-link-decorator";
@@ -11,5 +12,11 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [externalLinkDecorator],
   },
-  integrations: [mdx({ rehypePlugins: [externalLinkDecorator] }), sitemap()],
+  integrations: [
+    mdx({ rehypePlugins: [externalLinkDecorator] }),
+    sitemap(),
+    partytown({
+      config: { forward: ["dataLayer.push", "gtag"] },
+    }),
+  ],
 });
