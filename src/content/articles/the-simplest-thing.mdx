@@ -2,6 +2,7 @@
 title: "The Simplest Thing"
 description: "Claude's system prompt says 'try the simplest approach first.' That's good advice for a single decision. It's terrible advice for a project. Here's what happens when nobody's left to know the difference."
 pubDate: 2026-04-08
+updatedDate: 2026-04-09
 heroImage: "../../assets/pexels-paulseling-12266915.jpg"
 draft: false
 tags: ["ai", "engineering", "architecture", "claude"]
@@ -50,17 +51,13 @@ The 2024-2026 tech layoffs have hit this population hard. Not exclusively — pl
 
 Some of those cuts were overdue. Every honest engineer knows someone who'd been coasting for years. Dead weight exists. I'm not going to pretend otherwise. But you don't notice the structural pillars until the ceiling sags.
 
-- [13-hour AWS outage reportedly caused by Amazon's own AI tools](https://www.engadget.com/ai/13-hour-aws-outage-reportedly-caused-by-amazons-own-ai-tools-170930190.html)
-- [A 'high blast radius': Amazon probes surge in outages linked to AI coding tools](https://tessl.io/blog/a-high-blast-radius-amazon-probes-surge-in-outages-linked-to-ai-coding-tools/)
-- [Amazon insists AI coding isn't source of outages](https://www.theregister.com/2026/03/10/amazon_ai_coding_outages/)
-- [Amazon Convenes Engineers for Urgent Review of AI-Driven Service Outages](https://mlq.ai/news/amazon-convenes-engineers-for-urgent-review-of-ai-driven-service-outages/)
-- [Amazon holds engineer meeting over AI-linked service disruptions](https://www.investing.com/news/stock-market-news/amazon-holds-engineer-meeting-over-ailinked-service-disruptions-ft-93CH-4551080)
+For example, AWS has laid of 30,000 employees in the last six months. [What](https://www.engadget.com/ai/13-hour-aws-outage-reportedly-caused-by-amazons-own-ai-tools-170930190.html) [could](https://tessl.io/blog/a-high-blast-radius-amazon-probes-surge-in-outages-linked-to-ai-coding-tools/) [possibly](https://www.theregister.com/2026/03/10/amazon_ai_coding_outages/) [go](https://mlq.ai/news/amazon-convenes-engineers-for-urgent-review-of-ai-driven-service-outages/) [wrong](https://www.businessinsider.com/amazon-tightens-code-controls-after-outages-including-one-ai-2026-3)?
 
 ## You're gonna fuck up
 
 You are always going to make bad early decisions. That's not a failure of process. That's the nature of building software with incomplete information. Every first design is wrong. The question is whether you have the feedback loops to catch it before it metastasizes.
 
-"Do the simplest thing" is a fine heuristic for the first draft. It's a terrible heuristic for the fifth revision, when you know things you didn't know at the start and the simple choice from week one is now a load-bearing assumption in fourteen different modules.
+"Do the simplest thing" is a fine heuristic for the first draft. It's a terrible heuristic for the fifth revision, when you know things you didn't know at the start, and the simple choice from week one is now a load-bearing assumption in fourteen different modules.
 
 The system prompt doesn't have a clause for that. It doesn't say "try the simplest approach first, then circle back in three weeks and ask whether the simple approach is still good enough." That's not the model's fault. That's a job for a human - ideally, one who's been around long enough to know what "good enough" means in the context of this specific system.
 
