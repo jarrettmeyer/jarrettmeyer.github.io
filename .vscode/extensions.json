@@ -2,6 +2,7 @@
   "recommendations": [
     "astro-build.astro-vscode",
     "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
     "unifiedjs.vscode-mdx"
   ],
   "unwantedRecommendations": []
