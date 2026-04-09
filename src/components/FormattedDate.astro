@@ -25,7 +25,13 @@ const { date } = Astro.props;
   .formatted-date {
     display: inline-flex;
     align-items: center;
-    gap: 0.25em;
-    color: rgb(var(--gray));
+    gap: 0.125em;
+    /* color: rgb(var(--gray)); */
+    vertical-align: middle;
+  }
+
+  .formatted-date :global(svg) {
+    display: block;
+    transform: translateY(-3px);
   }
 </style>
