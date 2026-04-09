@@ -1,6 +1,7 @@
 .astro/
 .claude/superpowers/
 .scratch/
+.superpowers/
 dist/
 node_modules/
 .DS_Store
