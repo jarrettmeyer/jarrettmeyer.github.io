@@ -1,0 +1,25 @@
+---
+// Google Analytics (production only)
+const isProd = import.meta.env.PROD;
+
+const gtagScript = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "G-TGDW288VN7");
+`;
+---
+
+{
+  isProd && (
+    <>
+      <script
+        is:inline
+        type="text/partytown"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-TGDW288VN7"
+      />
+      <script is:inline type="text/partytown" set:html={gtagScript} />
+    </>
+  )
+}
