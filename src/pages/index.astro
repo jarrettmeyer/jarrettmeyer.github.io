@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import EmailSubscriptionForm from "../components/EmailSubscriptionForm.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import awsCloudPractitioner from "../assets/aws-certified-cloud-practitioner.png";
@@ -95,6 +96,7 @@ const articles = (await getCollection("articles", ({ data }) => !data.draft))
       </section>
     )
   }
+  <EmailSubscriptionForm />
 </Layout>
 
 <style>

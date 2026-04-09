@@ -1,0 +1,200 @@
+---
+interface Props {
+  message?: string;
+}
+
+const { message = "Get new articles delivered straight to your inbox." } =
+  Astro.props;
+---
+
+<div class="subscribe-card">
+  <h4>Stay in the loop</h4>
+  <p class="subscribe-message">{message}</p>
+  <form class="subscribe-form">
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+  <div
+    class="cf-turnstile"
+    data-sitekey="0x4AAAAAABrWC8POBFndQnsz"
+    data-theme="auto"
+    data-size="flexible"
+  >
+  </div>
+  <p class="subscribe-hint">No spam. Unsubscribe anytime.</p>
+  <p class="subscribe-status" aria-live="polite"></p>
+</div>
+
+<script
+  is:inline
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer></script>
+
+<script>
+  document.querySelectorAll(".subscribe-form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = form.querySelector<HTMLInputElement>(
+        'input[name="email"]',
+      )!;
+      const button = form.querySelector<HTMLButtonElement>(
+        'button[type="submit"]',
+      )!;
+      const card = form.closest<HTMLElement>(".subscribe-card")!;
+      const status = card.querySelector<HTMLElement>(".subscribe-status")!;
+      const token = card.querySelector<HTMLInputElement>(
+        '[name="cf-turnstile-response"]',
+      )?.value;
+
+      if (!token) {
+        status.textContent =
+          "Verification not ready yet — please wait a moment and try again.";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Subscribing\u2026";
+      status.textContent = "";
+
+      try {
+        const res = await fetch(
+          "https://buttondown.email/api/emails/embed-subscribe/jarrettmeyer",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              email: input.value,
+              "cf-turnstile-response": token,
+            }),
+          },
+        );
+
+        if (res.ok || res.status === 201) {
+          card.innerHTML = `<div class="subscribe-success">
+            <p class="success-icon">&#10003;</p>
+            <h4>You&rsquo;re in!</h4>
+            <p>Check your inbox to confirm your subscription.</p>
+          </div>`;
+        } else {
+          status.textContent = "Something went wrong. Please try again.";
+          button.disabled = false;
+          button.textContent = "Subscribe";
+          // Reset Turnstile so user can retry
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).turnstile?.reset();
+        }
+      } catch {
+        status.textContent = "Something went wrong. Please try again.";
+        button.disabled = false;
+        button.textContent = "Subscribe";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).turnstile?.reset();
+      }
+    });
+  });
+</script>
+
+<style>
+  .subscribe-card {
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 12px;
+    padding: 2em;
+    margin: 2em 0;
+    text-align: center;
+  }
+
+  .subscribe-card h3 {
+    margin: 0 0 0.4em 0;
+  }
+
+  .subscribe-message {
+    margin: 0 0 1.2em 0;
+    color: rgb(var(--gray));
+  }
+
+  .subscribe-form {
+    display: flex;
+    gap: 0.5em;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 0.5em 0.75em;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9em;
+    background: rgb(var(--bg-surface));
+    color: rgb(var(--gray-dark));
+  }
+
+  .subscribe-form input[type="email"]:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .subscribe-form button[type="submit"] {
+    padding: 0.5em 1.2em;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .subscribe-form button[type="submit"]:hover:not(:disabled) {
+    background: var(--accent-dark);
+  }
+
+  .subscribe-form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .subscribe-hint {
+    margin: 0.6em 0 0 0;
+    font-size: 0.75em;
+    color: rgb(var(--gray));
+  }
+
+  .subscribe-status {
+    margin: 0.5em 0 0 0;
+    font-size: 0.85em;
+    color: rgb(var(--gray));
+    min-height: 1.2em;
+  }
+
+  .subscribe-success {
+    text-align: center;
+  }
+
+  .success-icon {
+    font-size: 2em;
+    color: #22863a;
+    margin: 0 0 0.2em 0;
+    line-height: 1;
+  }
+
+  .subscribe-success h3 {
+    margin: 0 0 0.3em 0;
+    color: #22863a;
+  }
+
+  .subscribe-success p:last-child {
+    margin: 0;
+    color: rgb(var(--gray));
+  }
+
+  @media (max-width: 480px) {
+    .subscribe-form {
+      flex-direction: column;
+    }
+  }
+</style>
