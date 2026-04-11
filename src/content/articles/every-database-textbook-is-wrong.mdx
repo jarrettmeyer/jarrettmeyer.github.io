@@ -97,7 +97,7 @@ In a toy database, none of this matters. You have fifty rows and one developer. 
 
 But you're not building a class project, are you? You're all up in my enterprise.
 
-Enterprise data has this nasty habit of being load-bearing. It drives revenue. It drives internal and external compliance reporting. It drives decisions that cost real money when they're based on garbage data. When your `orders` table says a shipment went to Indianapolis, Indiana, but your `shipments` table says it went to Indianapolis, Ohio (which doesn't exist, but your shitty schema didn't stop you), someone downstream is going to have a bad day.
+Enterprise data has this nasty habit of being load-bearing. It drives revenue. It drives internal policy and external compliance. It drives decisions that cost real money when they're based on garbage data. When your `orders` table says a shipment went to Indianapolis, Indiana, but your `shipments` table says it went to Indianapolis, Ohio (which doesn't exist, but your shitty schema didn't stop you), someone downstream is going to have a bad day.
 
 _Oh! In 2026, your AI strategy is built on your data strategy, and your data strategy is a hot mess, so... But that's a different article._
 
@@ -187,7 +187,7 @@ Data modeling is hard.
 
 Everything above is just normalization. This is the stuff your textbook was supposed to teach you.
 
-How do you uniquely identify an author? "John Smith." Which one? Authors change names. Authors use pen names. Samuel Clemens is Mark Twain. A corporate author isn't a person. What about multiple authors or ghost writers? This is entity resolution, one of the genuinely hard problems in data modeling, and library science has been wrestling with it for decades. The Library of Congress maintains [authority files](https://authorities.loc.gov/) just to answer the question "is this the same person?" There are global standards for this — [ISNI](https://isni.org/), [VIAF](https://viaf.org/). They exist because a `TEXT` column named `author` was never going to cut it.
+How do you uniquely identify an author? "John Smith." Which one? Authors change names. Authors use pen names. Samuel Clemens is Mark Twain. A corporate author isn't a person. What about multiple authors or ghost writers? This is entity resolution, one of the genuinely hard problems in data modeling, and library science has been wrestling with it for decades. The Library of Congress maintains [authority files](https://authorities.loc.gov/) just to answer the question "is this the same person?" There are global standards for this. (See also: [ISNI](https://isni.org/), [VIAF](https://viaf.org/).) They exist because a `TEXT` column named `author` was never going to cut it.
 
 And ISBN? That's not just a unique identifier. ISBN ranges are [assigned to publishers](https://en.wikipedia.org/wiki/International_Standard_Book_Number#Registration_group_identifier). The identifier itself encodes information about who published the book. It's not a dumb key; it's a structured code with semantics, and if you're treating it as an opaque string, you're throwing away information.
 
@@ -195,7 +195,7 @@ None of this was on the exam. But all of it shows up the moment you try to build
 
 It's not your fault for not knowing as a fresh-faced junior developer, degree in one hand and eagerness in the other. But if you're a mid-level or senior engineer, I expect this to be foundational understanding.
 
-## What to do about it
+## So what now?
 
 I'm not going to tell you to go refactor every table in your production database. It's not worth it, and you'll break every downstream dependency.
 
